@@ -1,0 +1,44 @@
+{
+  "maltitol_alert": {
+    "severity": "high",
+    "badge_label": "Maltitol Detected — GI 35-52",
+    "tooltip": "Maltitol has a Glycemic Index of 35-52, significantly higher than erythritol (0) or stevia (0). Often used in 'sugar-free' products marketed to diabetics.",
+    "patterns": [
+      {"canonical": "Maltitol Syrup", "ins": "INS 965(ii)", "match": ["maltitol syrup", "hydrogenated glucose syrup", "lycasin", "ins 965(ii)", "ins 965ii", "965(ii)"]},
+      {"canonical": "Maltitol", "ins": "INS 965(i)", "match": ["maltitol", "hydrogenated maltose syrup", "ins 965(i)", "ins 965i", "ins 965", "e965", "965(i)"]}
+    ]
+  },
+  "amino_spiking": {
+    "severity": "amber",
+    "badge_label": "Added Aminos Detected",
+    "tooltip": "Free-form amino acids (glycine, taurine, glutamine) inflate the nitrogen count used to measure protein, without providing the same muscle-building benefit as intact protein.",
+    "patterns": [
+      {"canonical": "Glycine", "ins": null, "match": ["glycine", "l-glycine", "aminoacetic acid"]},
+      {"canonical": "Taurine", "ins": null, "match": ["taurine", "2-aminoethanesulfonic acid"]},
+      {"canonical": "L-Glutamine", "ins": null, "match": ["l-glutamine", "glutamine"]}
+    ]
+  },
+  "fat_quality": {
+    "severity": "high",
+    "badge_label": "Palm Oil / Hydrogenated Fat",
+    "tooltip": "Hydrogenated and partially hydrogenated oils contain trans fats linked to cardiovascular disease. Palm oil raises LDL cholesterol.",
+    "patterns": [
+      {"canonical": "Palm Oil", "ins": null, "match": ["palm oil", "palmolein", "palmolein oil", "refined palm oil", "palm fat", "palm kernel oil", "palm olein"]},
+      {"canonical": "Hydrogenated Fat", "ins": null, "match": ["hydrogenated vegetable oil", "hydrogenated vegetable fat", "partially hydrogenated oil", "partially hydrogenated vegetable oil", "vanaspati", "interesterified fat", "interesterified vegetable fat"]},
+      {"canonical": "Polysorbates", "ins": "INS 432-436", "match": ["ins 432", "ins 433", "ins 434", "ins 435", "ins 436", "polysorbate"]}
+    ]
+  },
+  "hidden_sugars": {
+    "severity": "amber",
+    "badge_label": "Hidden Sugar Source Detected",
+    "tooltip": "These ingredients are functionally equivalent to sugar but may not appear in the 'Added Sugars' line on the nutrition panel. They spike blood glucose similarly to table sugar.",
+    "patterns": [
+      {"canonical": "Maltodextrin", "ins": "INS 1400", "match": ["maltodextrin", "corn maltodextrin", "tapioca maltodextrin", "ins 1400", "1400"]},
+      {"canonical": "Dextrose", "ins": null, "match": ["dextrose", "dextrose monohydrate", "d-glucose"]},
+      {"canonical": "High Fructose Corn Syrup", "ins": null, "match": ["high fructose corn syrup", "hfcs", "glucose-fructose syrup", "isoglucose"]},
+      {"canonical": "Corn Syrup Solids", "ins": null, "match": ["corn syrup solids", "corn syrup", "glucose syrup"]},
+      {"canonical": "Invert Sugar", "ins": null, "match": ["invert sugar", "invert sugar syrup", "inverted sugar"]},
+      {"canonical": "Rice Syrup", "ins": null, "match": ["rice syrup", "brown rice syrup", "rice malt syrup"]}
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "tier_definitions": {
+    "tier_1": {
+      "label": "Tier 1 – Premium Isolate/Hydrolysate",
+      "rank": 1,
+      "sources": [
+        {"canonical": "Whey Protein Isolate", "match": ["whey protein isolate", "wpi", "pure whey isolate", "isolated whey protein"]},
+        {"canonical": "Whey Protein Hydrolysate", "match": ["whey protein hydrolysate", "hydrolyzed whey", "hydrolysed whey", "hydrolyzed whey protein", "hydrolysed whey protein"]},
+        {"canonical": "Micellar Casein Isolate", "match": ["micellar casein isolate", "isolated micellar casein"]}
+      ]
+    },
+    "tier_2": {
+      "label": "Tier 2 – Concentrate/Casein/Egg",
+      "rank": 2,
+      "sources": [
+        {"canonical": "Whey Protein Concentrate", "match": ["whey protein concentrate", "wpc", "instantized whey protein concentrate", "whey concentrate"]},
+        {"canonical": "Milk Protein Concentrate", "match": ["milk protein concentrate", "mpc", "milk protein isolate", "milk protein"]},
+        {"canonical": "Micellar Casein", "match": ["micellar casein", "casein", "caseinate"]},
+        {"canonical": "Calcium Caseinate", "match": ["calcium caseinate", "sodium caseinate", "potassium caseinate"]},
+        {"canonical": "Egg White Protein", "match": ["egg white protein", "egg albumin", "egg white powder", "dried egg white"]}
+      ]
+    },
+    "tier_3": {
+      "label": "Tier 3 – Plant Blend (Pea/Rice/Soy)",
+      "rank": 3,
+      "sources": [
+        {"canonical": "Pea Protein Isolate", "match": ["pea protein isolate", "pea protein", "organic pea protein", "isolated pea protein"]},
+        {"canonical": "Brown Rice Protein", "match": ["brown rice protein", "rice protein", "rice protein isolate", "organic brown rice protein"]},
+        {"canonical": "Soy Protein Isolate", "match": ["soy protein isolate", "isolated soy protein", "soya protein isolate"]},
+        {"canonical": "Hemp Protein", "match": ["hemp protein", "hemp seed protein"]},
+        {"canonical": "Faba Bean Protein", "match": ["faba bean protein", "fava bean protein"]}
+      ]
+    },
+    "tier_4": {
+      "label": "Tier 4 – Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
+      "rank": 4,
+      "sources": [
+        {"canonical": "Collagen Peptides", "match": ["collagen", "hydrolyzed collagen", "hydrolysed collagen", "bovine collagen", "marine collagen", "collagen peptides"]},
+        {"canonical": "Gelatin", "match": ["gelatin", "gelatine"]},
+        {"canonical": "Wheat Gluten", "match": ["wheat gluten", "vital wheat gluten", "wheat protein"]},
+        {"canonical": "Soy Protein Concentrate", "match": ["soy protein concentrate", "soya protein concentrate"]}
+      ]
+    }
+  }
+}
