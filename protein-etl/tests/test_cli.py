@@ -56,9 +56,9 @@ def test_run_batch_dry_run(tmp_path):
     run_batch(str(test_file), dry_run=True)
 
     # Check export was generated
-    export_dir = Path("protein-etl/data/dry_run_exports")
-    assert export_dir.exists()
-    exported_file = export_dir / "plantigo-organic-plant-protein.json"
+    from src.db.supabase_client import EXPORTS_DIR
+    assert EXPORTS_DIR.exists()
+    exported_file = EXPORTS_DIR / "plantigo-organic-plant-protein.json"
     assert exported_file.exists()
 
     with open(exported_file, "r", encoding="utf-8") as f:

@@ -11,13 +11,27 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from src.db.supabase_client import SupabaseUploader
-from src.engine.metrics import compute_all_metrics
-from src.engine.protein_tier import classify_protein_profile
-from src.engine.red_flags import scan_ingredients_for_red_flags
-from src.models import ProductCreate, VariantCreate
-from src.parsers.manual import prompt_manual_entry
-from src.parsers.shopify import extract_shopify_product
+# Ensure protein-etl package root is in sys.path
+_pkg_root = str(Path(__file__).resolve().parent.parent)
+if _pkg_root not in sys.path:
+    sys.path.insert(0, _pkg_root)
+
+try:
+    from src.db.supabase_client import SupabaseUploader
+    from src.engine.metrics import compute_all_metrics
+    from src.engine.protein_tier import classify_protein_profile
+    from src.engine.red_flags import scan_ingredients_for_red_flags
+    from src.models import ProductCreate, VariantCreate
+    from src.parsers.manual import prompt_manual_entry
+    from src.parsers.shopify import extract_shopify_product
+except (ImportError, ModuleNotFoundError):
+    from db.supabase_client import SupabaseUploader
+    from engine.metrics import compute_all_metrics
+    from engine.protein_tier import classify_protein_profile
+    from engine.red_flags import scan_ingredients_for_red_flags
+    from models import ProductCreate, VariantCreate
+    from parsers.manual import prompt_manual_entry
+    from parsers.shopify import extract_shopify_product
 
 # Ensure UTF-8 output on Windows consoles
 if sys.platform == "win32":

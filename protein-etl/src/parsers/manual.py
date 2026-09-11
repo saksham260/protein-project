@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 import re
-from typing import Optional
 import questionary
-from src.models import NutritionPerPack, ProductCreate, VariantCreate, RedirectLinkItem
+try:
+    from src.models import NutritionPerPack, ProductCreate, VariantCreate, RedirectLinkItem
+except (ImportError, ModuleNotFoundError):
+    from models import NutritionPerPack, ProductCreate, VariantCreate, RedirectLinkItem
 
 
 def parse_raw_ingredient_deck(raw_text: str) -> list[str]:

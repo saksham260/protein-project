@@ -1,0 +1,15 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/protein-etl",
+    "${workspaceFolder}/protein-etl/src"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/protein-etl",
+    "${workspaceFolder}/protein-etl/src"
+  ],
+  "python.testing.pytestArgs": [
+    "protein-etl/tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true
+}

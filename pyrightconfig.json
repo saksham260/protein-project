@@ -1,0 +1,6 @@
+{
+  "extraPaths": [
+    "protein-etl",
+    "protein-etl/src"
+  ]
+}

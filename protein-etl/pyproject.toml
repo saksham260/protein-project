@@ -27,7 +27,11 @@ dev = [
 [project.scripts]
 protein-etl = "src.cli:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = [".", "src"]
 python_files = ["test_*.py"]
+

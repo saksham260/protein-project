@@ -8,7 +8,11 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from src.models import RedFlagItem
+
+try:
+    from src.models import RedFlagItem
+except (ImportError, ModuleNotFoundError):
+    from models import RedFlagItem
 
 DICT_PATH = Path(__file__).resolve().parent.parent / "data" / "red_flag_dictionary.json"
 

@@ -19,8 +19,12 @@ if sys.platform == "win32":
 # Add src to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.db.supabase_client import SupabaseUploader
-from src.models import ProductCreate
+try:
+    from src.db.supabase_client import SupabaseUploader
+    from src.models import ProductCreate
+except (ImportError, ModuleNotFoundError):
+    from db.supabase_client import SupabaseUploader
+    from models import ProductCreate
 
 console = Console(force_terminal=True, legacy_windows=False)
 SEED_FILE = Path(__file__).resolve().parent.parent / "data" / "seed_products.json"

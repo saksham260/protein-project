@@ -9,10 +9,16 @@ from typing import Any
 from dotenv import load_dotenv
 from rich.console import Console
 
-from src.engine.metrics import compute_all_metrics
-from src.engine.protein_tier import classify_protein_profile
-from src.engine.red_flags import scan_ingredients_for_red_flags
-from src.models import ProductCreate, slugify
+try:
+    from src.engine.metrics import compute_all_metrics
+    from src.engine.protein_tier import classify_protein_profile
+    from src.engine.red_flags import scan_ingredients_for_red_flags
+    from src.models import ProductCreate, slugify
+except (ImportError, ModuleNotFoundError):
+    from engine.metrics import compute_all_metrics
+    from engine.protein_tier import classify_protein_profile
+    from engine.red_flags import scan_ingredients_for_red_flags
+    from models import ProductCreate, slugify
 
 # Load .env if present
 load_dotenv()

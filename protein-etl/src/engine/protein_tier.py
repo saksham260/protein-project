@@ -10,7 +10,11 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from src.models import ProteinProfile, RedFlagItem
+
+try:
+    from src.models import ProteinProfile, RedFlagItem
+except (ImportError, ModuleNotFoundError):
+    from models import ProteinProfile, RedFlagItem
 
 SOURCES_PATH = Path(__file__).resolve().parent.parent / "data" / "protein_sources.json"
 

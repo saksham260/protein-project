@@ -7,7 +7,11 @@ Formulas:
 """
 
 from typing import Optional
-from src.models import ComputedMetrics, NutritionPerPack
+
+try:
+    from src.models import ComputedMetrics, NutritionPerPack
+except (ImportError, ModuleNotFoundError):
+    from models import ComputedMetrics, NutritionPerPack
 
 
 def calculate_cost_per_g_protein(mrp_inr: float, protein_g: float) -> Optional[float]:
