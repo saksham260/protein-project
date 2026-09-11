@@ -1,0 +1,70 @@
+{
+  "name": "High Protein Oats Crisps",
+  "brand_name": "Yoga Bar",
+  "category_slug": "savory-snacks",
+  "slug": "yoga-bar-high-protein-oats-crisps",
+  "description": "Crunchy roasted oats snack with whey protein and spicy peri peri herbs.",
+  "image_url": "https://yogabar.in/images/oats-crisps-peri-peri.png",
+  "variants": [
+    {
+      "variant_name": "Peri Peri 50g",
+      "slug": "peri-peri-50g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 75.0,
+      "net_weight_g": 50.0,
+      "serving_size_g": 50.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 195.0,
+        "protein_g": 8.0,
+        "total_fat_g": 6.5,
+        "saturated_fat_g": 1.0,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 26.0,
+        "dietary_fiber_g": 4.0,
+        "total_sugars_g": 2.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 240.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Rolled Oats (45%)",
+        "Whey Protein Concentrate",
+        "Rice Crisps",
+        "High Oleic Sunflower Oil",
+        "Peri Peri Seasoning",
+        "Sea Salt"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Yoga+Bar+Oats+Crisps",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 9.38,
+        "protein_density_pct": 16.41,
+        "true_net_carbs_g": 22.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Concentrate",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

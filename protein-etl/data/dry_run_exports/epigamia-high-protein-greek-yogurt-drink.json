@@ -1,0 +1,74 @@
+{
+  "name": "High Protein Greek Yogurt Drink",
+  "brand_name": "Epigamia",
+  "category_slug": "rtd-drinks",
+  "slug": "epigamia-high-protein-greek-yogurt-drink",
+  "description": "Smooth Greek yogurt smoothie packed with protein and gut-friendly cultures.",
+  "image_url": "https://epigamia.com/images/greek-yogurt-drink.png",
+  "variants": [
+    {
+      "variant_name": "Strawberry 180ml",
+      "slug": "strawberry-180ml",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 80.0,
+      "net_weight_g": 180.0,
+      "serving_size_g": 180.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 120.0,
+        "protein_g": 10.0,
+        "total_fat_g": 2.0,
+        "saturated_fat_g": 1.1,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 15.0,
+        "dietary_fiber_g": 1.0,
+        "total_sugars_g": 12.0,
+        "added_sugars_g": 6.0,
+        "sodium_mg": 70.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pasteurized Double Toned Milk",
+        "Milk Solids",
+        "Strawberry Puree",
+        "Permitted Starter Cultures"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Gluten-Free"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Epigamia+Greek+Yogurt+Drink",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "zepto",
+          "url": "https://www.zeptonow.com/search?query=Epigamia+Greek+Yogurt+Drink",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 8.0,
+        "protein_density_pct": 33.33,
+        "true_net_carbs_g": 14.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Unknown",
+        "protein_tier": "Unknown / Unclassified",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

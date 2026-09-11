@@ -1,0 +1,77 @@
+{
+  "name": "Biozyme Whey Isolate",
+  "brand_name": "MuscleBlaze",
+  "category_slug": "protein-powders",
+  "slug": "muscleblaze-biozyme-whey-isolate",
+  "description": "Clinically tested biozyme formula optimized for 50% higher protein absorption in Indian bodies.",
+  "image_url": "https://muscleblaze.com/images/biozyme-isolate.png",
+  "variants": [
+    {
+      "variant_name": "Rich Chocolate 1kg (32 Servings)",
+      "slug": "rich-chocolate-1kg-32-servings",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 3499.0,
+      "net_weight_g": 1000.0,
+      "serving_size_g": 31.0,
+      "servings_per_pack": 32,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 118.0,
+        "protein_g": 25.0,
+        "total_fat_g": 1.0,
+        "saturated_fat_g": 0.5,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 2.0,
+        "dietary_fiber_g": 0.0,
+        "total_sugars_g": 0.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 130.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Whey Protein Isolate (90%)",
+        "Cocoa Powder",
+        "Enhanced Absorption Formula (Digestive Enzymes)",
+        "Sodium Chloride",
+        "Sweetener (INS 955)"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Gluten-Free",
+        "Low Carb",
+        "Keto-Friendly"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B08MBBIO01",
+          "platform_price_inr": 3199.0
+        },
+        {
+          "platform": "d2c",
+          "url": "https://www.muscleblaze.com/sv/muscleblaze-biozyme-whey-isolate",
+          "platform_price_inr": 3249.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 139.96,
+        "protein_density_pct": 84.75,
+        "true_net_carbs_g": 2.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Isolate",
+        "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

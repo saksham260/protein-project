@@ -1,0 +1,78 @@
+{
+  "name": "Protein Namkeen Mixture",
+  "brand_name": "The Whole Truth",
+  "category_slug": "savory-snacks",
+  "slug": "the-whole-truth-protein-namkeen-mixture",
+  "description": "High-protein savory namkeen roasted in cold-pressed groundnut oil, zero palm oil.",
+  "image_url": "https://thewholetruthfoods.com/images/protein-namkeen.png",
+  "variants": [
+    {
+      "variant_name": "Roasted Mixture 120g",
+      "slug": "roasted-mixture-120g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 199.0,
+      "net_weight_g": 120.0,
+      "serving_size_g": 40.0,
+      "servings_per_pack": 3,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 180.0,
+        "protein_g": 10.0,
+        "total_fat_g": 8.0,
+        "saturated_fat_g": 1.8,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 18.0,
+        "dietary_fiber_g": 4.0,
+        "total_sugars_g": 1.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 220.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Moong Dal",
+        "Pea Protein Isolate",
+        "Roasted Cashews",
+        "Spices (Chilli, Turmeric, Cumin)",
+        "Cold Pressed Groundnut Oil",
+        "Rock Salt"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "tree nuts",
+        "peanuts"
+      ],
+      "dietary_tags": [
+        "Vegan",
+        "Gluten-Free",
+        "Zero Palm Oil"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "d2c",
+          "url": "https://thewholetruthfoods.com/products/protein-namkeen",
+          "platform_price_inr": 199.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=The+Whole+Truth+Protein+Namkeen",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 19.9,
+        "protein_density_pct": 22.22,
+        "true_net_carbs_g": 14.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Pea Protein Isolate",
+        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

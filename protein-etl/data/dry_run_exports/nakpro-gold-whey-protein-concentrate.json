@@ -1,0 +1,69 @@
+{
+  "name": "Gold Whey Protein Concentrate",
+  "brand_name": "Nakpro",
+  "category_slug": "protein-powders",
+  "slug": "nakpro-gold-whey-protein-concentrate",
+  "description": "High value-per-rupee unadulterated whey protein concentrate for muscle building.",
+  "image_url": "https://nakpro.com/images/gold-whey.png",
+  "variants": [
+    {
+      "variant_name": "Chocolate 1kg (30 Servings)",
+      "slug": "chocolate-1kg-30-servings",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 1799.0,
+      "net_weight_g": 1000.0,
+      "serving_size_g": 33.0,
+      "servings_per_pack": 30,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 130.0,
+        "protein_g": 24.0,
+        "total_fat_g": 2.0,
+        "saturated_fat_g": 1.2,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 3.5,
+        "dietary_fiber_g": 0.0,
+        "total_sugars_g": 1.5,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 95.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Whey Protein Concentrate (80%)",
+        "Cocoa Powder",
+        "Nature Identical Flavors",
+        "Sweetener (Sucralose)"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Gluten-Free"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B07NAKPRO1",
+          "platform_price_inr": 1599.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 74.96,
+        "protein_density_pct": 73.85,
+        "true_net_carbs_g": 3.5
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Concentrate",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

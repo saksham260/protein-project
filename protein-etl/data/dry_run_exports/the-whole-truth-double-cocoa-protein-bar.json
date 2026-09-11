@@ -1,0 +1,79 @@
+{
+  "name": "Double Cocoa Protein Bar",
+  "brand_name": "The Whole Truth",
+  "category_slug": "protein-bars",
+  "slug": "the-whole-truth-double-cocoa-protein-bar",
+  "description": "Clean protein bar with 100% real ingredients, zero added sugar, zero maltitol.",
+  "image_url": "https://thewholetruthfoods.com/images/double-cocoa.png",
+  "variants": [
+    {
+      "variant_name": "Single Bar 52g",
+      "slug": "single-bar-52g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 150.0,
+      "net_weight_g": 52.0,
+      "serving_size_g": 52.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 212.0,
+        "protein_g": 20.0,
+        "total_fat_g": 8.0,
+        "saturated_fat_g": 2.5,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 20.0,
+        "dietary_fiber_g": 6.0,
+        "total_sugars_g": 3.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 95.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Whey Protein Isolate",
+        "Raw Almonds",
+        "Chicory Root Fiber",
+        "Cocoa Butter",
+        "Dark Chocolate (Cocoa Mass)",
+        "Dates",
+        "Stevia Leaf Extract"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk",
+        "tree nuts"
+      ],
+      "dietary_tags": [
+        "Gluten-Free",
+        "No Added Sugar",
+        "Vegetarian"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B08XYZ1234",
+          "platform_price_inr": 150.0
+        },
+        {
+          "platform": "d2c",
+          "url": "https://thewholetruthfoods.com/products/double-cocoa-protein-bar",
+          "platform_price_inr": 135.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 7.5,
+        "protein_density_pct": 37.74,
+        "true_net_carbs_g": 14.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Isolate",
+        "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

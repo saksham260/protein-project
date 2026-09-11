@@ -1,0 +1,77 @@
+{
+  "name": "Peanut Butter Protein Bar",
+  "brand_name": "The Whole Truth",
+  "category_slug": "protein-bars",
+  "slug": "the-whole-truth-peanut-butter-protein-bar",
+  "description": "Wholesome peanut butter bar with whey isolate and pure roasted peanuts.",
+  "image_url": "https://thewholetruthfoods.com/images/peanut-butter.png",
+  "variants": [
+    {
+      "variant_name": "Single Bar 52g",
+      "slug": "single-bar-52g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 150.0,
+      "net_weight_g": 52.0,
+      "serving_size_g": 52.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 220.0,
+        "protein_g": 20.0,
+        "total_fat_g": 9.0,
+        "saturated_fat_g": 2.0,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 18.0,
+        "dietary_fiber_g": 5.0,
+        "total_sugars_g": 3.5,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 110.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Whey Protein Isolate",
+        "Roasted Peanuts",
+        "Chicory Root Fiber",
+        "Dates",
+        "Sea Salt"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk",
+        "peanuts"
+      ],
+      "dietary_tags": [
+        "Gluten-Free",
+        "No Added Sugar",
+        "Vegetarian"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B08ABC5678",
+          "platform_price_inr": 150.0
+        },
+        {
+          "platform": "d2c",
+          "url": "https://thewholetruthfoods.com/products/peanut-butter-protein-bar",
+          "platform_price_inr": 135.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 7.5,
+        "protein_density_pct": 36.36,
+        "true_net_carbs_g": 13.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Isolate",
+        "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

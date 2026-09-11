@@ -1,0 +1,76 @@
+{
+  "name": "High Protein Lassi",
+  "brand_name": "Amul",
+  "category_slug": "rtd-drinks",
+  "slug": "amul-high-protein-lassi",
+  "description": "Amul High Protein Rose Lassi with 15g protein per pack and no added cane sugar.",
+  "image_url": "https://amul.com/products/images/amul-high-protein-rose-lassi.png",
+  "variants": [
+    {
+      "variant_name": "Rose 200ml",
+      "slug": "rose-200ml",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 25.0,
+      "net_weight_g": 200.0,
+      "serving_size_g": 200.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 130.0,
+        "protein_g": 15.0,
+        "total_fat_g": 2.0,
+        "saturated_fat_g": 1.2,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 13.0,
+        "dietary_fiber_g": 0.0,
+        "total_sugars_g": 10.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 90.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pasteurized Toned Milk",
+        "Milk Solids",
+        "Whey Protein Concentrate",
+        "Lassi Culture",
+        "Stevia Extract"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Gluten-Free",
+        "No Added Sugar"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "zepto",
+          "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 1.67,
+        "protein_density_pct": 46.15,
+        "true_net_carbs_g": 13.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Concentrate",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

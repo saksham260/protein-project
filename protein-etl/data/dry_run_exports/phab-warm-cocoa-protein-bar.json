@@ -1,0 +1,72 @@
+{
+  "name": "Warm Cocoa Protein Bar",
+  "brand_name": "Phab",
+  "category_slug": "protein-bars",
+  "slug": "phab-warm-cocoa-protein-bar",
+  "description": "Decadent cocoa protein bar sweetened with prebiotic fiber and stevia.",
+  "image_url": "https://phab.fit/images/warm-cocoa.png",
+  "variants": [
+    {
+      "variant_name": "Single Bar 55g",
+      "slug": "single-bar-55g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 130.0,
+      "net_weight_g": 55.0,
+      "serving_size_g": 55.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 210.0,
+        "protein_g": 17.0,
+        "total_fat_g": 7.0,
+        "saturated_fat_g": 2.0,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 22.0,
+        "dietary_fiber_g": 6.0,
+        "total_sugars_g": 2.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 85.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Whey Protein Concentrate",
+        "Milk Protein Isolate",
+        "Almonds",
+        "Fructooligosaccharides",
+        "Cocoa Mass",
+        "Steviol Glycosides"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk",
+        "tree nuts"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Gluten-Free"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B08PHAB001",
+          "platform_price_inr": 125.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 7.65,
+        "protein_density_pct": 32.38,
+        "true_net_carbs_g": 16.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Concentrate",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "name": "Choco Slim Protein Bar",
+  "brand_name": "RiteBite Max Protein",
+  "category_slug": "protein-bars",
+  "slug": "ritebite-max-protein-choco-slim-protein-bar",
+  "description": "Marketed as a slim protein bar; contains maltitol syrup, palmolein, and hydrolyzed collagen.",
+  "image_url": "https://maxprotein.in/images/choco-slim.png",
+  "variants": [
+    {
+      "variant_name": "Choco Slim 67g",
+      "slug": "choco-slim-67g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 130.0,
+      "net_weight_g": 67.0,
+      "serving_size_g": 67.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 275.0,
+        "protein_g": 20.0,
+        "total_fat_g": 9.0,
+        "saturated_fat_g": 4.5,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 35.0,
+        "dietary_fiber_g": 5.0,
+        "total_sugars_g": 1.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 180.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Protein Blend (Soy Protein Isolate, Whey Protein Concentrate, Calcium Caseinate, Hydrolyzed Collagen)",
+        "Maltitol Syrup (INS 965(ii))",
+        "Refined Palmolein Oil",
+        "Dextrose Monohydrate",
+        "Dietary Fiber (Oat Fiber)",
+        "Cocoa Powder",
+        "Soy Lecithin (INS 322)"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk",
+        "soy"
+      ],
+      "dietary_tags": [
+        "Non-Vegetarian"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B07RITE001",
+          "platform_price_inr": 120.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=RiteBite+Max+Protein+Choco+Slim",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 6.5,
+        "protein_density_pct": 29.09,
+        "true_net_carbs_g": 30.0
+      },
+      "red_flags": [
+        {
+          "flag_type": "maltitol_alert",
+          "flag_severity": "high",
+          "flag_label": "Maltitol Detected \u2014 GI 35-52",
+          "flag_description": "Maltitol has a Glycemic Index of 35-52, significantly higher than erythritol (0) or stevia (0). Often used in 'sugar-free' products marketed to diabetics.",
+          "matched_ingredient": "Maltitol Syrup",
+          "ins_number": "INS 965(ii)"
+        },
+        {
+          "flag_type": "fat_quality",
+          "flag_severity": "high",
+          "flag_label": "Palm Oil / Hydrogenated Fat",
+          "flag_description": "Hydrogenated and partially hydrogenated oils contain trans fats linked to cardiovascular disease. Palm oil raises LDL cholesterol.",
+          "matched_ingredient": "Palm Oil",
+          "ins_number": null
+        },
+        {
+          "flag_type": "hidden_sugars",
+          "flag_severity": "amber",
+          "flag_label": "Hidden Sugar Source Detected",
+          "flag_description": "These ingredients are functionally equivalent to sugar but may not appear in the 'Added Sugars' line on the nutrition panel. They spike blood glucose similarly to table sugar.",
+          "matched_ingredient": "Dextrose",
+          "ins_number": null
+        }
+      ],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Concentrate",
+        "protein_tier": "Tier 4 \u2013 Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

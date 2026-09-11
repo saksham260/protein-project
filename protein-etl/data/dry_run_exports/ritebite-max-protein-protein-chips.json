@@ -1,0 +1,94 @@
+{
+  "name": "Protein Chips",
+  "brand_name": "RiteBite Max Protein",
+  "category_slug": "savory-snacks",
+  "slug": "ritebite-max-protein-protein-chips",
+  "description": "7-grain protein chips; contains palmolein oil and maltodextrin seasoning.",
+  "image_url": "https://maxprotein.in/images/spanish-tomato-chips.png",
+  "variants": [
+    {
+      "variant_name": "Spanish Tomato 60g",
+      "slug": "spanish-tomato-60g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 60.0,
+      "net_weight_g": 60.0,
+      "serving_size_g": 60.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 240.0,
+        "protein_g": 10.0,
+        "total_fat_g": 8.0,
+        "saturated_fat_g": 3.8,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 32.0,
+        "dietary_fiber_g": 4.0,
+        "total_sugars_g": 3.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 310.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Grain Blend (Oats, Brown Rice, Jowar, Ragi, Bajra)",
+        "Soy Protein Isolate",
+        "Whey Protein Concentrate",
+        "Refined Palmolein Oil",
+        "Maltodextrin (INS 1400)",
+        "Tomato Powder",
+        "Spices and Condiments"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk",
+        "soy"
+      ],
+      "dietary_tags": [
+        "Vegetarian"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B07RITECHIP",
+          "platform_price_inr": 60.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Max+Protein+Spanish+Tomato+Chips",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 6.0,
+        "protein_density_pct": 16.67,
+        "true_net_carbs_g": 28.0
+      },
+      "red_flags": [
+        {
+          "flag_type": "fat_quality",
+          "flag_severity": "high",
+          "flag_label": "Palm Oil / Hydrogenated Fat",
+          "flag_description": "Hydrogenated and partially hydrogenated oils contain trans fats linked to cardiovascular disease. Palm oil raises LDL cholesterol.",
+          "matched_ingredient": "Palm Oil",
+          "ins_number": null
+        },
+        {
+          "flag_type": "hidden_sugars",
+          "flag_severity": "amber",
+          "flag_label": "Hidden Sugar Source Detected",
+          "flag_description": "These ingredients are functionally equivalent to sugar but may not appear in the 'Added Sugars' line on the nutrition panel. They spike blood glucose similarly to table sugar.",
+          "matched_ingredient": "Maltodextrin",
+          "ins_number": "INS 1400"
+        }
+      ],
+      "protein_profile": {
+        "primary_protein_source": "Soy Protein Isolate",
+        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

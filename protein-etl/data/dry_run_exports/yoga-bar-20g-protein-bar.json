@@ -1,0 +1,73 @@
+{
+  "name": "20g Protein Bar",
+  "brand_name": "Yoga Bar",
+  "category_slug": "protein-bars",
+  "slug": "yoga-bar-20g-protein-bar",
+  "description": "High fiber and concentrate whey protein bar with nuts and whole grains.",
+  "image_url": "https://yogabar.in/images/almond-fudge.png",
+  "variants": [
+    {
+      "variant_name": "Almond Fudge 60g",
+      "slug": "almond-fudge-60g",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 120.0,
+      "net_weight_g": 60.0,
+      "serving_size_g": 60.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 245.0,
+        "protein_g": 20.0,
+        "total_fat_g": 8.5,
+        "saturated_fat_g": 2.2,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 23.0,
+        "dietary_fiber_g": 8.0,
+        "total_sugars_g": 5.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 120.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Whey Protein Concentrate",
+        "Almonds",
+        "Chicory Root Fiber",
+        "Rolled Oats",
+        "Dates",
+        "Cocoa Powder",
+        "High Oleic Sunflower Oil"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk",
+        "tree nuts"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "High Fiber"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/dp/B07YOGA001",
+          "platform_price_inr": 110.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 6.0,
+        "protein_density_pct": 32.65,
+        "true_net_carbs_g": 15.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Concentrate",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

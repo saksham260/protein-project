@@ -1,0 +1,78 @@
+{
+  "name": "High Protein Buttermilk",
+  "brand_name": "Amul",
+  "category_slug": "rtd-drinks",
+  "slug": "amul-high-protein-buttermilk",
+  "description": "Amul High Protein Buttermilk offering unmatched cost efficiency and pure protein density.",
+  "image_url": "https://amul.com/products/images/amul-high-protein-buttermilk.png",
+  "variants": [
+    {
+      "variant_name": "Spiced Buttermilk 200ml",
+      "slug": "spiced-buttermilk-200ml",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 15.0,
+      "net_weight_g": 200.0,
+      "serving_size_g": 200.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 82.0,
+        "protein_g": 15.0,
+        "total_fat_g": 1.5,
+        "saturated_fat_g": 0.8,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 2.2,
+        "dietary_fiber_g": 0.0,
+        "total_sugars_g": 2.0,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 280.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pasteurized Toned Milk",
+        "Milk Solids",
+        "Whey Protein Isolate",
+        "Common Salt",
+        "Spices and Condiments",
+        "Active Lactic Culture"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Keto-Friendly",
+        "Gluten-Free",
+        "No Added Sugar"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Amul+High+Protein+Buttermilk",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "zepto",
+          "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Buttermilk",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 1.0,
+        "protein_density_pct": 73.17,
+        "true_net_carbs_g": 2.2
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Whey Protein Isolate",
+        "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}

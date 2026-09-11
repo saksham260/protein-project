@@ -1,0 +1,71 @@
+{
+  "name": "Plant Protein Powder",
+  "brand_name": "Cosmix",
+  "category_slug": "protein-powders",
+  "slug": "cosmix-plant-protein-powder",
+  "description": "Herbal-infused plant protein formulated with gut herbs and organic cacao.",
+  "image_url": "https://cosmix.in/images/indonesian-cacao.png",
+  "variants": [
+    {
+      "variant_name": "Indonesian Cacao 750g (20 Servings)",
+      "slug": "indonesian-cacao-750g-20-servings",
+      "sku": null,
+      "barcode_ean": null,
+      "mrp_inr": 2150.0,
+      "net_weight_g": 750.0,
+      "serving_size_g": 38.0,
+      "servings_per_pack": 20,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 145.0,
+        "protein_g": 25.0,
+        "total_fat_g": 2.5,
+        "saturated_fat_g": 0.5,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 6.0,
+        "dietary_fiber_g": 4.0,
+        "total_sugars_g": 0.5,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 110.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pea Protein Isolate",
+        "Brown Rice Protein",
+        "Raw Cacao",
+        "Ginger Root Powder",
+        "Fennel Seed Powder",
+        "Monk Fruit Extract"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [],
+      "dietary_tags": [
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Gut-Friendly"
+      ],
+      "image_url": null,
+      "redirect_links": [
+        {
+          "platform": "d2c",
+          "url": "https://cosmix.in/products/plant-protein-indonesian-cacao",
+          "platform_price_inr": 2150.0
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 86.0,
+        "protein_density_pct": 68.97,
+        "true_net_carbs_g": 2.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Pea Protein Isolate",
+        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "has_added_free_form_aminos": false
+      }
+    }
+  ]
+}
