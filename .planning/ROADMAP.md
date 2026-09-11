@@ -6,7 +6,7 @@ The Protein Discovery Engine proceeds in four logical execution phases: first es
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Data Ingestion Pipeline** - Supabase schema, RLS, metric computation, red-flag scanner, and interactive Python ETL CLI with initial seed.
+- [x] **Phase 1: Foundation & Data Ingestion Pipeline** - Supabase schema, RLS, metric computation, red-flag scanner, and interactive Python ETL CLI with initial seed. (Completed: 2026-09-11)
 - [ ] **Phase 2: Core Consumer Web App & Discovery** - Next.js 14 setup, UI design system, Explore grid with faceted filters, Product Detail page with Per-Pack/Per-100g toggle, and redirect links.
 - [ ] **Phase 3: User Auth & Personalization Dashboard** - Google OAuth / email auth, user dietary preference onboarding, favorites management, and SQL rule-based recommendation feed.
 - [ ] **Phase 4: SEO, Launch Optimization & Catalog Expansion** - Dynamic OpenGraph images, JSON-LD schema, sitemaps, mobile UX audit, and catalog expansion to 75–100 products.
@@ -27,9 +27,9 @@ The Protein Discovery Engine proceeds in four logical execution phases: first es
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Supabase database migration scripts (tables, RLS policies, GIN indexes, pg_trgm, storage bucket).
-- [ ] 01-02: `protein-etl` engine modules (`metrics.py`, `red_flags.py`, `protein_tier.py`, alias dictionaries, unit tests).
-- [ ] 01-03: `protein-etl` CLI interface, Shopify extractor, Supabase uploader, and initial 10-20 product seed.
+- [x] 01-01: Supabase database migration scripts (tables, RLS policies, GIN indexes, pg_trgm, storage bucket).
+- [x] 01-02: `protein-etl` engine modules (`metrics.py`, `red_flags.py`, `protein_tier.py`, alias dictionaries, unit tests).
+- [x] 01-03: `protein-etl` CLI interface, Shopify extractor, Supabase uploader, and initial 10-20 product seed.
 
 ---
 
@@ -92,7 +92,7 @@ Phases execute in numeric order: 1 ➔ 2 ➔ 3 ➔ 4
 
 | Phase | Plans Complete | Status | Completed |
 |---|---|---|---|
-| 1. Foundation & Data Ingestion Pipeline | 0/3 | Not started | - |
+| 1. Foundation & Data Ingestion Pipeline | 3/3 | Complete | 2026-09-11 |
 | 2. Core Consumer Web App & Discovery | 0/3 | Not started | - |
 | 3. User Auth & Personalization Dashboard | 0/2 | Not started | - |
 | 4. SEO, Launch Optimization & Catalog Expansion | 0/2 | Not started | - |

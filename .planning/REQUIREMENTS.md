@@ -7,27 +7,27 @@
 
 ### Database & Storage (DB)
 
-- [ ] **DB-01**: PostgreSQL schema implemented in Supabase with `brands`, `categories`, `products`, `product_variants`, `variant_red_flags`, `redirect_links`, `users`, `user_preferences`, and `user_favorites`.
-- [ ] **DB-02**: Row-Level Security (RLS) configured with public read on catalog tables and strict user-scoped CRUD on user profile/preference/favorite tables.
-- [ ] **DB-03**: Performance indexes created including GIN indexes on `allergens` and `dietary_tags`, trigram indexes on product/variant names, and B-tree indexes on `cost_per_g_protein` and `protein_density_pct`.
-- [ ] **DB-04**: Supabase Storage bucket created for product and variant pack images.
+- [x] **DB-01**: PostgreSQL schema implemented in Supabase with `brands`, `categories`, `products`, `product_variants`, `variant_red_flags`, `redirect_links`, `users`, `user_preferences`, and `user_favorites`.
+- [x] **DB-02**: Row-Level Security (RLS) configured with public read on catalog tables and strict user-scoped CRUD on user profile/preference/favorite tables.
+- [x] **DB-03**: Performance indexes created including GIN indexes on `allergens` and `dietary_tags`, trigram indexes on product/variant names, and B-tree indexes on `cost_per_g_protein` and `protein_density_pct`.
+- [x] **DB-04**: Supabase Storage bucket created for product and variant pack images.
 
 ### Metrics & Flagging Engine (ENG)
 
-- [ ] **ENG-01**: Metric calculator calculates `cost_per_g_protein` (mrp_inr / protein_g) and handles 0/null guards.
-- [ ] **ENG-02**: Metric calculator calculates `protein_density_pct` ((protein_g * 4) / calories_kcal * 100) with division-by-zero protection.
-- [ ] **ENG-03**: Metric calculator computes `true_net_carbs_g` (total carbs - dietary fiber - polyols).
-- [ ] **ENG-04**: Red-flag engine matches ingredients and INS numbers against maltitol, amino spiking, hydrogenated/palm fat, and hidden sugars.
-- [ ] **ENG-05**: Protein tier engine classifies variant into Tiers 1-4 based on the lowest quality protein source in the blend, identifying primary protein source by ingredient deck position.
+- [x] **ENG-01**: Metric calculator calculates `cost_per_g_protein` (mrp_inr / protein_g) and handles 0/null guards.
+- [x] **ENG-02**: Metric calculator calculates `protein_density_pct` ((protein_g * 4) / calories_kcal * 100) with division-by-zero protection.
+- [x] **ENG-03**: Metric calculator computes `true_net_carbs_g` (total carbs - dietary fiber - polyols).
+- [x] **ENG-04**: Red-flag engine matches ingredients and INS numbers against maltitol, amino spiking, hydrogenated/palm fat, and hidden sugars.
+- [x] **ENG-05**: Protein tier engine classifies variant into Tiers 1-4 based on the lowest quality protein source in the blend, identifying primary protein source by ingredient deck position.
 
 ### ETL & Ingestion CLI (ETL)
 
-- [ ] **ETL-01**: Python project skeleton set up with Pydantic models for product, variant, nutrition, and flag schemas.
-- [ ] **ETL-02**: Shopify scraper extracts product title, pricing, variants, and weight from `/products.json`.
-- [ ] **ETL-03**: Interactive CLI prompts user for nutrition facts, ingredient paste, and platform redirect links.
-- [ ] **ETL-04**: CLI auto-runs metrics calculator, red-flag scanner, and tier classifier with formatted preview.
-- [ ] **ETL-05**: CLI upserts verified product data and red flags directly to Supabase via service role key.
-- [ ] **ETL-06**: Seed initial catalog with 10–20 real Indian protein products across RTD, bars, powders, and snacks.
+- [x] **ETL-01**: Python project skeleton set up with Pydantic models for product, variant, nutrition, and flag schemas.
+- [x] **ETL-02**: Shopify scraper extracts product title, pricing, variants, and weight from `/products.json`.
+- [x] **ETL-03**: Interactive CLI prompts user for nutrition facts, ingredient paste, and platform redirect links.
+- [x] **ETL-04**: CLI auto-runs metrics calculator, red-flag scanner, and tier classifier with formatted preview.
+- [x] **ETL-05**: CLI upserts verified product data and red flags directly to Supabase via service role key.
+- [x] **ETL-06**: Seed initial catalog with 10–20 real Indian protein products across RTD, bars, powders, and snacks.
 
 ### Web Application & UI (WEB)
 
@@ -76,21 +76,21 @@
 
 | Requirement | Phase | Status |
 |---|---|---|
-| DB-01 | Phase 1 | Pending |
-| DB-02 | Phase 1 | Pending |
-| DB-03 | Phase 1 | Pending |
-| DB-04 | Phase 1 | Pending |
-| ENG-01 | Phase 1 | Pending |
-| ENG-02 | Phase 1 | Pending |
-| ENG-03 | Phase 1 | Pending |
-| ENG-04 | Phase 1 | Pending |
-| ENG-05 | Phase 1 | Pending |
-| ETL-01 | Phase 1 | Pending |
-| ETL-02 | Phase 1 | Pending |
-| ETL-03 | Phase 1 | Pending |
-| ETL-04 | Phase 1 | Pending |
-| ETL-05 | Phase 1 | Pending |
-| ETL-06 | Phase 1 | Pending |
+| DB-01 | Phase 1 | Complete |
+| DB-02 | Phase 1 | Complete |
+| DB-03 | Phase 1 | Complete |
+| DB-04 | Phase 1 | Complete |
+| ENG-01 | Phase 1 | Complete |
+| ENG-02 | Phase 1 | Complete |
+| ENG-03 | Phase 1 | Complete |
+| ENG-04 | Phase 1 | Complete |
+| ENG-05 | Phase 1 | Complete |
+| ETL-01 | Phase 1 | Complete |
+| ETL-02 | Phase 1 | Complete |
+| ETL-03 | Phase 1 | Complete |
+| ETL-04 | Phase 1 | Complete |
+| ETL-05 | Phase 1 | Complete |
+| ETL-06 | Phase 1 | Complete |
 | WEB-01 | Phase 2 | Pending |
 | WEB-02 | Phase 2 | Pending |
 | WEB-03 | Phase 2 | Pending |
@@ -110,9 +110,10 @@
 
 **Coverage:**
 - v1 requirements: 30 total
+- Completed: 15 / 30 (50%)
 - Mapped to phases: 30
 - Unmapped: 0 ✅
 
 ---
 *Requirements defined: 2026-09-09*
-*Last updated: 2026-09-09 after initial definition*
+*Last updated: 2026-09-11 after Phase 1 execution*
