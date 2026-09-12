@@ -4,7 +4,7 @@
   "category_slug": "protein-bars",
   "slug": "phab-warm-cocoa-protein-bar",
   "description": "Decadent cocoa protein bar sweetened with prebiotic fiber and stevia.",
-  "image_url": "https://phab.fit/images/warm-cocoa.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Single Bar 55g",
@@ -52,12 +52,14 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B08PHAB001",
-          "platform_price_inr": 125.0
+          "url": "https://www.amazon.in/s?k=Phab+Warm+Cocoa+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 7.65,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 32.38,
         "true_net_carbs_g": 16.0
       },

@@ -4,7 +4,7 @@
   "category_slug": "rtd-drinks",
   "slug": "amul-high-protein-buttermilk",
   "description": "Amul High Protein Buttermilk offering unmatched cost efficiency and pure protein density.",
-  "image_url": "https://amul.com/products/images/amul-high-protein-buttermilk.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Spiced Buttermilk 200ml",
@@ -52,6 +52,11 @@
       "image_url": null,
       "redirect_links": [
         {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Amul+High+Protein+Buttermilk",
+          "platform_price_inr": null
+        },
+        {
           "platform": "blinkit",
           "url": "https://blinkit.com/s/?q=Amul+High+Protein+Buttermilk",
           "platform_price_inr": null
@@ -64,6 +69,8 @@
       ],
       "computed_metrics": {
         "cost_per_g_protein": 1.0,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 73.17,
         "true_net_carbs_g": 2.2
       },

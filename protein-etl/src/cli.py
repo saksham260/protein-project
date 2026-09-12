@@ -6,6 +6,7 @@ import json
 import os
 import sys
 from pathlib import Path
+import httpx
 import questionary
 from rich.console import Console
 from rich.panel import Panel
@@ -21,6 +22,7 @@ try:
     from src.engine.metrics import compute_all_metrics
     from src.engine.protein_tier import classify_protein_profile
     from src.engine.red_flags import scan_ingredients_for_red_flags
+    from src.links import BROWSER_USER_AGENT, check_url
     from src.models import ProductCreate, VariantCreate
     from src.parsers.manual import prompt_manual_entry
     from src.parsers.shopify import extract_shopify_product
@@ -29,6 +31,7 @@ except (ImportError, ModuleNotFoundError):
     from engine.metrics import compute_all_metrics
     from engine.protein_tier import classify_protein_profile
     from engine.red_flags import scan_ingredients_for_red_flags
+    from links import BROWSER_USER_AGENT, check_url
     from models import ProductCreate, VariantCreate
     from parsers.manual import prompt_manual_entry
     from parsers.shopify import extract_shopify_product
@@ -52,16 +55,26 @@ def render_preview(product: ProductCreate):
         v_metrics = var.computed_metrics
         v_profile = var.protein_profile
 
-        table = Table(title=f"Variant #{i}: {var.variant_name} (₹{var.mrp_inr} | {var.net_weight_g}g)")
+        table = Table(
+            title=f"Variant #{i}: {var.variant_name} (₹{var.mrp_inr} | {var.net_weight_g}g | {var.servings_per_pack} servings)"
+        )
         table.add_column("Category", style="cyan", no_wrap=True)
         table.add_column("Metric / Value", style="white")
 
         # Metrics
-        cost_str = f"₹{v_metrics.cost_per_g_protein:.2f}/g" if v_metrics and v_metrics.cost_per_g_protein else "N/A"
-        density_str = f"{v_metrics.protein_density_pct:.1f}%" if v_metrics and v_metrics.protein_density_pct else "N/A"
-        net_carbs_str = f"{v_metrics.true_net_carbs_g:.1f}g" if v_metrics and v_metrics.true_net_carbs_g is not None else "N/A"
+        cost = v_metrics.cost_per_g_protein if v_metrics else None
+        best_price = v_metrics.best_price_inr if v_metrics else None
+        best_cost = v_metrics.best_cost_per_g_protein if v_metrics else None
+        density = v_metrics.protein_density_pct if v_metrics else None
+        net_carbs = v_metrics.true_net_carbs_g if v_metrics else None
 
-        table.add_row("Efficiency (₹/g)", cost_str)
+        cost_str = f"₹{cost:.2f}/g" if cost is not None else "N/A"
+        best_str = f"₹{best_price:g} → ₹{best_cost:.2f}/g" if best_price is not None and best_cost is not None else "N/A (no platform price)"
+        density_str = f"{density:.1f}%" if density is not None else "N/A"
+        net_carbs_str = f"{net_carbs:.1f}g" if net_carbs is not None else "N/A"
+
+        table.add_row("Efficiency at MRP (₹/g)", cost_str)
+        table.add_row("Best Known Price", best_str)
         table.add_row("Protein Density (%)", density_str)
         table.add_row("True Net Carbs", net_carbs_str)
 
@@ -199,6 +212,48 @@ def run_batch(path_str: str, dry_run: bool = False):
     console.print(summary_table)
 
 
+def run_check_links(path_str: str) -> int:
+    """Check every redirect and image URL in a JSON file or folder. Returns the number of broken links."""
+    target_path = Path(path_str)
+    if not target_path.exists():
+        console.print(f"[red]Error: Path '{path_str}' does not exist.[/]")
+        sys.exit(1)
+
+    files = [target_path] if target_path.is_file() else sorted(target_path.glob("*.json"))
+    to_check: list[tuple[str, str, str]] = []  # (product, kind, url)
+    for file_path in files:
+        with open(file_path, "r", encoding="utf-8") as f:
+            raw_json = json.load(f)
+        for item in raw_json if isinstance(raw_json, list) else [raw_json]:
+            label = f"{item.get('brand_name', '?')} – {item.get('name', '?')}"
+            if item.get("image_url"):
+                to_check.append((label, "image", item["image_url"]))
+            for var in item.get("variants", []):
+                if var.get("image_url"):
+                    to_check.append((label, "image", var["image_url"]))
+                for link in var.get("redirect_links", []):
+                    to_check.append((label, link.get("platform", "?"), link["url"]))
+
+    results_table = Table(title=f"Link Check ({len(to_check)} URLs)")
+    results_table.add_column("Product", style="cyan")
+    results_table.add_column("Kind", style="magenta")
+    results_table.add_column("Status")
+    results_table.add_column("URL", style="dim", overflow="fold")
+
+    status_styles = {"ok": "green", "broken": "bold red", "blocked": "yellow", "unreachable": "yellow"}
+    broken = 0
+    with httpx.Client(timeout=10.0, headers={"User-Agent": BROWSER_USER_AGENT}) as client:
+        for label, kind, url in to_check:
+            status, code = check_url(url, client)
+            broken += status == "broken"
+            status_text = f"{status} ({code})" if code else status
+            results_table.add_row(label, kind, f"[{status_styles[status]}]{status_text}[/]", url)
+
+    console.print(results_table)
+    console.print(f"[bold]{broken} broken[/] link(s). 'blocked'/'unreachable' usually means bot protection — open those by hand.")
+    return broken
+
+
 def main():
     """Main CLI entrypoint."""
     parser = argparse.ArgumentParser(description="The Protein Discovery Engine Ingestion CLI")
@@ -211,6 +266,10 @@ def main():
     batch_parser = subparsers.add_parser("batch", help="Batch ingest JSON file or folder")
     batch_parser.add_argument("path", help="Path to JSON file or folder of JSON files")
 
+    # Link-check subparser
+    links_parser = subparsers.add_parser("check-links", help="Check redirect and image URLs in a JSON file or folder")
+    links_parser.add_argument("path", help="Path to JSON file or folder of JSON files")
+
     # Global flags
     parser.add_argument("--dry-run", action="store_true", help="Force dry-run mode without live DB upload")
 
@@ -218,6 +277,8 @@ def main():
 
     if args.command == "batch":
         run_batch(args.path, dry_run=args.dry_run)
+    elif args.command == "check-links":
+        sys.exit(1 if run_check_links(args.path) else 0)
     elif args.command == "interactive":
         run_interactive(dry_run=args.dry_run)
     else:

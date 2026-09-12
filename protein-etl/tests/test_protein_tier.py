@@ -76,6 +76,21 @@ def test_amino_spiked_product_forced_to_tier_4():
     assert "Tier 4" in profile.protein_tier
 
 
+def test_primary_source_follows_label_order_inside_blend():
+    deck = [
+        "Protein Blend (Soy Protein Isolate, Whey Protein Concentrate, Calcium Caseinate)",
+        "Cocoa Powder",
+    ]
+    profile = classify_protein_profile(deck)
+    assert profile.primary_protein_source == "Soy Protein Isolate"
+    assert "Tier 3" in profile.protein_tier
+
+
+def test_caseinate_matches_its_own_source_not_micellar_casein():
+    profile = classify_protein_profile(["Calcium Caseinate", "Cocoa"])
+    assert profile.primary_protein_source == "Calcium Caseinate"
+
+
 def test_empty_or_unrecognized_deck():
     profile = classify_protein_profile(["Apples", "Water", "Sugar"])
     assert profile.primary_protein_source == "Unknown"

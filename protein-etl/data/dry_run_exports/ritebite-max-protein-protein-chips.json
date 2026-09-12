@@ -4,7 +4,7 @@
   "category_slug": "savory-snacks",
   "slug": "ritebite-max-protein-protein-chips",
   "description": "7-grain protein chips; contains palmolein oil and maltodextrin seasoning.",
-  "image_url": "https://maxprotein.in/images/spanish-tomato-chips.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Spanish Tomato 60g",
@@ -52,8 +52,8 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B07RITECHIP",
-          "platform_price_inr": 60.0
+          "url": "https://www.amazon.in/s?k=RiteBite+Max+Protein+Protein+Chips",
+          "platform_price_inr": null
         },
         {
           "platform": "blinkit",
@@ -63,6 +63,8 @@
       ],
       "computed_metrics": {
         "cost_per_g_protein": 6.0,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 16.67,
         "true_net_carbs_g": 28.0
       },

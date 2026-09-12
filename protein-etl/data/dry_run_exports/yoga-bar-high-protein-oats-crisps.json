@@ -4,7 +4,7 @@
   "category_slug": "savory-snacks",
   "slug": "yoga-bar-high-protein-oats-crisps",
   "description": "Crunchy roasted oats snack with whey protein and spicy peri peri herbs.",
-  "image_url": "https://yogabar.in/images/oats-crisps-peri-peri.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Peri Peri 50g",
@@ -49,6 +49,11 @@
       "image_url": null,
       "redirect_links": [
         {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Yoga+Bar+High+Protein+Oats+Crisps",
+          "platform_price_inr": null
+        },
+        {
           "platform": "blinkit",
           "url": "https://blinkit.com/s/?q=Yoga+Bar+Oats+Crisps",
           "platform_price_inr": null
@@ -56,6 +61,8 @@
       ],
       "computed_metrics": {
         "cost_per_g_protein": 9.38,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 16.41,
         "true_net_carbs_g": 22.0
       },

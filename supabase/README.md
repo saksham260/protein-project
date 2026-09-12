@@ -11,7 +11,8 @@ supabase/
 ├── migrations/
 │   ├── 001_schema.sql       # Core database tables, constraints, triggers
 │   ├── 002_rls.sql          # Row-Level Security policies & user auth sync
-│   └── 003_indexes.sql      # B-Tree, GIN array, and pg_trgm fuzzy search indexes
+│   ├── 003_indexes.sql      # B-Tree, GIN array, and pg_trgm fuzzy search indexes
+│   └── 004_phase1_fixes.sql # Best-price columns, unique redirect links, auth trigger fix
 └── README.md
 ```
 
@@ -28,6 +29,8 @@ You can run these migrations either through the **Supabase Dashboard** or via th
    - Run `001_schema.sql` (Creates all tables, types, and triggers).
    - Run `002_rls.sql` (Enables Row-Level Security and user sync trigger).
    - Run `003_indexes.sql` (Enables `pg_trgm` extension and performance indexes).
+   - Run `004_phase1_fixes.sql` (Best-price columns, one redirect link per platform, auth trigger fix).
+     If products were already seeded, re-run `python scripts/seed.py` afterwards so ₹/g values are recomputed.
 
 ### Option B: Via Supabase CLI
 ```bash

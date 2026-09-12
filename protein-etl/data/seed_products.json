@@ -4,7 +4,7 @@
     "brand_name": "Amul",
     "category_slug": "rtd-drinks",
     "description": "Amul High Protein Rose Lassi with 15g protein per pack and no added cane sugar.",
-    "image_url": "https://amul.com/products/images/amul-high-protein-rose-lassi.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Rose 200ml",
@@ -29,11 +29,27 @@
           "Lassi Culture",
           "Stevia Extract"
         ],
-        "allergens": ["milk"],
-        "dietary_tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free",
+          "No Added Sugar"
+        ],
         "redirect_links": [
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi"},
-          {"platform": "zepto", "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Amul+High+Protein+Lassi"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi"
+          },
+          {
+            "platform": "zepto",
+            "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi"
+          }
         ]
       }
     ]
@@ -43,7 +59,7 @@
     "brand_name": "Amul",
     "category_slug": "rtd-drinks",
     "description": "Amul High Protein Buttermilk offering unmatched cost efficiency and pure protein density.",
-    "image_url": "https://amul.com/products/images/amul-high-protein-buttermilk.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Spiced Buttermilk 200ml",
@@ -69,11 +85,28 @@
           "Spices and Condiments",
           "Active Lactic Culture"
         ],
-        "allergens": ["milk"],
-        "dietary_tags": ["Vegetarian", "Keto-Friendly", "Gluten-Free", "No Added Sugar"],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Keto-Friendly",
+          "Gluten-Free",
+          "No Added Sugar"
+        ],
         "redirect_links": [
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=Amul+High+Protein+Buttermilk"},
-          {"platform": "zepto", "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Buttermilk"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Amul+High+Protein+Buttermilk"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Amul+High+Protein+Buttermilk"
+          },
+          {
+            "platform": "zepto",
+            "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Buttermilk"
+          }
         ]
       }
     ]
@@ -83,7 +116,7 @@
     "brand_name": "Epigamia",
     "category_slug": "rtd-drinks",
     "description": "Smooth Greek yogurt smoothie packed with protein and gut-friendly cultures.",
-    "image_url": "https://epigamia.com/images/greek-yogurt-drink.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Strawberry 180ml",
@@ -107,11 +140,26 @@
           "Strawberry Puree",
           "Permitted Starter Cultures"
         ],
-        "allergens": ["milk"],
-        "dietary_tags": ["Vegetarian", "Gluten-Free"],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free"
+        ],
         "redirect_links": [
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=Epigamia+Greek+Yogurt+Drink"},
-          {"platform": "zepto", "url": "https://www.zeptonow.com/search?query=Epigamia+Greek+Yogurt+Drink"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Epigamia+High+Protein+Greek+Yogurt+Drink"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Epigamia+Greek+Yogurt+Drink"
+          },
+          {
+            "platform": "zepto",
+            "url": "https://www.zeptonow.com/search?query=Epigamia+Greek+Yogurt+Drink"
+          }
         ]
       }
     ]
@@ -121,7 +169,7 @@
     "brand_name": "The Whole Truth",
     "category_slug": "protein-bars",
     "description": "Clean protein bar with 100% real ingredients, zero added sugar, zero maltitol.",
-    "image_url": "https://thewholetruthfoods.com/images/double-cocoa.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Single Bar 52g",
@@ -148,11 +196,20 @@
           "Dates",
           "Stevia Leaf Extract"
         ],
-        "allergens": ["milk", "tree nuts"],
-        "dietary_tags": ["Gluten-Free", "No Added Sugar", "Vegetarian"],
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "dietary_tags": [
+          "Gluten-Free",
+          "No Added Sugar",
+          "Vegetarian"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B08XYZ1234", "platform_price_inr": 150.0},
-          {"platform": "d2c", "url": "https://thewholetruthfoods.com/products/double-cocoa-protein-bar", "platform_price_inr": 135.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=The+Whole+Truth+Double+Cocoa+Protein+Bar"
+          }
         ]
       }
     ]
@@ -162,7 +219,7 @@
     "brand_name": "The Whole Truth",
     "category_slug": "protein-bars",
     "description": "Wholesome peanut butter bar with whey isolate and pure roasted peanuts.",
-    "image_url": "https://thewholetruthfoods.com/images/peanut-butter.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Single Bar 52g",
@@ -187,11 +244,20 @@
           "Dates",
           "Sea Salt"
         ],
-        "allergens": ["milk", "peanuts"],
-        "dietary_tags": ["Gluten-Free", "No Added Sugar", "Vegetarian"],
+        "allergens": [
+          "milk",
+          "peanuts"
+        ],
+        "dietary_tags": [
+          "Gluten-Free",
+          "No Added Sugar",
+          "Vegetarian"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B08ABC5678", "platform_price_inr": 150.0},
-          {"platform": "d2c", "url": "https://thewholetruthfoods.com/products/peanut-butter-protein-bar", "platform_price_inr": 135.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=The+Whole+Truth+Peanut+Butter+Protein+Bar"
+          }
         ]
       }
     ]
@@ -201,7 +267,7 @@
     "brand_name": "Yoga Bar",
     "category_slug": "protein-bars",
     "description": "High fiber and concentrate whey protein bar with nuts and whole grains.",
-    "image_url": "https://yogabar.in/images/almond-fudge.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Almond Fudge 60g",
@@ -228,10 +294,19 @@
           "Cocoa Powder",
           "High Oleic Sunflower Oil"
         ],
-        "allergens": ["milk", "tree nuts"],
-        "dietary_tags": ["Vegetarian", "High Fiber"],
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "High Fiber"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B07YOGA001", "platform_price_inr": 110.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Yoga+Bar+20g+Protein+Bar"
+          }
         ]
       }
     ]
@@ -241,7 +316,7 @@
     "brand_name": "RiteBite Max Protein",
     "category_slug": "protein-bars",
     "description": "Marketed as a slim protein bar; contains maltitol syrup, palmolein, and hydrolyzed collagen.",
-    "image_url": "https://maxprotein.in/images/choco-slim.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Choco Slim 67g",
@@ -268,11 +343,22 @@
           "Cocoa Powder",
           "Soy Lecithin (INS 322)"
         ],
-        "allergens": ["milk", "soy"],
-        "dietary_tags": ["Non-Vegetarian"],
+        "allergens": [
+          "milk",
+          "soy"
+        ],
+        "dietary_tags": [
+          "Non-Vegetarian"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B07RITE001", "platform_price_inr": 120.0},
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=RiteBite+Max+Protein+Choco+Slim"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=RiteBite+Max+Protein+Choco+Slim+Protein+Bar"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=RiteBite+Max+Protein+Choco+Slim"
+          }
         ]
       }
     ]
@@ -282,7 +368,7 @@
     "brand_name": "Phab",
     "category_slug": "protein-bars",
     "description": "Decadent cocoa protein bar sweetened with prebiotic fiber and stevia.",
-    "image_url": "https://phab.fit/images/warm-cocoa.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Single Bar 55g",
@@ -308,10 +394,19 @@
           "Cocoa Mass",
           "Steviol Glycosides"
         ],
-        "allergens": ["milk", "tree nuts"],
-        "dietary_tags": ["Vegetarian", "Gluten-Free"],
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B08PHAB001", "platform_price_inr": 125.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Phab+Warm+Cocoa+Protein+Bar"
+          }
         ]
       }
     ]
@@ -321,7 +416,7 @@
     "brand_name": "MuscleBlaze",
     "category_slug": "protein-powders",
     "description": "Clinically tested biozyme formula optimized for 50% higher protein absorption in Indian bodies.",
-    "image_url": "https://muscleblaze.com/images/biozyme-isolate.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Rich Chocolate 1kg (32 Servings)",
@@ -347,11 +442,20 @@
           "Sodium Chloride",
           "Sweetener (INS 955)"
         ],
-        "allergens": ["milk"],
-        "dietary_tags": ["Vegetarian", "Gluten-Free", "Low Carb", "Keto-Friendly"],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free",
+          "Low Carb",
+          "Keto-Friendly"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B08MBBIO01", "platform_price_inr": 3199.0},
-          {"platform": "d2c", "url": "https://www.muscleblaze.com/sv/muscleblaze-biozyme-whey-isolate", "platform_price_inr": 3249.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=MuscleBlaze+Biozyme+Whey+Isolate"
+          }
         ]
       }
     ]
@@ -361,7 +465,7 @@
     "brand_name": "Nakpro",
     "category_slug": "protein-powders",
     "description": "High value-per-rupee unadulterated whey protein concentrate for muscle building.",
-    "image_url": "https://nakpro.com/images/gold-whey.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Chocolate 1kg (30 Servings)",
@@ -386,10 +490,18 @@
           "Nature Identical Flavors",
           "Sweetener (Sucralose)"
         ],
-        "allergens": ["milk"],
-        "dietary_tags": ["Vegetarian", "Gluten-Free"],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B07NAKPRO1", "platform_price_inr": 1599.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Nakpro+Gold+Whey+Protein+Concentrate"
+          }
         ]
       }
     ]
@@ -399,7 +511,7 @@
     "brand_name": "Plantigo",
     "category_slug": "protein-powders",
     "description": "100% plant-based protein crafted from organic pea and brown rice isolate.",
-    "image_url": "https://plantigo.in/images/plant-protein.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Rich Chocolate 1kg (28 Servings)",
@@ -426,9 +538,18 @@
           "Stevia Leaf Extract"
         ],
         "allergens": [],
-        "dietary_tags": ["Vegan", "Organic", "Gluten-Free", "Soy-Free", "Dairy-Free"],
+        "dietary_tags": [
+          "Vegan",
+          "Organic",
+          "Gluten-Free",
+          "Soy-Free",
+          "Dairy-Free"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B08PLANT01", "platform_price_inr": 2299.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Plantigo+Organic+Plant+Protein"
+          }
         ]
       }
     ]
@@ -438,7 +559,7 @@
     "brand_name": "Cosmix",
     "category_slug": "protein-powders",
     "description": "Herbal-infused plant protein formulated with gut herbs and organic cacao.",
-    "image_url": "https://cosmix.in/images/indonesian-cacao.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Indonesian Cacao 750g (20 Servings)",
@@ -466,9 +587,17 @@
           "Monk Fruit Extract"
         ],
         "allergens": [],
-        "dietary_tags": ["Vegan", "Gluten-Free", "Dairy-Free", "Gut-Friendly"],
+        "dietary_tags": [
+          "Vegan",
+          "Gluten-Free",
+          "Dairy-Free",
+          "Gut-Friendly"
+        ],
         "redirect_links": [
-          {"platform": "d2c", "url": "https://cosmix.in/products/plant-protein-indonesian-cacao", "platform_price_inr": 2150.0}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Cosmix+Plant+Protein+Powder"
+          }
         ]
       }
     ]
@@ -478,7 +607,7 @@
     "brand_name": "The Whole Truth",
     "category_slug": "savory-snacks",
     "description": "High-protein savory namkeen roasted in cold-pressed groundnut oil, zero palm oil.",
-    "image_url": "https://thewholetruthfoods.com/images/protein-namkeen.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Roasted Mixture 120g",
@@ -505,11 +634,24 @@
           "Cold Pressed Groundnut Oil",
           "Rock Salt"
         ],
-        "allergens": ["tree nuts", "peanuts"],
-        "dietary_tags": ["Vegan", "Gluten-Free", "Zero Palm Oil"],
+        "allergens": [
+          "tree nuts",
+          "peanuts"
+        ],
+        "dietary_tags": [
+          "Vegan",
+          "Gluten-Free",
+          "Zero Palm Oil"
+        ],
         "redirect_links": [
-          {"platform": "d2c", "url": "https://thewholetruthfoods.com/products/protein-namkeen", "platform_price_inr": 199.0},
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=The+Whole+Truth+Protein+Namkeen"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=The+Whole+Truth+Protein+Namkeen+Mixture"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=The+Whole+Truth+Protein+Namkeen"
+          }
         ]
       }
     ]
@@ -519,7 +661,7 @@
     "brand_name": "RiteBite Max Protein",
     "category_slug": "savory-snacks",
     "description": "7-grain protein chips; contains palmolein oil and maltodextrin seasoning.",
-    "image_url": "https://maxprotein.in/images/spanish-tomato-chips.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Spanish Tomato 60g",
@@ -546,11 +688,22 @@
           "Tomato Powder",
           "Spices and Condiments"
         ],
-        "allergens": ["milk", "soy"],
-        "dietary_tags": ["Vegetarian"],
+        "allergens": [
+          "milk",
+          "soy"
+        ],
+        "dietary_tags": [
+          "Vegetarian"
+        ],
         "redirect_links": [
-          {"platform": "amazon", "url": "https://www.amazon.in/dp/B07RITECHIP", "platform_price_inr": 60.0},
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=Max+Protein+Spanish+Tomato+Chips"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=RiteBite+Max+Protein+Protein+Chips"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Max+Protein+Spanish+Tomato+Chips"
+          }
         ]
       }
     ]
@@ -560,7 +713,7 @@
     "brand_name": "Yoga Bar",
     "category_slug": "savory-snacks",
     "description": "Crunchy roasted oats snack with whey protein and spicy peri peri herbs.",
-    "image_url": "https://yogabar.in/images/oats-crisps-peri-peri.png",
+    "image_url": null,
     "variants": [
       {
         "variant_name": "Peri Peri 50g",
@@ -586,10 +739,21 @@
           "Peri Peri Seasoning",
           "Sea Salt"
         ],
-        "allergens": ["milk"],
-        "dietary_tags": ["Vegetarian"],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian"
+        ],
         "redirect_links": [
-          {"platform": "blinkit", "url": "https://blinkit.com/s/?q=Yoga+Bar+Oats+Crisps"}
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Yoga+Bar+High+Protein+Oats+Crisps"
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Yoga+Bar+Oats+Crisps"
+          }
         ]
       }
     ]

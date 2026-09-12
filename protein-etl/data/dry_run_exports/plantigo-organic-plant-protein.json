@@ -3,51 +3,62 @@
   "brand_name": "Plantigo",
   "category_slug": "protein-powders",
   "slug": "plantigo-organic-plant-protein",
-  "description": "Clean plant protein blend",
+  "description": "100% plant-based protein crafted from organic pea and brown rice isolate.",
   "image_url": null,
   "variants": [
     {
-      "variant_name": "Rich Chocolate 1kg",
-      "slug": "rich-chocolate-1kg",
+      "variant_name": "Rich Chocolate 1kg (28 Servings)",
+      "slug": "rich-chocolate-1kg-28-servings",
       "sku": null,
       "barcode_ean": null,
       "mrp_inr": 2499.0,
       "net_weight_g": 1000.0,
       "serving_size_g": 35.0,
-      "servings_per_pack": 1,
+      "servings_per_pack": 28,
       "serving_size_label": null,
       "nutrition": {
         "calories_kcal": 135.0,
         "protein_g": 24.0,
-        "total_fat_g": 2.0,
-        "saturated_fat_g": 0.0,
+        "total_fat_g": 2.2,
+        "saturated_fat_g": 0.4,
         "trans_fat_g": 0.0,
         "cholesterol_mg": 0.0,
         "total_carbs_g": 5.0,
         "dietary_fiber_g": 3.0,
         "total_sugars_g": 0.0,
         "added_sugars_g": 0.0,
-        "sodium_mg": 0.0,
+        "sodium_mg": 140.0,
         "non_glycemic_polyols_g": 0.0,
         "additional_nutrients": {}
       },
       "ingredient_list": [
         "Organic Pea Protein Isolate",
-        "Organic Brown Rice Protein",
+        "Organic Sprouted Brown Rice Protein",
         "Organic Raw Cocoa",
-        "Stevia Extract"
+        "Digestive Enzyme Blend",
+        "Stevia Leaf Extract"
       ],
       "ingredient_deck_raw": [],
       "allergens": [],
       "dietary_tags": [
         "Vegan",
         "Organic",
-        "Gluten-Free"
+        "Gluten-Free",
+        "Soy-Free",
+        "Dairy-Free"
       ],
       "image_url": null,
-      "redirect_links": [],
+      "redirect_links": [
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Plantigo+Organic+Plant+Protein",
+          "platform_price_inr": null
+        }
+      ],
       "computed_metrics": {
-        "cost_per_g_protein": 104.12,
+        "cost_per_g_protein": 3.64,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 71.11,
         "true_net_carbs_g": 2.0
       },

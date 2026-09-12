@@ -4,7 +4,7 @@
   "category_slug": "protein-powders",
   "slug": "cosmix-plant-protein-powder",
   "description": "Herbal-infused plant protein formulated with gut herbs and organic cacao.",
-  "image_url": "https://cosmix.in/images/indonesian-cacao.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Indonesian Cacao 750g (20 Servings)",
@@ -50,13 +50,15 @@
       "image_url": null,
       "redirect_links": [
         {
-          "platform": "d2c",
-          "url": "https://cosmix.in/products/plant-protein-indonesian-cacao",
-          "platform_price_inr": 2150.0
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Cosmix+Plant+Protein+Powder",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
-        "cost_per_g_protein": 86.0,
+        "cost_per_g_protein": 4.36,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 68.97,
         "true_net_carbs_g": 2.0
       },

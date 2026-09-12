@@ -3,6 +3,7 @@
 import pytest
 from src.engine.metrics import (
     calculate_cost_per_g_protein,
+    calculate_protein_per_pack,
     calculate_protein_density,
     calculate_true_net_carbs,
     compute_all_metrics,
@@ -66,3 +67,32 @@ def test_compute_all_metrics():
     assert metrics.protein_density_pct == 37.74
     # 20 - 6 = 14g
     assert metrics.true_net_carbs_g == 14.0
+    assert metrics.best_price_inr is None
+    assert metrics.best_cost_per_g_protein is None
+
+
+def test_calculate_protein_per_pack_scales_serving_to_pack():
+    # 25g per 31g scoop in a 1kg tub = 806.45g protein
+    assert calculate_protein_per_pack(25.0, 1000.0, 31.0) == pytest.approx(806.45, abs=0.01)
+    # Single-serve bar: serving is the whole pack
+    assert calculate_protein_per_pack(20.0, 52.0, 52.0) == 20.0
+    # No pack info -> treated as single serve
+    assert calculate_protein_per_pack(20.0) == 20.0
+
+
+def test_compute_all_metrics_multi_serving_powder():
+    # MuscleBlaze Biozyme 1kg: ₹3499 MRP, 25g protein per 31g scoop
+    nutrition = NutritionPerPack(calories_kcal=118.0, protein_g=25.0, total_fat_g=1.0, total_carbs_g=2.0)
+    metrics = compute_all_metrics(
+        mrp_inr=3499.0,
+        nutrition=nutrition,
+        net_weight_g=1000.0,
+        serving_size_g=31.0,
+        platform_prices=[3199.0, None, 3249.0],
+    )
+    # 3499 / 806.45 = ₹4.34/g (was wrongly ₹139.96/g when divided by one scoop)
+    assert metrics.cost_per_g_protein == 4.34
+    assert metrics.best_price_inr == 3199.0
+    assert metrics.best_cost_per_g_protein == 3.97
+    # Density is a ratio, so it does not change with pack size
+    assert metrics.protein_density_pct == 84.75

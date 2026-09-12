@@ -4,9 +4,13 @@ from __future__ import annotations
 import re
 import questionary
 try:
+    from src.links import SEARCH_URL_TEMPLATES, build_search_url
     from src.models import NutritionPerPack, ProductCreate, VariantCreate, RedirectLinkItem
 except (ImportError, ModuleNotFoundError):
+    from links import SEARCH_URL_TEMPLATES, build_search_url
     from models import NutritionPerPack, ProductCreate, VariantCreate, RedirectLinkItem
+
+NUMBER_PATTERN = r"^-?\d+(\.\d+)?$"
 
 
 def parse_raw_ingredient_deck(raw_text: str) -> list[str]:
@@ -60,9 +64,19 @@ def prompt_float(prompt_text: str, default: float = 0.0) -> float:
     val = questionary.text(
         prompt_text,
         default=str(default),
-        validate=lambda text: True if re.match(r"^-?\d+(\.\d+)?$", text.strip()) else "Please enter a valid number",
+        validate=lambda text: True if re.match(NUMBER_PATTERN, text.strip()) else "Please enter a valid number",
     ).ask()
     return float(val.strip()) if val else default
+
+
+def prompt_optional_float(prompt_text: str, default: float | None = None) -> float | None:
+    """Prompt for a number that may be left blank."""
+    val = questionary.text(
+        prompt_text,
+        default="" if default is None else str(default),
+        validate=lambda text: True if not text.strip() or re.match(NUMBER_PATTERN, text.strip()) else "Please enter a number or leave blank",
+    ).ask()
+    return float(val.strip()) if val and val.strip() else None
 
 
 def prompt_manual_entry(initial_data: dict | None = None) -> ProductCreate:
@@ -105,21 +119,28 @@ def prompt_manual_entry(initial_data: dict | None = None) -> ProductCreate:
     ).ask()
 
     mrp_inr = prompt_float(
-        "MRP in INR (₹):",
-        default=default_variant.get("price_inr", 150.0),
+        "MRP in INR (₹) — the printed label price:",
+        default=default_variant.get("mrp_inr") or 150.0,
     )
 
+    if default_variant.get("weight_source") == "shipping":
+        print("⚠️  Shopify only gave a shipping weight for this variant — check the net weight on the pack.")
     net_weight_g = prompt_float(
         "Net pack weight in grams (g):",
-        default=default_variant.get("weight_g", 52.0),
+        default=default_variant.get("weight_g") or 52.0,
     )
 
     serving_size_g = prompt_float(
-        "Serving size in grams (g):",
-        default=default_variant.get("weight_g", 52.0),
+        "Serving size in grams (g) — same as pack weight for single bars/bottles:",
+        default=net_weight_g,
     )
 
-    print("\n🥗 Nutrition Facts (Per Pack / Labeled Serving)")
+    servings_per_pack = int(prompt_float(
+        "Servings per pack:",
+        default=max(1, round(net_weight_g / serving_size_g)) if serving_size_g > 0 else 1,
+    ))
+
+    print(f"\n🥗 Nutrition Facts (per serving of {serving_size_g:g}g)")
     calories_kcal = prompt_float("Calories (kcal):", 212.0)
     protein_g = prompt_float("Protein (g):", 20.0)
     total_fat_g = prompt_float("Total Fat (g):", 8.0)
@@ -169,20 +190,39 @@ def prompt_manual_entry(initial_data: dict | None = None) -> ProductCreate:
     dietary_tags = [t.strip() for t in dietary_tags_input.split(",") if t.strip()]
 
     print("\n🔗 Redirect & Purchase Links")
-    amazon_url = questionary.text("Amazon URL (optional):").ask()
-    d2c_url = questionary.text("D2C / Brand Website URL (optional):").ask()
-
     redirect_links = []
+
+    amazon_url = questionary.text("Amazon product URL (optional):").ask()
     if amazon_url and amazon_url.strip():
-        redirect_links.append(RedirectLinkItem(platform="amazon", url=amazon_url.strip(), platform_price_inr=mrp_inr))
+        amazon_price = prompt_optional_float("Amazon selling price in ₹ (blank if unknown):")
+        redirect_links.append(RedirectLinkItem(platform="amazon", url=amazon_url.strip(), platform_price_inr=amazon_price))
+
+    d2c_url = questionary.text("D2C / Brand Website URL (optional):", default=data.get("url", "")).ask()
     if d2c_url and d2c_url.strip():
-        redirect_links.append(RedirectLinkItem(platform="d2c", url=d2c_url.strip(), platform_price_inr=mrp_inr))
+        d2c_price = prompt_optional_float(
+            "Brand website selling price in ₹ (blank if unknown):",
+            default=default_variant.get("price_inr"),
+        )
+        redirect_links.append(RedirectLinkItem(platform="d2c", url=d2c_url.strip(), platform_price_inr=d2c_price))
+
+    if questionary.confirm(
+        "Add Amazon / Blinkit / Zepto / Instamart search links for platforms without a product URL?",
+        default=True,
+    ).ask():
+        linked_platforms = {link.platform for link in redirect_links}
+        query = f"{brand_name} {product_name}"
+        for platform in SEARCH_URL_TEMPLATES:
+            if platform not in linked_platforms:
+                redirect_links.append(RedirectLinkItem(platform=platform, url=build_search_url(platform, query)))
 
     variant = VariantCreate(
         variant_name=variant_name,
+        sku=default_variant.get("sku"),
+        barcode_ean=default_variant.get("barcode"),
         mrp_inr=mrp_inr,
         net_weight_g=net_weight_g,
         serving_size_g=serving_size_g,
+        servings_per_pack=servings_per_pack,
         nutrition=nutrition,
         ingredient_list=ingredient_list,
         ingredient_deck_raw=[{"name": ing} for ing in ingredient_list],
@@ -196,5 +236,6 @@ def prompt_manual_entry(initial_data: dict | None = None) -> ProductCreate:
         brand_name=brand_name,
         category_slug=category_slug,
         description=description,
+        image_url=(data.get("images") or [None])[0],
         variants=[variant],
     )

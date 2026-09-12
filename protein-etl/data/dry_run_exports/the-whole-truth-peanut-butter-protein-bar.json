@@ -4,7 +4,7 @@
   "category_slug": "protein-bars",
   "slug": "the-whole-truth-peanut-butter-protein-bar",
   "description": "Wholesome peanut butter bar with whey isolate and pure roasted peanuts.",
-  "image_url": "https://thewholetruthfoods.com/images/peanut-butter.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Single Bar 52g",
@@ -52,17 +52,14 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B08ABC5678",
-          "platform_price_inr": 150.0
-        },
-        {
-          "platform": "d2c",
-          "url": "https://thewholetruthfoods.com/products/peanut-butter-protein-bar",
-          "platform_price_inr": 135.0
+          "url": "https://www.amazon.in/s?k=The+Whole+Truth+Peanut+Butter+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 7.5,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 36.36,
         "true_net_carbs_g": 13.0
       },

@@ -4,7 +4,7 @@
   "category_slug": "rtd-drinks",
   "slug": "epigamia-high-protein-greek-yogurt-drink",
   "description": "Smooth Greek yogurt smoothie packed with protein and gut-friendly cultures.",
-  "image_url": "https://epigamia.com/images/greek-yogurt-drink.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Strawberry 180ml",
@@ -48,6 +48,11 @@
       "image_url": null,
       "redirect_links": [
         {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Epigamia+High+Protein+Greek+Yogurt+Drink",
+          "platform_price_inr": null
+        },
+        {
           "platform": "blinkit",
           "url": "https://blinkit.com/s/?q=Epigamia+Greek+Yogurt+Drink",
           "platform_price_inr": null
@@ -60,6 +65,8 @@
       ],
       "computed_metrics": {
         "cost_per_g_protein": 8.0,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 33.33,
         "true_net_carbs_g": 14.0
       },
