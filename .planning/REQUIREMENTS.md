@@ -31,14 +31,14 @@
 
 ### Web Application & UI (WEB)
 
-- [ ] **WEB-01**: Next.js 14+ App Router project configured with TypeScript, Supabase client (@supabase/ssr), and environment variables.
-- [ ] **WEB-02**: Custom design system and UI primitives created (Cards, Badges, Buttons, Tooltips, Efficiency Meter).
-- [ ] **WEB-03**: Landing / Hero page (`/`) showcasing value prop, quick category shortcuts, and featured top-efficiency products.
-- [ ] **WEB-04**: Explore page (`/explore`) with faceted sidebar filters (category, dietary tags, allergens, tier) and multi-option sort.
-- [ ] **WEB-05**: Category pages (`/category/[slug]`) statically generated (SSG/ISR) for high-intent SEO ranking.
-- [ ] **WEB-06**: Autocomplete and search page (`/search`) powered by Postgres trigram text search.
-- [ ] **WEB-07**: Product Detail Page (`/product/[slug]`) displaying variant selector, full nutrition panel, Per-Pack / Per-100g toggle, and red-flag alerts.
-- [ ] **WEB-08**: Platform redirect buttons built with conditional price display (Amazon & D2C show price; Blinkit/Zepto/Instamart show search links).
+- [x] **WEB-01**: Next.js 14+ App Router project configured with TypeScript, Supabase client (@supabase/ssr), and environment variables.
+- [x] **WEB-02**: Custom design system and UI primitives created (Cards, Badges, Buttons, Tooltips, Efficiency Meter).
+- [x] **WEB-03**: Landing / Hero page (`/`) showcasing value prop, quick category shortcuts, and featured top-efficiency products.
+- [x] **WEB-04**: Explore page (`/explore`) with faceted sidebar filters (category, dietary tags, allergens, tier) and multi-option sort.
+- [x] **WEB-05**: Category pages (`/category/[slug]`) statically generated (SSG/ISR) for high-intent SEO ranking.
+- [x] **WEB-06**: Autocomplete and search page (`/search`) powered by Postgres trigram text search.
+- [x] **WEB-07**: Product Detail Page (`/product/[slug]`) displaying variant selector, full nutrition panel, Per-Pack / Per-100g toggle, and red-flag alerts.
+- [x] **WEB-08**: Platform redirect buttons built with conditional price display (Amazon & D2C show price; Blinkit/Zepto/Instamart show search links).
 
 ### Auth & Personalization (AUTH)
 
