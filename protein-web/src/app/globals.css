@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   /* Surface & Background */
   --bg-primary: #0a0a0f;
@@ -47,8 +49,6 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 html,
