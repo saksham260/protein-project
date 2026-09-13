@@ -2,21 +2,26 @@
 
 from __future__ import annotations
 import re
+from typing import Optional
 from urllib.parse import urlparse
 import httpx
 from bs4 import BeautifulSoup
+
+# "1kg", "500 g", "1.5 Kg", "200ml", "2 lbs" -> grams (ml treated as g for drinks)
+WEIGHT_PATTERN = re.compile(r"(\d+(?:\.\d+)?)\s*(kgs?|lbs?|grams?|gms?|g|ml|l)\b", re.IGNORECASE)
+UNIT_TO_GRAMS = {"kg": 1000.0, "kgs": 1000.0, "l": 1000.0, "lb": 453.6, "lbs": 453.6}
 
 
 def parse_shopify_url(url: str) -> tuple[str, str]:
     """Extract domain base URL and product handle from a Shopify product link."""
     parsed = urlparse(url.strip())
     domain = f"{parsed.scheme}://{parsed.netloc}"
-    
+
     # Path pattern: /products/<handle>
     match = re.search(r"/products/([^/?#]+)", parsed.path)
     if not match:
         raise ValueError(f"Could not extract Shopify product handle from URL: {url}")
-    
+
     handle = match.group(1)
     return domain, handle
 
@@ -29,6 +34,22 @@ def clean_html_text(html_content: str) -> str:
     # Clean up whitespace
     text = soup.get_text(separator=" ", strip=True)
     return re.sub(r"\s+", " ", text)
+
+
+def parse_weight_g(text: str | None) -> Optional[float]:
+    """Read a pack weight like '1kg' or '52 g' out of a title, in grams."""
+    match = WEIGHT_PATTERN.search(text or "")
+    if not match:
+        return None
+    value = float(match.group(1))
+    return round(value * UNIT_TO_GRAMS.get(match.group(2).lower(), 1.0), 2)
+
+
+def _parse_price(raw) -> Optional[float]:
+    try:
+        return float(raw) if raw not in (None, "") else None
+    except (ValueError, TypeError):
+        return None
 
 
 def extract_shopify_product_url(url: str, client: httpx.Client | None = None) -> dict:
@@ -45,6 +66,10 @@ def extract_shopify_product(url: str, client: httpx.Client | None = None) -> dic
 
     Returns:
         Structured dict containing title, brand, description, images, and variants.
+        Each variant has `mrp_inr` (compare-at price when the item is on sale),
+        `price_inr` (current selling price), and `weight_g` with `weight_source`
+        ("label" when read from the title, "shipping" when it fell back to Shopify's
+        shipping weight and must be checked by hand).
     """
     domain, handle = parse_shopify_url(url)
     endpoint = f"{domain}/products/{handle}.json"
@@ -78,21 +103,33 @@ def extract_shopify_product(url: str, client: httpx.Client | None = None) -> dic
     images = [img.get("src") for img in raw_product.get("images", []) if img.get("src")]
 
     # Parse variants
+    raw_variants = raw_product.get("variants", [])
     parsed_variants = []
-    for var in raw_product.get("variants", []):
-        price_str = var.get("price", "0")
-        try:
-            mrp = float(price_str)
-        except (ValueError, TypeError):
-            mrp = 0.0
+    for var in raw_variants:
+        price = _parse_price(var.get("price")) or 0.0
+        compare_at = _parse_price(var.get("compare_at_price"))
+        mrp = compare_at if compare_at and compare_at > price else price
 
-        grams = var.get("grams")
-        weight_g = float(grams) if grams else 0.0
+        # Shopify "grams" is the shipping weight (packaging included), so prefer the size in the title.
+        label_weight = parse_weight_g(var.get("title"))
+        if label_weight is None and len(raw_variants) == 1:
+            label_weight = parse_weight_g(raw_product.get("title"))
+        shipping_weight = float(var["grams"]) if var.get("grams") else None
+
+        if label_weight is not None:
+            weight_g, weight_source = label_weight, "label"
+        elif shipping_weight is not None:
+            weight_g, weight_source = shipping_weight, "shipping"
+        else:
+            weight_g, weight_source = None, None
 
         parsed_variants.append({
             "variant_name": var.get("title", "Default Variant"),
-            "price_inr": mrp,
+            "price_inr": price,
+            "mrp_inr": mrp,
             "weight_g": weight_g,
+            "weight_source": weight_source,
+            "shipping_weight_g": shipping_weight,
             "sku": var.get("sku"),
             "barcode": var.get("barcode"),
         })

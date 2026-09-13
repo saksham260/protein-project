@@ -3,7 +3,7 @@
 import pytest
 from unittest.mock import MagicMock
 from src.parsers.manual import parse_raw_ingredient_deck
-from src.parsers.shopify import parse_shopify_url, extract_shopify_product
+from src.parsers.shopify import parse_shopify_url, extract_shopify_product, parse_weight_g
 
 
 def test_parse_shopify_url_valid():
@@ -50,7 +50,42 @@ def test_extract_shopify_product_with_mock():
     assert "100% natural" in result["description"]
     assert len(result["variants"]) == 1
     assert result["variants"][0]["price_inr"] == 900.0
+    assert result["variants"][0]["mrp_inr"] == 900.0
+    # No size in the title, so it falls back to the shipping weight and says so
     assert result["variants"][0]["weight_g"] == 312.0
+    assert result["variants"][0]["weight_source"] == "shipping"
+
+
+def test_extract_shopify_reads_mrp_and_label_weight():
+    mock_client = MagicMock()
+    mock_client.get.return_value.json.return_value = {
+        "product": {
+            "title": "Biozyme Whey Isolate",
+            "vendor": "MuscleBlaze",
+            "variants": [
+                {"title": "Rich Chocolate / 1kg", "price": "2999.00", "compare_at_price": "3499.00", "grams": 1250},
+            ],
+        }
+    }
+
+    variant = extract_shopify_product(
+        "https://example-store.com/products/biozyme-whey-isolate", client=mock_client
+    )["variants"][0]
+
+    assert variant["mrp_inr"] == 3499.0
+    assert variant["price_inr"] == 2999.0
+    assert variant["weight_g"] == 1000.0
+    assert variant["weight_source"] == "label"
+    assert variant["shipping_weight_g"] == 1250.0
+
+
+def test_parse_weight_g():
+    assert parse_weight_g("1kg") == 1000.0
+    assert parse_weight_g("Chocolate 500 g") == 500.0
+    assert parse_weight_g("1.5 Kg tub") == 1500.0
+    assert parse_weight_g("Rose 200ml") == 200.0
+    assert parse_weight_g("Box of 6") is None
+    assert parse_weight_g(None) is None
 
 
 def test_parse_raw_ingredient_deck_simple():

@@ -4,7 +4,7 @@
   "category_slug": "protein-powders",
   "slug": "muscleblaze-biozyme-whey-isolate",
   "description": "Clinically tested biozyme formula optimized for 50% higher protein absorption in Indian bodies.",
-  "image_url": "https://muscleblaze.com/images/biozyme-isolate.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Rich Chocolate 1kg (32 Servings)",
@@ -52,17 +52,14 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B08MBBIO01",
-          "platform_price_inr": 3199.0
-        },
-        {
-          "platform": "d2c",
-          "url": "https://www.muscleblaze.com/sv/muscleblaze-biozyme-whey-isolate",
-          "platform_price_inr": 3249.0
+          "url": "https://www.amazon.in/s?k=MuscleBlaze+Biozyme+Whey+Isolate",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
-        "cost_per_g_protein": 139.96,
+        "cost_per_g_protein": 4.34,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 84.75,
         "true_net_carbs_g": 2.0
       },

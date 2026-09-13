@@ -4,7 +4,7 @@
   "category_slug": "protein-bars",
   "slug": "the-whole-truth-double-cocoa-protein-bar",
   "description": "Clean protein bar with 100% real ingredients, zero added sugar, zero maltitol.",
-  "image_url": "https://thewholetruthfoods.com/images/double-cocoa.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Single Bar 52g",
@@ -54,17 +54,14 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B08XYZ1234",
-          "platform_price_inr": 150.0
-        },
-        {
-          "platform": "d2c",
-          "url": "https://thewholetruthfoods.com/products/double-cocoa-protein-bar",
-          "platform_price_inr": 135.0
+          "url": "https://www.amazon.in/s?k=The+Whole+Truth+Double+Cocoa+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 7.5,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 37.74,
         "true_net_carbs_g": 14.0
       },

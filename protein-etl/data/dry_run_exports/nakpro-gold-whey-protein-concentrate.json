@@ -4,7 +4,7 @@
   "category_slug": "protein-powders",
   "slug": "nakpro-gold-whey-protein-concentrate",
   "description": "High value-per-rupee unadulterated whey protein concentrate for muscle building.",
-  "image_url": "https://nakpro.com/images/gold-whey.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Chocolate 1kg (30 Servings)",
@@ -49,12 +49,14 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B07NAKPRO1",
-          "platform_price_inr": 1599.0
+          "url": "https://www.amazon.in/s?k=Nakpro+Gold+Whey+Protein+Concentrate",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
-        "cost_per_g_protein": 74.96,
+        "cost_per_g_protein": 2.47,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 73.85,
         "true_net_carbs_g": 3.5
       },

@@ -10,11 +10,16 @@ import re
 from pathlib import Path
 
 try:
+    from src.engine.text_match import find_term_spans, pick_longest_matches
     from src.models import RedFlagItem
 except (ImportError, ModuleNotFoundError):
+    from engine.text_match import find_term_spans, pick_longest_matches
     from models import RedFlagItem
 
 DICT_PATH = Path(__file__).resolve().parent.parent / "data" / "red_flag_dictionary.json"
+
+# Flag types that show a single badge no matter how many of their patterns match.
+SINGLE_BADGE_FLAGS = {"maltitol_alert"}
 
 
 def load_red_flag_dictionary() -> dict:
@@ -38,56 +43,44 @@ def scan_ingredients_for_red_flags(ingredients: list[str]) -> list[RedFlagItem]:
         ingredients: List of ingredient strings from pack / FSSAI label.
 
     Returns:
-        List of RedFlagItem objects.
+        List of RedFlagItem objects, in dictionary order.
     """
     if not ingredients:
         return []
 
     dictionary = load_red_flag_dictionary()
+    full_deck_text = " , ".join(normalize_ingredient_token(ing) for ing in ingredients)
+
+    # Collect every alias hit, then keep only the longest non-overlapping ones.
+    candidates = []
+    for flag_order, (flag_type, flag_meta) in enumerate(dictionary.items()):
+        for pattern_order, pattern_entry in enumerate(flag_meta.get("patterns", [])):
+            for variant in pattern_entry.get("match", []):
+                for span in find_term_spans(full_deck_text, normalize_ingredient_token(variant)):
+                    candidates.append((span, (flag_order, pattern_order, flag_type, pattern_entry)))
+
+    hits: dict[tuple[int, int], tuple[str, dict]] = {}
+    for _, (flag_order, pattern_order, flag_type, pattern_entry) in pick_longest_matches(candidates):
+        hits.setdefault((flag_order, pattern_order), (flag_type, pattern_entry))
+
     detected_flags: list[RedFlagItem] = []
-    seen_keys: set[tuple[str, str]] = set()
-    seen_flag_types: set[str] = set()
+    badged: set[str] = set()
+    for _, (flag_type, pattern_entry) in sorted(hits.items()):
+        if flag_type in SINGLE_BADGE_FLAGS:
+            if flag_type in badged:
+                continue
+            badged.add(flag_type)
 
-    # Pre-normalize all input ingredients
-    normalized_ingredients = [normalize_ingredient_token(ing) for ing in ingredients]
-    full_deck_text = " , ".join(normalized_ingredients)
-
-    for flag_type, flag_meta in dictionary.items():
-        severity = flag_meta["severity"]
-        badge_label = flag_meta["badge_label"]
-        tooltip = flag_meta["tooltip"]
-
-        for pattern_entry in flag_meta.get("patterns", []):
-            canonical = pattern_entry["canonical"]
-            ins_code = pattern_entry.get("ins")
-            match_variants = pattern_entry.get("match", [])
-            pattern_matched = False
-
-            for variant in match_variants:
-                var_norm = normalize_ingredient_token(variant)
-                escaped_var = re.escape(var_norm)
-                regex_pattern = rf"(?:\b|\W){escaped_var}(?:\b|\W)"
-
-                if re.search(regex_pattern, f" {full_deck_text} "):
-                    key = (flag_type, canonical)
-                    if key not in seen_keys:
-                        seen_keys.add(key)
-                        detected_flags.append(
-                            RedFlagItem(
-                                flag_type=flag_type,
-                                flag_severity=severity,
-                                flag_label=badge_label,
-                                flag_description=tooltip,
-                                matched_ingredient=canonical,
-                                ins_number=ins_code,
-                            )
-                        )
-                        pattern_matched = True
-                        seen_flag_types.add(flag_type)
-                    break
-
-            # For single-substance alerts like maltitol_alert, once matched we don't need redundant sub-patterns
-            if pattern_matched and flag_type == "maltitol_alert":
-                break
+        flag_meta = dictionary[flag_type]
+        detected_flags.append(
+            RedFlagItem(
+                flag_type=flag_type,
+                flag_severity=flag_meta["severity"],
+                flag_label=flag_meta["badge_label"],
+                flag_description=flag_meta["tooltip"],
+                matched_ingredient=pattern_entry["canonical"],
+                ins_number=pattern_entry.get("ins"),
+            )
+        )
 
     return detected_flags

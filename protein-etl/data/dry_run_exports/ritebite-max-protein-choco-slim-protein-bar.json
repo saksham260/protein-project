@@ -4,7 +4,7 @@
   "category_slug": "protein-bars",
   "slug": "ritebite-max-protein-choco-slim-protein-bar",
   "description": "Marketed as a slim protein bar; contains maltitol syrup, palmolein, and hydrolyzed collagen.",
-  "image_url": "https://maxprotein.in/images/choco-slim.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Choco Slim 67g",
@@ -52,8 +52,8 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B07RITE001",
-          "platform_price_inr": 120.0
+          "url": "https://www.amazon.in/s?k=RiteBite+Max+Protein+Choco+Slim+Protein+Bar",
+          "platform_price_inr": null
         },
         {
           "platform": "blinkit",
@@ -63,6 +63,8 @@
       ],
       "computed_metrics": {
         "cost_per_g_protein": 6.5,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 29.09,
         "true_net_carbs_g": 30.0
       },
@@ -93,7 +95,7 @@
         }
       ],
       "protein_profile": {
-        "primary_protein_source": "Whey Protein Concentrate",
+        "primary_protein_source": "Soy Protein Isolate",
         "protein_tier": "Tier 4 \u2013 Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
         "has_added_free_form_aminos": false
       }

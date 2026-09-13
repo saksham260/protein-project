@@ -4,7 +4,7 @@
   "category_slug": "savory-snacks",
   "slug": "the-whole-truth-protein-namkeen-mixture",
   "description": "High-protein savory namkeen roasted in cold-pressed groundnut oil, zero palm oil.",
-  "image_url": "https://thewholetruthfoods.com/images/protein-namkeen.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Roasted Mixture 120g",
@@ -52,9 +52,9 @@
       "image_url": null,
       "redirect_links": [
         {
-          "platform": "d2c",
-          "url": "https://thewholetruthfoods.com/products/protein-namkeen",
-          "platform_price_inr": 199.0
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=The+Whole+Truth+Protein+Namkeen+Mixture",
+          "platform_price_inr": null
         },
         {
           "platform": "blinkit",
@@ -63,7 +63,9 @@
         }
       ],
       "computed_metrics": {
-        "cost_per_g_protein": 19.9,
+        "cost_per_g_protein": 6.63,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 22.22,
         "true_net_carbs_g": 14.0
       },

@@ -4,7 +4,7 @@
   "category_slug": "protein-bars",
   "slug": "yoga-bar-20g-protein-bar",
   "description": "High fiber and concentrate whey protein bar with nuts and whole grains.",
-  "image_url": "https://yogabar.in/images/almond-fudge.png",
+  "image_url": null,
   "variants": [
     {
       "variant_name": "Almond Fudge 60g",
@@ -53,12 +53,14 @@
       "redirect_links": [
         {
           "platform": "amazon",
-          "url": "https://www.amazon.in/dp/B07YOGA001",
-          "platform_price_inr": 110.0
+          "url": "https://www.amazon.in/s?k=Yoga+Bar+20g+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 6.0,
+        "best_price_inr": null,
+        "best_cost_per_g_protein": null,
         "protein_density_pct": 32.65,
         "true_net_carbs_g": 15.0
       },

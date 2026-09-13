@@ -33,7 +33,7 @@
     "badge_label": "Hidden Sugar Source Detected",
     "tooltip": "These ingredients are functionally equivalent to sugar but may not appear in the 'Added Sugars' line on the nutrition panel. They spike blood glucose similarly to table sugar.",
     "patterns": [
-      {"canonical": "Maltodextrin", "ins": "INS 1400", "match": ["maltodextrin", "corn maltodextrin", "tapioca maltodextrin", "ins 1400", "1400"]},
+      {"canonical": "Maltodextrin", "ins": "INS 1400", "match": ["maltodextrin", "corn maltodextrin", "tapioca maltodextrin", "ins 1400"]},
       {"canonical": "Dextrose", "ins": null, "match": ["dextrose", "dextrose monohydrate", "d-glucose"]},
       {"canonical": "High Fructose Corn Syrup", "ins": null, "match": ["high fructose corn syrup", "hfcs", "glucose-fructose syrup", "isoglucose"]},
       {"canonical": "Corn Syrup Solids", "ins": null, "match": ["corn syrup solids", "corn syrup", "glucose syrup"]},

@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from dotenv import load_dotenv
@@ -50,6 +51,9 @@ class SupabaseUploader:
             variant.computed_metrics = compute_all_metrics(
                 mrp_inr=variant.mrp_inr,
                 nutrition=variant.nutrition,
+                net_weight_g=variant.net_weight_g,
+                serving_size_g=variant.serving_size_g,
+                platform_prices=[link.platform_price_inr for link in variant.redirect_links],
             )
 
             # 2. Red-Flag Scanning
@@ -146,6 +150,7 @@ class SupabaseUploader:
         product_id = prod_res.data[0]["id"]
 
         uploaded_variant_ids = []
+        now_iso = datetime.now(timezone.utc).isoformat()
 
         # 4. Upsert Variants
         for variant in product.variants:
@@ -173,6 +178,8 @@ class SupabaseUploader:
                 "total_sugars_g": variant.nutrition.total_sugars_g,
                 "added_sugars_g": variant.nutrition.added_sugars_g,
                 "sodium_mg": variant.nutrition.sodium_mg,
+                "non_glycemic_polyols_g": variant.nutrition.non_glycemic_polyols_g,
+                "additional_nutrients": variant.nutrition.additional_nutrients,
                 "ingredient_list": variant.ingredient_list,
                 "ingredient_deck_raw": variant.ingredient_deck_raw,
                 "allergens": variant.allergens,
@@ -181,10 +188,13 @@ class SupabaseUploader:
                 "protein_tier": v_profile.protein_tier if v_profile else None,
                 "has_added_free_form_aminos": v_profile.has_added_free_form_aminos if v_profile else False,
                 "cost_per_g_protein": v_metrics.cost_per_g_protein if v_metrics else None,
+                "best_price_inr": v_metrics.best_price_inr if v_metrics else None,
+                "best_cost_per_g_protein": v_metrics.best_cost_per_g_protein if v_metrics else None,
                 "protein_density_pct": v_metrics.protein_density_pct if v_metrics else None,
                 "true_net_carbs_g": v_metrics.true_net_carbs_g if v_metrics else None,
                 "image_url": variant.image_url,
                 "is_active": True,
+                "last_verified_at": now_iso,
             }
 
             var_res = self.client.table("product_variants").upsert(
@@ -211,15 +221,26 @@ class SupabaseUploader:
                 ]
                 self.client.table("variant_red_flags").insert(flag_rows).execute()
 
-            # 6. Upsert Redirect Links
+            # 6. Upsert Redirect Links (one per platform), then drop platforms no longer listed
+            links_table = self.client.table("redirect_links")
+            platforms = [link.platform for link in variant.redirect_links]
             if variant.redirect_links:
-                for link in variant.redirect_links:
-                    self.client.table("redirect_links").insert({
-                        "variant_id": variant_id,
-                        "platform": link.platform,
-                        "url": link.url,
-                        "platform_price_inr": link.platform_price_inr,
-                    }).execute()
+                links_table.upsert(
+                    [
+                        {
+                            "variant_id": variant_id,
+                            "platform": link.platform,
+                            "url": link.url,
+                            "platform_price_inr": link.platform_price_inr,
+                            "price_last_checked": now_iso,
+                        }
+                        for link in variant.redirect_links
+                    ],
+                    on_conflict="variant_id,platform",
+                ).execute()
+                links_table.delete().eq("variant_id", variant_id).not_.in_("platform", platforms).execute()
+            else:
+                links_table.delete().eq("variant_id", variant_id).execute()
 
         return {
             "mode": "live",

@@ -89,3 +89,18 @@ def test_multiple_red_flags_combined():
     flags = scan_ingredients_for_red_flags(dirty_deck)
     flag_types = {f.flag_type for f in flags}
     assert flag_types == {"maltitol_alert", "amino_spiking", "fat_quality", "hidden_sugars"}
+
+
+def test_hydrogenated_glucose_syrup_is_only_a_maltitol_flag():
+    # "glucose syrup" (hidden sugar) sits inside "hydrogenated glucose syrup" (maltitol alias)
+    flags = scan_ingredients_for_red_flags(["Whey Protein Isolate", "Hydrogenated Glucose Syrup"])
+    assert [f.flag_type for f in flags] == ["maltitol_alert"]
+
+
+def test_hfcs_is_not_also_reported_as_corn_syrup():
+    flags = scan_ingredients_for_red_flags(["High Fructose Corn Syrup"])
+    assert [f.matched_ingredient for f in flags] == ["High Fructose Corn Syrup"]
+
+
+def test_bare_number_1400_is_not_flagged():
+    assert scan_ingredients_for_red_flags(["Whey Protein Isolate", "Batch 1400"]) == []
