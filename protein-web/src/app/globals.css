@@ -1,50 +1,71 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-mono-code), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-primary: #10B981;
+  --color-primary-hover: #059669;
+  --color-primary-bright: #34D399;
+  --color-primary-muted: rgba(16, 185, 129, 0.12);
+
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-danger-soft: #F87171;
+  --color-danger-muted: rgba(239, 68, 68, 0.12);
+
+  --color-surface-base: #0A0A0B;
+  --color-surface-card: #18181B;
+  --color-surface-card-hover: #27272A;
+  --color-surface-elevated: #27272A;
+  --color-surface-subtle: #121215;
+
+  --color-border-card: #27272A;
+  --color-border-subtle: #27272A;
+  --color-border-strong: #3F3F46;
+}
+
 :root {
-  /* Surface & Background */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: rgba(18, 18, 26, 0.75);
-  --bg-card-hover: rgba(26, 26, 38, 0.85);
-  --bg-elevated: #1a1a28;
-  --bg-input: rgba(22, 22, 34, 0.8);
+  /* Surfaces */
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #121215;
+  --bg-card: #18181B;
+  --bg-card-hover: #27272A;
+  --bg-elevated: #27272A;
+  --bg-input: #18181B;
 
   /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --border-accent: rgba(0, 212, 170, 0.35);
+  --border-card: #27272A;
+  --border-subtle: #27272A;
+  --border-strong: #3F3F46;
+  --border-accent: #10B981;
 
   /* Typography */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E4E4E7;
+  --text-muted: #A1A1AA;
+  --text-faint: #71717A;
 
-  /* Brand Accents */
-  --accent-emerald: #00d4aa;
-  --accent-emerald-glow: rgba(0, 212, 170, 0.25);
-  --accent-purple: #8b5cf6;
-  --accent-purple-glow: rgba(139, 92, 246, 0.25);
-  --accent-cyan: #38bdf8;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
-  --accent-red: #ef4444;
+  /* Accents */
+  --accent-primary: #10B981;
+  --accent-primary-bright: #34D399;
+  --accent-danger: #EF4444;
+  --accent-danger-soft: #F87171;
 
-  /* Shadows & Glassmorphism */
-  --glass-blur: blur(16px);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 24px var(--accent-emerald-glow);
+  /* Modern Soft Diffused Shadows */
+  --shadow-soft-sm: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-soft-md: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-soft-lg: 0 24px 64px -12px rgba(0, 0, 0, 0.75);
+  --shadow-soft-xl: 0 32px 80px -16px rgba(0, 0, 0, 0.9);
 
-  /* Layout */
+  /* Layout & Radii */
   --max-width: 1280px;
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
   --radius-full: 9999px;
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -54,7 +75,7 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -63,41 +84,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-outfit), var(--font-inter), system-ui, sans-serif;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  font-weight: 700;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Glassmorphism primitives */
-.glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+/* Modern Soft Card Styles */
+.soft-card {
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft-md);
+  transition: all var(--transition-smooth);
 }
 
-.glass-panel-interactive {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+.soft-card-interactive {
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-normal);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft-md);
+  transition: all var(--transition-smooth);
 }
 
-.glass-panel-interactive:hover {
-  background: var(--bg-card-hover);
+.soft-card-interactive:hover {
+  background-color: var(--bg-card-hover);
   border-color: var(--border-strong);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft-xl);
 }
 
 /* Micro-animations */
@@ -200,4 +208,131 @@ a {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* Animated Morphing Search Icon (Magnifying Glass to Arrow) */
+.search-morph-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  background-color: #0A0A0B;
+  border: 1px solid #27272A;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.search-morph-btn:hover,
+.search-morph-btn:focus-within,
+.group:hover .search-morph-btn {
+  border-color: #10B981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+/* Centered Canvas Container (Icon mathematical center at 37px, 48px) */
+.search-morph-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 84px;
+  height: 96px;
+  margin-left: -37px;
+  margin-top: -48px;
+  transform: scale(0.24);
+  transform-origin: 37px 48px;
+  pointer-events: none;
+}
+
+.search-morph-canvas * {
+  box-sizing: content-box;
+}
+
+.search-morph-circle {
+  position: relative;
+  top: -8px;
+  left: 0;
+  width: 43px;
+  height: 43px;
+  margin-top: 0;
+  border-width: 15px;
+  border: 15px solid #10B981;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: 0.5s ease all;
+}
+
+.search-morph-handle {
+  position: absolute;
+  top: 68px;
+  left: 43px;
+  display: block;
+  width: 45px;
+  height: 15px;
+  background-color: transparent;
+  border-radius: 10px;
+  transform: rotateZ(52deg);
+  transition: 0.5s ease all;
+}
+
+.search-morph-handle:before,
+.search-morph-handle:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 45px;
+  height: 15px;
+  background-color: #10B981;
+  border-radius: 10px;
+  transform: rotateZ(0);
+  transition: 0.5s ease all;
+}
+
+/* Hover morph to Arrow */
+.search-morph-btn:hover .search-morph-circle,
+.search-morph-btn:focus-within .search-morph-circle,
+.group:hover .search-morph-btn .search-morph-circle {
+  top: -1px;
+  width: 67px;
+  height: 15px;
+  border-width: 0;
+  background-color: #10B981;
+  border-radius: 20px;
+}
+
+.search-morph-btn:hover .search-morph-handle,
+.search-morph-btn:focus-within .search-morph-handle,
+.group:hover .search-morph-btn .search-morph-handle {
+  top: 50%;
+  left: 56px;
+  width: 25px;
+  margin-top: -9px;
+  transform: rotateZ(0);
+}
+
+.search-morph-btn:hover .search-morph-handle:before,
+.search-morph-btn:focus-within .search-morph-handle:before,
+.group:hover .search-morph-btn .search-morph-handle:before {
+  bottom: 11px;
+  transform: rotateZ(52deg);
+  right: -6px;
+  width: 40px;
+  background-color: #10B981;
+}
+
+.search-morph-btn:hover .search-morph-handle:after,
+.search-morph-btn:focus-within .search-morph-handle:after,
+.group:hover .search-morph-btn .search-morph-handle:after {
+  bottom: -11px;
+  transform: rotateZ(-52deg);
+  right: -6px;
+  width: 40px;
+  background-color: #10B981;
 }

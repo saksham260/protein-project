@@ -17,15 +17,20 @@ export const NutritionToggle: React.FC<NutritionToggleProps> = ({
   packWeightG,
 }) => {
   return (
-    <div className="inline-flex p-1 rounded-xl bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] select-none">
+    <div
+      role="group"
+      aria-label="Nutrition View Options"
+      className="inline-flex p-1 rounded-full bg-[#18181B] border border-[#27272A] select-none shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+    >
       <button
         type="button"
+        aria-pressed={mode === "per_pack"}
         onClick={() => onChange("per_pack")}
         className={cn(
-          "px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
+          "px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-200 cursor-pointer",
           mode === "per_pack"
-            ? "bg-[var(--accent-emerald)] text-[#0a0a0f] shadow-md shadow-[rgba(0,212,170,0.25)]"
-            : "text-[var(--text-muted)] hover:text-white"
+            ? "bg-[#10B981] text-[#0A0A0B] shadow-md"
+            : "text-[#A1A1AA] hover:text-[#E4E4E7]"
         )}
       >
         Per Pack {packWeightG ? `(${packWeightG}g)` : ""}
@@ -33,12 +38,13 @@ export const NutritionToggle: React.FC<NutritionToggleProps> = ({
 
       <button
         type="button"
+        aria-pressed={mode === "per_100g"}
         onClick={() => onChange("per_100g")}
         className={cn(
-          "px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer",
+          "px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-200 cursor-pointer",
           mode === "per_100g"
-            ? "bg-[var(--accent-emerald)] text-[#0a0a0f] shadow-md shadow-[rgba(0,212,170,0.25)]"
-            : "text-[var(--text-muted)] hover:text-white"
+            ? "bg-[#10B981] text-[#0A0A0B] shadow-md"
+            : "text-[#A1A1AA] hover:text-[#E4E4E7]"
         )}
       >
         Per 100g

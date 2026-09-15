@@ -62,27 +62,29 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
   }, [filters, category.slug]);
 
   return (
-    <div className="container py-8 md:py-12 flex flex-col gap-8">
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
-        <Link href="/" className="hover:text-white">
+    <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col gap-10">
+      {/* Minimalist Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#A1A1AA]">
+        <Link href="/" className="hover:text-white transition-colors">
           Home
         </Link>
         <span>/</span>
-        <Link href="/explore" className="hover:text-white">
+        <Link href="/explore" className="hover:text-white transition-colors">
           Categories
         </Link>
         <span>/</span>
-        <span className="text-[var(--accent-emerald)] font-semibold">{category.name}</span>
-      </div>
+        <span className="text-[#E4E4E7] font-bold">{category.name}</span>
+      </nav>
 
       {/* Category Hero Header */}
-      <div className="flex flex-col gap-4 p-8 rounded-3xl bg-gradient-to-r from-[rgba(18,18,26,0.9)] to-[rgba(26,26,38,0.7)] border border-[rgba(255,255,255,0.08)] backdrop-blur-xl">
-        <div className="flex items-center gap-4">
-          <span className="text-5xl filter drop-shadow">{category.icon}</span>
+      <div className="flex flex-col gap-4 p-8 sm:p-10 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+        <div className="flex items-center gap-5">
+          <span className="text-4xl sm:text-5xl">{category.icon}</span>
           <div className="flex flex-col">
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white">{category.name}</h1>
-            <p className="text-sm text-[var(--text-secondary)] mt-1 max-w-2xl">
+            <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              {category.name}
+            </h1>
+            <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1 max-w-2xl font-sans">
               {category.description}
             </p>
           </div>
@@ -90,9 +92,9 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
       </div>
 
       {/* Layout Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Scoped Sidebar */}
-        <div className="hidden lg:block lg:col-span-1 sticky top-24">
+        <aside className="hidden lg:block lg:col-span-3 sticky top-24">
           <FilterPanel
             filters={filters}
             hideCategoryFilter
@@ -102,18 +104,20 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
             onSetZeroFlagsOnly={setZeroFlagsOnly}
             onClearFilters={clearFilters}
           />
-        </div>
+        </aside>
 
         {/* Results Area */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-[rgba(18,18,26,0.5)] border border-[rgba(255,255,255,0.06)]">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-[var(--text-muted)]">
-                Showing <strong className="text-white font-mono">{products.length}</strong>{" "}
-                product{products.length === 1 ? "" : "s"} in {category.name}
+        <div className="lg:col-span-9 flex flex-col gap-8">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA]">
+                Verified
+              </span>
+              <span className="text-xs font-mono font-bold text-[#E4E4E7] px-2.5 py-0.5 rounded-full bg-[#18181B] border border-[#27272A]">
+                {products.length} Products
               </span>
               {isPending && (
-                <span className="text-xs text-[var(--accent-emerald)] animate-pulse">
+                <span className="text-xs font-mono text-[#10B981] animate-pulse">
                   Updating...
                 </span>
               )}
@@ -123,21 +127,21 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="h-96 rounded-2xl skeleton-shimmer" />
+                <div key={i} className="h-[460px] rounded-3xl bg-[#18181B] border border-[#27272A] skeleton-shimmer" />
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-[rgba(18,18,26,0.5)] border border-[rgba(255,255,255,0.06)] gap-4">
+            <div className="flex flex-col items-center justify-center p-16 text-center rounded-3xl bg-[#18181B] border border-[#27272A] gap-4">
               <span className="text-4xl">🔍</span>
-              <h3 className="text-lg font-bold text-white">No products found with these filters</h3>
+              <h3 className="text-lg font-bold text-white tracking-tight">No products match these filters</h3>
               <Button onClick={clearFilters} variant="primary" size="sm">
                 Clear Filters
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
               {products.map((prod) => (
                 <ProductCard key={prod.id} product={prod} />
               ))}

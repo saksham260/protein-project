@@ -4,9 +4,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSearch } from "@/hooks/useSearch";
+import { AnimatedSearchButton } from "@/components/ui/AnimatedSearchButton";
 import { formatPricePerGram } from "@/lib/utils";
 
 export interface SearchBarProps {
+  id?: string;
   placeholder?: string;
   initialValue?: string;
   autoFocus?: boolean;
@@ -14,7 +16,8 @@ export interface SearchBarProps {
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
-  placeholder = "Search by brand, product name, or variant (e.g. Whey, Amul, Yoga Bar)...",
+  id = "hero-search-input",
+  placeholder = "Search verified products, brands, or ingredients (e.g. Whey, Amul, Isolate)...",
   initialValue = "",
   autoFocus = false,
   className = "",
@@ -71,11 +74,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <div ref={containerRef} className={`relative w-full ${className}`}>
       <form onSubmit={handleSubmit} className="relative flex items-center w-full">
-        <span className="absolute left-4 text-base text-[var(--text-muted)] pointer-events-none">
-          🔍
-        </span>
         <input
           ref={inputRef}
+          id={id}
           type="text"
           value={query}
           autoFocus={autoFocus}
@@ -87,38 +88,42 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           onFocus={() => setIsOpen(Boolean(query.trim()))}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-[rgba(18,18,26,0.85)] backdrop-blur-xl border border-[rgba(255,255,255,0.12)] text-white text-sm placeholder-[var(--text-faint)] focus:outline-none focus:border-[var(--accent-emerald)] focus:ring-2 focus:ring-[rgba(0,212,170,0.2)] shadow-xl shadow-black/30 transition-all"
+          className="w-full pl-5 sm:pl-6 pr-14 sm:pr-16 py-3.5 rounded-full bg-[#18181B] border border-[#27272A] text-white text-xs sm:text-sm font-sans placeholder-[#A1A1AA] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] shadow-[0_4px_24px_rgba(0,0,0,0.5)] transition-all"
         />
-        {query && (
-          <button
-            type="button"
-            onClick={() => {
-              setQuery("");
-              setIsOpen(false);
-              inputRef.current?.focus();
-            }}
-            className="absolute right-4 text-xs text-[var(--text-muted)] hover:text-white p-1"
-          >
-            ✕
-          </button>
-        )}
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+          {query && (
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setIsOpen(false);
+                inputRef.current?.focus();
+              }}
+              className="text-xs text-[#A1A1AA] hover:text-white p-1.5 transition-colors"
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+          <AnimatedSearchButton />
+        </div>
       </form>
 
       {/* Live Dropdown Suggestions */}
       {isOpen && query.trim() && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#161624] border border-[rgba(255,255,255,0.12)] shadow-2xl backdrop-blur-2xl overflow-hidden py-2 animate-fade-in">
+        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 animate-fade-in font-mono text-xs">
           {isLoading ? (
-            <div className="p-4 text-xs text-[var(--text-muted)] text-center">
-              Searching verified labels...
+            <div className="p-4 text-[#A1A1AA] text-center">
+              Searching database...
             </div>
           ) : suggestions.length === 0 ? (
-            <div className="p-4 text-xs text-[var(--text-muted)] text-center">
-              No matching protein products found. Press Enter to search all.
+            <div className="p-4 text-[#A1A1AA] text-center">
+              No matching products. Press Enter to full-text search.
             </div>
           ) : (
             <div className="flex flex-col">
-              <div className="px-3.5 py-1 text-[10px] font-mono uppercase tracking-wider text-[var(--text-faint)]">
-                Matching Products
+              <div className="px-4 py-1.5 text-[10px] uppercase tracking-widest text-[#A1A1AA]">
+                Matches
               </div>
               {suggestions.map((p, idx) => {
                 const variant = p.variants[0];
@@ -128,31 +133,31 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                     key={p.id}
                     href={`/product/${p.slug}`}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-4 py-2.5 text-xs transition-colors ${
+                    className={`flex items-center justify-between px-4 py-3 transition-colors ${
                       isSelected
-                        ? "bg-[rgba(0,212,170,0.15)] text-white"
-                        : "text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-white"
+                        ? "bg-[#10B981]/15 text-white"
+                        : "text-[#E4E4E7] hover:bg-[#27272A] hover:text-white"
                     }`}
                   >
                     <div className="flex flex-col">
-                      <span className="font-bold text-[var(--text-primary)]">{p.name}</span>
-                      <span className="text-[11px] text-[var(--accent-emerald)] font-medium">
+                      <span className="font-bold text-white font-sans">{p.name}</span>
+                      <span className="text-[11px] text-[#A1A1AA]">
                         {p.brand.name} • {p.category.name}
                       </span>
                     </div>
                     {variant?.cost_per_g_protein && (
-                      <div className="flex items-center gap-1 font-mono text-xs font-bold text-[#00d4aa]">
+                      <div className="flex items-center gap-1 font-bold text-[#10B981]">
                         <span>{formatPricePerGram(variant.cost_per_g_protein)}</span>
                       </div>
                     )}
                   </Link>
                 );
               })}
-              <div className="border-t border-[rgba(255,255,255,0.06)] mt-1 pt-1 px-3">
+              <div className="border-t border-[#27272A] mt-1 pt-1 px-4">
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="w-full text-left py-1.5 text-xs text-[var(--accent-emerald)] hover:underline font-medium"
+                  className="w-full text-left py-2 text-xs text-[#34D399] hover:underline font-bold"
                 >
                   View all results for &quot;{query}&quot; →
                 </button>

@@ -9,9 +9,9 @@ import { ProteinTierBadge } from "@/components/product/ProteinTierBadge";
 import { NutritionPanel } from "@/components/product/NutritionPanel";
 import { NutritionToggle, NutritionMode } from "@/components/product/NutritionToggle";
 import { RedirectButtons } from "@/components/product/RedirectButtons";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { formatPrice, formatPricePerGram, formatPercentage } from "@/lib/utils";
+import { RedFlagWarning } from "@/components/product/RedFlagWarning";
+import { OversizedMetric } from "@/components/ui/OversizedMetric";
+import { formatPrice, formatPricePerGram } from "@/lib/utils";
 
 export interface ProductDetailProps {
   product: ProductWithVariants;
@@ -28,160 +28,141 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const redFlags = activeVariant?.red_flags || [];
   const imageUrl = activeVariant?.image_url || product.image_url;
 
+  const costPerG = activeVariant?.cost_per_g_protein != null ? activeVariant.cost_per_g_protein.toFixed(1) : "—";
+  const density = activeVariant?.protein_density_pct != null ? activeVariant.protein_density_pct.toFixed(0) : "—";
+  const totalProteinPack = activeVariant
+    ? (activeVariant.protein_g * (activeVariant.servings_per_pack || 1)).toFixed(0)
+    : "—";
+
   return (
-    <div className="container py-8 md:py-12 flex flex-col gap-10 max-w-6xl mx-auto">
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
-        <Link href="/" className="hover:text-white">
+    <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col gap-12">
+      {/* Minimalist Breadcrumbs */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+        <Link href="/" className="hover:text-white transition-colors">
           Home
         </Link>
         <span>/</span>
-        <Link href="/explore" className="hover:text-white">
+        <Link href="/explore" className="hover:text-white transition-colors">
           Explore
         </Link>
         <span>/</span>
-        <Link href={`/category/${category.slug}`} className="hover:text-white">
+        <Link href={`/category/${category.slug}`} className="hover:text-white transition-colors">
           {category.name}
         </Link>
         <span>/</span>
-        <span className="text-[var(--accent-emerald)] font-semibold">{product.name}</span>
-      </div>
+        <span className="text-zinc-200 font-bold">{product.name}</span>
+      </nav>
 
-      {/* Top Product Hero Block */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Image Area */}
-        <div className="lg:col-span-5 flex flex-col gap-5">
-          <div className="relative group">
-            {/* Ambient Backlight Glow */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-[rgba(0,212,170,0.25)] via-[rgba(139,92,246,0.2)] to-[rgba(56,189,248,0.25)] rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-
-            <div className="relative w-full h-88 sm:h-[420px] rounded-3xl bg-gradient-to-br from-[#181824] via-[#101018] to-[#0d0d14] border border-[rgba(255,255,255,0.12)] flex items-center justify-center overflow-hidden shadow-2xl backdrop-blur-2xl">
-              {imageUrl ? (
-                <Image
-                  src={imageUrl}
-                  alt={product.name}
-                  fill
-                  priority
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                />
-              ) : (
-                <div className="flex flex-col items-center justify-center text-center p-8 gap-3">
-                  <span className="text-7xl filter drop-shadow">{category.icon}</span>
-                  <span className="text-xs uppercase font-mono tracking-widest text-[var(--text-faint)]">
-                    {brand.name}
-                  </span>
-                </div>
-              )}
-
-              {/* Dark Vignette Overlay to enhance text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-
-              {/* Top Category pill */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/15 shadow-md">
-                  <span>{category.icon}</span>
-                  <span>{category.name}</span>
+      {/* Asymmetrical Split-Screen Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        {/* Left Side: Product Image */}
+        <div className="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-6">
+          <div className="relative w-full h-[380px] sm:h-[480px] rounded-3xl bg-[#121215] border border-[#27272A] flex items-center justify-center overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.85)]">
+            {imageUrl ? (
+              <Image
+                src={imageUrl}
+                alt={product.name}
+                fill
+                priority
+                className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 42vw"
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center text-center p-8 gap-3">
+                <span className="text-7xl">{category.icon}</span>
+                <span className="text-xs uppercase font-mono tracking-widest text-[#A1A1AA]">
+                  {brand.name}
                 </span>
               </div>
+            )}
 
-              {/* Top Right Tier badge */}
-              {activeVariant?.protein_tier && (
-                <div className="absolute top-4 right-4 z-10 drop-shadow-lg">
-                  <ProteinTierBadge tier={activeVariant.protein_tier} size="md" />
-                </div>
-              )}
+            {/* Subtle Vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18181B]/80 via-transparent to-black/30 pointer-events-none" />
 
-              {/* Bottom Image Overlay Details */}
-              <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-lg bg-black/65 backdrop-blur-md text-[11px] font-mono text-[var(--text-secondary)] border border-white/10">
-                    Net Wt: {activeVariant?.net_weight_g}g
-                  </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-black/65 backdrop-blur-md text-[11px] font-mono text-[var(--text-secondary)] border border-white/10">
-                    Serving: {activeVariant?.serving_size_g}g
-                  </span>
-                </div>
+            {/* Top Category Badge */}
+            <div className="absolute top-5 left-5 z-10">
+              <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#27272A]/90 text-[#E4E4E7] border border-[#3F3F46] shadow-sm backdrop-blur-sm">
+                {category.name}
+              </span>
+            </div>
+
+            {/* Top Right Tier Badge */}
+            {activeVariant?.protein_tier && (
+              <div className="absolute top-5 right-5 z-10">
+                <ProteinTierBadge tier={activeVariant.protein_tier} size="md" />
               </div>
+            )}
+
+            {/* Bottom Specs */}
+            <div className="absolute bottom-5 left-5 right-5 z-10 flex items-center justify-between pointer-events-none">
+              <span className="px-3 py-1 rounded-full bg-[#27272A]/90 text-xs font-mono text-[#E4E4E7] border border-[#3F3F46]">
+                Net Wt: {activeVariant?.net_weight_g}g
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[#27272A]/90 text-xs font-mono text-[#E4E4E7] border border-[#3F3F46]">
+                Serving: {activeVariant?.serving_size_g}g
+              </span>
             </div>
           </div>
 
-          {/* Quick Metrics Cards */}
-          <div className="grid grid-cols-3 gap-2.5 text-center">
-            <div className="p-3.5 rounded-2xl bg-[rgba(18,18,26,0.7)] border border-[rgba(0,212,170,0.25)] shadow-lg shadow-[rgba(0,212,170,0.05)] backdrop-blur-md">
-              <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-muted)]">
-                Cost / g
-              </span>
-              <span className="block text-base sm:text-lg font-black font-mono text-[#00d4aa] mt-0.5">
-                {formatPricePerGram(activeVariant?.cost_per_g_protein)}
-              </span>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-[rgba(18,18,26,0.7)] border border-[rgba(255,255,255,0.08)] backdrop-blur-md">
-              <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-muted)]">
-                Density
-              </span>
-              <span className="block text-base sm:text-lg font-black font-mono text-white mt-0.5">
-                {formatPercentage(activeVariant?.protein_density_pct)}
-              </span>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-[rgba(18,18,26,0.7)] border border-[rgba(255,255,255,0.08)] backdrop-blur-md">
-              <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-muted)]">
-                Pack MRP
-              </span>
-              <span className="block text-base sm:text-lg font-black font-mono text-white mt-0.5">
-                {formatPrice(activeVariant?.mrp_inr)}
-              </span>
-            </div>
-          </div>
+          {/* Clinical Formulation Warning Banner */}
+          <RedFlagWarning flags={redFlags} mode="banner" />
         </div>
 
-        {/* Right Column: Title, Variants, Actions */}
-        <div className="lg:col-span-7 flex flex-col gap-6">
+        {/* Right Side: Data, Metrics, Actions */}
+        <div className="lg:col-span-7 flex flex-col gap-8">
+          {/* Brand & Title Header */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-emerald)] font-mono">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#10B981] font-bold">
                 {brand.name}
               </span>
               {brand.is_verified && (
-                <span className="inline-flex items-center gap-1 text-[10px] px-2.5 py-0.5 rounded-full bg-[rgba(0,212,170,0.12)] text-[#00d4aa] border border-[rgba(0,212,170,0.25)] font-semibold">
-                  <span>✓</span> Verified Brand
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#27272A] text-[#A1A1AA] border border-[#3F3F46]">
+                  ✓ Verified Brand
                 </span>
               )}
             </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
               {product.name}
             </h1>
+
             {product.description && (
-              <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mt-1">
+              <p className="text-sm text-[#A1A1AA] leading-relaxed mt-1 font-sans">
                 {product.description}
               </p>
             )}
           </div>
 
-          {/* Hero Value Banner */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[rgba(0,212,170,0.12)] via-[rgba(18,18,26,0.8)] to-[rgba(18,18,26,0.8)] border border-[rgba(0,212,170,0.3)] shadow-lg backdrop-blur-xl">
-            <div className="flex flex-col">
-              <span className="text-[11px] uppercase tracking-wider text-[var(--text-muted)] font-medium">
-                Independent Transparency Metric
-              </span>
-              <div className="flex items-baseline gap-2 mt-0.5">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-[#00d4aa]">
-                  {formatPricePerGram(activeVariant?.cost_per_g_protein)}
-                </span>
-                <span className="text-xs text-[var(--text-secondary)]">effective cost per gram of protein</span>
-              </div>
-            </div>
+          {/* OVERSIZED CORE METRICS DISPLAY */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+            <OversizedMetric
+              label="True Cost / g"
+              prefix="₹"
+              value={costPerG}
+              unit="/g"
+              size="lg"
+              accent="neon"
+              subtext="Pure economic value"
+            />
 
-            <div className="flex items-center gap-2 border-t sm:border-t-0 sm:border-l border-[rgba(255,255,255,0.08)] pt-2 sm:pt-0 sm:pl-4">
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-wider text-[var(--text-faint)]">Total Protein</span>
-                <span className="text-base font-bold font-mono text-white">
-                  {activeVariant ? (activeVariant.protein_g * (activeVariant.servings_per_pack || 1)).toFixed(0) : "—"}g / pack
-                </span>
-              </div>
-            </div>
+            <OversizedMetric
+              label="Protein Density"
+              value={density}
+              unit="%"
+              size="lg"
+              accent="white"
+              subtext="Cals from protein"
+            />
+
+            <OversizedMetric
+              label="Pack Total"
+              value={totalProteinPack}
+              unit="g"
+              size="lg"
+              accent="muted"
+              subtext={`MRP ${formatPrice(activeVariant?.mrp_inr)}`}
+            />
           </div>
 
           {/* Variant Selector */}
@@ -191,168 +172,155 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             onSelectIndex={setSelectedVariantIndex}
           />
 
-          {/* Red Flag Alert Summary Box */}
-          {redFlags.length === 0 ? (
-            <div className="flex items-center gap-3.5 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[rgba(0,212,170,0.1)] to-[rgba(18,18,26,0.6)] border border-[rgba(0,212,170,0.35)] shadow-md text-xs text-[#00e6b8]">
-              <div className="w-10 h-10 rounded-xl bg-[rgba(0,212,170,0.15)] flex items-center justify-center text-xl shrink-0 border border-[rgba(0,212,170,0.3)]">
-                🛡️
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-sm text-white">Clean Formulation — Zero Red Flags</span>
-                <span className="text-[var(--text-secondary)] mt-0.5">
-                  No maltitol, amino spiking, hydrogenated trans fats, or hidden sugars detected.
-                </span>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-3 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[rgba(239,68,68,0.1)] to-[rgba(18,18,26,0.7)] border border-[rgba(239,68,68,0.35)] shadow-md">
-              <div className="flex items-center gap-2.5 text-[var(--accent-red)]">
-                <span className="text-xl">⚠️</span>
-                <span className="font-bold text-sm text-white">
-                  {redFlags.length} Formulation Warning{redFlags.length > 1 ? "s" : ""} Detected
-                </span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                {redFlags.map((flag) => (
-                  <div
-                    key={flag.id || flag.flag_label}
-                    className="flex flex-col p-3 rounded-xl bg-[rgba(10,10,15,0.7)] border border-[rgba(239,68,68,0.25)]"
-                  >
-                    <span className="font-bold text-[#f87171]">{flag.flag_label}</span>
-                    <span className="text-[11px] text-[var(--text-muted)] mt-1 leading-relaxed">
-                      {flag.flag_description}
-                    </span>
-                    {flag.matched_ingredient && (
-                      <span className="text-[10px] text-[var(--accent-amber)] font-mono mt-1.5">
-                        Matched: {flag.matched_ingredient} {flag.ins_number ? `(${flag.ins_number})` : ""}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Where to Buy CTA Buttons */}
+          {/* Purchase Section with Cheapest in Neon Yellow */}
           <RedirectButtons
             redirectLinks={activeVariant?.redirect_links || []}
             brandName={brand.name}
             productName={product.name}
           />
-        </div>
-      </div>
 
-      {/* Nutritional Facts & Protein Profile Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6 border-t border-[rgba(255,255,255,0.08)]">
-        {/* Left: Nutrition Facts Table with Toggle */}
-        <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white">Full Nutritional Panel</h2>
-            <NutritionToggle
-              mode={nutritionMode}
-              onChange={setNutritionMode}
-              packWeightG={activeVariant?.net_weight_g}
-            />
+          {/* Nutrition Panel with iOS-style Segmented Toggle */}
+          <div className="flex flex-col gap-4 pt-4 border-t border-[#27272A]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-bold text-white tracking-tight">
+                  Nutritional Breakdown
+                </h2>
+                <p className="text-xs font-mono text-[#A1A1AA]">
+                  Calculated directly from verified FSSAI lab labels
+                </p>
+              </div>
+
+              <NutritionToggle
+                mode={nutritionMode}
+                onChange={setNutritionMode}
+                packWeightG={activeVariant?.net_weight_g}
+              />
+            </div>
+
+            <NutritionPanel variant={activeVariant} mode={nutritionMode} />
           </div>
 
-          <NutritionPanel variant={activeVariant} mode={nutritionMode} />
-        </div>
-
-        {/* Right: Protein Profile & Ingredients */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
-          {/* Protein Quality Breakdown */}
-          <Card padding="lg" className="flex flex-col gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--accent-emerald)]">
-              Protein Quality Breakdown
-            </h3>
-
-            <div className="flex flex-col gap-3 text-xs">
-              <div className="flex items-center justify-between pb-2 border-b border-[rgba(255,255,255,0.06)]">
-                <span className="text-[var(--text-muted)]">Primary Protein Source:</span>
-                <span className="font-bold text-white">
-                  {activeVariant?.primary_protein_source || "Unspecified Source"}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between pb-2 border-b border-[rgba(255,255,255,0.06)]">
-                <span className="text-[var(--text-muted)]">Bioavailability Tier:</span>
-                <ProteinTierBadge tier={activeVariant?.protein_tier} />
-              </div>
-
-              <div className="flex items-center justify-between pb-2 border-b border-[rgba(255,255,255,0.06)]">
-                <span className="text-[var(--text-muted)]">Amino Spiking Status:</span>
-                <span
-                  className={`font-semibold ${
-                    activeVariant?.has_added_free_form_aminos
-                      ? "text-[var(--accent-red)]"
-                      : "text-[#00d4aa]"
-                  }`}
-                >
-                  {activeVariant?.has_added_free_form_aminos
-                    ? "⚠️ Spiked with Free-Form Aminos"
-                    : "✓ No Spiking Detected"}
-                </span>
-              </div>
+          {/* Clinical Red-Flag Breakdown Section */}
+          <div className="flex flex-col gap-4 pt-6 border-t border-[#27272A]">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-white tracking-tight">
+                Clinical Formulation Audit
+              </h2>
+              <span className="text-xs font-mono text-[#A1A1AA]">
+                Independent scanner analysis
+              </span>
             </div>
-          </Card>
 
-          {/* Full Ingredients Deck */}
-          <Card padding="lg" className="flex flex-col gap-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--text-primary)]">
-              Ingredient Deck ({activeVariant?.ingredient_list.length || 0})
-            </h3>
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {activeVariant?.ingredient_list.map((ing, idx) => {
-                const isFlagged = redFlags.some(
-                  (rf) =>
-                    rf.matched_ingredient &&
-                    ing.toLowerCase().includes(rf.matched_ingredient.toLowerCase())
-                );
+            <RedFlagWarning flags={redFlags} mode="clinical-deck" />
+          </div>
 
-                return (
+          {/* Protein Quality & Ingredients Deck */}
+          <div className="flex flex-col gap-6 pt-6 border-t border-[#27272A]">
+            <div className="p-6 rounded-3xl bg-[#18181B] border border-[#27272A] flex flex-col gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+              <h3 className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
+                Protein Quality & Bioavailability
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+                <div className="flex flex-col gap-1 p-4 rounded-2xl bg-[#27272A]/60 border border-[#27272A]">
+                  <span className="text-[#A1A1AA] uppercase text-[10px]">Primary Protein Source</span>
+                  <span className="text-white font-bold text-sm">
+                    {activeVariant?.primary_protein_source || "Not Specified"}
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-1 p-4 rounded-2xl bg-[#27272A]/60 border border-[#27272A]">
+                  <span className="text-[#A1A1AA] uppercase text-[10px]">Amino Spiking Status</span>
                   <span
-                    key={idx}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-medium border ${
-                      isFlagged
-                        ? "bg-[rgba(239,68,68,0.15)] text-[#f87171] border-[rgba(239,68,68,0.4)]"
-                        : "bg-[rgba(255,255,255,0.03)] text-[var(--text-secondary)] border-[rgba(255,255,255,0.08)]"
+                    className={`font-bold text-sm ${
+                      activeVariant?.has_added_free_form_aminos
+                        ? "text-[#EF4444]"
+                        : "text-[#10B981]"
                     }`}
                   >
-                    {ing}
+                    {activeVariant?.has_added_free_form_aminos
+                      ? "⚠️ Free-Form Aminos Added"
+                      : "✓ Pure Formulation (Clean)"}
                   </span>
-                );
-              })}
-            </div>
-          </Card>
-
-          {/* Allergens & Dietary Tags */}
-          <Card padding="lg" className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-semibold text-[var(--text-muted)]">Allergens:</span>
-              <div className="flex flex-wrap gap-1.5">
-                {activeVariant?.allergens.length ? (
-                  activeVariant.allergens.map((a) => (
-                    <Badge key={a} variant="warning" size="sm">
-                      Contains {a}
-                    </Badge>
-                  ))
-                ) : (
-                  <span className="text-xs text-[var(--text-faint)]">None declared</span>
-                )}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 pt-2 border-t border-[rgba(255,255,255,0.06)]">
-              <span className="text-xs font-semibold text-[var(--text-muted)]">Dietary Tags:</span>
-              <div className="flex flex-wrap gap-1.5">
-                {activeVariant?.dietary_tags.map((tag) => (
-                  <Badge key={tag} variant="default" size="sm">
-                    {tag}
-                  </Badge>
-                ))}
+            {/* Complete Ingredient Deck */}
+            <div className="p-6 rounded-3xl bg-[#18181B] border border-[#27272A] flex flex-col gap-3 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
+                  Ingredient Deck ({activeVariant?.ingredient_list.length || 0})
+                </h3>
+                <span className="text-[10px] font-mono text-[#A1A1AA]">
+                  Flagged items highlighted in Red
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                {activeVariant?.ingredient_list.map((ing, idx) => {
+                  const isFlagged = redFlags.some(
+                    (rf) =>
+                      rf.matched_ingredient &&
+                      ing.toLowerCase().includes(rf.matched_ingredient.toLowerCase())
+                  );
+
+                  return (
+                    <span
+                      key={idx}
+                      className={`px-3 py-1.5 rounded-full text-xs font-mono transition-colors ${
+                        isFlagged
+                          ? "bg-[#EF4444]/15 text-[#F87171] border border-[#EF4444]/30 font-bold"
+                          : "bg-[#27272A] text-[#E4E4E7] border border-[#3F3F46]"
+                      }`}
+                    >
+                      {ing}
+                    </span>
+                  );
+                })}
               </div>
             </div>
-          </Card>
+
+            {/* Declared Allergens & Dietary Profile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 rounded-3xl bg-[#18181B] border border-[#27272A] flex flex-col gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
+                  Declared Allergens
+                </span>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {activeVariant?.allergens.length ? (
+                    activeVariant.allergens.map((a) => (
+                      <span
+                        key={a}
+                        className="px-2.5 py-1 rounded-full text-xs font-mono bg-[#27272A] text-[#E4E4E7] border border-[#3F3F46]"
+                      >
+                        {a}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-xs font-mono text-[#A1A1AA]">None declared</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#18181B] border border-[#27272A] flex flex-col gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
+                  Dietary Profile
+                </span>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {activeVariant?.dietary_tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 rounded-full text-xs font-mono bg-[#27272A] text-[#E4E4E7] border border-[#3F3F46]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

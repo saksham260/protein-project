@@ -19,105 +19,109 @@ export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode })
   };
 
   return (
-    <div className="flex flex-col rounded-2xl overflow-hidden bg-[rgba(18,18,26,0.7)] border border-[rgba(255,255,255,0.08)] backdrop-blur-xl">
+    <div className="flex flex-col rounded-3xl overflow-hidden bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-[rgba(255,255,255,0.02)] border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center justify-between p-5 border-b border-[#27272A]">
         <div className="flex flex-col">
-          <span className="text-sm font-bold text-white">Nutritional Facts</span>
-          <span className="text-xs text-[var(--text-muted)]">
+          <span className="text-sm font-bold text-white tracking-tight">
+            Nutritional Deck
+          </span>
+          <span className="text-xs font-mono text-[#A1A1AA] mt-0.5">
             {is100g
-              ? "Values normalized per 100 grams"
-              : `Serving Size: ${variant.serving_size_g}g (${variant.servings_per_pack} servings/pack)`}
+              ? "Standardized benchmark per 100g"
+              : `Serving: ${variant.serving_size_g}g (${variant.servings_per_pack || 1} serving/pack)`}
           </span>
         </div>
-        <span className="text-xs font-mono font-bold text-[var(--accent-emerald)] bg-[rgba(0,212,170,0.1)] px-2.5 py-1 rounded-full border border-[rgba(0,212,170,0.25)]">
-          {is100g ? "Per 100g" : "Per Pack"}
+        <span className="text-xs font-mono font-bold text-[#E4E4E7] bg-[#27272A] px-3 py-1 rounded-full border border-[#3F3F46]">
+          {is100g ? "100g Normalized" : "Single Pack"}
         </span>
       </div>
 
       {/* Primary Highlight Macros Bar */}
-      <div className="grid grid-cols-3 divide-x divide-[rgba(255,255,255,0.06)] bg-[rgba(0,212,170,0.04)] border-b border-[rgba(255,255,255,0.06)] p-3 text-center">
+      <div className="grid grid-cols-3 divide-x divide-[#27272A] bg-[#27272A]/60 border-b border-[#27272A] p-5 text-center">
         <div className="flex flex-col items-center">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-faint)]">
-            Calories
+          <span className="text-[10px] uppercase font-mono tracking-widest text-[#A1A1AA]">
+            Energy
           </span>
-          <span className="text-lg font-black font-mono text-white">
+          <span className="text-2xl font-black font-mono text-white mt-1">
             {val(variant.calories_kcal, 0)}
-            <span className="text-xs font-normal text-[var(--text-muted)] ml-0.5">kcal</span>
+            <span className="text-xs font-normal text-[#A1A1AA] ml-1 font-mono">kcal</span>
           </span>
         </div>
 
         <div className="flex flex-col items-center">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--accent-emerald)] font-bold">
-            Protein
+          <span className="text-[10px] uppercase font-mono tracking-widest text-[#34D399] font-bold">
+            Pure Protein
           </span>
-          <span className="text-lg font-black font-mono text-[#00d4aa]">
+          <span className="text-2xl font-black font-mono text-[#10B981] mt-1">
             {val(variant.protein_g)}
-            <span className="text-xs font-normal text-[var(--accent-emerald)] ml-0.5">g</span>
+            <span className="text-xs font-normal text-[#34D399] ml-1 font-mono">g</span>
           </span>
         </div>
 
         <div className="flex flex-col items-center">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--accent-purple)] font-bold">
+          <span className="text-[10px] uppercase font-mono tracking-widest text-[#A1A1AA]">
             True Net Carbs
           </span>
-          <span className="text-lg font-black font-mono text-[#c084fc]">
+          <span className="text-2xl font-black font-mono text-white mt-1">
             {val(variant.true_net_carbs_g)}
-            <span className="text-xs font-normal text-[var(--text-muted)] ml-0.5">g</span>
+            <span className="text-xs font-normal text-[#A1A1AA] ml-1 font-mono">g</span>
           </span>
         </div>
       </div>
 
-      {/* Detailed Nutrient Breakdown Table */}
-      <div className="flex flex-col divide-y divide-[rgba(255,255,255,0.04)] text-xs">
+      {/* Detailed Breakdown List */}
+      <div className="flex flex-col divide-y divide-[#27272A]/60 text-xs font-mono">
         {/* Total Fat */}
-        <div className="flex items-center justify-between px-4 py-2.5 hover:bg-[rgba(255,255,255,0.02)]">
+        <div className="flex items-center justify-between px-5 py-3 hover:bg-[#27272A]/30 transition-colors">
           <span className="font-bold text-white">Total Fat</span>
-          <span className="font-mono text-[var(--text-secondary)]">{val(variant.total_fat_g)}g</span>
+          <span className="text-[#E4E4E7] font-semibold">{val(variant.total_fat_g)}g</span>
         </div>
-        <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
+        <div className="flex items-center justify-between px-8 py-2 text-[#A1A1AA]">
           <span>Saturated Fat</span>
-          <span className="font-mono">{val(variant.saturated_fat_g)}g</span>
+          <span>{val(variant.saturated_fat_g)}g</span>
         </div>
-        <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
+        <div className="flex items-center justify-between px-8 py-2 text-[#A1A1AA]">
           <span>Trans Fat</span>
-          <span className="font-mono">{val(variant.trans_fat_g)}g</span>
+          <span className={Number(val(variant.trans_fat_g)) > 0 ? "text-[#EF4444] font-bold" : ""}>
+            {val(variant.trans_fat_g)}g
+          </span>
         </div>
-        <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
+        <div className="flex items-center justify-between px-8 py-2 text-[#A1A1AA]">
           <span>Cholesterol</span>
-          <span className="font-mono">{val(variant.cholesterol_mg, 0)}mg</span>
+          <span>{val(variant.cholesterol_mg, 0)}mg</span>
         </div>
 
         {/* Carbohydrates */}
-        <div className="flex items-center justify-between px-4 py-2.5 hover:bg-[rgba(255,255,255,0.02)]">
+        <div className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02]">
           <span className="font-bold text-white">Total Carbohydrates</span>
-          <span className="font-mono text-[var(--text-secondary)]">
-            {val(variant.total_carbs_g)}g
+          <span className="text-[#E4E4E7] font-semibold">{val(variant.total_carbs_g)}g</span>
+        </div>
+        <div className="flex items-center justify-between px-8 py-2 text-[#A1A1AA]">
+          <span>Dietary Fiber</span>
+          <span>{val(variant.dietary_fiber_g)}g</span>
+        </div>
+        <div className="flex items-center justify-between px-8 py-2 text-[#A1A1AA]">
+          <span>Total Sugars</span>
+          <span>{val(variant.total_sugars_g)}g</span>
+        </div>
+        <div className="flex items-center justify-between px-8 py-2 text-[#A1A1AA]">
+          <span className="text-[#A1A1AA]">Added Sugars</span>
+          <span className={Number(val(variant.added_sugars_g)) > 0 ? "text-[#EF4444]" : ""}>
+            {val(variant.added_sugars_g)}g
           </span>
         </div>
-        <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
-          <span>Dietary Fiber</span>
-          <span className="font-mono">{val(variant.dietary_fiber_g)}g</span>
-        </div>
-        <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
-          <span>Total Sugars</span>
-          <span className="font-mono">{val(variant.total_sugars_g)}g</span>
-        </div>
-        <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
-          <span className="text-[var(--accent-amber)] font-medium">Added Sugars</span>
-          <span className="font-mono text-[var(--accent-amber)]">{val(variant.added_sugars_g)}g</span>
-        </div>
         {variant.non_glycemic_polyols_g !== undefined && variant.non_glycemic_polyols_g > 0 && (
-          <div className="flex items-center justify-between px-6 py-2 bg-[rgba(255,255,255,0.01)] text-[var(--text-muted)]">
+          <div className="flex items-center justify-between px-8 py-2 text-zinc-400">
             <span>Non-Glycemic Polyols (Erythritol)</span>
-            <span className="font-mono">{val(variant.non_glycemic_polyols_g)}g</span>
+            <span>{val(variant.non_glycemic_polyols_g)}g</span>
           </div>
         )}
 
         {/* Sodium */}
-        <div className="flex items-center justify-between px-4 py-2.5 hover:bg-[rgba(255,255,255,0.02)]">
+        <div className="flex items-center justify-between px-5 py-3 hover:bg-white/[0.02]">
           <span className="font-bold text-white">Sodium</span>
-          <span className="font-mono text-[var(--text-secondary)]">{val(variant.sodium_mg, 0)}mg</span>
+          <span className="text-zinc-300 font-semibold">{val(variant.sodium_mg, 0)}mg</span>
         </div>
       </div>
     </div>

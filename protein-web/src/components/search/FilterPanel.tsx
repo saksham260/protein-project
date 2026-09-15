@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { CATEGORIES, PROTEIN_TIERS, ALLERGENS_LIST, DIETARY_TAGS_LIST } from "@/lib/constants";
-import { Badge } from "@/components/ui/Badge";
 import { QueryFilters } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +31,6 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     category: true,
     tier: true,
-    clean: true,
     tags: true,
     allergens: false,
   });
@@ -51,40 +49,41 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-5 p-5 rounded-2xl bg-[rgba(18,18,26,0.7)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)]",
+        "flex flex-col gap-6 p-6 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)] select-none",
         className
       )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center justify-between pb-4 border-b border-[#27272A]">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-bold text-[var(--text-primary)]">Faceted Filters</span>
+          <span className="text-sm font-mono uppercase tracking-widest text-[#A1A1AA] font-semibold">
+            Filters
+          </span>
           {hasActiveFilters && (
-            <Badge variant="clean" size="sm">
+            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#10B981] text-black">
               Active
-            </Badge>
+            </span>
           )}
         </div>
         {hasActiveFilters && (
           <button
             type="button"
             onClick={onClearFilters}
-            className="text-xs text-[var(--accent-emerald)] hover:underline cursor-pointer"
+            className="text-xs font-mono text-[#A1A1AA] hover:text-[#10B981] transition-colors cursor-pointer"
           >
-            Clear All
+            Reset
           </button>
         )}
       </div>
 
-      {/* Zero Red Flags Toggle */}
-      <div className="flex items-center justify-between p-3 rounded-xl bg-[rgba(0,212,170,0.06)] border border-[rgba(0,212,170,0.2)]">
+      {/* Zero Red Flags Only Toggle */}
+      <div className="flex items-center justify-between p-4 rounded-2xl bg-[#27272A]/60 border border-[#27272A]">
         <div className="flex flex-col">
-          <span className="text-xs font-bold text-white flex items-center gap-1.5">
-            <span>✨</span>
-            <span>Zero Red Flags Only</span>
+          <span className="text-xs font-bold text-white font-mono tracking-tight">
+            Zero Red Flags Only
           </span>
-          <span className="text-[11px] text-[var(--text-muted)]">
-            Hide products with maltitol or spiking
+          <span className="text-[11px] text-[#A1A1AA] mt-0.5">
+            Hide maltitol, spiking, palm oil
           </span>
         </div>
         <label className="relative inline-flex items-center cursor-pointer">
@@ -93,91 +92,101 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
             className="sr-only peer"
             checked={Boolean(filters.zeroFlagsOnly)}
             onChange={(e) => onSetZeroFlagsOnly(e.target.checked)}
+            aria-label="Toggle Zero Red Flags Only"
           />
-          <div className="w-9 h-5 bg-[rgba(255,255,255,0.15)] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[var(--accent-emerald)]" />
+          <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-black after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#10B981] peer-checked:after:bg-black" />
         </label>
       </div>
 
       {/* Category Section */}
       {!hideCategoryFilter && (
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-3">
           <button
             type="button"
             onClick={() => toggleSection("category")}
-            className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] hover:text-white"
+            className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
           >
             <span>Category</span>
-            <span>{openSections.category ? "−" : "+"}</span>
+            <span className="text-zinc-600 font-mono">{openSections.category ? "−" : "+"}</span>
           </button>
+
           {openSections.category && (
-            <div className="flex flex-col gap-1.5 pt-1">
+            <div className="flex flex-col gap-1 pt-1">
               <button
                 type="button"
                 onClick={() => onCategoryChange?.(undefined)}
                 className={cn(
-                  "flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-colors text-left",
+                  "flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-colors text-left",
                   !filters.categorySlug
-                    ? "bg-[rgba(0,212,170,0.15)] text-[var(--accent-emerald)] font-semibold"
-                    : "text-[var(--text-muted)] hover:bg-[rgba(255,255,255,0.05)] hover:text-white"
+                    ? "bg-[#10B981]/15 text-[#34D399] font-bold"
+                    : "text-[#A1A1AA] hover:bg-[#27272A] hover:text-white"
                 )}
               >
                 <span>All Categories</span>
               </button>
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat.slug}
-                  type="button"
-                  onClick={() => onCategoryChange?.(cat.slug)}
-                  className={cn(
-                    "flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs transition-colors text-left",
-                    filters.categorySlug === cat.slug
-                      ? "bg-[rgba(0,212,170,0.15)] text-[var(--accent-emerald)] font-semibold"
-                      : "text-[var(--text-muted)] hover:bg-[rgba(255,255,255,0.05)] hover:text-white"
-                  )}
-                >
-                  <span className="flex items-center gap-2">
-                    <span>{cat.icon}</span>
+
+              {CATEGORIES.map((cat) => {
+                const isSelected = filters.categorySlug === cat.slug;
+                return (
+                  <button
+                    key={cat.slug}
+                    type="button"
+                    onClick={() => onCategoryChange?.(cat.slug)}
+                    className={cn(
+                      "flex items-center justify-between px-3 py-2 rounded-xl text-xs font-mono transition-colors text-left",
+                      isSelected
+                        ? "bg-[#10B981]/15 text-[#34D399] font-bold"
+                        : "text-[#A1A1AA] hover:bg-[#27272A] hover:text-white"
+                    )}
+                  >
                     <span>{cat.name}</span>
-                  </span>
-                </button>
-              ))}
+                    {isSelected && <span className="text-[#10B981] text-xs">●</span>}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
       )}
 
-      {/* Protein Tier Section */}
-      <div className="flex flex-col gap-2.5 pt-2 border-t border-[rgba(255,255,255,0.06)]">
+      {/* Protein Quality Tier Section */}
+      <div className="flex flex-col gap-3 pt-3 border-t border-[#27272A]">
         <button
           type="button"
           onClick={() => toggleSection("tier")}
-          className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] hover:text-white"
+          className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
         >
           <span>Protein Quality Tier</span>
-          <span>{openSections.tier ? "−" : "+"}</span>
+          <span className="text-zinc-600 font-mono">{openSections.tier ? "−" : "+"}</span>
         </button>
+
         {openSections.tier && (
-          <div className="flex flex-col gap-2 pt-1">
+          <div className="flex flex-col gap-2.5 pt-1">
             {Object.entries(PROTEIN_TIERS).map(([tierKey, config]) => {
               const isChecked = filters.proteinTiers?.includes(tierKey) || false;
+              const isTier1 = tierKey === "Tier 1";
+
               return (
                 <label
                   key={tierKey}
-                  className="flex items-start gap-2.5 text-xs text-[var(--text-secondary)] cursor-pointer hover:text-white select-none"
+                  className="flex items-start gap-3 text-xs cursor-pointer group select-none"
                 >
                   <input
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => onToggleTier(tierKey)}
-                    className="mt-0.5 rounded border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] text-[var(--accent-emerald)] focus:ring-0"
+                    className="mt-0.5 rounded border-[#3F3F46] bg-[#27272A] text-[#10B981] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#10B981]"
                   />
                   <div className="flex flex-col">
-                    <span className="font-semibold">{config.badgeLabel}</span>
-                    <span className="text-[10px] text-[var(--text-faint)] leading-tight">
-                      {tierKey === "Tier 1" && "Isolates (>90%)"}
+                    <span className={cn("font-mono font-medium transition-colors", isChecked ? "text-white font-bold" : "text-[#E4E4E7] group-hover:text-white")}>
+                      {config.badgeLabel}
+                      {isTier1 && <span className="text-[#34D399] ml-1.5 text-[10px] font-bold">★ ELITE</span>}
+                    </span>
+                    <span className="text-[10px] font-mono text-[#A1A1AA] leading-tight">
+                      {tierKey === "Tier 1" && "Isolates (>90% pure)"}
                       {tierKey === "Tier 2" && "Concentrates (70-80%)"}
                       {tierKey === "Tier 3" && "Complete Plant Blends"}
-                      {tierKey === "Tier 4" && "Incomplete / Collagen"}
+                      {tierKey === "Tier 4" && "Incomplete / Fillers"}
                     </span>
                   </div>
                 </label>
@@ -187,18 +196,19 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
         )}
       </div>
 
-      {/* Dietary Tags Section */}
-      <div className="flex flex-col gap-2.5 pt-2 border-t border-[rgba(255,255,255,0.06)]">
+      {/* Dietary Preferences Section */}
+      <div className="flex flex-col gap-3 pt-3 border-t border-[#27272A]">
         <button
           type="button"
           onClick={() => toggleSection("tags")}
-          className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] hover:text-white"
+          className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
         >
-          <span>Dietary Preferences</span>
-          <span>{openSections.tags ? "−" : "+"}</span>
+          <span>Dietary Profile</span>
+          <span className="text-zinc-600 font-mono">{openSections.tags ? "−" : "+"}</span>
         </button>
+
         {openSections.tags && (
-          <div className="flex flex-wrap gap-1.5 pt-1">
+          <div className="flex flex-wrap gap-2 pt-1">
             {DIETARY_TAGS_LIST.map((tag) => {
               const isSelected =
                 filters.dietaryTags?.some((t) => t.toLowerCase() === tag.value.toLowerCase()) ||
@@ -209,10 +219,10 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
                   type="button"
                   onClick={() => onToggleTag(tag.value)}
                   className={cn(
-                    "px-2.5 py-1 rounded-full text-xs font-medium border transition-colors select-none",
+                    "px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer",
                     isSelected
-                      ? "bg-[rgba(0,212,170,0.18)] text-[#00d4aa] border-[rgba(0,212,170,0.4)]"
-                      : "bg-[rgba(255,255,255,0.04)] text-[var(--text-muted)] border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.2)] hover:text-white"
+                      ? "bg-[#10B981] text-black font-bold shadow-[0_0_12px_rgba(16,185,129,0.25)]"
+                      : "bg-[#27272A] text-[#A1A1AA] border border-[#3F3F46] hover:border-[#52525B] hover:text-white"
                   )}
                 >
                   {tag.label}
@@ -223,20 +233,21 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
         )}
       </div>
 
-      {/* Allergen Exclusions */}
-      <div className="flex flex-col gap-2.5 pt-2 border-t border-[rgba(255,255,255,0.06)]">
+      {/* Allergen Exclusions Section */}
+      <div className="flex flex-col gap-3 pt-3 border-t border-[#27272A]">
         <button
           type="button"
           onClick={() => toggleSection("allergens")}
-          className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] hover:text-white"
+          className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
         >
           <span>Exclude Allergens</span>
-          <span>{openSections.allergens ? "−" : "+"}</span>
+          <span className="text-zinc-600 font-mono">{openSections.allergens ? "−" : "+"}</span>
         </button>
+
         {openSections.allergens && (
-          <div className="flex flex-col gap-1.5 pt-1">
-            <span className="text-[10px] text-[var(--text-faint)]">
-              Products with these allergens will be hidden:
+          <div className="flex flex-col gap-2 pt-1">
+            <span className="text-[10px] font-mono text-[#A1A1AA]">
+              Hide products containing:
             </span>
             {ALLERGENS_LIST.map((allergen) => {
               const isExcluded =
@@ -246,15 +257,17 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
               return (
                 <label
                   key={allergen.value}
-                  className="flex items-center gap-2 text-xs text-[var(--text-secondary)] cursor-pointer hover:text-white select-none"
+                  className="flex items-center gap-2.5 text-xs font-mono text-[#A1A1AA] hover:text-white cursor-pointer select-none"
                 >
                   <input
                     type="checkbox"
                     checked={isExcluded}
                     onChange={() => onToggleAllergen(allergen.value)}
-                    className="rounded border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] text-[var(--accent-red)] focus:ring-0"
+                    className="rounded border-[#3F3F46] bg-[#27272A] text-[#EF4444] focus:ring-0 accent-[#EF4444]"
                   />
-                  <span>Exclude {allergen.label}</span>
+                  <span className={isExcluded ? "text-[#F87171] font-bold" : ""}>
+                    Exclude {allergen.label}
+                  </span>
                 </label>
               );
             })}

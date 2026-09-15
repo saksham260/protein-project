@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import BackgroundShader from "@/components/ui/BackgroundShader";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -10,16 +11,16 @@ const inter = Inter({
   display: "swap",
 });
 
-const outfit = Outfit({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-mono-code",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "The Protein Discovery Engine — India's Independent Protein Transparency Platform",
+  title: "The Protein Discovery Engine — Independent Protein Transparency",
   description:
-    "Discover verified protein products in India. Real cost-per-gram (₹/g), protein density %, red-flag ingredient scans (maltitol, amino spiking), and 4-tier protein quality ratings.",
+    "Deconstruct packaged protein mathematically and scientifically. True cost-per-gram (₹/g), protein density %, red-flag scans (maltitol, amino spiking), and 4-tier ratings.",
   keywords: [
     "protein powder India",
     "best protein bar",
@@ -35,11 +36,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} dark`}>
-      <body className="min-h-screen flex flex-col bg-[#0a0a0f] text-[#f8fafc]">
-        <Navbar />
-        <main className="flex-1 w-full">{children}</main>
-        <Footer />
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark`}>
+      <body className="min-h-screen flex flex-col bg-[#0A0A0B] text-[#E4E4E7] font-sans antialiased selection:bg-[#10B981] selection:text-[#0A0A0B] relative">
+        <BackgroundShader />
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-1 w-full">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

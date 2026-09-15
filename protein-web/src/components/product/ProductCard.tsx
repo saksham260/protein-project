@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { Card } from "@/components/ui/Card";
+import Link from "next/link";
+import { OversizedMetric } from "@/components/ui/OversizedMetric";
 import { ProteinTierBadge } from "@/components/product/ProteinTierBadge";
-import { RedFlagBadges } from "@/components/product/RedFlagBadges";
-import { formatPrice, formatPricePerGram, formatPercentage, formatWeight } from "@/lib/utils";
+import { RedFlagWarning } from "@/components/product/RedFlagWarning";
+import { formatPrice } from "@/lib/utils";
 import { ProductVariant, Product, Brand, Category, VariantRedFlag } from "@/types/product";
 
 export interface ProductCardProps {
@@ -24,15 +25,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, variant: expl
   const targetSlug = product.slug;
   const imageUrl = variant?.image_url || product.image_url;
 
+  // Format values for raw typography display
+  const costPerG = variant?.cost_per_g_protein != null ? variant.cost_per_g_protein.toFixed(1) : "—";
+  const density = variant?.protein_density_pct != null ? variant.protein_density_pct.toFixed(0) : "—";
+  const packProtein = variant?.protein_g != null ? variant.protein_g.toFixed(0) : "0";
+
   return (
-    <Card
+    <Link
       href={`/product/${targetSlug}`}
-      hoverEffect
-      padding="none"
-      className="group flex flex-col h-full bg-[#12121c]/90 hover:bg-[#181826] border border-white/10 hover:border-[#00d4aa]/40 transition-all duration-300 rounded-3xl overflow-hidden shadow-xl hover:shadow-[0_16px_40px_-10px_rgba(0,212,170,0.25)]"
+      className="group flex flex-col h-full bg-[#18181B] rounded-3xl border border-[#27272A] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.7)] hover:border-[#3F3F46] hover:-translate-y-1.5 transition-all duration-300 ease-out select-none"
     >
-      {/* Visual Product Showcase Area */}
-      <div className="relative w-full h-60 sm:h-64 bg-gradient-to-b from-[#1a1a28] to-[#101018] flex items-center justify-center overflow-hidden border-b border-white/5">
+      {/* Product Visual Area */}
+      <div className="relative w-full h-64 bg-[#121215] flex items-center justify-center overflow-hidden border-b border-[#27272A]">
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -43,112 +47,98 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, variant: expl
           />
         ) : (
           <div className="flex flex-col items-center justify-center text-center p-6 gap-2">
-            <span className="text-5xl filter drop-shadow">{category?.icon || "⚡"}</span>
-            <span className="text-xs uppercase font-mono tracking-widest text-[var(--text-faint)]">
+            <span className="text-5xl">{category?.icon || "⚡"}</span>
+            <span className="text-xs uppercase font-mono tracking-widest text-zinc-500">
               {brand?.name || "Protein"}
             </span>
           </div>
         )}
 
-        {/* Gradient shadow for text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#12121c] via-black/20 to-transparent pointer-events-none" />
+        {/* Soft Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#18181B] via-transparent to-black/30 pointer-events-none" />
 
         {/* Top Badges */}
-        <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
+        <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
           {category && (
-            <span className="text-[11px] font-semibold px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/15 shadow-sm">
-              {category.icon} {category.name}
+            <span className="text-[11px] font-sans font-medium px-2.5 py-1 rounded-full bg-[#27272A]/90 text-[#E4E4E7] border border-[#3F3F46] shadow-sm backdrop-blur-sm">
+              {category.name}
             </span>
           )}
 
           {variant?.protein_tier && (
-            <ProteinTierBadge tier={variant.protein_tier} showTooltip={false} size="sm" />
+            <ProteinTierBadge tier={variant.protein_tier} size="sm" />
           )}
         </div>
 
-        {/* Bottom image overlay metrics */}
-        {variant?.cost_per_g_protein && (
-          <div className="absolute bottom-3 left-3.5 z-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/75 backdrop-blur-md border border-[#00d4aa]/30 shadow-md">
-              <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-muted)]">
-                ₹/g:
-              </span>
-              <span className="text-xs font-black font-mono text-[#00d4aa]">
-                {formatPricePerGram(variant.cost_per_g_protein)}
-              </span>
-            </div>
+        {/* Bottom subtle weight badge */}
+        {variant?.net_weight_g && (
+          <div className="absolute bottom-3 right-4 z-10">
+            <span className="text-[10px] font-mono font-medium text-zinc-400 px-2 py-0.5 rounded-md bg-[#27272A]/80 border border-[#3F3F46]">
+              {variant.net_weight_g}g
+            </span>
           </div>
         )}
       </div>
 
-      {/* Content Area */}
-      <div className="flex flex-col flex-1 p-5 sm:p-6 gap-4">
+      {/* Card Body with Oversized Metrics */}
+      <div className="flex flex-col flex-1 p-6 gap-5">
         {/* Brand & Title */}
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#00d4aa] font-mono">
-              {brand?.name || "Verified"}
-            </span>
-            {variant?.net_weight_g && (
-              <span className="text-xs font-mono font-medium text-[var(--text-muted)] px-2 py-0.5 rounded-md bg-white/5">
-                {formatWeight(variant.net_weight_g)}
-              </span>
-            )}
-          </div>
-          <h3 className="text-base sm:text-lg font-bold text-white line-clamp-1 group-hover:text-[#00d4aa] transition-colors leading-snug">
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] uppercase font-mono tracking-widest text-[#A1A1AA] font-semibold">
+            {brand?.name || "Independent"}
+          </span>
+          <h3 className="text-lg font-bold text-white line-clamp-1 leading-snug group-hover:text-[#34D399] transition-colors">
             {product.name}
           </h3>
           {variant?.variant_name && variant.variant_name !== product.name && (
-            <p className="text-xs text-[var(--text-muted)] line-clamp-1">
+            <p className="text-xs text-[#A1A1AA] line-clamp-1">
               {variant.variant_name}
             </p>
           )}
         </div>
 
-        {/* Highlighted Macros Strip */}
-        <div className="grid grid-cols-2 gap-2 p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center">
-          <div className="flex flex-col items-center justify-center p-1 border-r border-white/5">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-muted)]">
-              Protein / Pack
-            </span>
-            <span className="text-base font-extrabold font-mono text-white">
-              {variant?.protein_g || 0}
-              <span className="text-xs font-normal text-[var(--text-muted)] ml-0.5">g</span>
-            </span>
-          </div>
+        {/* DOMINANT RAW METRICS SECTION */}
+        <div className="grid grid-cols-2 gap-4 py-4 px-4 rounded-2xl bg-[#27272A]/60 border border-[#27272A]">
+          <OversizedMetric
+            label="Cost / g Protein"
+            prefix="₹"
+            value={costPerG}
+            size="md"
+            accent="neon"
+            subtext="Economic Value"
+          />
 
-          <div className="flex flex-col items-center justify-center p-1">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-muted)]">
-              Protein Density
-            </span>
-            <span className="text-base font-extrabold font-mono text-[#38bdf8]">
-              {formatPercentage(variant?.protein_density_pct)}
-            </span>
-          </div>
+          <OversizedMetric
+            label="Protein Density"
+            value={density}
+            unit="%"
+            size="md"
+            accent="white"
+            subtext={`${packProtein}g per pack`}
+          />
         </div>
 
-        {/* Clean / Red-Flags Status */}
-        <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/5">
-          <span className="text-xs font-medium text-[var(--text-muted)]">Formulation:</span>
-          <RedFlagBadges flags={redFlags} compact />
+        {/* Clinical Red-Flags Status */}
+        <div className="flex items-center justify-between pt-1 border-t border-[#27272A]">
+          <span className="text-xs text-[#A1A1AA] font-mono uppercase tracking-wider">Formulation</span>
+          <RedFlagWarning flags={redFlags} mode="compact" />
         </div>
 
-        {/* Price & Action Footer */}
-        <div className="mt-auto pt-3 border-t border-white/5 flex items-center justify-between">
-          <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-[var(--text-faint)]">
-              MRP
-            </span>
-            <span className="text-lg font-black font-mono text-white">
+        {/* Footer: MRP & Action */}
+        <div className="mt-auto pt-3 border-t border-[#27272A] flex items-center justify-between">
+          <div className="flex items-baseline gap-1 font-mono">
+            <span className="text-[11px] text-[#A1A1AA] uppercase">MRP</span>
+            <span className="text-base font-bold text-[#E4E4E7]">
               {formatPrice(variant?.mrp_inr)}
             </span>
           </div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 group-hover:bg-[#00d4aa] text-xs font-bold text-white group-hover:text-[#0a0a0f] transition-all">
-            <span>Details</span>
-            <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+
+          <span className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#34D399] group-hover:translate-x-1 transition-transform">
+            <span>Deconstruct</span>
+            <span>→</span>
           </span>
         </div>
       </div>
-    </Card>
+    </Link>
   );
 };

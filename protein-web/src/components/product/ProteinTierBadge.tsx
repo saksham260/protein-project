@@ -1,50 +1,50 @@
 import React from "react";
-import { Badge } from "@/components/ui/Badge";
-import { Tooltip } from "@/components/ui/Tooltip";
 import { PROTEIN_TIERS } from "@/lib/constants";
 import { ProteinTier } from "@/types/product";
+import { cn } from "@/lib/utils";
 
 export interface ProteinTierBadgeProps {
   tier: ProteinTier | string | null | undefined;
-  showTooltip?: boolean;
   size?: "sm" | "md";
+  className?: string;
 }
 
 export const ProteinTierBadge: React.FC<ProteinTierBadgeProps> = ({
   tier,
-  showTooltip = true,
   size = "sm",
+  className,
 }) => {
   if (!tier) {
-    return <Badge size={size} variant="default">Unrated Tier</Badge>;
+    return (
+      <span className="text-[10px] font-mono uppercase text-zinc-500 tracking-wider">
+        Unrated
+      </span>
+    );
   }
 
   const tierKey = (tier.startsWith("Tier") ? tier : `Tier ${tier}`) as keyof typeof PROTEIN_TIERS;
   const config = PROTEIN_TIERS[tierKey];
+  const isTier1 = tierKey === "Tier 1";
 
-  const variantMap: Record<string, "tier1" | "tier2" | "tier3" | "tier4"> = {
-    "Tier 1": "tier1",
-    "Tier 2": "tier2",
-    "Tier 3": "tier3",
-    "Tier 4": "tier4",
-  };
-
-  const badgeVariant = variantMap[tierKey] || "default";
-  const label = config ? config.badgeLabel : tier;
-
-  const badgeElement = (
-    <Badge size={size} variant={badgeVariant} dot>
-      {label}
-    </Badge>
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center gap-1.5 font-mono select-none rounded-full px-2.5 py-0.5 border transition-colors",
+        size === "sm" ? "text-[10px]" : "text-xs px-3 py-1",
+        isTier1
+          ? "bg-[#10B981]/15 text-[#34D399] border-[#10B981]/30 font-bold shadow-[0_0_12px_rgba(16,185,129,0.2)]"
+          : "bg-[#18181B] text-[#E4E4E7] border-[#27272A] font-medium",
+        className
+      )}
+      title={config?.description}
+    >
+      <span
+        className={cn(
+          "w-1.5 h-1.5 rounded-full",
+          isTier1 ? "bg-[#10B981]" : "bg-zinc-500"
+        )}
+      />
+      <span>{config ? config.badgeLabel : tier}</span>
+    </div>
   );
-
-  if (showTooltip && config) {
-    return (
-      <Tooltip content={<p className="leading-snug">{config.description}</p>}>
-        {badgeElement}
-      </Tooltip>
-    );
-  }
-
-  return badgeElement;
 };

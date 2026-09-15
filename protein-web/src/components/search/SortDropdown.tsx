@@ -34,12 +34,12 @@ export const SortDropdown: React.FC<SortDropdownProps> = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.2)] text-[var(--text-primary)] transition-all select-none"
+        className="flex items-center gap-2 px-4 py-2 text-xs font-mono rounded-full bg-[#18181B] border border-[#27272A] hover:border-[#3F3F46] text-white transition-all select-none shadow-[0_4px_16px_rgba(0,0,0,0.4)]"
       >
-        <span className="text-[var(--text-muted)]">Sort by:</span>
-        <span className="text-[var(--accent-emerald)]">{selectedOption.label}</span>
+        <span className="text-[#A1A1AA] uppercase tracking-wider text-[10px]">Sort:</span>
+        <span className="font-semibold text-white">{selectedOption.label}</span>
         <svg
-          className={cn("w-3.5 h-3.5 transition-transform", isOpen && "rotate-180")}
+          className={cn("w-3 h-3 text-[#A1A1AA] transition-transform duration-200", isOpen && "rotate-180")}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -49,7 +49,7 @@ export const SortDropdown: React.FC<SortDropdownProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-50 mt-1.5 w-64 rounded-xl bg-[#161622] border border-[rgba(255,255,255,0.12)] shadow-2xl backdrop-blur-2xl py-1 animate-fade-in overflow-hidden">
+        <div className="absolute right-0 z-50 mt-2 w-64 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.9)] py-1.5 animate-fade-in overflow-hidden">
           {SORT_OPTIONS.map((opt) => {
             const isSelected = opt.value === currentSort;
             return (
@@ -61,14 +61,14 @@ export const SortDropdown: React.FC<SortDropdownProps> = ({
                   setIsOpen(false);
                 }}
                 className={cn(
-                  "w-full text-left px-3.5 py-2 text-xs transition-colors flex items-center justify-between",
+                  "w-full text-left px-4 py-2.5 text-xs transition-colors flex items-center justify-between font-mono",
                   isSelected
-                    ? "bg-[rgba(0,212,170,0.12)] text-[var(--accent-emerald)] font-bold"
-                    : "text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-white"
+                    ? "bg-[#10B981]/15 text-[#34D399] font-bold"
+                    : "text-[#E4E4E7] hover:bg-[#27272A] hover:text-white"
                 )}
               >
                 <span>{opt.label}</span>
-                {isSelected && <span>✓</span>}
+                {isSelected && <span className="text-[#10B981]">✓</span>}
               </button>
             );
           })}

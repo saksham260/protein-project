@@ -5,6 +5,7 @@ import { RedirectLink, Platform } from "@/types/product";
 import { buildRedirectUrl, getPriceDisplay } from "@/lib/redirect";
 import { formatPrice } from "@/lib/utils";
 import { PLATFORM_INFO } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export interface RedirectButtonsProps {
   redirectLinks: RedirectLink[];
@@ -17,10 +18,18 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
   brandName,
   productName,
 }) => {
-  // Ensure default platforms if none stored
   const platformsToDisplay: Platform[] = ["amazon", "blinkit", "zepto", "instamart"];
 
-  // Map existing links or fallback to search queries
+  // Find the lowest known price across all platforms
+  const pricesWithPlatform = redirectLinks
+    .filter((l) => l.platform_price_inr != null && l.platform_price_inr > 0)
+    .map((l) => ({ platform: l.platform, price: l.platform_price_inr! }));
+
+  const lowestPrice =
+    pricesWithPlatform.length > 0
+      ? Math.min(...pricesWithPlatform.map((p) => p.price))
+      : null;
+
   const linkItems = platformsToDisplay.map((platform) => {
     const existing = redirectLinks.find((l) => l.platform === platform);
     const targetUrl = existing
@@ -29,32 +38,40 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
 
     const priceInfo = getPriceDisplay(platform, existing?.platform_price_inr);
     const config = PLATFORM_INFO[platform];
+    const isCheapest =
+      lowestPrice != null && existing?.platform_price_inr === lowestPrice;
 
     return {
       platform,
       url: targetUrl,
       priceInfo,
       config,
+      isCheapest,
     };
   });
 
   return (
-    <div className="flex flex-col gap-3 p-5 rounded-2xl bg-[rgba(18,18,26,0.7)] border border-[rgba(255,255,255,0.08)] backdrop-blur-xl">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
-          Where to Buy
-        </span>
-        <span className="text-[11px] text-[var(--text-faint)]">
-          Prices verified or local store search
+    <div className="flex flex-col gap-4 p-6 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+      <div className="flex items-center justify-between border-b border-[#27272A] pb-3">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
+            Purchase Channels
+          </span>
+          <span className="text-[10px] font-mono text-zinc-500">
+            • Verified Partners
+          </span>
+        </div>
+        <span className="text-[11px] font-mono text-zinc-500">
+          Independent Links
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {linkItems.map((item) => {
           const priceSubtitle =
             item.priceInfo.type === "stored"
-              ? `From ${formatPrice(item.priceInfo.price)}`
-              : "Check Local Price →";
+              ? `₹${item.priceInfo.price}`
+              : "Check Local Price";
 
           return (
             <a
@@ -62,23 +79,50 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3.5 rounded-xl border transition-all duration-200 group bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.07)] border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.2)] hover:-translate-y-0.5"
+              className={cn(
+                "relative flex items-center justify-between p-4 rounded-2xl border transition-all duration-200 group select-none cursor-pointer",
+                item.isCheapest
+                  ? "bg-[#10B981] text-black border-[#10B981] shadow-[0_0_24px_rgba(16,185,129,0.25)] hover:bg-[#34D399]"
+                  : "bg-[#27272A] text-white border-[#3F3F46] hover:border-[#52525B] hover:bg-[#323236]"
+              )}
             >
-              <div className="flex items-center gap-2.5">
-                <span className="text-xl filter drop-shadow">{item.config.icon}</span>
+              {/* Cheapest Option Tag */}
+              {item.isCheapest && (
+                <span className="absolute -top-2.5 right-4 px-2.5 py-0.5 rounded-full bg-[#0A0A0B] text-[#34D399] text-[10px] font-mono font-black tracking-wider uppercase border border-[#10B981]">
+                  Cheapest Option
+                </span>
+              )}
+
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">{item.config.icon}</span>
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold text-white group-hover:text-[var(--accent-emerald)] transition-colors">
+                  <span
+                    className={cn(
+                      "text-sm font-bold tracking-tight font-sans",
+                      item.isCheapest ? "text-black" : "text-white group-hover:text-white"
+                    )}
+                  >
                     {item.config.name}
                   </span>
-                  <span className="text-[10px] text-[var(--text-muted)]">
+                  <span
+                    className={cn(
+                      "text-xs font-mono font-medium",
+                      item.isCheapest ? "text-black/80 font-bold" : "text-zinc-400"
+                    )}
+                  >
                     {priceSubtitle}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1 text-xs font-semibold text-[var(--text-muted)] group-hover:text-[var(--accent-emerald)] transition-colors">
-                <span>View</span>
-                <span className="group-hover:translate-x-0.5 transition-transform">↗</span>
+              <div
+                className={cn(
+                  "flex items-center gap-1 text-xs font-mono font-bold transition-transform group-hover:translate-x-1",
+                  item.isCheapest ? "text-black" : "text-zinc-400 group-hover:text-white"
+                )}
+              >
+                <span>Buy</span>
+                <span>↗</span>
               </div>
             </a>
           );
