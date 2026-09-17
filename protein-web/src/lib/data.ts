@@ -2,6 +2,7 @@ import { ProductWithVariants, Platform, FlagSeverity } from "@/types/product";
 import { CATEGORIES } from "@/lib/constants";
 import rawSeedData from "@/data/seedCatalog.json";
 import { createClient } from "@/lib/supabase/client";
+import { AwardCategory, TOP_PICKS_CONFIG } from "@/lib/topPicksConfig";
 
 interface RawSeedVariant {
   variant_name?: string;
@@ -377,4 +378,48 @@ export async function getProductBySlug(slug: string): Promise<ProductWithVariant
 
   const found = normalizedSeedCatalog.find((p) => p.slug === slug);
   return found || null;
+}
+
+export interface TopPickResult {
+  award: AwardCategory;
+  product: ProductWithVariants;
+  editorialBlurb: string;
+}
+
+export async function getTopPicks(): Promise<TopPickResult[]> {
+  const allProducts = await getProducts();
+  const results: TopPickResult[] = [];
+
+  for (const award of TOP_PICKS_CONFIG.awards) {
+    if (award.manualOverride?.productSlug) {
+      const matched = allProducts.find((p) => p.slug === award.manualOverride?.productSlug);
+      if (matched) {
+        results.push({
+          award,
+          product: matched,
+          editorialBlurb: award.manualOverride.editorialBlurb || award.description,
+        });
+        continue;
+      }
+    }
+
+    // Auto-rule calculation
+    const rule = award.autoRule;
+    const candidates = await getProducts({
+      categorySlug: rule.categorySlug,
+      sortBy: rule.sortBy || "cost_per_g_asc",
+      zeroFlagsOnly: rule.requireZeroFlags,
+      proteinTiers: rule.requireTier ? [rule.requireTier] : undefined,
+    });
+
+    if (candidates.length > 0) {
+      results.push({
+        award,
+        product: candidates[0],
+        editorialBlurb: award.description,
+      });
+    }
+  }
+
+  return results;
 }

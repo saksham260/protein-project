@@ -22,24 +22,28 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
   accent = "white",
   className,
 }) => {
+  const strVal = String(value);
+  const isLong = strVal.length >= 5;
+  const isMedium = strVal.length === 4;
+
   const sizeStyles = {
     sm: {
-      value: "text-2xl sm:text-3xl",
+      value: isLong ? "text-sm sm:text-base" : isMedium ? "text-base sm:text-lg" : "text-lg sm:text-xl",
       label: "text-[10px]",
       unit: "text-xs",
     },
     md: {
-      value: "text-3xl sm:text-4xl",
-      label: "text-[11px]",
-      unit: "text-sm",
+      value: isLong ? "text-lg sm:text-xl" : isMedium ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl",
+      label: "text-[10px]",
+      unit: "text-xs sm:text-sm",
     },
     lg: {
-      value: "text-4xl sm:text-5xl",
+      value: isLong ? "text-2xl sm:text-3xl" : "text-4xl sm:text-5xl",
       label: "text-xs",
       unit: "text-base",
     },
     xl: {
-      value: "text-5xl sm:text-6xl",
+      value: isLong ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl",
       label: "text-xs",
       unit: "text-lg",
     },
@@ -57,27 +61,27 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
   const conf = sizeStyles[size];
 
   return (
-    <div className={cn("flex flex-col select-none", className)}>
-      <span className={cn("uppercase font-mono tracking-widest text-zinc-500 font-medium mb-1", conf.label)}>
+    <div className={cn("flex flex-col select-none min-w-0", className)}>
+      <span className={cn("uppercase font-mono tracking-widest text-zinc-500 font-medium mb-1 truncate", conf.label)}>
         {label}
       </span>
-      <div className="flex items-baseline gap-1 font-mono">
+      <div className="flex items-baseline gap-0.5 font-mono whitespace-nowrap">
         {prefix && (
-          <span className={cn("font-bold text-zinc-400 font-mono", conf.unit)}>
+          <span className={cn("font-bold text-zinc-400 font-mono shrink-0", conf.unit)}>
             {prefix}
           </span>
         )}
-        <span className={cn("font-black tracking-tight font-mono", conf.value, accentColors[accent])}>
+        <span className={cn("font-black tracking-tight font-mono whitespace-nowrap leading-none", conf.value, accentColors[accent])}>
           {value}
         </span>
         {unit && (
-          <span className={cn("font-medium text-zinc-400 font-mono ml-0.5", conf.unit)}>
+          <span className={cn("font-medium text-zinc-400 font-mono ml-0.5 shrink-0", conf.unit)}>
             {unit}
           </span>
         )}
       </div>
       {subtext && (
-        <span className="text-[11px] font-mono text-zinc-500 mt-1">
+        <span className="text-[11px] font-mono text-zinc-500 mt-1 truncate">
           {subtext}
         </span>
       )}

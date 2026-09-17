@@ -127,9 +127,9 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="h-[460px] rounded-3xl bg-[#18181B] border border-[#27272A] skeleton-shimmer" />
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="h-[320px] sm:h-[460px] rounded-2xl sm:rounded-3xl bg-[#18181B] border border-[#27272A] skeleton-shimmer" />
               ))}
             </div>
           ) : products.length === 0 ? (
@@ -141,7 +141,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 animate-fade-in">
               {products.map((prod) => (
                 <ProductCard key={prod.id} product={prod} />
               ))}

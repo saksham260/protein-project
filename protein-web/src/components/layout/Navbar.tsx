@@ -2,12 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CATEGORIES } from "@/lib/constants";
-import { Button } from "@/components/ui/Button";
-import { MobileNav } from "@/components/layout/MobileNav";
-import { ArrowRevealButton } from "@/components/ui/ArrowRevealButton";
 import { NavbarSearch } from "@/components/search/NavbarSearch";
+import { CartButton } from "@/components/cart/CartButton";
+import { LoginButton } from "@/components/auth/LoginButton";
 import { cn } from "@/lib/utils";
 
 // --- Originkit Light Glass Engine Constants & Utilities ---
@@ -106,9 +103,7 @@ const RING_MASK: React.CSSProperties = {
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -308,11 +303,6 @@ export const Navbar: React.FC = () => {
     ? `blur(${BLUR}px) saturate(180%) brightness(108%)`
     : "none";
 
-  const glassRGB = parseColor("#0A0A0B");
-  const glassBackground = glassy
-    ? rgba(glassRGB, isScrolled ? 0.88 : TINT)
-    : rgba(glassRGB, 0.85);
-
   const lightRGB = parseColor("rgba(255, 255, 255, 0.45)");
   const lightClear = rgba(lightRGB, 0);
   const softStops = (peak: number) =>
@@ -325,9 +315,6 @@ export const Navbar: React.FC = () => {
   ].join(", ");
 
   const strokePx = 1;
-  const strokeBackdrop = glassy
-    ? `saturate(220%) brightness(${STROKE_BRIGHTNESS}%)`
-    : "none";
   const lightOpaque = rgba(lightRGB, 1);
   const strokeLightGradient = `conic-gradient(from calc((var(--la, 0) - var(--lw, 30)) * 1deg), ${lightClear} 0deg, ${lightOpaque} calc(var(--lw, 30) * 1deg), ${lightClear} calc(var(--lw, 30) * 2deg))`;
 
@@ -347,23 +334,21 @@ export const Navbar: React.FC = () => {
           zIndex: 50,
           width: "100%",
           boxSizing: "border-box",
-          background: isScrolled
-            ? (glassy ? "rgba(10, 10, 11, 0.72)" : "rgba(10, 10, 11, 0.95)")
-            : "transparent",
+          background: isScrolled ? "rgba(10, 10, 11, 0.75)" : "transparent",
           backdropFilter: isScrolled && glassy ? backdrop : "none",
           WebkitBackdropFilter: isScrolled && glassy ? backdrop : "none",
           borderBottom: isScrolled
-            ? "1px solid rgba(39, 39, 42, 0.8)"
+            ? "1px solid rgba(39, 39, 42, 0.7)"
             : "1px solid transparent",
           boxShadow: isScrolled
-            ? "0 8px 32px rgba(0, 0, 0, 0.7)"
+            ? "0 8px 32px rgba(0, 0, 0, 0.5)"
             : "none",
           ["--mx" as any]: "50%",
           ["--my" as any]: "50%",
         }}
         className="sticky top-0 z-50 w-full transition-all duration-300 select-none"
       >
-        {/* Dynamic Light Spotlight - active only when glass effect is on */}
+        {/* Dynamic Light Spotlight */}
         <span
           ref={lightRef}
           aria-hidden
@@ -379,7 +364,7 @@ export const Navbar: React.FC = () => {
           }}
         />
 
-        {/* Dynamic Edge Stroke Highlight - active only when glass effect is on */}
+        {/* Dynamic Edge Stroke Highlight */}
         {strokePx > 0 && (
           <span
             ref={strokeRef}
@@ -401,22 +386,24 @@ export const Navbar: React.FC = () => {
           />
         )}
 
-        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative z-10">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group h-full relative after:absolute after:inset-x-0 after:top-0 after:bottom-0 after:content-['']">
-            <span className="w-7 h-7 rounded-lg bg-[#10B981] flex items-center justify-center text-black font-black text-sm shadow-[0_0_16px_rgba(16,185,129,0.35)] group-hover:scale-105 transition-transform">
+        <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4 relative z-10">
+          {/* Logo & Brand Title */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 sm:gap-2.5 group shrink-0"
+          >
+            <span className="w-8 h-8 rounded-xl bg-[#10B981] flex items-center justify-center text-black font-black text-sm shadow-[0_0_16px_rgba(16,185,129,0.35)] group-hover:scale-105 transition-transform shrink-0">
               ⚡
             </span>
-            <span className="sr-only">Protein Engine</span>
             <div
               className={cn(
-                "flex flex-col overflow-hidden transition-all duration-300 ease-out origin-left",
-                isHome && !isScrolled
-                  ? "w-auto opacity-100"
-                  : "w-0 opacity-0 pointer-events-none -ml-2.5"
+                "flex flex-col overflow-hidden origin-left md:transition-none md:max-w-[200px] md:opacity-100 md:ml-0",
+                isScrolled || isSearchOpen
+                  ? "max-md:max-w-0 max-md:opacity-0 max-md:pointer-events-none max-md:-ml-2.5 max-w-[200px] opacity-100 transition-[max-width,opacity,margin] duration-300 ease-out"
+                  : "max-w-[200px] opacity-100 transition-[max-width,opacity,margin] duration-300 ease-out"
               )}
             >
-              <span className="text-base font-black tracking-tight text-white leading-none whitespace-nowrap">
+              <span className="text-sm sm:text-base font-black tracking-tight text-white leading-none whitespace-nowrap">
                 Protein Engine
               </span>
               <span className="text-[9px] font-mono tracking-widest text-[#34D399] uppercase mt-0.5 whitespace-nowrap">
@@ -425,87 +412,26 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6 h-full">
-            <Link
-              href="/explore"
-              className={cn(
-                "text-xs font-mono tracking-wider transition-colors uppercase h-full flex items-center relative after:absolute after:inset-x-0 after:top-0 after:bottom-0 after:content-['']",
-                pathname === "/explore"
-                  ? "text-white font-bold"
-                  : "text-[#A1A1AA] hover:text-white"
-              )}
-            >
-              All Products
-            </Link>
-            {CATEGORIES.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className={cn(
-                  "text-xs font-mono tracking-wider transition-colors uppercase h-full flex items-center relative after:absolute after:inset-x-0 after:top-0 after:bottom-0 after:content-['']",
-                  pathname === `/category/${cat.slug}`
-                    ? "text-white font-bold"
-                    : "text-[#A1A1AA] hover:text-white"
-                )}
-              >
-                {cat.name}
-              </Link>
-            ))}
-          </nav>
+          {/* Search Bar (Fixed on desktop, dynamic expand on mobile) */}
+          <NavbarSearch
+            isScrolled={isScrolled}
+            isSearchOpen={isSearchOpen}
+            onSearchOpenChange={setIsSearchOpen}
+            className={cn(
+              "md:flex-1 md:max-w-xl md:mx-4 md:ml-0 md:transition-none",
+              isScrolled || isSearchOpen
+                ? "flex-1 max-w-xl mx-1 sm:mx-4 transition-[flex,margin,width,max-width] duration-300 ease-out"
+                : "ml-auto transition-[flex,margin,width,max-width] duration-300 ease-out"
+            )}
+          />
 
-          {/* Search CTA & Actions */}
-          <div className="flex items-center gap-3 h-full">
-            <NavbarSearch isScrolled={isScrolled} isHome={isHome} />
-
-            <div className="hidden sm:inline-flex h-full items-center">
-              <ArrowRevealButton
-                label="Explore"
-                link="/explore"
-                newTab={false}
-                colors={{ fill: "#10B981", textColor: "#0A0A0B" }}
-                fill="#10B981"
-                textColor="#0A0A0B"
-                padding="7px 10px 7px 15px"
-                rounded={100}
-                gap={8}
-                font={{
-                  fontSize: "12px",
-                  fontWeight: 800,
-                  letterSpacing: "-0.01em",
-                }}
-                border={{ borderWidth: 0 }}
-                icon={{
-                  side: "right",
-                  size: 12,
-                  type: "icon",
-                  icon: "arrow",
-                  strokeWidth: 3,
-                  color: "#10B981",
-                  background: "#0A0A0B",
-                  padding: 4,
-                  rounded: 100,
-                }}
-              />
-            </div>
-
-            {/* Mobile Hamburger Toggle */}
-            <button
-              onClick={() => setIsMobileOpen(true)}
-              aria-label="Open mobile navigation"
-              className="p-2 rounded-xl bg-white/5 border border-white/10 text-[#E4E4E7] hover:text-white md:hidden relative after:absolute after:inset-x-0 after:top-0 after:-bottom-4 after:content-['']"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            </button>
+          {/* User Actions: Login & Shortlist Cart */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <LoginButton />
+            <CartButton />
           </div>
         </div>
       </header>
-
-      <MobileNav isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />
     </>
   );
 };

@@ -218,17 +218,17 @@ export function ExploreClient() {
 
           {/* Clean CSS Grid for Products with High Negative Space */}
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
                   key={i}
-                  className="h-[460px] rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.5)] skeleton-shimmer"
+                  className="h-[320px] sm:h-[460px] rounded-2xl sm:rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.5)] skeleton-shimmer"
                 />
               ))}
             </div>
           ) : products.length === 0 ? (
             /* Empty State */
-            <div className="flex flex-col items-center justify-center p-16 text-center rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.5)] gap-5">
+            <div className="flex flex-col items-center justify-center p-10 sm:p-16 text-center rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.5)] gap-5">
               <span className="text-5xl">🔍</span>
               <h3 className="text-xl font-bold text-white tracking-tight">
                 No matching formulations found
@@ -246,7 +246,7 @@ export function ExploreClient() {
             </div>
           ) : (
             /* High-Space Product Grid */
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 items-stretch animate-fade-in">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 items-stretch animate-fade-in">
               {products.map((prod) => (
                 <ProductCard key={prod.id} product={prod} />
               ))}

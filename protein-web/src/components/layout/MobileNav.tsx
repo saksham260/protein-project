@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { useCart } from "@/context/CartContext";
 
 export interface MobileNavProps {
   isOpen: boolean;
@@ -11,6 +12,9 @@ export interface MobileNavProps {
 }
 
 export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
+  const { itemCount, openCart } = useCart();
+  const [showLoginToast, setShowLoginToast] = useState(false);
+
   // Lock body scroll when mobile nav is open
   useEffect(() => {
     if (!isOpen) return;
@@ -33,14 +37,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex flex-col justify-between bg-[#0A0A0B]/95 backdrop-blur-2xl p-5 md:hidden animate-fade-in overflow-hidden select-none cursor-pointer"
+      className="fixed inset-0 z-50 flex flex-col justify-between bg-[#0A0A0B]/95 backdrop-blur-2xl p-5 md:hidden animate-fade-in overflow-y-auto select-none cursor-pointer"
       aria-modal="true"
       role="dialog"
     >
       <div
-        className="flex flex-col gap-3.5 max-h-full"
+        className="flex flex-col gap-4 max-h-full"
         onClick={(e) => {
-          // If user clicks in empty gap between elements, return to page
           if (e.target === e.currentTarget) onClose();
         }}
       >
@@ -76,6 +79,43 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             className="w-8 h-8 rounded-full bg-[#18181B] border border-[#27272A] flex items-center justify-center text-[#A1A1AA] hover:text-white text-sm cursor-pointer active:scale-95"
           >
             ✕
+          </button>
+        </div>
+
+        {/* User Quick Actions (Shortlist & Login) */}
+        <div className="grid grid-cols-2 gap-2 font-mono">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+              openCart();
+            }}
+            className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-[#18181B] border border-[#27272A] text-white text-xs font-bold active:scale-[0.98] transition-all"
+          >
+            <span>🛒 Shortlist</span>
+            {itemCount > 0 && (
+              <span className="px-1.5 py-0.5 rounded-full bg-[#10B981] text-[#0A0A0B] text-[10px] font-black">
+                {itemCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowLoginToast(true);
+              setTimeout(() => setShowLoginToast(false), 2500);
+            }}
+            className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-[#18181B] border border-[#27272A] text-[#E4E4E7] text-xs font-medium active:scale-[0.98] transition-all relative"
+          >
+            <span>👤 Login</span>
+            {showLoginToast && (
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-[#18181B] border border-[#10B981]/50 text-[10px] text-white shadow-lg">
+                Coming soon
+              </span>
+            )}
           </button>
         </div>
 
@@ -134,7 +174,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
 
       {/* Footer CTA */}
       <div
-        className="flex flex-col gap-2 pt-3 border-t border-[#27272A]"
+        className="flex flex-col gap-2 pt-3 border-t border-[#27272A] mt-4"
         onClick={(e) => {
           if (e.target === e.currentTarget) onClose();
         }}

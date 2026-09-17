@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
 import { AnimatedSearchButton } from "@/components/ui/AnimatedSearchButton";
 import { formatPricePerGram } from "@/lib/utils";
@@ -127,29 +128,57 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               </div>
               {suggestions.map((p, idx) => {
                 const variant = p.variants[0];
+                const imageUrl = variant?.image_url || p.image_url;
                 const isSelected = idx === selectedIndex;
                 return (
                   <Link
                     key={p.id}
                     href={`/product/${p.slug}`}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-4 py-3 transition-colors ${
+                    className={`flex items-center justify-between px-3.5 py-2.5 transition-colors gap-3 ${
                       isSelected
                         ? "bg-[#10B981]/15 text-white"
                         : "text-[#E4E4E7] hover:bg-[#27272A] hover:text-white"
                     }`}
                   >
-                    <div className="flex flex-col">
-                      <span className="font-bold text-white font-sans">{p.name}</span>
-                      <span className="text-[11px] text-[#A1A1AA]">
-                        {p.brand.name} • {p.category.name}
-                      </span>
+                    <div className="flex items-center gap-3 min-w-0">
+                      {/* Product Thumbnail */}
+                      <div className="relative w-10 h-10 rounded-lg bg-[#121215] border border-[#27272A] overflow-hidden shrink-0 flex items-center justify-center">
+                        {imageUrl ? (
+                          <Image
+                            src={imageUrl}
+                            alt={p.name}
+                            fill
+                            className="object-cover"
+                            sizes="40px"
+                          />
+                        ) : (
+                          <span className="text-base select-none">{p.category?.icon || "⚡"}</span>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-bold text-white font-sans text-sm line-clamp-1">
+                          {p.name}
+                        </span>
+                        <span className="text-[11px] text-[#A1A1AA] truncate">
+                          {p.brand.name} • {p.category.name}
+                        </span>
+                      </div>
                     </div>
-                    {variant?.cost_per_g_protein && (
-                      <div className="flex items-center gap-1 font-bold text-[#10B981]">
+
+                    {variant?.mrp_inr ? (
+                      <div className="flex items-baseline gap-0.5 font-mono text-[#10B981] shrink-0 pl-2">
+                        <span className="text-xs font-semibold text-[#10B981]/80">₹</span>
+                        <span className="text-base sm:text-lg font-extrabold tracking-tight">
+                          {variant.mrp_inr.toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                    ) : variant?.cost_per_g_protein ? (
+                      <div className="flex items-center gap-1 font-bold text-[#10B981] shrink-0 pl-2">
                         <span>{formatPricePerGram(variant.cost_per_g_protein)}</span>
                       </div>
-                    )}
+                    ) : null}
                   </Link>
                 );
               })}

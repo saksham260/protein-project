@@ -137,13 +137,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           {/* OVERSIZED CORE METRICS DISPLAY */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
             <OversizedMetric
-              label="True Cost / g"
+              label="MRP"
               prefix="₹"
-              value={costPerG}
-              unit="/g"
+              value={activeVariant?.mrp_inr != null ? activeVariant.mrp_inr.toLocaleString("en-IN") : "—"}
               size="lg"
               accent="neon"
-              subtext="Pure economic value"
+              subtext="Retail Price"
             />
 
             <OversizedMetric
@@ -161,7 +160,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               unit="g"
               size="lg"
               accent="muted"
-              subtext={`MRP ${formatPrice(activeVariant?.mrp_inr)}`}
+              subtext={activeVariant?.net_weight_g ? `${activeVariant.net_weight_g}g pack` : "Total Protein"}
             />
           </div>
 

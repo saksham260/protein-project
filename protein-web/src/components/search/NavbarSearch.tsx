@@ -3,22 +3,62 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
-import { AnimatedSearchButton } from "@/components/ui/AnimatedSearchButton";
 import { formatPricePerGram, cn } from "@/lib/utils";
 
+const SEARCH_SUGGESTIONS = [
+  // Categories
+  "Chips",
+  "Bars",
+  "Powders",
+  "Drinks",
+  "Snacks",
+  // Brands
+  "Amul",
+  "MuscleBlaze",
+  "Yoga Bar",
+  "The Whole Truth",
+  "Nakpro",
+  "Cosmix",
+  "Epigamia",
+  "RiteBite",
+  "Plantigo",
+  "Phab",
+  // Product first words & key terms
+  "Whey",
+  "Isolate",
+  "Buttermilk",
+  "Biozyme",
+  "Peanut",
+  "Oats",
+  "Plant",
+];
+
 export interface NavbarSearchProps {
-  isScrolled: boolean;
-  isHome: boolean;
   className?: string;
+  placeholder?: string;
+  isScrolled?: boolean;
+  isSearchOpen?: boolean;
+  onSearchOpenChange?: (open: boolean) => void;
 }
 
 export const NavbarSearch: React.FC<NavbarSearchProps> = ({
-  isScrolled,
-  isHome,
   className = "",
+  placeholder,
+  isScrolled = false,
+  isSearchOpen: controlledSearchOpen,
+  onSearchOpenChange,
 }) => {
   const router = useRouter();
+  const [internalSearchOpen, setInternalSearchOpen] = useState(false);
+  const isSearchOpen = controlledSearchOpen ?? internalSearchOpen;
+
+  const setSearchOpen = (open: boolean) => {
+    setInternalSearchOpen(open);
+    onSearchOpenChange?.(open);
+  };
+
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -26,41 +66,82 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const isExpanded = isScrolled || isSearchOpen || Boolean(query.trim());
+
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Typewriter effect cycling through categories, brands, and product keywords
+  useEffect(() => {
+    const currentWord = SEARCH_SUGGESTIONS[wordIndex];
+    let timer: NodeJS.Timeout;
+
+    if (!isDeleting) {
+      if (displayedText.length < currentWord.length) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentWord.slice(0, displayedText.length + 1));
+        }, 75);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(true);
+        }, 1500);
+      }
+    } else {
+      if (displayedText.length > 0) {
+        timer = setTimeout(() => {
+          setDisplayedText(currentWord.slice(0, displayedText.length - 1));
+        }, 40);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % SEARCH_SUGGESTIONS.length);
+        }, 250);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, wordIndex]);
+
+  const activePlaceholder = placeholder || `Search for "${displayedText}"`;
+
   const { results, isLoading } = useSearch(query, 250);
   const suggestions = results.slice(0, 5);
 
-  // On the landing page, only expand after scrolling down. When unscrolled, it remains just an icon that redirects to the mainpage searchbar.
-  const isExpanded = !isHome || isScrolled;
-
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
-        setIsFocused(false);
+      const target = e.target as Node;
+
+      // If clicking inside container, do nothing
+      if (containerRef.current && containerRef.current.contains(target)) {
+        return;
+      }
+
+      // If clicking outside, close suggestions dropdown
+      setIsOpen(false);
+      setIsFocused(false);
+      if (!query.trim() && !isScrolled) {
+        setSearchOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [query, isScrolled]);
 
-  const handleRedirectToMainSearch = (e?: React.MouseEvent | React.FormEvent) => {
-    if (e) {
+  const handleOpenSearch = (e: React.MouseEvent) => {
+    if (!isExpanded) {
       e.preventDefault();
       e.stopPropagation();
-    }
-    const heroInput = document.getElementById("hero-search-input");
-    if (heroInput) {
-      heroInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      setSearchOpen(true);
+      setIsFocused(true);
       setTimeout(() => {
-        (heroInput as HTMLInputElement).focus();
-      }, 200);
-    } else {
-      window.scrollTo({ top: 250, behavior: "smooth" });
+        inputRef.current?.focus();
+      }, 50);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!isExpanded) return;
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setSelectedIndex((prev) => (prev < suggestions.length - 1 ? prev + 1 : 0));
@@ -82,13 +163,20 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       setIsOpen(false);
       setIsFocused(false);
       inputRef.current?.blur();
+      if (!query.trim() && !isScrolled) {
+        setSearchOpen(false);
+      }
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!isExpanded) {
-      handleRedirectToMainSearch(e);
+      setSearchOpen(true);
+      setIsFocused(true);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 50);
       return;
     }
     if (query.trim()) {
@@ -101,24 +189,45 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
     }
   };
 
-  const handleContainerClick = (e: React.MouseEvent) => {
-    if (!isExpanded) {
-      handleRedirectToMainSearch(e);
-    }
-  };
-
   return (
-    <div ref={containerRef} className={cn("relative flex items-center", className)}>
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative md:flex-1 md:w-full md:max-w-xl md:transition-none",
+        isExpanded
+          ? "flex-1 w-full max-w-xl transition-[max-width,width,flex] duration-300 ease-out"
+          : "w-10 max-w-[40px] shrink-0 transition-[max-width,width,flex] duration-300 ease-out",
+        className
+      )}
+    >
       <form
         onSubmit={handleSubmit}
-        onClick={handleContainerClick}
+        onClick={handleOpenSearch}
         className={cn(
-          "relative flex items-center transition-all duration-300 ease-out rounded-full border",
+          "relative flex items-center rounded-full bg-[#18181B] border border-[#27272A] focus-within:border-[#10B981] shadow-inner overflow-hidden h-10 md:w-full md:cursor-auto md:transition-[border-color,background-color]",
           isExpanded
-            ? "w-44 sm:w-56 md:w-64 lg:w-72 bg-[#18181B] border-[#27272A] focus-within:border-[#10B981] shadow-[0_4px_20px_rgba(0,0,0,0.5)] h-[38px] overflow-hidden"
-            : "w-[38px] h-[38px] bg-transparent border-transparent cursor-pointer overflow-visible"
+            ? "w-full transition-[width,border-color,background-color] duration-300 ease-out"
+            : "w-10 cursor-pointer hover:border-[#3F3F46] transition-[width,border-color,background-color] duration-300 ease-out"
         )}
       >
+        {/* Search Icon */}
+        <div className="w-10 h-10 flex items-center justify-center shrink-0 text-[#A1A1AA] pointer-events-none">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </div>
+
+        {/* Input */}
         <input
           ref={inputRef}
           type="text"
@@ -130,20 +239,21 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
           }}
           onFocus={() => {
             setIsFocused(true);
+            setSearchOpen(true);
             if (query.trim()) setIsOpen(true);
           }}
           onKeyDown={handleKeyDown}
-          placeholder="Search..."
+          placeholder={activePlaceholder}
           tabIndex={isExpanded ? 0 : -1}
           className={cn(
-            "h-full text-white text-xs font-sans placeholder-[#A1A1AA] bg-transparent outline-none transition-all duration-200",
+            "h-full text-white text-xs sm:text-sm font-sans placeholder-[#71717A] bg-transparent outline-none pr-9 md:w-full md:opacity-100 md:pointer-events-auto md:block md:transition-none",
             isExpanded
-              ? "w-full pl-3.5 pr-14 opacity-100"
-              : "w-0 p-0 opacity-0 pointer-events-none"
+              ? "w-full opacity-100 block transition-opacity duration-300"
+              : "w-0 opacity-0 pointer-events-none transition-opacity duration-300"
           )}
         />
 
-        {/* Clear button when query is present */}
+        {/* Clear button */}
         {isExpanded && query && (
           <button
             type="button"
@@ -153,33 +263,24 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
               setIsOpen(false);
               inputRef.current?.focus();
             }}
-            className="absolute right-10 text-[11px] text-[#A1A1AA] hover:text-white p-1 transition-colors"
+            className="absolute right-3 text-xs text-[#A1A1AA] hover:text-white p-1 transition-colors"
             aria-label="Clear search text"
           >
             ✕
           </button>
         )}
-
-        {/* Morphing Search Icon Button */}
-        <AnimatedSearchButton
-          size={isExpanded ? 34 : 38}
-          className={cn(
-            isExpanded ? "absolute right-0.5 top-1/2 -translate-y-1/2" : ""
-          )}
-          title={isExpanded ? "Search" : "Open search"}
-        />
       </form>
 
       {/* Live Dropdown Suggestions */}
-      {isOpen && isExpanded && query.trim() && (
-        <div className="absolute top-full right-0 z-50 mt-2 w-72 sm:w-80 md:w-96 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 animate-fade-in font-mono text-xs">
+      {isOpen && query.trim() && (
+        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
           {isLoading ? (
             <div className="p-4 text-[#A1A1AA] text-center">
-              Searching database...
+              Searching verified database...
             </div>
           ) : suggestions.length === 0 ? (
             <div className="p-4 text-[#A1A1AA] text-center">
-              No matching products. Press Enter to full-text search.
+              No matching products. Press Enter for full search.
             </div>
           ) : (
             <div className="flex flex-col">
@@ -188,6 +289,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
               </div>
               {suggestions.map((p, idx) => {
                 const variant = p.variants[0];
+                const imageUrl = variant?.image_url || p.image_url;
                 const isSelected = idx === selectedIndex;
                 return (
                   <Link
@@ -197,21 +299,44 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                       setIsOpen(false);
                       setIsFocused(false);
                     }}
-                    className={`flex items-center justify-between px-4 py-3 transition-colors ${
+                    className={`flex items-center justify-between px-3.5 py-2.5 transition-colors gap-3 ${
                       isSelected
                         ? "bg-[#10B981]/15 text-white"
                         : "text-[#E4E4E7] hover:bg-[#27272A] hover:text-white"
                     }`}
                   >
-                    <div className="flex flex-col">
-                      <span className="font-bold text-white font-sans">{p.name}</span>
-                      <span className="text-[11px] text-[#A1A1AA]">
-                        {p.brand.name} • {p.category.name}
-                      </span>
+                    <div className="flex items-center gap-3 min-w-0">
+                      {/* Product Thumbnail */}
+                      <div className="relative w-10 h-10 rounded-lg bg-[#121215] border border-[#27272A] overflow-hidden shrink-0 flex items-center justify-center">
+                        {imageUrl ? (
+                          <Image
+                            src={imageUrl}
+                            alt={p.name}
+                            fill
+                            className="object-cover"
+                            sizes="40px"
+                          />
+                        ) : (
+                          <span className="text-base select-none">{p.category?.icon || "⚡"}</span>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col min-w-0">
+                        <span className="font-bold text-white font-sans text-xs sm:text-sm line-clamp-1">
+                          {p.name}
+                        </span>
+                        <span className="text-[11px] text-[#A1A1AA] truncate">
+                          {p.brand.name} • {p.category.name}
+                        </span>
+                      </div>
                     </div>
-                    {variant?.cost_per_g_protein && (
-                      <div className="flex items-center gap-1 font-mono font-bold text-[#10B981]">
-                        <span>{formatPricePerGram(variant.cost_per_g_protein)}</span>
+
+                    {variant?.mrp_inr && (
+                      <div className="flex items-baseline gap-0.5 font-mono text-[#10B981] shrink-0 pl-2">
+                        <span className="text-xs font-semibold text-[#10B981]/80">₹</span>
+                        <span className="text-base sm:text-lg font-extrabold tracking-tight">
+                          {variant.mrp_inr.toLocaleString("en-IN")}
+                        </span>
                       </div>
                     )}
                   </Link>
