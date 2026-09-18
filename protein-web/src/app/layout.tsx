@@ -4,6 +4,7 @@ import BackgroundShader from "@/components/ui/BackgroundShader";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { CategoryProvider } from "@/context/CategoryContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import "./globals.css";
 
@@ -41,13 +42,15 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark`}>
       <body className="min-h-screen flex flex-col bg-[#0A0A0B] text-[#E4E4E7] font-sans antialiased selection:bg-[#10B981] selection:text-[#0A0A0B] relative">
         <CartProvider>
-          <BackgroundShader />
-          <div className="relative z-10 flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 w-full">{children}</main>
-            <Footer />
-          </div>
-          <CartDrawer />
+          <CategoryProvider>
+            <BackgroundShader />
+            <div className="relative z-10 flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1 w-full">{children}</main>
+              <Footer />
+            </div>
+            <CartDrawer />
+          </CategoryProvider>
         </CartProvider>
       </body>
     </html>

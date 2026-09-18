@@ -22,14 +22,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   variant: explicitVariant,
   showTopBadges = true,
 }) => {
-  const { isInCart, toggleItem } = useCart();
+  const { isInCart, addItem, removeItem } = useCart();
   const variant = explicitVariant || (product.variants && product.variants[0]);
   const brand = product.brand;
   const category = product.category;
 
   const targetSlug = product.slug;
   const imageUrl = variant?.image_url || product.image_url;
-  const isShortlisted = isInCart(product.id);
+  const isAdded = isInCart(product.id);
 
   // Check if product is a powder
   const isPowder =
@@ -51,10 +51,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       : `${variant.net_weight_g}g`
     : "—";
 
-  const handleShortlistClick = (e: React.MouseEvent) => {
+  const handleCartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleItem(product, variant);
+    if (isAdded) {
+      removeItem(product.id);
+    } else {
+      addItem(product, variant);
+    }
   };
 
   return (
@@ -84,38 +88,67 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Soft Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#18181B] via-transparent to-black/30 pointer-events-none" />
 
-        {/* Top Badges & Shortlist Button */}
-        <div className="absolute top-2 sm:top-3 left-2 sm:left-3 right-2 sm:right-3 flex items-center justify-between z-10">
-          {showTopBadges && category ? (
-            <span className="text-[9px] sm:text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-[#27272A]/90 text-[#E4E4E7] border border-[#3F3F46] shadow-sm backdrop-blur-sm truncate max-w-[90px] sm:max-w-none">
+        {/* Top Category Badge */}
+        {showTopBadges && category && (
+          <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10">
+            <span className="text-[9px] sm:text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-[#27272A]/90 text-[#E4E4E7] border border-[#3F3F46] shadow-sm backdrop-blur-sm truncate max-w-[120px] sm:max-w-none">
               {category.name}
             </span>
-          ) : (
-            <span />
-          )}
+          </div>
+        )}
 
+        {/* Bottom Right: Add / Remove Cart Button */}
+        <div className="absolute bottom-2 sm:bottom-2.5 right-2 sm:right-2.5 z-10">
           <button
             type="button"
-            onClick={handleShortlistClick}
-            aria-label={isShortlisted ? "Remove from shortlist" : "Add to shortlist"}
-            title={isShortlisted ? "Shortlisted" : "Add to shortlist"}
+            onClick={handleCartClick}
+            aria-label={isAdded ? "Remove from cart" : "Add to cart"}
+            title={isAdded ? "Remove from cart" : "Add to cart"}
             className={cn(
-              "w-7 h-7 sm:w-8 sm:h-8 rounded-full border transition-all duration-200 cursor-pointer shadow-md active:scale-90 ml-auto flex items-center justify-center relative touch-manipulation",
-              isShortlisted
-                ? "bg-[#10B981] border-[#10B981] text-[#0A0A0B]"
-                : "bg-[#18181B]/85 hover:bg-[#27272A] border-[#3F3F46] text-[#A1A1AA] hover:text-white"
+              "flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full font-sans font-bold text-[9.5px] sm:text-xs",
+              "transition-all duration-200 cursor-pointer shadow-lg active:scale-95 touch-manipulation backdrop-blur-md",
+              isAdded
+                ? "bg-[#DC2626]/90 hover:bg-[#EF4444] text-white border border-[#EF4444] shadow-[0_0_14px_rgba(239,68,68,0.35)]"
+                : "bg-[#18181B]/90 hover:bg-[#27272A] text-white hover:text-[#34D399] border border-[#3F3F46] hover:border-[#10B981]/60 shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
             )}
           >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill={isShortlisted ? "currentColor" : "none"}
-              stroke="currentColor"
-              strokeWidth="2.5"
-            >
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-            </svg>
+            {isAdded ? (
+              <>
+                <svg
+                  className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[2.5] shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                <span className="leading-none select-none tracking-tight whitespace-nowrap">
+                  Remove from Cart
+                </span>
+              </>
+            ) : (
+              <>
+                <svg
+                  className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 text-[#10B981]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="8" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+                <span className="leading-none select-none tracking-tight whitespace-nowrap">
+                  Add to Cart
+                </span>
+              </>
+            )}
           </button>
         </div>
       </div>

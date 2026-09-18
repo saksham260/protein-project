@@ -638,6 +638,10 @@ function __OriginkitBase_VolumetricText(props: VolumetricTextProps) {
 
   useEffect(() => {
     if (isStatic) return;
+    if (typeof window !== "undefined") {
+      const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+      if (!mq.matches || window.innerWidth < 768) return;
+    }
     const root = rootRef.current;
     if (!root) return;
     const onMove = (e: PointerEvent) => {
@@ -656,9 +660,7 @@ function __OriginkitBase_VolumetricText(props: VolumetricTextProps) {
         y: (1 - (p.lightY ?? 25) / 100) * h,
       };
     };
-    root.addEventListener("pointermove", onMove);
-    root.addEventListener("pointerleave", onLeave);
-    window.addEventListener("pointermove", (e: PointerEvent) => {
+    const onWindowMove = (e: PointerEvent) => {
       if (!root) return;
       const r = root.getBoundingClientRect();
       // If pointer is reasonably near the canvas, respond to it
@@ -674,10 +676,14 @@ function __OriginkitBase_VolumetricText(props: VolumetricTextProps) {
           y: r.height - (e.clientY - r.top),
         };
       }
-    });
+    };
+    root.addEventListener("pointermove", onMove);
+    root.addEventListener("pointerleave", onLeave);
+    window.addEventListener("pointermove", onWindowMove);
     return () => {
       root.removeEventListener("pointermove", onMove);
       root.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("pointermove", onWindowMove);
     };
   }, [isStatic]);
 

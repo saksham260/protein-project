@@ -17,7 +17,7 @@ export const AwardProductCard: React.FC<AwardProductCardProps> = ({
     <div className="group relative flex flex-col h-full">
       {/* Card Wrapper with Dynamic Glow Ring */}
       <div
-        className="relative flex-1 rounded-2xl transition-all duration-300 group-hover:scale-[1.01]"
+        className="relative flex-1 flex flex-col h-full rounded-2xl transition-all duration-300 group-hover:scale-[1.01]"
         style={{
           boxShadow: `0 0 0 1.5px ${award.glowColor}55, 0 0 28px ${award.glowColor}25, 0 12px 32px rgba(0,0,0,0.7)`,
         }}

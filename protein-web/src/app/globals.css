@@ -108,6 +108,16 @@ body {
   box-shadow: var(--shadow-soft-xl);
 }
 
+/* Touch device optimization: prevent sticky hover transforms on touch/mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .soft-card-interactive:hover,
+  .group:hover,
+  button:hover,
+  a:hover {
+    transform: none !important;
+  }
+}
+
 /* Micro-animations */
 @keyframes fadeIn {
   from {

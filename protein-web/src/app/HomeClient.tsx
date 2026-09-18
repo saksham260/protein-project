@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ProductWithVariants } from "@/types/product";
 import { AwardCategory } from "@/lib/topPicksConfig";
 import { CATEGORIES } from "@/lib/constants";
-import { CategoryBar } from "@/components/layout/CategoryBar";
+import { useCategory } from "@/context/CategoryContext";
 import { ProductCard } from "@/components/product/ProductCard";
 import { AwardProductCard } from "@/components/product/AwardProductCard";
 import { ExploreAllCard } from "@/components/product/ExploreAllCard";
@@ -31,23 +31,23 @@ export interface HomeClientProps {
 const INITIAL_BATCH_SIZE = 12;
 const BATCH_INCREMENT = 12;
 
+const ROTATING_WORDS = ["Products", "Powder", "Chips", "Drinks", "Bars", "Snacks"];
+const ROTATING_FONT = {
+  fontFamily: "var(--font-inter), system-ui, -apple-system, sans-serif",
+  fontSize: "clamp(1.2rem, 3.5vw, 2.75rem)",
+  fontWeight: 900,
+  letterSpacing: "-0.03em",
+  lineHeight: "1.15em",
+  textAlign: "left" as const,
+};
+
 export const HomeClient: React.FC<HomeClientProps> = ({
   initialProducts,
   topPicks,
 }) => {
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const { activeCategory, setActiveCategory } = useCategory();
   const [visibleCount, setVisibleCount] = useState<number>(INITIAL_BATCH_SIZE);
-  const [scrollY, setScrollY] = useState<number>(0);
   const observerTarget = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY || 0);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Group products by category for quick lookup and category sections
   const productsByCategory = useMemo(() => {
@@ -140,18 +140,12 @@ export const HomeClient: React.FC<HomeClientProps> = ({
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Sticky Secondary Category Bar (Docked under Navbar at top-16) */}
-      <CategoryBar
-        activeCategory={activeCategory}
-        onSelectCategory={handleSelectCategory}
-      />
-
-      {/* Morphing Discover Protein Products/Chips Banner (Positioned below CategoryBar) */}
+      {/* Morphing Discover Protein Products/Chips Banner */}
       <div className="relative z-20 py-3 sm:py-6 select-none bg-transparent">
         <div className="container max-w-5xl mx-auto px-3 sm:px-4 flex items-center justify-center">
           <div className="flex items-center justify-center gap-1.5 sm:gap-3 flex-wrap">
             {/* 'Discover' */}
-            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tight whitespace-nowrap">
+            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tight whitespace-nowrap relative translate-y-0 sm:-translate-y-[3px]">
               Discover
             </span>
 
@@ -197,15 +191,8 @@ export const HomeClient: React.FC<HomeClientProps> = ({
             <div className="w-[125px] sm:w-[195px] md:w-[235px] lg:w-[265px] flex items-center justify-start shrink-0">
               <RotatingText
                 prefix=""
-                texts={["Products", "Powder", "Chips", "Drinks", "Bars", "Snacks"]}
-                font={{
-                  fontFamily: "var(--font-inter), system-ui, -apple-system, sans-serif",
-                  fontSize: "clamp(1.2rem, 3.5vw, 2.75rem)",
-                  fontWeight: 900,
-                  letterSpacing: "-0.03em",
-                  lineHeight: "1.15em",
-                  textAlign: "left",
-                }}
+                texts={ROTATING_WORDS}
+                font={ROTATING_FONT}
                 color="#0A0A0B"
                 badgeBackground="#10B981"
                 badgePaddingX={12}
@@ -296,7 +283,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
               </button>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch pt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch pt-2">
               {topPicks.map(({ award, product, editorialBlurb }) => (
                 <AwardProductCard
                   key={award.id}
@@ -374,19 +361,15 @@ export const HomeClient: React.FC<HomeClientProps> = ({
                 </button>
               </div>
 
-              {/* Horizontal Scrollable Row for Award Cards */}
-              <div className="flex gap-3 sm:gap-6 overflow-x-auto pb-4 pt-2 sm:pt-4 -mx-3 px-3 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 no-scrollbar scroll-smooth snap-x touch-pan-x">
+              {/* Product Grid: Top Picks matching identical catalog card dimensions */}
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch pt-2">
                 {topPicks.map(({ award, product, editorialBlurb }) => (
-                  <div
+                  <AwardProductCard
                     key={award.id}
-                    className="w-[72vw] min-w-[215px] max-w-[270px] sm:w-auto sm:min-w-[310px] sm:max-w-[330px] shrink-0 snap-start"
-                  >
-                    <AwardProductCard
-                      award={award}
-                      product={product}
-                      editorialBlurb={editorialBlurb}
-                    />
-                  </div>
+                    award={award}
+                    product={product}
+                    editorialBlurb={editorialBlurb}
+                  />
                 ))}
               </div>
             </section>
@@ -437,7 +420,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
                       {previewProds.map((p) => (
                         <ProductCard key={p.id} product={p} />
                       ))}

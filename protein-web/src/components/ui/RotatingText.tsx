@@ -107,9 +107,18 @@ const buildElements = (text: string, splitBy: SplitBy): WordPart[] => {
   }));
 };
 
+const DEFAULT_TEXTS = ["Products", "Powders", "Chips", "Drinks", "Bars", "Snacks"];
+const DEFAULT_TRANSITION: TransitionValue = {
+  type: "tween",
+  duration: 0.45,
+  delay: 0,
+  ease: "easeOut",
+  staggerChildren: 0.03,
+};
+
 export function RotatingText({
   prefix = "Protein",
-  texts = ["Products", "Powders", "Chips", "Drinks", "Bars", "Snacks"],
+  texts = DEFAULT_TEXTS,
   font = {
     fontFamily: "var(--font-inter), system-ui, -apple-system, sans-serif",
     fontSize: "clamp(2rem, 5.5vw, 4.5rem)",
@@ -131,19 +140,14 @@ export function RotatingText({
 
   auto = true,
 
-  transition = {
-    type: "tween",
-    duration: 0.45,
-    delay: 0,
-    ease: "easeOut",
-    staggerChildren: 0.03,
-  },
+  transition = DEFAULT_TRANSITION,
   className = "",
 }: RotatingTextProps) {
-  const safeTexts =
-    texts && texts.length > 0
-      ? texts
-      : ["Products", "Powders", "Chips", "Drinks", "Bars", "Snacks"];
+  const textsKey = (texts && texts.length > 0 ? texts : DEFAULT_TEXTS).join("|");
+  const safeTexts = useMemo(
+    () => (texts && texts.length > 0 ? texts : DEFAULT_TEXTS),
+    [textsKey]
+  );
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const contentRef = useRef<HTMLSpanElement>(null);
   const badgeRef = useRef<HTMLSpanElement>(null);
@@ -151,9 +155,19 @@ export function RotatingText({
   const isFirstRender = useRef(true);
   const hasSizedBadge = useRef(false);
 
+  const transitionRef = useRef(transition ?? DEFAULT_TRANSITION);
+  transitionRef.current = transition ?? DEFAULT_TRANSITION;
+
+  const staggerFromRef = useRef(staggerFrom);
+  staggerFromRef.current = staggerFrom;
+
+  const safeTextsRef = useRef(safeTexts);
+  safeTextsRef.current = safeTexts;
+
+  const currentWord = safeTexts[currentTextIndex] ?? "";
   const elements = useMemo(
-    () => buildElements(safeTexts[currentTextIndex] ?? "", splitBy),
-    [safeTexts, currentTextIndex, splitBy]
+    () => buildElements(currentWord, splitBy),
+    [currentWord, splitBy]
   );
 
   useEffect(() => {
@@ -162,29 +176,27 @@ export function RotatingText({
     }
   }, [safeTexts.length, currentTextIndex]);
 
+  // Persistent rotation ticker unaffected by external re-renders/scrolling
   useEffect(() => {
-    if (!auto || safeTexts.length <= 1) return;
-
-    const getNextIndex = (index: number) => {
-      if (index >= safeTexts.length - 1) return 0;
-      return index + 1;
-    };
+    if (!auto) return;
 
     const intervalId = window.setInterval(() => {
       if (isAnimating.current) return;
 
       const content = contentRef.current;
-      if (!content) return;
+      const list = safeTextsRef.current;
+      if (!content || list.length <= 1) return;
 
       const chars = content.querySelectorAll(".char");
       if (chars.length === 0) {
-        setCurrentTextIndex((index) => getNextIndex(index));
+        setCurrentTextIndex((prev) => (prev + 1) % list.length);
         return;
       }
 
-      const duration = transition.duration ?? 0.45;
-      const staggerEach = transition.staggerChildren ?? 0.03;
-      const ease = mapEase(transition.ease);
+      const t = transitionRef.current;
+      const duration = t.duration ?? 0.45;
+      const staggerEach = t.staggerChildren ?? 0.03;
+      const ease = mapEase(t.ease);
 
       isAnimating.current = true;
       gsap.killTweensOf(chars);
@@ -195,18 +207,19 @@ export function RotatingText({
         duration,
         stagger: {
           each: staggerEach,
-          from: mapStaggerFrom(staggerFrom),
+          from: mapStaggerFrom(staggerFromRef.current),
         },
         ease,
         onComplete: () => {
-          setCurrentTextIndex((index) => getNextIndex(index));
+          setCurrentTextIndex((prev) => (prev + 1) % list.length);
         },
       });
     }, ROTATION_INTERVAL_MS);
 
     return () => window.clearInterval(intervalId);
-  }, [auto, safeTexts.length, staggerFrom, transition]);
+  }, [auto]);
 
+  // Text entry animation (runs purely on currentTextIndex transition)
   useEffect(() => {
     const content = contentRef.current;
     if (!content) return;
@@ -219,10 +232,11 @@ export function RotatingText({
 
     gsap.killTweensOf(chars);
 
-    const duration = transition.duration ?? 0.45;
-    const delay = isFirstRender.current ? (transition.delay ?? 0) : 0;
-    const staggerEach = transition.staggerChildren ?? 0.03;
-    const ease = mapEase(transition.ease);
+    const t = transitionRef.current;
+    const duration = t.duration ?? 0.45;
+    const delay = isFirstRender.current ? (t.delay ?? 0) : 0;
+    const staggerEach = t.staggerChildren ?? 0.03;
+    const ease = mapEase(t.ease);
 
     isFirstRender.current = false;
     isAnimating.current = true;
@@ -237,7 +251,7 @@ export function RotatingText({
         delay,
         stagger: {
           each: staggerEach,
-          from: mapStaggerFrom(staggerFrom),
+          from: mapStaggerFrom(staggerFromRef.current),
         },
         ease,
         onComplete: () => {
@@ -245,20 +259,18 @@ export function RotatingText({
         },
       }
     );
+  }, [currentTextIndex]);
 
-    return () => {
-      gsap.killTweensOf(chars);
-    };
-  }, [currentTextIndex, elements, staggerFrom, transition]);
-
+  // Badge smooth width adjustment
   useIsomorphicLayoutEffect(() => {
     const badge = badgeRef.current;
     const content = contentRef.current;
     if (!badge || !content) return;
 
     const nextWidth = Math.ceil(content.scrollWidth + badgePaddingX * 2);
-    const duration = transition.duration ?? 0.45;
-    const ease = mapEase(transition.ease);
+    const t = transitionRef.current;
+    const duration = t.duration ?? 0.45;
+    const ease = mapEase(t.ease);
 
     gsap.killTweensOf(badge);
 
@@ -273,7 +285,7 @@ export function RotatingText({
       duration,
       ease,
     });
-  }, [currentTextIndex, elements, badgePaddingX, transition]);
+  }, [currentTextIndex, badgePaddingX]);
 
   const textAlign =
     (font.textAlign as React.CSSProperties["textAlign"]) ?? "center";

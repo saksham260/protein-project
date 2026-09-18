@@ -246,14 +246,14 @@ export const ExploreAllCard: React.FC<ExploreAllCardProps> = ({
           </svg>
         </div>
 
-        {/* Bottom: ONLY TEXT ON THE CARD — "Explore All" */}
-        <div className="mt-auto relative z-10 flex flex-col pt-4 sm:pt-8">
+        {/* Center: "Explore All" text centered in the card */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 p-4 sm:p-7 text-center">
           <span
             ref={textRef}
             style={{
               color: restTextColor,
             }}
-            className="text-xl sm:text-3xl font-black tracking-tight leading-tight select-none"
+            className="text-xl sm:text-3xl font-black tracking-tight leading-tight select-none inline-block text-center"
           >
             Explore All
           </span>

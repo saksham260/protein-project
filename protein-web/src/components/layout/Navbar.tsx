@@ -2,9 +2,12 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { NavbarSearch } from "@/components/search/NavbarSearch";
 import { CartButton } from "@/components/cart/CartButton";
 import { LoginButton } from "@/components/auth/LoginButton";
+import { useCategory } from "@/context/CategoryContext";
+import { CATEGORY_TABS } from "@/components/layout/CategoryBar";
 import { cn } from "@/lib/utils";
 
 // --- Originkit Light Glass Engine Constants & Utilities ---
@@ -102,8 +105,13 @@ const RING_MASK: React.CSSProperties = {
 } as React.CSSProperties;
 
 export const Navbar: React.FC = () => {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const { activeCategory, setActiveCategory } = useCategory();
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,6 +123,17 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Auto-scroll active category pill into center view on mobile/desktop
+  useEffect(() => {
+    if (isHome && activeCategory && tabRefs.current[activeCategory]) {
+      tabRefs.current[activeCategory]?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [isHome, activeCategory]);
+
   // Glass tracking state and refs
   const scope = useRef<HTMLElement>(null);
   const glassRef = useRef<HTMLElement>(null);
@@ -122,11 +141,27 @@ export const Navbar: React.FC = () => {
   const strokeRef = useRef<HTMLSpanElement>(null);
 
   const [glassy, setGlassy] = useState(true);
+  const [canHover, setCanHover] = useState(false);
+
   useEffect(() => setGlassy(supportsBackdrop()), []);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const check = () => {
+      setCanHover(mq.matches && window.innerWidth >= 768);
+    };
+    check();
+    mq.addEventListener("change", check);
+    window.addEventListener("resize", check);
+    return () => {
+      mq.removeEventListener("change", check);
+      window.removeEventListener("resize", check);
+    };
+  }, []);
+
   const smoothness = 65;
-  const lightIntensity = 100;
-  const lightSize = 35;
+  const lightIntensity = 35;
+  const lightSize = 30;
 
   const tgt = useRef({ x: 0.5, y: 0.5, on: 0 });
   const cur = useRef({ x: 0.5, y: 0.5, on: 0 });
@@ -145,6 +180,7 @@ export const Navbar: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (!canHover) return;
     const el = glassRef.current;
     const root = scope.current;
     if (!el || !root) return;
@@ -159,7 +195,7 @@ export const Navbar: React.FC = () => {
     const ro = new ResizeObserver(write);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [lightSize]);
+  }, [canHover, lightSize]);
 
   const paint = () => {
     const root = scope.current;
@@ -264,6 +300,7 @@ export const Navbar: React.FC = () => {
   };
 
   const trackPointer = (e: React.PointerEvent) => {
+    if (!canHover) return;
     const el = glassRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -274,6 +311,7 @@ export const Navbar: React.FC = () => {
   };
 
   const onEnter = (e: React.PointerEvent) => {
+    if (!canHover) return;
     const el = glassRef.current;
     if (el) {
       const r = el.getBoundingClientRect();
@@ -293,6 +331,7 @@ export const Navbar: React.FC = () => {
   };
 
   const onLeave = (e: React.PointerEvent) => {
+    if (!canHover) return;
     trackPointer(e);
     tgt.current.on = 0;
     kick();
@@ -303,7 +342,7 @@ export const Navbar: React.FC = () => {
     ? `blur(${BLUR}px) saturate(180%) brightness(108%)`
     : "none";
 
-  const lightRGB = parseColor("rgba(255, 255, 255, 0.45)");
+  const lightRGB = parseColor("rgba(255, 255, 255, 0.22)");
   const lightClear = rgba(lightRGB, 0);
   const softStops = (peak: number) =>
     LIGHT_FALLOFF.map(
@@ -348,24 +387,26 @@ export const Navbar: React.FC = () => {
         }}
         className="sticky top-0 z-50 w-full transition-all duration-300 select-none"
       >
-        {/* Dynamic Light Spotlight */}
-        <span
-          ref={lightRef}
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 1,
-            opacity: 0,
-            pointerEvents: "none",
-            background: lightGradient,
-            mixBlendMode: "screen",
-            display: isScrolled ? "block" : "none",
-          }}
-        />
+        {/* Dynamic Light Spotlight - Spans both Navbar & Categories together (desktop only) */}
+        {canHover && isScrolled && (
+          <span
+            ref={lightRef}
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+              opacity: 0,
+              pointerEvents: "none",
+              background: lightGradient,
+              mixBlendMode: "screen",
+            }}
+            className="hidden md:block"
+          />
+        )}
 
-        {/* Dynamic Edge Stroke Highlight */}
-        {strokePx > 0 && (
+        {/* Dynamic Edge Stroke Highlight - Spans outer perimeter of both rows (desktop only) */}
+        {canHover && isScrolled && strokePx > 0 && (
           <span
             ref={strokeRef}
             aria-hidden
@@ -380,12 +421,13 @@ export const Navbar: React.FC = () => {
               zIndex: 2,
               ["--la" as any]: "0",
               ["--lw" as any]: "30",
-              display: isScrolled ? "block" : "none",
               ...RING_MASK,
             }}
+            className="hidden md:block"
           />
         )}
 
+        {/* Row 1: Navbar Brand, Search, Actions */}
         <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4 relative z-10">
           {/* Logo & Brand Title */}
           <Link
@@ -431,6 +473,39 @@ export const Navbar: React.FC = () => {
             <CartButton />
           </div>
         </div>
+
+        {/* Row 2: Product Category Tabs (Unified in the SAME glass container) */}
+        {isHome && (
+          <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex justify-center relative z-10 pb-2.5 pt-0">
+            <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-full sm:w-auto -mx-3 px-3 sm:mx-0 sm:px-0 touch-pan-x">
+              {CATEGORY_TABS.map((tab) => {
+                const isActive = activeCategory === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    ref={(el) => {
+                      tabRefs.current[tab.id] = el;
+                    }}
+                    type="button"
+                    onClick={() => {
+                      setActiveCategory(tab.id);
+                      window.scrollTo({ top: 0, behavior: "instant" });
+                    }}
+                    className={cn(
+                      "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-1.5 min-h-[38px] sm:min-h-[34px] rounded-full text-xs font-mono font-medium whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border active:scale-95 touch-manipulation",
+                      isActive
+                        ? "bg-[#10B981]/15 text-[#10B981] border-[#10B981]/50 shadow-[0_0_12px_rgba(16,185,129,0.25)] font-bold"
+                        : "bg-[#18181B]/80 text-[#A1A1AA] border-[#27272A] hover:text-white hover:bg-[#27272A] hover:border-[#3F3F46]"
+                    )}
+                  >
+                    <span className="text-sm select-none">{tab.icon}</span>
+                    <span>{tab.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
     </>
   );
