@@ -33,6 +33,7 @@ export type RotatingTextProps = {
   color?: string;
   prefixColor?: string;
   badgeBackground?: string;
+  badgeShadow?: string;
   badgePaddingX?: number;
   badgePaddingY?: number;
   badgeRadius?: number;
@@ -129,7 +130,8 @@ export function RotatingText({
   },
   color = "#0A0A0B",
   prefixColor = "#FFFFFF",
-  badgeBackground = "#10B981",
+  badgeBackground = "#D97706",
+  badgeShadow = "none",
   badgePaddingX = 20,
   badgePaddingY = 6,
   badgeRadius = 18,
@@ -332,7 +334,7 @@ export function RotatingText({
           paddingLeft: badgePaddingX,
           paddingRight: badgePaddingX,
           boxSizing: "border-box",
-          boxShadow: "0 0 30px -4px rgba(16, 185, 129, 0.35)",
+          boxShadow: badgeShadow || "none",
         }}
       >
         <span

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import BackgroundShader from "@/components/ui/BackgroundShader";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
@@ -39,11 +38,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark`}>
-      <body className="min-h-screen flex flex-col bg-[#0A0A0B] text-[#E4E4E7] font-sans antialiased selection:bg-[#10B981] selection:text-[#0A0A0B] relative">
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans antialiased selection:bg-[var(--color-primary)] selection:text-white relative">
         <CartProvider>
           <CategoryProvider>
-            <BackgroundShader />
             <div className="relative z-10 flex flex-col min-h-screen">
               <Navbar />
               <main className="flex-1 w-full">{children}</main>

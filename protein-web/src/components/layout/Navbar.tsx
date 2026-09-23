@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { NavbarSearch } from "@/components/search/NavbarSearch";
 import { CartButton } from "@/components/cart/CartButton";
 import { LoginButton } from "@/components/auth/LoginButton";
@@ -105,6 +105,7 @@ const RING_MASK: React.CSSProperties = {
 } as React.CSSProperties;
 
 export const Navbar: React.FC = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
@@ -123,16 +124,24 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Auto-scroll active category pill into center view on mobile/desktop
+  // Auto-scroll active category tab into center view on mobile/desktop
   useEffect(() => {
-    if (isHome && activeCategory && tabRefs.current[activeCategory]) {
-      tabRefs.current[activeCategory]?.scrollIntoView({
+    const currentTab = pathname.startsWith("/category/")
+      ? pathname.replace("/category/", "").split("/")[0]
+      : pathname === "/top-picks"
+      ? "top-picks"
+      : isHome
+      ? activeCategory
+      : null;
+
+    if (currentTab && tabRefs.current[currentTab]) {
+      tabRefs.current[currentTab]?.scrollIntoView({
         behavior: "smooth",
         inline: "center",
         block: "nearest",
       });
     }
-  }, [isHome, activeCategory]);
+  }, [pathname, isHome, activeCategory]);
 
   // Glass tracking state and refs
   const scope = useRef<HTMLElement>(null);
@@ -373,14 +382,14 @@ export const Navbar: React.FC = () => {
           zIndex: 50,
           width: "100%",
           boxSizing: "border-box",
-          background: isScrolled ? "rgba(10, 10, 11, 0.75)" : "transparent",
+          background: isScrolled ? "rgba(20, 18, 16, 0.85)" : "transparent",
           backdropFilter: isScrolled && glassy ? backdrop : "none",
           WebkitBackdropFilter: isScrolled && glassy ? backdrop : "none",
           borderBottom: isScrolled
-            ? "1px solid rgba(39, 39, 42, 0.7)"
+            ? "1px solid rgba(51, 45, 39, 0.8)"
             : "1px solid transparent",
           boxShadow: isScrolled
-            ? "0 8px 32px rgba(0, 0, 0, 0.5)"
+            ? "0 4px 20px rgba(0, 0, 0, 0.45)"
             : "none",
           ["--mx" as any]: "50%",
           ["--my" as any]: "50%",
@@ -432,9 +441,10 @@ export const Navbar: React.FC = () => {
           {/* Logo & Brand Title */}
           <Link
             href="/"
+            onClick={() => setActiveCategory("all")}
             className="flex items-center gap-2 sm:gap-2.5 group shrink-0"
           >
-            <span className="w-8 h-8 rounded-xl bg-[#10B981] flex items-center justify-center text-black font-black text-sm shadow-[0_0_16px_rgba(16,185,129,0.35)] group-hover:scale-105 transition-transform shrink-0">
+            <span className="w-8 h-8 rounded-xl bg-[#D97706] flex items-center justify-center text-black font-black text-sm shadow-[0_0_16px_rgba(217,119,6,0.35)] group-hover:scale-105 transition-transform shrink-0">
               ⚡
             </span>
             <div
@@ -448,7 +458,7 @@ export const Navbar: React.FC = () => {
               <span className="text-sm sm:text-base font-black tracking-tight text-white leading-none whitespace-nowrap">
                 Protein Engine
               </span>
-              <span className="text-[9px] font-mono tracking-widest text-[#34D399] uppercase mt-0.5 whitespace-nowrap">
+              <span className="text-[9px] font-mono tracking-widest text-[#D97706] uppercase mt-0.5 whitespace-nowrap">
                 Independent Platform
               </span>
             </div>
@@ -474,38 +484,56 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Row 2: Product Category Tabs (Unified in the SAME glass container) */}
-        {isHome && (
-          <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex justify-center relative z-10 pb-2.5 pt-0">
-            <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-full sm:w-auto -mx-3 px-3 sm:mx-0 sm:px-0 touch-pan-x">
-              {CATEGORY_TABS.map((tab) => {
-                const isActive = activeCategory === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    ref={(el) => {
-                      tabRefs.current[tab.id] = el;
-                    }}
-                    type="button"
-                    onClick={() => {
-                      setActiveCategory(tab.id);
-                      window.scrollTo({ top: 0, behavior: "instant" });
-                    }}
-                    className={cn(
-                      "flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-1.5 min-h-[38px] sm:min-h-[34px] rounded-full text-xs font-mono font-medium whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border active:scale-95 touch-manipulation",
-                      isActive
-                        ? "bg-[#10B981]/15 text-[#10B981] border-[#10B981]/50 shadow-[0_0_12px_rgba(16,185,129,0.25)] font-bold"
-                        : "bg-[#18181B]/80 text-[#A1A1AA] border-[#27272A] hover:text-white hover:bg-[#27272A] hover:border-[#3F3F46]"
-                    )}
-                  >
-                    <span className="text-sm select-none">{tab.icon}</span>
-                    <span>{tab.name}</span>
-                  </button>
-                );
-              })}
-            </div>
+        {/* Row 2: Product Category Tabs (Always open) */}
+        <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex justify-center relative z-10 pb-2.5 pt-0">
+          <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-full sm:w-auto -mx-3 px-3 sm:mx-0 sm:px-0 touch-pan-x">
+            {CATEGORY_TABS.map((tab) => {
+              const currentCategorySlug = pathname.startsWith("/category/")
+                ? pathname.replace("/category/", "").split("/")[0]
+                : null;
+
+              const isTabActive =
+                tab.id === "all"
+                  ? pathname === "/" && activeCategory === "all"
+                  : tab.id === "top-picks"
+                  ? pathname === "/top-picks" || (pathname === "/" && activeCategory === "top-picks")
+                  : currentCategorySlug === tab.id;
+
+              return (
+                <button
+                  key={tab.id}
+                  ref={(el) => {
+                    tabRefs.current[tab.id] = el;
+                  }}
+                  type="button"
+                  onClick={() => {
+                    if (tab.id === "all") {
+                      setActiveCategory("all");
+                      if (pathname !== "/") {
+                        router.push("/");
+                      } else {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    } else if (tab.id === "top-picks") {
+                      router.push("/top-picks");
+                    } else {
+                      router.push(`/category/${tab.id}`);
+                    }
+                  }}
+                  className={cn(
+                    "flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border active:scale-95 touch-manipulation select-none",
+                    isTabActive
+                      ? "bg-[#D97706] text-white border-[#D97706] font-black"
+                      : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27] hover:text-[#F5F2EB] hover:bg-[#26221E] hover:border-[#332D27]"
+                  )}
+                >
+                  <span className="text-sm select-none">{tab.icon}</span>
+                  <span className="tracking-tight">{tab.name}</span>
+                </button>
+              );
+            })}
           </div>
-        )}
+        </div>
       </header>
     </>
   );

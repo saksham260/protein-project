@@ -77,7 +77,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             )}
 
             {/* Subtle Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#18181B]/80 via-transparent to-black/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
             {/* Top Category Badge */}
             <div className="absolute top-5 left-5 z-10">

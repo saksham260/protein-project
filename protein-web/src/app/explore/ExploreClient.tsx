@@ -30,23 +30,19 @@ export function ExploreClient() {
   useEffect(() => {
     let isMounted = true;
 
-    const timer = setTimeout(() => {
-      setLoading(true);
-      getProducts(filters)
-        .then((data) => {
-          if (isMounted) {
-            setProducts(data);
-            setLoading(false);
-          }
-        })
-        .catch(() => {
-          if (isMounted) setLoading(false);
-        });
-    }, 0);
+    getProducts(filters)
+      .then((data) => {
+        if (isMounted) {
+          setProducts(data);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (isMounted) setLoading(false);
+      });
 
     return () => {
       isMounted = false;
-      clearTimeout(timer);
     };
   }, [filters]);
 
@@ -110,9 +106,9 @@ export function ExploreClient() {
       </div>
 
       {/* Main Grid & Sidebar Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start min-h-[85vh]">
         {/* Sticky Desktop Left Sidebar */}
-        <aside className="hidden lg:block lg:col-span-3 sticky top-24">
+        <aside className="hidden lg:block lg:col-span-3 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1.5 custom-scrollbar overscroll-contain">
           <FilterPanel
             filters={filters}
             onCategoryChange={setCategory}
@@ -125,7 +121,7 @@ export function ExploreClient() {
         </aside>
 
         {/* Product Results Column */}
-        <div className="lg:col-span-9 flex flex-col gap-8">
+        <div className="lg:col-span-9 flex flex-col gap-8 min-h-[75vh]">
           {/* Results Status Bar */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

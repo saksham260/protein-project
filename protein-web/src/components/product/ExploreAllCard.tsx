@@ -40,14 +40,14 @@ export const ExploreAllCard: React.FC<ExploreAllCardProps> = ({
 
   // Emerald variant: starts vibrant emerald #10B981, expands black #0A0A0B circle on hover
   // Dark variant: starts #18181B dark, expands emerald #10B981 circle on hover
-  const baseBg = isEmerald ? "#10B981" : "#18181B";
-  const badgeBg = isEmerald ? "#0A0A0B" : "#10B981";
-  const restTextColor = isEmerald ? "#0A0A0B" : "#FFFFFF";
-  const hoverTextColor = isEmerald ? "#FFFFFF" : "#0A0A0B";
-  const restArrowColor = isEmerald ? "#10B981" : "#0A0A0B";
-  const hoverArrowColor = isEmerald ? "#10B981" : "#0A0A0B";
-  const baseBorder = isEmerald ? "rgba(16, 185, 129, 0.4)" : "#27272A";
-  const hoverBorder = "#10B981";
+  const baseBg = isEmerald ? "#D97706" : "#1C1916";
+  const badgeBg = isEmerald ? "#141210" : "#D97706";
+  const restTextColor = isEmerald ? "#FFFFFF" : "#F5F2EB";
+  const hoverTextColor = "#FFFFFF";
+  const restArrowColor = isEmerald ? "#FFFFFF" : "#F5F2EB";
+  const hoverArrowColor = "#FFFFFF";
+  const baseBorder = isEmerald ? "rgba(217, 119, 6, 0.8)" : "#332D27";
+  const hoverBorder = "#D97706";
 
   const transition: Transition = {
     ease: [0.44, 0, 0.56, 1],

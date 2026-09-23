@@ -49,22 +49,22 @@ export const CartDrawer: React.FC = () => {
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
         <div
           ref={drawerRef}
-          className="w-screen max-w-md bg-[#121215] border-l border-[#27272A] shadow-2xl flex flex-col transform transition-transform duration-300 ease-out animate-in slide-in-from-right duration-300"
+          className="w-screen max-w-md bg-[#141210] border-l border-[#332D27] shadow-2xl flex flex-col transform transition-transform duration-300 ease-out animate-in slide-in-from-right duration-300"
         >
           {/* Header */}
-          <div className="p-5 border-b border-[#27272A] flex items-center justify-between bg-[#18181B]/70">
+          <div className="p-5 border-b border-[#332D27] flex items-center justify-between bg-[#1C1916]/90">
             <div className="flex items-center gap-2.5">
-              <span className="w-7 h-7 rounded-lg bg-[#10B981]/20 border border-[#10B981]/40 flex items-center justify-center text-[#10B981]">
+              <span className="w-8 h-8 rounded-xl bg-[#D97706]/15 border border-[#D97706]/30 flex items-center justify-center text-sm">
                 🛒
               </span>
               <div>
                 <h2 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
                   Your Shortlist
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#27272A] text-[#A1A1AA] font-mono">
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-[#26221E] text-[#968E85] font-mono border border-[#332D27]">
                     {itemCount}
                   </span>
                 </h2>
-                <p className="text-[11px] text-[#A1A1AA] font-mono mt-0.5">
+                <p className="text-[11px] text-[#968E85] font-mono mt-0.5">
                   Saved products with instant direct buy links
                 </p>
               </div>
@@ -75,7 +75,7 @@ export const CartDrawer: React.FC = () => {
                 <button
                   type="button"
                   onClick={clearCart}
-                  className="text-[11px] font-mono text-[#A1A1AA] hover:text-red-400 px-2 py-1 rounded transition-colors"
+                  className="text-[11px] font-mono text-[#968E85] hover:text-red-400 px-2 py-1 rounded transition-colors"
                 >
                   Clear
                 </button>
@@ -83,7 +83,7 @@ export const CartDrawer: React.FC = () => {
               <button
                 type="button"
                 onClick={closeCart}
-                className="w-8 h-8 rounded-full bg-[#27272A] hover:bg-[#3F3F46] text-[#E4E4E7] flex items-center justify-center text-sm transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-xl bg-[#26221E] hover:bg-[#332D27] text-[#968E85] hover:text-[#F5F2EB] border border-[#332D27] flex items-center justify-center text-sm transition-colors cursor-pointer"
                 aria-label="Close shortlist"
               >
                 ✕
@@ -94,23 +94,24 @@ export const CartDrawer: React.FC = () => {
           {/* Body Content */}
           <div className="flex-1 overflow-y-auto p-5 flex flex-col gap-4">
             {itemCount === 0 ? (
-              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 gap-4 text-[#A1A1AA]">
-                <div className="w-16 h-16 rounded-2xl bg-[#18181B] border border-[#27272A] flex items-center justify-center text-3xl">
+              <div className="flex-1 flex flex-col items-center justify-center text-center p-8 gap-4 text-[#968E85]">
+                <div className="w-16 h-16 rounded-2xl bg-[#1C1916] border border-[#332D27] flex items-center justify-center text-3xl shadow-sm">
                   🏷️
                 </div>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-base font-bold text-white font-sans">No products shortlisted yet</h3>
-                  <p className="text-xs font-mono max-w-xs leading-relaxed">
+                  <h3 className="text-base font-bold text-[#F5F2EB] font-sans">No products shortlisted yet</h3>
+                  <p className="text-xs font-mono max-w-xs leading-relaxed text-[#968E85]">
                     Click the shortlist bookmark on any product card to compare and buy directly from top stores.
                   </p>
                 </div>
-                <button
-                  type="button"
+                <Link
+                  href="/explore"
                   onClick={closeCart}
-                  className="mt-2 px-5 py-2 rounded-full bg-[#10B981] text-[#0A0A0B] text-xs font-mono font-bold hover:bg-[#34D399] transition-colors"
+                  className="mt-2 px-6 py-2.5 rounded-xl bg-[#D97706] hover:bg-[#B45309] text-white text-xs font-sans font-bold tracking-tight transition-all active:scale-95 shadow-sm inline-flex items-center gap-2 cursor-pointer"
                 >
-                  Explore Catalog
-                </button>
+                  <span>Explore Catalog</span>
+                  <span>→</span>
+                </Link>
               </div>
             ) : (
               items.map(({ productId, product, variant }) => {
@@ -223,7 +224,7 @@ export const CartDrawer: React.FC = () => {
                             <Link
                               href={`/product/${product.slug}`}
                               onClick={closeCart}
-                              className="text-[11px] font-mono text-[#34D399] hover:underline"
+                              className="text-[11px] font-mono text-[#D97706] hover:underline"
                             >
                               View Details →
                             </Link>
@@ -239,12 +240,12 @@ export const CartDrawer: React.FC = () => {
 
           {/* Drawer Footer */}
           {itemCount > 0 && (
-            <div className="p-4 border-t border-[#27272A] bg-[#18181B]/80 flex flex-col gap-2">
-              <div className="flex items-center justify-between text-xs font-mono text-[#A1A1AA]">
+            <div className="p-4 border-t border-[#332D27] bg-[#1C1916]/90 flex flex-col gap-2">
+              <div className="flex items-center justify-between text-xs font-mono text-[#968E85]">
                 <span>Total Shortlisted</span>
-                <span className="text-white font-bold">{itemCount} items</span>
+                <span className="text-[#F5F2EB] font-bold">{itemCount} items</span>
               </div>
-              <p className="text-[10px] text-zinc-400 font-mono text-center">
+              <p className="text-[10px] text-[#787067] font-mono text-center">
                 Prices and availability are tracked live across Indian stores.
               </p>
             </div>

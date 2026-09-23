@@ -10,7 +10,7 @@ export interface CategoryBarProps {
 }
 
 export const CATEGORY_TABS = [
-  { id: "all", name: "All Products", icon: "⚡" },
+  { id: "all", name: "Home", icon: "🏠" },
   { id: "top-picks", name: "Top Picks", icon: "🏆" },
   ...CATEGORIES.map((cat) => ({
     id: cat.slug,

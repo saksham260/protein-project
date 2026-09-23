@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { ProductWithVariants } from "@/types/product";
 import { AwardCategory } from "@/lib/topPicksConfig";
 import { CATEGORIES } from "@/lib/constants";
@@ -45,6 +47,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
   initialProducts,
   topPicks,
 }) => {
+  const router = useRouter();
   const { activeCategory, setActiveCategory } = useCategory();
   const [visibleCount, setVisibleCount] = useState<number>(INITIAL_BATCH_SIZE);
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -63,6 +66,31 @@ export const HomeClient: React.FC<HomeClientProps> = ({
     }
     return map;
   }, [initialProducts]);
+
+  // Suggested for you (mix of 8 representative products across categories)
+  const suggestedProducts = useMemo(() => {
+    if (!initialProducts || initialProducts.length === 0) return [];
+    const powders = productsByCategory["protein-powders"] || [];
+    const bars = productsByCategory["protein-bars"] || [];
+    const drinks = productsByCategory["rtd-drinks"] || [];
+    const snacks = productsByCategory["savory-snacks"] || [];
+
+    const picked: ProductWithVariants[] = [];
+    const pools = [powders, bars, drinks, snacks].filter((p) => p.length > 0);
+    let round = 0;
+    while (picked.length < 8 && round < 10) {
+      for (const pool of pools) {
+        if (pool[round] && picked.length < 8 && !picked.some((p) => p.id === pool[round].id)) {
+          picked.push(pool[round]);
+        }
+      }
+      round++;
+    }
+    if (picked.length < 4) {
+      return initialProducts.slice(0, 8);
+    }
+    return picked;
+  }, [initialProducts, productsByCategory]);
 
   // Products to display in current view
   const filteredProducts = useMemo(() => {
@@ -132,8 +160,16 @@ export const HomeClient: React.FC<HomeClientProps> = ({
   }, [activeCategory]);
 
   const handleSelectCategory = (slug: string) => {
-    setActiveCategory(slug);
-    window.scrollTo({ top: 0, behavior: "instant" });
+    if (slug === "all") {
+      setActiveCategory("all");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (slug === "top-picks") {
+      setActiveCategory("top-picks");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setActiveCategory(slug);
+      router.push(`/category/${slug}`);
+    }
   };
 
   const activeCategoryMeta = CATEGORIES.find((c) => c.slug === activeCategory);
@@ -145,7 +181,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
         <div className="container max-w-5xl mx-auto px-3 sm:px-4 flex items-center justify-center">
           <div className="flex items-center justify-center gap-1.5 sm:gap-3 flex-wrap">
             {/* 'Discover' */}
-            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tight whitespace-nowrap relative translate-y-0 sm:-translate-y-[3px]">
+            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tight whitespace-nowrap relative z-10 translate-y-0 sm:-translate-y-[3px]">
               Discover
             </span>
 
@@ -156,12 +192,12 @@ export const HomeClient: React.FC<HomeClientProps> = ({
 
             {/* 'Protein' (Desktop VolumetricText) */}
             <div className="hidden sm:flex relative w-[140px] md:w-[170px] lg:w-[200px] h-12 md:h-14 lg:h-16 items-center justify-center shrink-0">
-              <div className="absolute -inset-x-20 -inset-y-20 pointer-events-none flex items-center justify-center">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1400px] xl:w-[1800px] max-w-[98vw] h-[520px] md:h-[620px] pointer-events-none flex items-center justify-center z-0">
                 <VolumetricText
                   text="Protein"
                   backgroundColor="transparent"
-                  textColor="#ffffff"
-                  shadowColor="#ffffff"
+                  textColor="#F5F2EB"
+                  shadowColor="#D97706"
                   noWrap={true}
                   fitToWidth={true}
                   fitPadding={2}
@@ -174,8 +210,9 @@ export const HomeClient: React.FC<HomeClientProps> = ({
                   lightSize={36}
                   lightFalloff={48}
                   shadowStrength={180}
-                  rainbow={25}
-                  samples={96}
+                  rainbow={0}
+                  dither={0}
+                  samples={100}
                   quality={100}
                   font={{
                     fontFamily: "Inter, system-ui, sans-serif",
@@ -188,13 +225,13 @@ export const HomeClient: React.FC<HomeClientProps> = ({
             </div>
 
             {/* Morphing Words (Fixed reserved width: expands to the right without moving 'Discover Protein') */}
-            <div className="w-[125px] sm:w-[195px] md:w-[235px] lg:w-[265px] flex items-center justify-start shrink-0">
+            <div className="w-[125px] sm:w-[195px] md:w-[235px] lg:w-[265px] flex items-center justify-start shrink-0 relative z-10">
               <RotatingText
                 prefix=""
                 texts={ROTATING_WORDS}
                 font={ROTATING_FONT}
-                color="#0A0A0B"
-                badgeBackground="#10B981"
+                color="#FFFFFF"
+                badgeBackground="#D97706"
                 badgePaddingX={12}
                 badgePaddingY={3}
                 badgeRadius={12}
@@ -207,72 +244,18 @@ export const HomeClient: React.FC<HomeClientProps> = ({
       </div>
 
       <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-6 pb-20 flex flex-col gap-8 sm:gap-14">
-        {/* CASE 1: Filtered Specific Category View */}
-        {activeCategory !== "all" && activeCategory !== "top-picks" && activeCategoryMeta && (
-          <section className="flex flex-col gap-6 animate-in fade-in duration-200">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#27272A]">
-              <div className="flex items-center gap-3">
-                <span className="text-3xl">{activeCategoryMeta.icon}</span>
-                <div>
-                  <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                    {activeCategoryMeta.name}
-                  </h1>
-                  <p className="text-xs font-mono text-[#A1A1AA] mt-0.5">
-                    Showing {filteredProducts.length} verified products • {activeCategoryMeta.description}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => handleSelectCategory("all")}
-                  className="px-3.5 py-1.5 rounded-full bg-[#18181B] hover:bg-[#27272A] border border-[#27272A] text-xs font-mono text-[#E4E4E7] hover:text-white transition-colors"
-                >
-                  ← Show All Products
-                </button>
-                <Link
-                  href={`/category/${activeCategoryMeta.slug}`}
-                  className="px-3.5 py-1.5 rounded-full bg-[#10B981]/15 hover:bg-[#10B981]/25 border border-[#10B981]/30 text-xs font-mono text-[#10B981] font-bold transition-colors"
-                >
-                  Advanced Filters →
-                </Link>
-              </div>
-            </div>
-
-            {filteredProducts.length === 0 ? (
-              <div className="p-12 text-center text-[#A1A1AA] font-mono text-sm">
-                No products found in this category.
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
-                {filteredProducts.slice(0, 11).map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-                {filteredProducts.length > 11 && (
-                  <ExploreAllCard
-                    href={`/category/${activeCategoryMeta.slug}`}
-                  />
-                )}
-              </div>
-            )}
-          </section>
-        )}
 
         {/* CASE 2: Top Picks Active Tab View */}
         {activeCategory === "top-picks" && (
           <section className="flex flex-col gap-6 sm:gap-8 animate-in fade-in duration-200">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#27272A]">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-[#332D27]">
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981]">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
                   Editor&apos;s Picks
                 </span>
-                <h1 className="text-2xl sm:text-4xl font-black text-white mt-1 tracking-tight">
+                <h1 className="text-2xl sm:text-4xl font-black text-[#F5F2EB] mt-0.5 tracking-tight">
                   Top Picks of the Month
                 </h1>
-                <p className="text-xs sm:text-sm font-mono text-[#A1A1AA] mt-1">
-                  Hand-verified and ranked by real nutritional data. No sponsorships, zero brand bias.
-                </p>
               </div>
               <button
                 type="button"
@@ -296,183 +279,194 @@ export const HomeClient: React.FC<HomeClientProps> = ({
           </section>
         )}
 
-        {/* CASE 3: Default "All" Products Experience (Zepto-style discovery) */}
+        {/* CASE 3: Default "All" Products Experience */}
         {activeCategory === "all" && (
           <>
-            {/* All Products Catalog: 11 Products + 12th Explore All Card */}
+            {/* SECTION 1: Suggested for You */}
             <section className="flex flex-col gap-4 sm:gap-6 pt-1">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-2 border-b border-[#27272A]/70">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-3 border-b border-[#332D27]/70">
                 <div>
-                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981]">
-                    Direct Catalog
-                  </span>
-                  <h2 className="text-xl sm:text-3xl font-black text-white mt-0.5 tracking-tight">
-                    All Products
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">✨</span>
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
+                      Curated For You
+                    </span>
+                  </div>
+                  <h2 className="text-xl sm:text-3xl font-black text-[#F5F2EB] mt-0.5 tracking-tight">
+                    Suggested for You
                   </h2>
-                  <p className="text-xs font-mono text-[#A1A1AA] mt-0.5">
-                    Showing {Math.min(11, filteredProducts.length)} of {initialProducts.length} verified products
-                  </p>
                 </div>
                 <Link
                   href="/explore"
-                  className="text-xs font-mono font-bold text-[#A1A1AA] hover:text-white transition-colors flex items-center gap-1"
+                  className="text-xs font-mono font-bold text-[#968E85] hover:text-[#F5F2EB] transition-colors flex items-center gap-1 self-start sm:self-auto"
                 >
-                  Sort & Filter Catalog →
+                  <span>Explore Full Catalog</span>
+                  <span>→</span>
                 </Link>
               </div>
 
-              {/* Product Grid: 11 products + 12th Explore All Card */}
+              {/* Suggested Product Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
-                {filteredProducts.slice(0, 11).map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                {suggestedProducts.map((product) => (
+                  <ProductCard key={`suggested-${product.id}`} product={product} />
                 ))}
-                {filteredProducts.length > 11 && (
-                  <ExploreAllCard
-                    href="/explore"
-                  />
+              </div>
+            </section>
+
+            {/* SECTION 2: Explore by Categories */}
+            <section className="flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-12 border-t border-[#332D27]/80">
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-[#332D27]/70">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">🏷️</span>
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
+                      Browse By Form Factor
+                    </span>
+                  </div>
+                  <h2 className="text-xl sm:text-3xl font-black text-[#F5F2EB] mt-0.5 tracking-tight">
+                    Explore by Categories
+                  </h2>
+                </div>
+              </div>
+
+              {/* Clickable Category Cards Grid */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 items-stretch">
+                {CATEGORIES.map((cat) => {
+                  const prods = productsByCategory[cat.slug] || [];
+                  const catImage = CATEGORY_IMAGES[cat.slug] || "/images/products/whey-protein-tub.jpg";
+
+                  return (
+                    <Link
+                      key={cat.slug}
+                      href={`/category/${cat.slug}`}
+                      className="group relative flex flex-col overflow-hidden rounded-2xl sm:rounded-3xl bg-[#1C1916] border border-[#332D27] hover:border-[#D97706]/70 transition-all duration-300 text-left p-0 shadow-lg hover:shadow-[0_12px_32px_rgba(217,119,6,0.18)] hover:-translate-y-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D97706]/50"
+                    >
+                      {/* Category Image Cover */}
+                      <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-[#141210]">
+                        <Image
+                          src={catImage}
+                          alt={cat.name}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1916] via-[#1C1916]/40 to-transparent" />
+
+                        {/* Count Badge */}
+                        <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#141210]/85 backdrop-blur-md text-[#F5F2EB] border border-[#332D27]">
+                          {prods.length} items
+                        </span>
+
+                        {/* Floating Icon */}
+                        <span className="absolute bottom-2.5 left-3 w-8 h-8 rounded-xl bg-[#141210]/90 border border-[#332D27] flex items-center justify-center text-base shadow-sm">
+                          {cat.icon}
+                        </span>
+                      </div>
+
+                      {/* Card Details */}
+                      <div className="p-3.5 sm:p-4 flex flex-col flex-1 justify-between gap-2.5">
+                        <div>
+                          <h3 className="text-sm sm:text-base font-bold text-[#F5F2EB] group-hover:text-[#D97706] transition-colors tracking-tight flex items-center justify-between">
+                            <span>{cat.name}</span>
+                            <span className="text-xs text-[#968E85] group-hover:text-[#D97706] group-hover:translate-x-1 transition-all">→</span>
+                          </h3>
+                          <p className="text-[11px] sm:text-xs font-mono text-[#968E85] line-clamp-2 mt-1 leading-relaxed">
+                            {cat.description}
+                          </p>
+                        </div>
+
+                        <div className="pt-2 border-t border-[#332D27]/60 flex items-center justify-between text-[11px] font-mono font-semibold text-[#D97706]">
+                          <span>Explore products</span>
+                          <span className="group-hover:translate-x-0.5 transition-transform">↗</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* SECTION 3: All Products with Infinite Scroll */}
+            <section className="flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-12 border-t border-[#332D27]/80">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-3 border-b border-[#332D27]/70">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">📦</span>
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
+                      Complete Catalog
+                    </span>
+                  </div>
+                  <h2 className="text-xl sm:text-3xl font-black text-[#F5F2EB] mt-0.5 tracking-tight">
+                    All Products
+                  </h2>
+                </div>
+                <Link
+                  href="/explore"
+                  className="text-xs font-mono font-bold text-[#968E85] hover:text-[#F5F2EB] transition-colors flex items-center gap-1 self-start sm:self-auto"
+                >
+                  <span>Filter Catalog</span>
+                  <span>→</span>
+                </Link>
+              </div>
+
+              {/* Product Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
+                {initialProducts.slice(0, visibleCount).map((product) => (
+                  <ProductCard key={`all-${product.id}`} product={product} />
+                ))}
+              </div>
+
+              {/* Infinite scroll observer target */}
+              <div ref={observerTarget} className="py-8 flex flex-col items-center justify-center">
+                {visibleCount < initialProducts.length ? (
+                  <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#1C1916] border border-[#332D27] text-xs font-mono text-[#968E85] shadow-sm">
+                    <span className="w-3.5 h-3.5 rounded-full border-2 border-[#D97706] border-t-transparent animate-spin inline-block" />
+                    <span>Loading more products ({visibleCount} / {initialProducts.length})...</span>
+                  </div>
+                ) : (
+                  <div className="text-center py-4">
+                    <span className="text-xs font-mono text-[#968E85] uppercase tracking-wider">
+                      ✓ Showing all {initialProducts.length} verified products
+                    </span>
+                  </div>
                 )}
               </div>
             </section>
 
-            {/* Top Picks Showcase (Available while scrolling down right after All Products catalog) */}
-            <section id="top-picks-section" className="flex flex-col gap-4 sm:gap-5 pt-6 sm:pt-8 border-t border-[#27272A]/70">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">🏆</span>
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981]">
-                      Editor&apos;s Verified Selection
-                    </span>
-                  </div>
-                  <h2 className="text-xl sm:text-3xl font-black text-white mt-0.5 tracking-tight">
-                    Top Picks of the Month
-                  </h2>
-                  <p className="text-xs font-mono text-[#A1A1AA] mt-0.5">
-                    Highest biological purity, density, and value across Indian brands.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleSelectCategory("top-picks")}
-                  className="text-xs font-mono font-bold text-[#E4E4E7] hover:text-[#34D399] transition-colors flex items-center gap-1.5 self-start sm:self-auto"
-                >
-                  <span>View All Awards</span>
-                  <span>→</span>
-                </button>
-              </div>
-
-              {/* Product Grid: Top Picks matching identical catalog card dimensions */}
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch pt-2">
-                {topPicks.map(({ award, product, editorialBlurb }) => (
-                  <AwardProductCard
-                    key={award.id}
-                    award={award}
-                    product={product}
-                    editorialBlurb={editorialBlurb}
-                  />
-                ))}
-              </div>
-            </section>
-
-            {/* Category Showcases (Zepto/Blinkit Grouped Sections) */}
-            <div className="flex flex-col gap-12 sm:gap-16 pt-4">
-              {CATEGORIES.map((cat) => {
-                const prods = productsByCategory[cat.slug] || [];
-                if (prods.length === 0) return null;
-                const hasMore = prods.length > 11;
-                const previewProds = hasMore ? prods.slice(0, 11) : prods;
-                const catImage = CATEGORY_IMAGES[cat.slug] || "/images/products/whey-protein-tub.jpg";
-
-                return (
-                  <section
-                    key={cat.slug}
-                    id={`cat-${cat.slug}`}
-                    className="flex flex-col gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-[#27272A]/70"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-2">
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <span className="text-2xl sm:text-3xl">{cat.icon}</span>
-                        <div>
-                          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                            {cat.name}
-                          </h2>
-                          <p className="text-xs font-mono text-[#A1A1AA] line-clamp-1">
-                            {cat.description}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3 self-start sm:self-auto">
-                        <button
-                          type="button"
-                          onClick={() => handleSelectCategory(cat.slug)}
-                          className="text-xs font-mono font-bold text-[#10B981] hover:underline"
-                        >
-                          View all {prods.length} in {cat.name}
-                        </button>
-                        <Link
-                          href={`/category/${cat.slug}`}
-                          className="text-xs font-mono font-bold text-[#E4E4E7] hover:text-[#34D399] transition-colors flex items-center gap-1"
-                        >
-                          <span>Full Specs</span>
-                          <span>→</span>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
-                      {previewProds.map((p) => (
-                        <ProductCard key={p.id} product={p} />
-                      ))}
-                      {hasMore && (
-                        <ExploreAllCard
-                          href={`/category/${cat.slug}`}
-                        />
-                      )}
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
-
             {/* Scientific Deconstruction Trust Section */}
-            <section className="flex flex-col gap-10 py-12 border-t border-[#27272A]">
-              <div className="text-center max-w-2xl mx-auto flex flex-col gap-3">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#10B981]">
+            <section className="flex flex-col gap-10 py-12 border-t border-[#332D27]">
+              <div className="text-center max-w-2xl mx-auto pb-2 flex flex-col items-center gap-1.5">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
                   Audit Methodology
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                <h2 className="text-3xl sm:text-4xl font-black text-[#F5F2EB] tracking-tight">
                   Scientific Deconstruction
                 </h2>
-                <p className="text-sm text-[#A1A1AA] leading-relaxed font-sans">
-                  Indian packaged food labeling routinely exploits loopholes. We audit chemical decks and
-                  exact pack weights to expose deceptive claims.
-                </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+                <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#1C1916] border border-[#332D27] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
                   <span className="text-3xl">🚫</span>
-                  <h3 className="text-lg font-bold text-white tracking-tight">Red-Flag Additive Scanner</h3>
-                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                  <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">Red-Flag Additive Scanner</h3>
+                  <p className="text-xs sm:text-sm text-[#968E85] leading-relaxed">
                     We flag laxative polyols (INS 965 Maltitol GI 35-52), cheap amino spiking (Glycine, Taurine),
                     hydrogenated palm fats, and hidden high-GI corn syrups marketed as clean.
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+                <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#1C1916] border border-[#332D27] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
                   <span className="text-3xl">⚖️</span>
-                  <h3 className="text-lg font-bold text-white tracking-tight">True Cost per Gram (₹/g)</h3>
-                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                  <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">True Cost per Gram (₹/g)</h3>
+                  <p className="text-xs sm:text-sm text-[#968E85] leading-relaxed">
                     Serving sizes mislead buyers. We compute the exact net protein yield across the entire package
                     against the retail price so you discover your true cost per gram of real protein.
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+                <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#1C1916] border border-[#332D27] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
                   <span className="text-3xl">🧬</span>
-                  <h3 className="text-lg font-bold text-white tracking-tight">4-Tier Bioavailability Rating</h3>
-                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                  <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">4-Tier Bioavailability Rating</h3>
+                  <p className="text-xs sm:text-sm text-[#968E85] leading-relaxed">
                     From pure Tier 1 Isolate to complete Tier 3 plant blends and Tier 4 collagen/gelatin fillers,
                     our weakest-link algorithm ranks biological muscle-building effectiveness.
                   </p>

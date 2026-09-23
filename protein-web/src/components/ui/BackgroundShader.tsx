@@ -6,16 +6,16 @@ import dynamic from "next/dynamic";
 const shaderProps: any = {
   animate: "on",
   axesHelper: "off",
-  bgColor1: "#0A0A0B",
-  bgColor2: "#0A0A0B",
-  brightness: 0.55,
+  bgColor1: "#F1FDFB",
+  bgColor2: "#E6F5F1",
+  brightness: 0.98,
   cAzimuthAngle: 180,
   cDistance: 3.6,
   cPolarAngle: 90,
   cameraZoom: 1,
-  color1: "#2e1408",
-  color2: "#063628",
-  color3: "#1a122e",
+  color1: "#DCEAD9",
+  color2: "#F4FBF7",
+  color3: "#F1FDFB",
   destination: "onCanvas",
   embedMode: "off",
   envPreset: "city",
@@ -74,14 +74,7 @@ const ShaderCanvas = dynamic(
 );
 
 export function BackgroundShader() {
-  return (
-    <div
-      className="fixed inset-0 pointer-events-none overflow-hidden z-0"
-      aria-hidden="true"
-    >
-      <ShaderCanvas props={shaderProps} />
-    </div>
-  );
+  return null;
 }
 
 export default BackgroundShader;

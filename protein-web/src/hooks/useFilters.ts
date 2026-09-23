@@ -1,136 +1,179 @@
 "use client";
 
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useCallback, useMemo, useTransition } from "react";
+import { useSearchParams, usePathname } from "next/navigation";
+import { useCallback, useState, useEffect, useRef } from "react";
 import { QueryFilters } from "@/lib/data";
 
+function parseFiltersFromSearchParams(
+  sp: URLSearchParams | { get: (k: string) => string | null; getAll: (k: string) => string[] }
+): QueryFilters {
+  const categorySlug = sp.get("category") || undefined;
+  const sortBy = sp.get("sort") || "cost_per_g_asc";
+  const proteinTiers = sp.getAll("tier").filter(Boolean);
+  const dietaryTags = sp.getAll("tag").filter(Boolean);
+  const excludeAllergens = sp.getAll("exclude_allergen").filter(Boolean);
+  const zeroFlagsOnly = sp.get("clean") === "true";
+  const searchQuery = sp.get("q") || undefined;
+
+  return {
+    categorySlug,
+    sortBy,
+    proteinTiers: proteinTiers.length > 0 ? proteinTiers : undefined,
+    dietaryTags: dietaryTags.length > 0 ? dietaryTags : undefined,
+    excludeAllergens: excludeAllergens.length > 0 ? excludeAllergens : undefined,
+    zeroFlagsOnly,
+    searchQuery,
+  };
+}
+
 export function useFilters() {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
 
-  const filters: QueryFilters = useMemo(() => {
-    const categorySlug = searchParams.get("category") || undefined;
-    const sortBy = searchParams.get("sort") || "cost_per_g_asc";
-    const proteinTiers = searchParams.getAll("tier").filter(Boolean);
-    const dietaryTags = searchParams.getAll("tag").filter(Boolean);
-    const excludeAllergens = searchParams.getAll("exclude_allergen").filter(Boolean);
-    const zeroFlagsOnly = searchParams.get("clean") === "true";
-    const searchQuery = searchParams.get("q") || undefined;
+  const [filters, setFilters] = useState<QueryFilters>(() => {
+    return parseFiltersFromSearchParams(searchParams);
+  });
 
-    return {
-      categorySlug,
-      sortBy,
-      proteinTiers: proteinTiers.length > 0 ? proteinTiers : undefined,
-      dietaryTags: dietaryTags.length > 0 ? dietaryTags : undefined,
-      excludeAllergens: excludeAllergens.length > 0 ? excludeAllergens : undefined,
-      zeroFlagsOnly,
-      searchQuery,
+  // Keep in sync when popstate occurs (browser back/forward)
+  useEffect(() => {
+    const onPopState = () => {
+      const sp = new URLSearchParams(window.location.search);
+      setFilters(parseFiltersFromSearchParams(sp));
     };
-  }, [searchParams]);
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
-  const updateUrl = useCallback(
-    (params: URLSearchParams) => {
-      startTransition(() => {
-        router.push(`${pathname}?${params.toString()}`, { scroll: false });
-      });
+  // Sync URL in useEffect to avoid calling history.replaceState during render
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams();
+      if (filters.categorySlug) params.set("category", filters.categorySlug);
+      if (filters.sortBy && filters.sortBy !== "cost_per_g_asc") params.set("sort", filters.sortBy);
+      if (filters.proteinTiers?.length) {
+        filters.proteinTiers.forEach((t) => params.append("tier", t));
+      }
+      if (filters.dietaryTags?.length) {
+        filters.dietaryTags.forEach((t) => params.append("tag", t));
+      }
+      if (filters.excludeAllergens?.length) {
+        filters.excludeAllergens.forEach((a) => params.append("exclude_allergen", a));
+      }
+      if (filters.zeroFlagsOnly) params.set("clean", "true");
+      if (filters.searchQuery) params.set("q", filters.searchQuery);
+
+      const query = params.toString();
+      const targetUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+      window.history.replaceState(null, "", targetUrl);
+    }
+  }, [filters]);
+
+  const updateFilters = useCallback(
+    (updater: (prev: QueryFilters) => QueryFilters) => {
+      setFilters(updater);
     },
-    [router, pathname]
+    []
   );
 
   const setCategory = useCallback(
     (slug?: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (slug) {
-        params.set("category", slug);
-      } else {
-        params.delete("category");
-      }
-      updateUrl(params);
+      updateFilters((prev) => ({
+        ...prev,
+        categorySlug: slug || undefined,
+      }));
     },
-    [searchParams, updateUrl]
+    [updateFilters]
   );
 
   const toggleTier = useCallback(
     (tier: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      const current = params.getAll("tier");
-      params.delete("tier");
-      if (current.includes(tier)) {
-        current.filter((t) => t !== tier).forEach((t) => params.append("tier", t));
-      } else {
-        [...current, tier].forEach((t) => params.append("tier", t));
-      }
-      updateUrl(params);
+      updateFilters((prev) => {
+        const current = prev.proteinTiers || [];
+        const nextTiers = current.includes(tier)
+          ? current.filter((t) => t !== tier)
+          : [...current, tier];
+        return {
+          ...prev,
+          proteinTiers: nextTiers.length > 0 ? nextTiers : undefined,
+        };
+      });
     },
-    [searchParams, updateUrl]
+    [updateFilters]
   );
 
   const toggleTag = useCallback(
     (tag: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      const current = params.getAll("tag");
-      params.delete("tag");
-      if (current.includes(tag)) {
-        current.filter((t) => t !== tag).forEach((t) => params.append("tag", t));
-      } else {
-        [...current, tag].forEach((t) => params.append("tag", t));
-      }
-      updateUrl(params);
+      updateFilters((prev) => {
+        const current = prev.dietaryTags || [];
+        const nextTags = current.includes(tag)
+          ? current.filter((t) => t !== tag)
+          : [...current, tag];
+        return {
+          ...prev,
+          dietaryTags: nextTags.length > 0 ? nextTags : undefined,
+        };
+      });
     },
-    [searchParams, updateUrl]
+    [updateFilters]
   );
 
   const toggleAllergen = useCallback(
     (allergen: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      const current = params.getAll("exclude_allergen");
-      params.delete("exclude_allergen");
-      if (current.includes(allergen)) {
-        current.filter((a) => a !== allergen).forEach((a) => params.append("exclude_allergen", a));
-      } else {
-        [...current, allergen].forEach((a) => params.append("exclude_allergen", a));
-      }
-      updateUrl(params);
+      updateFilters((prev) => {
+        const current = prev.excludeAllergens || [];
+        const nextAllergens = current.includes(allergen)
+          ? current.filter((a) => a !== allergen)
+          : [...current, allergen];
+        return {
+          ...prev,
+          excludeAllergens: nextAllergens.length > 0 ? nextAllergens : undefined,
+        };
+      });
     },
-    [searchParams, updateUrl]
+    [updateFilters]
   );
 
   const setZeroFlagsOnly = useCallback(
     (value: boolean) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value) {
-        params.set("clean", "true");
-      } else {
-        params.delete("clean");
-      }
-      updateUrl(params);
+      updateFilters((prev) => ({
+        ...prev,
+        zeroFlagsOnly: value,
+      }));
     },
-    [searchParams, updateUrl]
+    [updateFilters]
   );
 
   const setSortBy = useCallback(
     (sort: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("sort", sort);
-      updateUrl(params);
+      updateFilters((prev) => ({
+        ...prev,
+        sortBy: sort,
+      }));
     },
-    [searchParams, updateUrl]
+    [updateFilters]
   );
 
   const clearFilters = useCallback(() => {
-    const params = new URLSearchParams();
-    if (searchParams.get("category") && pathname.startsWith("/category")) {
-      // Keep category on category-specific pages
-      params.set("category", searchParams.get("category")!);
-    }
-    updateUrl(params);
-  }, [searchParams, pathname, updateUrl]);
+    updateFilters((prev) => ({
+      categorySlug: pathname.startsWith("/category") ? prev.categorySlug : undefined,
+      sortBy: "cost_per_g_asc",
+      proteinTiers: undefined,
+      dietaryTags: undefined,
+      excludeAllergens: undefined,
+      zeroFlagsOnly: false,
+      searchQuery: undefined,
+    }));
+  }, [pathname, updateFilters]);
 
   return {
     filters,
-    isPending,
+    isPending: false,
     setCategory,
     toggleTier,
     toggleTag,

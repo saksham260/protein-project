@@ -103,7 +103,6 @@ void main() {
   float acc = 0.;
   for (float i = 0.; i < SAMPLES; i++) {
     rp += d;
-    rp += hash2(vec3(rp, i)) * 0.5 / SAMPLES;
 
     vec2 uv2 = rp;
     uv2.x /= resolution.x / resolution.y;
@@ -117,15 +116,14 @@ void main() {
   vec3 rainbowCol = spectrum(cos(acc * 3.5)) * acc * rainbow * falloff * lightActive;
 
   vec3 c = shadowColor * shade + rainbowCol;
-  c -= hash(vec3(uv.xyy)) * dither;
 
   float a = clamp(shade + acc * rainbow * falloff * lightActive, 0.0, 1.0);
   vec3 col = clamp(c, 0.0, 1.0);
 
-  // Soft edge vignette so rays dissolve seamlessly without any hard boundary or box
-  float edgeDistX = min(uv.x, 1.0 - uv.x);
-  float edgeDistY = min(uv.y, 1.0 - uv.y);
-  float edgeFade = smoothstep(0.0, 0.12, edgeDistX) * smoothstep(0.0, 0.12, edgeDistY);
+  // Ultra-smooth radial dispersion: rays extend freely and dissolve naturally without any rectangular box or cutoff
+  vec2 uvOffset = (uv - vec2(0.5)) * 2.0;
+  float radialDist = length(uvOffset);
+  float edgeFade = smoothstep(1.2, 0.3, radialDist);
   a *= edgeFade;
   col *= edgeFade;
 
@@ -663,27 +661,23 @@ function __OriginkitBase_VolumetricText(props: VolumetricTextProps) {
     const onWindowMove = (e: PointerEvent) => {
       if (!root) return;
       const r = root.getBoundingClientRect();
-      // If pointer is reasonably near the canvas, respond to it
-      if (
-        e.clientY >= r.top - 120 &&
-        e.clientY <= r.bottom + 120 &&
-        e.clientX >= r.left - 120 &&
-        e.clientX <= r.right + 120
-      ) {
-        pointerSeenRef.current = true;
-        targetRef.current = {
-          x: e.clientX - r.left,
-          y: r.height - (e.clientY - r.top),
-        };
-      }
+      pointerSeenRef.current = true;
+      targetRef.current = {
+        x: e.clientX - r.left,
+        y: r.height - (e.clientY - r.top),
+      };
     };
     root.addEventListener("pointermove", onMove);
     root.addEventListener("pointerleave", onLeave);
     window.addEventListener("pointermove", onWindowMove);
+    document.addEventListener("mouseleave", onLeave);
+    window.addEventListener("blur", onLeave);
     return () => {
       root.removeEventListener("pointermove", onMove);
       root.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("pointermove", onWindowMove);
+      document.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("blur", onLeave);
     };
   }, [isStatic]);
 
@@ -737,7 +731,7 @@ function __OriginkitBase_VolumetricText(props: VolumetricTextProps) {
         height: "100%",
         minWidth: 80,
         minHeight: 60,
-        overflow: "hidden",
+        overflow: "visible",
         background: backgroundColor,
         ...(style || {}),
       }}

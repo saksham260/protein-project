@@ -86,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         {/* Soft Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#18181B] via-transparent to-black/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
         {/* Top Category Badge */}
         {showTopBadges && category && (

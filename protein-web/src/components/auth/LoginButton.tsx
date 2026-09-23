@@ -33,7 +33,7 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ className }) => {
         onClick={handleClick}
         aria-label="Account Login"
         className={cn(
-          "flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#18181B] hover:bg-[#27272A] border border-[#27272A] hover:border-[#3F3F46] text-[#E4E4E7] hover:text-white transition-all text-xs font-mono font-medium shadow-sm active:scale-95 cursor-pointer",
+          "group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border active:scale-95 touch-manipulation select-none bg-[#1C1916]/85 text-[#968E85] border-[#332D27] hover:bg-[#D97706] hover:border-[#D97706] hover:!text-white",
           className
         )}
       >
@@ -43,21 +43,21 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ className }) => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-[#10B981]"
+          className="transition-colors text-inherit group-hover:!text-white shrink-0"
         >
           <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
           <circle cx="12" cy="7" r="4" />
         </svg>
-        <span className="hidden sm:inline">Login</span>
+        <span className="tracking-tight text-inherit group-hover:!text-white font-bold">Login</span>
       </button>
 
       {/* Floating Tooltip / Toast */}
       {showToast && (
-        <div className="absolute top-full right-0 mt-2 z-50 whitespace-nowrap px-3 py-1.5 rounded-xl bg-[#18181B] border border-[#10B981]/40 shadow-[0_8px_24px_rgba(0,0,0,0.8)] text-white text-[11px] font-sans flex items-center gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
-          <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+        <div className="absolute top-full right-0 mt-2 z-50 whitespace-nowrap px-3 py-1.5 rounded-xl bg-[#1C1916] border border-[#D97706]/40 shadow-[0_8px_24px_rgba(0,0,0,0.8)] text-[#F5F2EB] text-[11px] font-sans flex items-center gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
+          <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse" />
           <span>Coming soon — Login with Google</span>
         </div>
       )}
