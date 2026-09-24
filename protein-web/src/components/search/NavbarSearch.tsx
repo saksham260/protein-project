@@ -196,7 +196,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
         "relative md:flex-1 md:w-full md:max-w-xl md:transition-none",
         isExpanded
           ? "flex-1 w-full max-w-xl transition-[max-width,width,flex] duration-300 ease-out"
-          : "w-10 max-w-[40px] shrink-0 transition-[max-width,width,flex] duration-300 ease-out",
+          : "max-md:w-10 max-md:max-w-[40px] max-md:shrink-0 transition-[max-width,width,flex] duration-300 ease-out",
         className
       )}
     >
@@ -204,14 +204,15 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
         onSubmit={handleSubmit}
         onClick={handleOpenSearch}
         className={cn(
-          "relative flex items-center rounded-full bg-[#18181B] border border-[#27272A] focus-within:border-[#10B981] shadow-inner overflow-hidden h-10 md:w-full md:cursor-auto md:transition-[border-color,background-color]",
+          "group relative flex items-center rounded-full border shadow-inner overflow-hidden h-10 select-none bg-[#1C1916]/85 border-[#332D27] text-[#968E85] md:hover:bg-[#26221E] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_16px_rgba(217,119,6,0.18),0_2px_8px_rgba(0,0,0,0.4)] focus-within:bg-[#26221E] focus-within:border-[#D97706] focus-within:shadow-[0_0_20px_rgba(217,119,6,0.25)] transition-all duration-300 ease-out",
+          "md:w-full md:cursor-auto",
           isExpanded
-            ? "w-full transition-[width,border-color,background-color] duration-300 ease-out"
-            : "w-10 cursor-pointer hover:border-[#3F3F46] transition-[width,border-color,background-color] duration-300 ease-out"
+            ? "w-full cursor-auto"
+            : "max-md:w-10 max-md:cursor-pointer"
         )}
       >
         {/* Search Icon */}
-        <div className="w-10 h-10 flex items-center justify-center shrink-0 text-[#A1A1AA] pointer-events-none">
+        <div className="w-10 h-10 flex items-center justify-center shrink-0 text-[#968E85] md:group-hover:text-[#D97706] group-focus-within:text-[#D97706] transition-colors duration-300 pointer-events-none">
           <svg
             width="16"
             height="16"
@@ -244,17 +245,17 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
           }}
           onKeyDown={handleKeyDown}
           placeholder={activePlaceholder}
-          tabIndex={isExpanded ? 0 : -1}
+          tabIndex={0}
           className={cn(
-            "h-full text-white text-xs sm:text-sm font-sans placeholder-[#71717A] bg-transparent outline-none pr-9 md:w-full md:opacity-100 md:pointer-events-auto md:block md:transition-none",
+            "h-full text-[#F5F2EB] text-xs sm:text-sm font-sans placeholder-[#787067] bg-transparent outline-none pr-9 md:w-full md:opacity-100 md:pointer-events-auto md:block md:transition-none",
             isExpanded
               ? "w-full opacity-100 block transition-opacity duration-300"
-              : "w-0 opacity-0 pointer-events-none transition-opacity duration-300"
+              : "max-md:w-0 max-md:opacity-0 max-md:pointer-events-none transition-opacity duration-300"
           )}
         />
 
         {/* Clear button */}
-        {isExpanded && query && (
+        {query && (
           <button
             type="button"
             onClick={(e) => {
@@ -263,7 +264,10 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
               setIsOpen(false);
               inputRef.current?.focus();
             }}
-            className="absolute right-3 text-xs text-[#A1A1AA] hover:text-white p-1 transition-colors"
+            className={cn(
+              "absolute right-3 text-xs text-[#968E85] hover:text-[#F5F2EB] p-1 transition-colors duration-200 cursor-pointer",
+              !isExpanded && "max-md:hidden"
+            )}
             aria-label="Clear search text"
           >
             ✕
@@ -273,18 +277,18 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
 
       {/* Live Dropdown Suggestions */}
       {isOpen && query.trim() && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
           {isLoading ? (
-            <div className="p-4 text-[#A1A1AA] text-center">
+            <div className="p-4 text-[#968E85] text-center">
               Searching verified database...
             </div>
           ) : suggestions.length === 0 ? (
-            <div className="p-4 text-[#A1A1AA] text-center">
+            <div className="p-4 text-[#968E85] text-center">
               No matching products. Press Enter for full search.
             </div>
           ) : (
             <div className="flex flex-col">
-              <div className="px-4 py-1.5 text-[10px] uppercase tracking-widest text-[#A1A1AA]">
+              <div className="px-4 py-1.5 text-[10px] uppercase tracking-widest text-[#968E85]">
                 Matches
               </div>
               {suggestions.map((p, idx) => {
@@ -301,13 +305,13 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                     }}
                     className={`flex items-center justify-between px-3.5 py-2.5 transition-colors gap-3 ${
                       isSelected
-                        ? "bg-[#10B981]/15 text-white"
-                        : "text-[#E4E4E7] hover:bg-[#27272A] hover:text-white"
+                        ? "bg-[#D97706]/15 text-[#F5F2EB]"
+                        : "text-[#F5F2EB] hover:bg-[#26221E] hover:text-white"
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       {/* Product Thumbnail */}
-                      <div className="relative w-10 h-10 rounded-lg bg-[#121215] border border-[#27272A] overflow-hidden shrink-0 flex items-center justify-center">
+                      <div className="relative w-10 h-10 rounded-lg bg-[#141210] border border-[#332D27] overflow-hidden shrink-0 flex items-center justify-center">
                         {imageUrl ? (
                           <Image
                             src={imageUrl}
@@ -322,18 +326,18 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                       </div>
 
                       <div className="flex flex-col min-w-0">
-                        <span className="font-bold text-white font-sans text-xs sm:text-sm line-clamp-1">
+                        <span className="font-bold text-[#F5F2EB] font-sans text-xs sm:text-sm line-clamp-1">
                           {p.name}
                         </span>
-                        <span className="text-[11px] text-[#A1A1AA] truncate">
+                        <span className="text-[11px] text-[#968E85] truncate">
                           {p.brand.name} • {p.category.name}
                         </span>
                       </div>
                     </div>
 
                     {variant?.mrp_inr && (
-                      <div className="flex items-baseline gap-0.5 font-mono text-[#10B981] shrink-0 pl-2">
-                        <span className="text-xs font-semibold text-[#10B981]/80">₹</span>
+                      <div className="flex items-baseline gap-0.5 font-mono text-[#D97706] shrink-0 pl-2">
+                        <span className="text-xs font-semibold text-[#D97706]/80">₹</span>
                         <span className="text-base sm:text-lg font-extrabold tracking-tight">
                           {variant.mrp_inr.toLocaleString("en-IN")}
                         </span>
@@ -348,7 +352,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                   setIsOpen(false);
                   setIsFocused(false);
                 }}
-                className="px-4 py-2.5 bg-[#121215] text-center text-[#10B981] font-mono text-xs hover:bg-[#10B981]/10 border-t border-[#27272A] transition-colors"
+                className="px-4 py-2.5 bg-[#141210] text-center text-[#D97706] font-mono text-xs hover:bg-[#D97706]/10 border-t border-[#332D27] transition-colors"
               >
                 View all results for &quot;{query}&quot; →
               </Link>

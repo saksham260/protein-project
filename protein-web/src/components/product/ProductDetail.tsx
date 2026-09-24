@@ -29,7 +29,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const imageUrl = activeVariant?.image_url || product.image_url;
 
   const costPerG = activeVariant?.cost_per_g_protein != null ? activeVariant.cost_per_g_protein.toFixed(1) : "—";
-  const density = activeVariant?.protein_density_pct != null ? activeVariant.protein_density_pct.toFixed(0) : "—";
+  const calories = activeVariant?.calories_kcal != null ? Math.round(activeVariant.calories_kcal).toLocaleString("en-IN") : "—";
   const totalProteinPack = activeVariant
     ? (activeVariant.protein_g * (activeVariant.servings_per_pack || 1)).toFixed(0)
     : "—";
@@ -113,11 +113,11 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           {/* Brand & Title Header */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#10B981] font-bold">
+              <span className="text-sm sm:text-base font-mono uppercase tracking-wider text-[#F59E0B] font-bold">
                 {brand.name}
               </span>
               {brand.is_verified && (
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#27272A] text-[#A1A1AA] border border-[#3F3F46]">
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#27272A] text-[#A1A1AA] border border-[#3F3F46]">
                   ✓ Verified Brand
                 </span>
               )}
@@ -141,26 +141,32 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               prefix="₹"
               value={activeVariant?.mrp_inr != null ? activeVariant.mrp_inr.toLocaleString("en-IN") : "—"}
               size="lg"
-              accent="neon"
+              accent="white"
               subtext="Retail Price"
+              align="center"
+              labelClassName="text-[#F59E0B] font-bold"
             />
 
             <OversizedMetric
-              label="Protein Density"
-              value={density}
-              unit="%"
+              label="Calories"
+              value={calories}
+              unit="kcal"
               size="lg"
               accent="white"
-              subtext="Cals from protein"
+              subtext={activeVariant?.serving_size_g ? `Per ${activeVariant.serving_size_g}g serving` : "Per serving"}
+              align="center"
+              labelClassName="text-[#F59E0B] font-bold"
             />
 
             <OversizedMetric
-              label="Pack Total"
+              label="Protein"
               value={totalProteinPack}
               unit="g"
               size="lg"
-              accent="muted"
+              accent="white"
               subtext={activeVariant?.net_weight_g ? `${activeVariant.net_weight_g}g pack` : "Total Protein"}
+              align="center"
+              labelClassName="text-[#F59E0B] font-bold"
             />
           </div>
 

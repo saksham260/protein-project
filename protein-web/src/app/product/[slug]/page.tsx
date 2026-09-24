@@ -31,7 +31,7 @@ export async function generateMetadata({
 
   return {
     title: `${product.name} by ${product.brand.name} – Nutrition Facts, Red Flags & Price | Protein Engine`,
-    description: `${product.name}: ${v?.protein_g || 0}g protein, ${cost}, ${v?.protein_density_pct || 0}% density. ${flagCount} red flags analyzed. Compare prices on Amazon, Blinkit, and Zepto.`,
+    description: `${product.name}: ${v?.protein_g || 0}g protein, ${cost}, ${v?.calories_kcal || 0} kcal. ${flagCount} red flags analyzed. Compare prices on Amazon, Blinkit, and Zepto.`,
   };
 }
 

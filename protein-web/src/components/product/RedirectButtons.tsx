@@ -80,10 +80,10 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "relative flex items-center justify-between p-4 rounded-2xl border transition-all duration-200 group select-none cursor-pointer",
+                "relative flex items-center justify-between p-4 rounded-2xl border select-none cursor-pointer group active:scale-[0.98] transition-all duration-300 ease-out",
                 item.isCheapest
-                  ? "bg-[#10B981] text-black border-[#10B981] shadow-[0_0_24px_rgba(16,185,129,0.25)] hover:bg-[#34D399]"
-                  : "bg-[#27272A] text-white border-[#3F3F46] hover:border-[#52525B] hover:bg-[#323236]"
+                  ? "bg-[#10B981] text-black border-[#10B981] shadow-[0_0_24px_rgba(16,185,129,0.25)] md:hover:bg-[#26221E] md:hover:text-[#F5F2EB] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_16px_rgba(217,119,6,0.18),0_2px_8px_rgba(0,0,0,0.4)]"
+                  : "bg-[#27272A] text-white border-[#3F3F46] md:hover:bg-[#26221E] md:hover:text-[#F5F2EB] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_16px_rgba(217,119,6,0.18),0_2px_8px_rgba(0,0,0,0.4)]"
               )}
             >
               {/* Cheapest Option Tag */}
@@ -98,16 +98,16 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
                 <div className="flex flex-col">
                   <span
                     className={cn(
-                      "text-sm font-bold tracking-tight font-sans",
-                      item.isCheapest ? "text-black" : "text-white group-hover:text-white"
+                      "text-sm font-bold tracking-tight font-sans transition-colors duration-300",
+                      item.isCheapest ? "text-black md:group-hover:text-[#F5F2EB]" : "text-white md:group-hover:text-[#F5F2EB]"
                     )}
                   >
                     {item.config.name}
                   </span>
                   <span
                     className={cn(
-                      "text-xs font-mono font-medium",
-                      item.isCheapest ? "text-black/80 font-bold" : "text-zinc-400"
+                      "text-xs font-mono font-medium transition-colors duration-300",
+                      item.isCheapest ? "text-black/80 font-bold md:group-hover:text-[#968E85]" : "text-zinc-400 md:group-hover:text-[#968E85]"
                     )}
                   >
                     {priceSubtitle}
@@ -117,8 +117,8 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
 
               <div
                 className={cn(
-                  "flex items-center gap-1 text-xs font-mono font-bold transition-transform group-hover:translate-x-1",
-                  item.isCheapest ? "text-black" : "text-zinc-400 group-hover:text-white"
+                  "flex items-center gap-1 text-xs font-mono font-bold transition-all duration-300 md:group-hover:translate-x-1",
+                  item.isCheapest ? "text-black md:group-hover:text-[#D97706]" : "text-zinc-400 md:group-hover:text-[#D97706]"
                 )}
               >
                 <span>Buy</span>

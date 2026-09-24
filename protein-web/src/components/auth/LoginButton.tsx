@@ -5,9 +5,13 @@ import { cn } from "@/lib/utils";
 
 export interface LoginButtonProps {
   className?: string;
+  hideTextOnMobile?: boolean;
 }
 
-export const LoginButton: React.FC<LoginButtonProps> = ({ className }) => {
+export const LoginButton: React.FC<LoginButtonProps> = ({
+  className,
+  hideTextOnMobile = false,
+}) => {
   const [showToast, setShowToast] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -33,7 +37,12 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ className }) => {
         onClick={handleClick}
         aria-label="Account Login"
         className={cn(
-          "group flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border active:scale-95 touch-manipulation select-none bg-[#1C1916]/85 text-[#968E85] border-[#332D27] hover:bg-[#D97706] hover:border-[#D97706] hover:!text-white",
+          "group flex items-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer shrink-0 border select-none touch-manipulation",
+          hideTextOnMobile ? "max-md:px-2.5 px-3 sm:px-4" : "px-2.5 sm:px-4",
+          "bg-[#1C1916]/85 text-[#968E85] border-[#332D27]",
+          "md:hover:bg-[#26221E] md:hover:text-[#F5F2EB] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_16px_rgba(217,119,6,0.18),0_2px_8px_rgba(0,0,0,0.4)]",
+          "active:scale-[0.98]",
+          "transition-all duration-300 ease-out",
           className
         )}
       >
@@ -46,12 +55,19 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ className }) => {
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="transition-colors text-inherit group-hover:!text-white shrink-0"
+          className="transition-colors duration-300 text-[#968E85] md:group-hover:text-[#D97706] shrink-0"
         >
           <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
           <circle cx="12" cy="7" r="4" />
         </svg>
-        <span className="tracking-tight text-inherit group-hover:!text-white font-bold">Login</span>
+        <span
+          className={cn(
+            "tracking-tight transition-colors duration-300 font-bold",
+            hideTextOnMobile ? "max-md:hidden" : "inline"
+          )}
+        >
+          Login
+        </span>
       </button>
 
       {/* Floating Tooltip / Toast */}

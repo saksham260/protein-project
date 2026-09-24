@@ -73,6 +73,11 @@
   box-sizing: border-box;
 }
 
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -134,12 +139,18 @@ body {
   box-shadow: var(--shadow-soft-xl);
 }
 
-/* Touch device optimization: prevent sticky hover transforms on touch/mobile devices */
-@media (hover: none) and (pointer: coarse) {
+/* Touch device optimization: prevent sticky hover transforms and scaling on touch/mobile devices */
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
   .soft-card-interactive:hover,
   .group:hover,
   button:hover,
-  a:hover {
+  a:hover,
+  input:hover {
+    transform: none !important;
+  }
+
+  .group:hover img,
+  .group:hover [class*="scale-"] {
     transform: none !important;
   }
 }

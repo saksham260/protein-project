@@ -8,6 +8,7 @@ import { CartButton } from "@/components/cart/CartButton";
 import { LoginButton } from "@/components/auth/LoginButton";
 import { useCategory } from "@/context/CategoryContext";
 import { CATEGORY_TABS } from "@/components/layout/CategoryBar";
+import { CATEGORIES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 // --- Originkit Light Glass Engine Constants & Utilities ---
@@ -110,6 +111,7 @@ export const Navbar: React.FC = () => {
   const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const isMobileExpanded = isScrolled || isSearchOpen;
 
   const { activeCategory, setActiveCategory } = useCategory();
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -142,6 +144,33 @@ export const Navbar: React.FC = () => {
       });
     }
   }, [pathname, isHome, activeCategory]);
+
+  // Mobile categories dropdown state
+  const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
+  const categoriesDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (
+        categoriesDropdownRef.current &&
+        !categoriesDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsMobileCategoriesOpen(false);
+      }
+    };
+    if (isMobileCategoriesOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isMobileCategoriesOpen]);
+
+  useEffect(() => {
+    setIsMobileCategoriesOpen(false);
+  }, [pathname]);
 
   // Glass tracking state and refs
   const scope = useRef<HTMLElement>(null);
@@ -437,29 +466,26 @@ export const Navbar: React.FC = () => {
         )}
 
         {/* Row 1: Navbar Brand, Search, Actions */}
-        <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4 relative z-10">
+        <div className="container max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-1.5 sm:gap-4 relative z-10">
           {/* Logo & Brand Title */}
           <Link
             href="/"
             onClick={() => setActiveCategory("all")}
-            className="flex items-center gap-2 sm:gap-2.5 group shrink-0"
+            className="flex items-center gap-2 group shrink-0"
           >
             <span className="w-8 h-8 rounded-xl bg-[#D97706] flex items-center justify-center text-black font-black text-sm shadow-[0_0_16px_rgba(217,119,6,0.35)] group-hover:scale-105 transition-transform shrink-0">
               ⚡
             </span>
             <div
               className={cn(
-                "flex flex-col overflow-hidden origin-left md:transition-none md:max-w-[200px] md:opacity-100 md:ml-0",
-                isScrolled || isSearchOpen
+                "flex flex-col justify-center overflow-hidden origin-left md:transition-none md:max-w-[200px] md:opacity-100 md:ml-0",
+                isMobileExpanded
                   ? "max-md:max-w-0 max-md:opacity-0 max-md:pointer-events-none max-md:-ml-2.5 max-w-[200px] opacity-100 transition-[max-width,opacity,margin] duration-300 ease-out"
                   : "max-w-[200px] opacity-100 transition-[max-width,opacity,margin] duration-300 ease-out"
               )}
             >
               <span className="text-sm sm:text-base font-black tracking-tight text-white leading-none whitespace-nowrap">
                 Protein Engine
-              </span>
-              <span className="text-[9px] font-mono tracking-widest text-[#D97706] uppercase mt-0.5 whitespace-nowrap">
-                Independent Platform
               </span>
             </div>
           </Link>
@@ -471,22 +497,23 @@ export const Navbar: React.FC = () => {
             onSearchOpenChange={setIsSearchOpen}
             className={cn(
               "md:flex-1 md:max-w-xl md:mx-4 md:ml-0 md:transition-none",
-              isScrolled || isSearchOpen
+              isMobileExpanded
                 ? "flex-1 max-w-xl mx-1 sm:mx-4 transition-[flex,margin,width,max-width] duration-300 ease-out"
-                : "ml-auto transition-[flex,margin,width,max-width] duration-300 ease-out"
+                : "max-md:ml-auto max-md:w-10 max-md:shrink-0 transition-[flex,margin,width,max-width] duration-300 ease-out"
             )}
           />
 
           {/* User Actions: Login & Shortlist Cart */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <LoginButton />
-            <CartButton />
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            <LoginButton hideTextOnMobile={isMobileExpanded} />
+            <CartButton hideTextOnMobile={isMobileExpanded} />
           </div>
         </div>
 
-        {/* Row 2: Product Category Tabs (Always open) */}
+        {/* Row 2: Product Category Tabs */}
         <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex justify-center relative z-10 pb-2.5 pt-0">
-          <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-full sm:w-auto -mx-3 px-3 sm:mx-0 sm:px-0 touch-pan-x">
+          {/* Desktop Version: Full horizontal category tabs (Unchanged) */}
+          <div className="hidden md:flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-auto">
             {CATEGORY_TABS.map((tab) => {
               const currentCategorySlug = pathname.startsWith("/category/")
                 ? pathname.replace("/category/", "").split("/")[0]
@@ -521,18 +548,180 @@ export const Navbar: React.FC = () => {
                     }
                   }}
                   className={cn(
-                    "flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border active:scale-95 touch-manipulation select-none",
+                    "group flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer shrink-0 border select-none touch-manipulation active:scale-[0.98] transition-all duration-300 ease-out focus:outline-none focus-visible:outline-none outline-none ring-0 focus:ring-0 focus-visible:ring-0",
                     isTabActive
-                      ? "bg-[#D97706] text-white border-[#D97706] font-black"
-                      : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27] hover:text-[#F5F2EB] hover:bg-[#26221E] hover:border-[#332D27]"
+                      ? "bg-[#D97706] text-white border-transparent font-black shadow-none"
+                      : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27] md:hover:bg-[#26221E] md:hover:text-[#F5F2EB] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_16px_rgba(217,119,6,0.18),0_2px_8px_rgba(0,0,0,0.4)]"
                   )}
                 >
-                  <span className="text-sm select-none">{tab.icon}</span>
-                  <span className="tracking-tight">{tab.name}</span>
+                  <span className="text-sm select-none transition-transform duration-300 md:group-hover:scale-110">{tab.icon}</span>
+                  <span className="tracking-tight transition-colors duration-300">{tab.name}</span>
                 </button>
               );
             })}
           </div>
+
+          {/* Mobile Version: Home, Top Picks, and Categories Dropdown */}
+          {(() => {
+            const currentCategorySlug = pathname.startsWith("/category/")
+              ? pathname.replace("/category/", "").split("/")[0]
+              : null;
+            const isHomeActive = pathname === "/" && activeCategory === "all";
+            const isTopPicksActive = pathname === "/top-picks" || (pathname === "/" && activeCategory === "top-picks");
+            const isCategoryActive = currentCategorySlug !== null;
+            const activeCatObj = CATEGORIES.find((c) => c.slug === currentCategorySlug);
+
+            return (
+              <div className="flex md:hidden items-center justify-between gap-1.5 w-full relative">
+                {/* Mobile Home Button */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory("all");
+                    setIsMobileCategoriesOpen(false);
+                    if (pathname !== "/") {
+                      router.push("/");
+                    } else {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                  className={cn(
+                    "flex-1 flex items-center justify-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-xl text-xs font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer border select-none touch-manipulation active:scale-[0.98] transition-all duration-300 ease-out focus:outline-none focus-visible:outline-none outline-none ring-0",
+                    isHomeActive
+                      ? "bg-[#D97706] text-white border-transparent font-black shadow-none"
+                      : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27]"
+                  )}
+                >
+                  <span className="text-sm">🏠</span>
+                  <span>Home</span>
+                </button>
+
+                {/* Mobile Top Picks Button */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileCategoriesOpen(false);
+                    router.push("/top-picks");
+                  }}
+                  className={cn(
+                    "flex-1 flex items-center justify-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-xl text-xs font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer border select-none touch-manipulation active:scale-[0.98] transition-all duration-300 ease-out focus:outline-none focus-visible:outline-none outline-none ring-0",
+                    isTopPicksActive
+                      ? "bg-[#D97706] text-white border-transparent font-black shadow-none"
+                      : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27]"
+                  )}
+                >
+                  <span className="text-sm">🏆</span>
+                  <span>Top Picks</span>
+                </button>
+
+                {/* Mobile Categories Button */}
+                <div className="flex-1 relative" ref={categoriesDropdownRef}>
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileCategoriesOpen((prev) => !prev)}
+                    aria-expanded={isMobileCategoriesOpen}
+                    aria-label="Toggle categories menu"
+                    className={cn(
+                      "w-full flex items-center justify-center gap-1.5 px-2 py-1.5 min-h-[36px] rounded-xl text-xs font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer border select-none touch-manipulation active:scale-[0.98] transition-all duration-300 ease-out focus:outline-none focus-visible:outline-none outline-none ring-0",
+                      isCategoryActive || isMobileCategoriesOpen
+                        ? "bg-[#D97706] text-white border-transparent font-black shadow-none"
+                        : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27]"
+                    )}
+                  >
+                    <span className="text-sm">{activeCatObj?.icon || "🏷️"}</span>
+                    <span className="truncate">{activeCatObj?.name || "Categories"}</span>
+                    <svg
+                      className={cn(
+                        "w-3 h-3 transition-transform duration-200 shrink-0",
+                        isMobileCategoriesOpen && "rotate-180"
+                      )}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+
+                  {/* Floating Mobile Categories Dropdown */}
+                  {isMobileCategoriesOpen && (
+                    <div className="absolute top-full right-0 w-[270px] max-w-[calc(100vw-24px)] mt-2 p-2 rounded-2xl bg-[#181614]/98 border border-[#332D27] shadow-[0_16px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl z-50 flex flex-col gap-1">
+                      <div className="px-3 py-1.5 border-b border-[#332D27]/80 flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#968E85] font-bold">
+                          Available Categories
+                        </span>
+                        <span className="text-[10px] font-mono text-[#D97706] font-bold">
+                          {CATEGORIES.length} Categories
+                        </span>
+                      </div>
+
+                      <div className="flex flex-col gap-1 pt-1">
+                        {CATEGORIES.map((cat) => {
+                          const isCatActive = currentCategorySlug === cat.slug;
+                          return (
+                            <button
+                              key={cat.slug}
+                              type="button"
+                              onClick={() => {
+                                setIsMobileCategoriesOpen(false);
+                                router.push(`/category/${cat.slug}`);
+                              }}
+                              className={cn(
+                                "flex items-center justify-between p-2.5 rounded-xl text-left transition-colors text-xs font-sans cursor-pointer",
+                                isCatActive
+                                  ? "bg-[#D97706] text-white font-bold"
+                                  : "text-[#F5F2EB] hover:bg-[#26221E] active:bg-[#26221E]"
+                              )}
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <span className="text-base shrink-0">{cat.icon}</span>
+                                <div className="flex flex-col min-w-0">
+                                  <span className="font-bold leading-tight truncate">{cat.name}</span>
+                                  <span
+                                    className={cn(
+                                      "text-[10px] line-clamp-1 leading-tight mt-0.5",
+                                      isCatActive ? "text-white/80" : "text-[#968E85]"
+                                    )}
+                                  >
+                                    {cat.description}
+                                  </span>
+                                </div>
+                              </div>
+                              <span
+                                className={cn(
+                                  "text-xs font-mono ml-2 shrink-0",
+                                  isCatActive ? "text-white" : "text-[#968E85]"
+                                )}
+                              >
+                                →
+                              </span>
+                            </button>
+                          );
+                        })}
+
+                        <div className="pt-1 mt-1 border-t border-[#332D27]/80">
+                          <Link
+                            href="/explore"
+                            onClick={() => setIsMobileCategoriesOpen(false)}
+                            className="flex items-center justify-between p-2.5 rounded-xl text-xs font-bold text-[#F59E0B] hover:bg-[#26221E] active:bg-[#26221E] transition-colors"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span>⚡</span>
+                              <span>Explore All Products</span>
+                            </div>
+                            <span className="font-mono">→</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </header>
     </>

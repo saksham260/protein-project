@@ -50,12 +50,12 @@ export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode })
         </div>
 
         <div className="flex flex-col items-center">
-          <span className="text-[10px] uppercase font-mono tracking-widest text-[#34D399] font-bold">
+          <span className="text-[10px] uppercase font-mono tracking-widest text-[#A1A1AA]">
             Pure Protein
           </span>
-          <span className="text-2xl font-black font-mono text-[#10B981] mt-1">
+          <span className="text-2xl font-black font-mono text-white mt-1">
             {val(variant.protein_g)}
-            <span className="text-xs font-normal text-[#34D399] ml-1 font-mono">g</span>
+            <span className="text-xs font-normal text-[#A1A1AA] ml-1 font-mono">g</span>
           </span>
         </div>
 

@@ -64,22 +64,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <Link
       href={`/product/${targetSlug}`}
-      className="group flex flex-col h-full bg-[#18181B] rounded-2xl border border-[#27272A] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)] hover:border-[#3F3F46] hover:-translate-y-1 transition-all duration-300 ease-out select-none"
+      className="group flex flex-col h-full bg-[#1C1916] rounded-2xl border border-[#332D27] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.4)] md:hover:bg-[#26221E] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_24px_rgba(217,119,6,0.18),0_12px_32px_rgba(0,0,0,0.7)] md:hover:-translate-y-1 active:scale-[0.99] transition-all duration-300 ease-out select-none cursor-pointer"
     >
       {/* Product Visual Area */}
-      <div className="relative w-full h-36 sm:h-44 md:h-48 bg-[#121215] flex items-center justify-center overflow-hidden border-b border-[#27272A]">
+      <div className="relative w-full h-36 sm:h-44 md:h-48 bg-[#141210] flex items-center justify-center overflow-hidden border-b border-[#332D27]">
         {imageUrl ? (
           <Image
             src={imageUrl}
             alt={product.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-cover md:group-hover:scale-105 transition-transform duration-500 ease-out"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         ) : (
           <div className="flex flex-col items-center justify-center text-center p-3 gap-1">
             <span className="text-3xl sm:text-4xl">{category?.icon || "⚡"}</span>
-            <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500">
+            <span className="text-xs uppercase font-mono tracking-widest text-[#F59E0B] font-bold">
               {brand?.name || "Protein"}
             </span>
           </div>
@@ -91,7 +91,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Top Category Badge */}
         {showTopBadges && category && (
           <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10">
-            <span className="text-[9px] sm:text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-[#27272A]/90 text-[#E4E4E7] border border-[#3F3F46] shadow-sm backdrop-blur-sm truncate max-w-[120px] sm:max-w-none">
+            <span className="text-[9px] sm:text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-[#1C1916]/90 text-[#F5F2EB] border border-[#332D27] shadow-sm backdrop-blur-sm truncate max-w-[120px] sm:max-w-none">
               {category.name}
             </span>
           </div>
@@ -106,10 +106,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             title={isAdded ? "Remove from cart" : "Add to cart"}
             className={cn(
               "flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full font-sans font-bold text-[9.5px] sm:text-xs",
-              "transition-all duration-200 cursor-pointer shadow-lg active:scale-95 touch-manipulation backdrop-blur-md",
+              "transition-all duration-300 ease-out cursor-pointer shadow-lg active:scale-95 touch-manipulation backdrop-blur-md",
               isAdded
-                ? "bg-[#DC2626]/90 hover:bg-[#EF4444] text-white border border-[#EF4444] shadow-[0_0_14px_rgba(239,68,68,0.35)]"
-                : "bg-[#18181B]/90 hover:bg-[#27272A] text-white hover:text-[#34D399] border border-[#3F3F46] hover:border-[#10B981]/60 shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
+                ? "bg-[#DC2626]/90 md:hover:bg-[#EF4444] text-white border border-[#EF4444] shadow-[0_0_14px_rgba(239,68,68,0.35)]"
+                : "bg-[#1C1916]/90 md:hover:bg-[#26221E] text-[#F5F2EB] md:hover:text-[#D97706] border border-[#332D27] md:hover:border-[#D97706]/60 shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
             )}
           >
             {isAdded ? (
@@ -132,7 +132,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             ) : (
               <>
                 <svg
-                  className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 text-[#10B981]"
+                  className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0 text-[#D97706]"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -156,27 +156,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Card Body */}
       <div className="flex flex-col flex-1 p-2.5 sm:p-4 gap-2 sm:gap-3">
         {/* Brand & Title */}
-        <div className="flex flex-col gap-0.5 min-h-[2.2rem] sm:min-h-[2.75rem]">
-          <span className="text-[9px] sm:text-[10px] uppercase font-mono tracking-wider text-[#A1A1AA] font-semibold truncate">
+        <div className="flex flex-col gap-1 min-h-[2.4rem] sm:min-h-[3rem]">
+          <span className="text-xs sm:text-[13px] uppercase font-mono tracking-wider text-[#F59E0B] font-bold truncate">
             {brand?.name || "Independent"}
           </span>
-          <h3 className="text-xs sm:text-base font-bold text-white line-clamp-2 leading-snug group-hover:text-[#34D399] transition-colors">
+          <h3 className="text-xs sm:text-base font-bold text-white line-clamp-2 leading-snug md:group-hover:text-[#F59E0B] transition-colors duration-300">
             {product.name}
           </h3>
         </div>
 
         {/* Key Metrics: ONLY MRP & Protein */}
-        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-[#27272A]/60 border border-[#27272A] items-center">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-[#141210]/60 border border-[#332D27] items-center">
           <div>
-            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-[#A1A1AA] block leading-tight">
+            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-[#968E85] block leading-tight">
               MRP
             </span>
-            <span className="text-xs sm:text-base font-bold font-mono text-[#10B981] truncate block">
+            <span className="text-xs sm:text-base font-bold font-mono text-white truncate block">
               ₹{mrpDisplay}
             </span>
           </div>
           <div className="text-right">
-            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-tight text-[#A1A1AA] block leading-tight truncate">
+            <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-tight text-[#968E85] block leading-tight truncate">
               {isPowder ? "Per Scoop" : "Protein"}
             </span>
             <span className="text-xs sm:text-base font-bold font-mono text-white truncate block">
@@ -186,11 +186,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Footer: ONLY Net Weight */}
-        <div className="mt-auto pt-2 sm:pt-2.5 border-t border-[#27272A] flex items-center justify-between text-xs font-mono">
-          <span className="text-[9px] sm:text-[10px] text-[#A1A1AA] uppercase tracking-wider font-semibold">
+        <div className="mt-auto pt-2 sm:pt-2.5 border-t border-[#332D27] flex items-center justify-between text-xs font-mono">
+          <span className="text-[9px] sm:text-[10px] text-[#968E85] uppercase tracking-wider font-semibold">
             Net Weight
           </span>
-          <span className="text-[10px] sm:text-xs font-bold text-[#E4E4E7]">
+          <span className="text-[10px] sm:text-xs font-bold text-[#F5F2EB]">
             {netWeightDisplay}
           </span>
         </div>

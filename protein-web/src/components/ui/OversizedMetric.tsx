@@ -8,7 +8,9 @@ export interface OversizedMetricProps {
   prefix?: string;
   subtext?: string;
   size?: "sm" | "md" | "lg" | "xl";
-  accent?: "white" | "neon" | "crimson" | "muted";
+  accent?: "white" | "neon" | "crimson" | "muted" | "orange";
+  labelClassName?: string;
+  align?: "left" | "center";
   className?: string;
 }
 
@@ -20,6 +22,8 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
   subtext,
   size = "md",
   accent = "white",
+  labelClassName,
+  align = "left",
   className,
 }) => {
   const strVal = String(value);
@@ -56,18 +60,26 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
     crimson: "text-[#EF4444]",
     danger: "text-[#EF4444]",
     muted: "text-[#A1A1AA]",
+    orange: "text-[#F59E0B]",
   };
 
   const conf = sizeStyles[size];
+  const isCenter = align === "center";
 
   return (
-    <div className={cn("flex flex-col select-none min-w-0", className)}>
-      <span className={cn("uppercase font-mono tracking-widest text-zinc-500 font-medium mb-1 truncate", conf.label)}>
+    <div className={cn("flex flex-col select-none min-w-0", isCenter && "items-center text-center", className)}>
+      <span
+        className={cn(
+          "uppercase font-mono tracking-widest font-medium mb-1 truncate",
+          labelClassName || "text-zinc-500",
+          conf.label
+        )}
+      >
         {label}
       </span>
-      <div className="flex items-baseline gap-0.5 font-mono whitespace-nowrap">
+      <div className={cn("flex items-baseline gap-0.5 font-mono whitespace-nowrap", isCenter && "justify-center")}>
         {prefix && (
-          <span className={cn("font-bold text-zinc-400 font-mono shrink-0", conf.unit)}>
+          <span className={cn("font-bold font-mono shrink-0", conf.unit, accent === "white" ? "text-white" : "text-zinc-400")}>
             {prefix}
           </span>
         )}
@@ -81,7 +93,7 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
         )}
       </div>
       {subtext && (
-        <span className="text-[11px] font-mono text-zinc-500 mt-1 truncate">
+        <span className={cn("text-[11px] font-mono text-zinc-500 mt-1 truncate", isCenter && "text-center")}>
           {subtext}
         </span>
       )}
