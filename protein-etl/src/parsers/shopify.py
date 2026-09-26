@@ -95,8 +95,14 @@ def extract_shopify_product(url: str, client: httpx.Client | None = None) -> dic
     raw_product = data.get("product", {})
     if not raw_product:
         raise ValueError(f"No 'product' key in response from {endpoint}")
+    return parse_shopify_product(raw_product, url)
 
-    body_html = raw_product.get("body_html", "")
+
+def parse_shopify_product(raw_product: dict, url: str) -> dict:
+    """Turn one raw Shopify product (from /products/{handle}.json or /products.json) into our extract dict."""
+    handle = raw_product.get("handle") or url.rstrip("/").split("/")[-1].split("?")[0]
+
+    body_html = raw_product.get("body_html") or ""
     plain_description = clean_html_text(body_html)
 
     # Images
@@ -142,6 +148,8 @@ def extract_shopify_product(url: str, client: httpx.Client | None = None) -> dic
         "handle": handle,
         "description": plain_description,
         "tags": raw_product.get("tags", []),
+        "product_type": raw_product.get("product_type", ""),
+        "body_html": body_html,
         "images": images,
         "variants": parsed_variants,
     }

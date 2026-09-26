@@ -182,6 +182,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             redirectLinks={activeVariant?.redirect_links || []}
             brandName={brand.name}
             productName={product.name}
+            variantId={activeVariant?.id}
           />
 
           {/* Nutrition Panel with iOS-style Segmented Toggle */}

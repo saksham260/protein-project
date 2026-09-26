@@ -3,6 +3,7 @@
 import { useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState, useEffect, useRef } from "react";
 import { QueryFilters } from "@/lib/data";
+import { METRIC_RANGES, MetricKey } from "@/lib/metrics";
 
 function parseFiltersFromSearchParams(
   sp: URLSearchParams | { get: (k: string) => string | null; getAll: (k: string) => string[] }
@@ -14,8 +15,17 @@ function parseFiltersFromSearchParams(
   const excludeAllergens = sp.getAll("exclude_allergen").filter(Boolean);
   const zeroFlagsOnly = sp.get("clean") === "true";
   const searchQuery = sp.get("q") || undefined;
+  const nearMe = sp.get("near") === "1";
+
+  const ranges: Partial<Record<MetricKey, number>> = {};
+  for (const range of METRIC_RANGES) {
+    const value = Number(sp.get(range.param));
+    if (sp.get(range.param) && Number.isFinite(value)) ranges[range.key] = value;
+  }
 
   return {
+    ...ranges,
+    nearMe,
     categorySlug,
     sortBy,
     proteinTiers: proteinTiers.length > 0 ? proteinTiers : undefined,
@@ -67,6 +77,11 @@ export function useFilters() {
       }
       if (filters.zeroFlagsOnly) params.set("clean", "true");
       if (filters.searchQuery) params.set("q", filters.searchQuery);
+      for (const range of METRIC_RANGES) {
+        const value = filters[range.key];
+        if (value !== undefined) params.set(range.param, String(value));
+      }
+      if (filters.nearMe) params.set("near", "1");
 
       const query = params.toString();
       const targetUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
@@ -159,6 +174,20 @@ export function useFilters() {
     [updateFilters]
   );
 
+  const setMetricRange = useCallback(
+    (key: MetricKey, value: number | undefined) => {
+      updateFilters((prev) => ({ ...prev, [key]: value }));
+    },
+    [updateFilters]
+  );
+
+  const setNearMe = useCallback(
+    (value: boolean) => {
+      updateFilters((prev) => ({ ...prev, nearMe: value }));
+    },
+    [updateFilters]
+  );
+
   const clearFilters = useCallback(() => {
     updateFilters((prev) => ({
       categorySlug: pathname.startsWith("/category") ? prev.categorySlug : undefined,
@@ -168,6 +197,7 @@ export function useFilters() {
       excludeAllergens: undefined,
       zeroFlagsOnly: false,
       searchQuery: undefined,
+      nearMe: false,
     }));
   }, [pathname, updateFilters]);
 
@@ -180,6 +210,8 @@ export function useFilters() {
     toggleAllergen,
     setZeroFlagsOnly,
     setSortBy,
+    setMetricRange,
+    setNearMe,
     clearFilters,
   };
 }

@@ -1,9 +1,67 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CATEGORIES, PROTEIN_TIERS, ALLERGENS_LIST, DIETARY_TAGS_LIST } from "@/lib/constants";
 import { QueryFilters } from "@/lib/data";
+import { METRIC_RANGES, MetricKey, MetricRangeConfig } from "@/lib/metrics";
+import { usePincode } from "@/hooks/usePincode";
+import { PincodeInput } from "@/components/location/PincodeInput";
 import { cn } from "@/lib/utils";
+
+const SLIDER_COMMIT_DELAY_MS = 250;
+
+/** One metric slider. The far "no limit" end of the track means the filter is off. */
+const MetricSlider: React.FC<{
+  config: MetricRangeConfig;
+  value: number | undefined;
+  onCommit: (value: number | undefined) => void;
+}> = ({ config, value, onCommit }) => {
+  const offPosition = config.bound === "max" ? config.max : config.min;
+  const [draft, setDraft] = useState(value ?? offPosition);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Follow outside changes (Reset, back button) by adjusting state during render.
+  const [syncedValue, setSyncedValue] = useState(value);
+  if (syncedValue !== value) {
+    setSyncedValue(value);
+    setDraft(value ?? offPosition);
+  }
+
+  useEffect(() => () => {
+    if (timer.current) clearTimeout(timer.current);
+  }, []);
+
+  const isOff = draft === offPosition;
+
+  return (
+    <label className="flex flex-col gap-1.5">
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-xs font-mono font-medium text-[#E4E4E7]">{config.label}</span>
+        <span className={cn("text-xs font-mono", isOff ? "text-zinc-500" : "text-[#34D399] font-bold")}>
+          {isOff ? "Any" : `${config.bound === "max" ? "≤" : "≥"} ${draft}${config.unit === "%" ? "%" : ` ${config.unit}`}`}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={config.min}
+        max={config.max}
+        step={config.step}
+        value={draft}
+        onChange={(e) => {
+          const next = Number(e.target.value);
+          setDraft(next);
+          if (timer.current) clearTimeout(timer.current);
+          timer.current = setTimeout(
+            () => onCommit(next === offPosition ? undefined : next),
+            SLIDER_COMMIT_DELAY_MS
+          );
+        }}
+        className="w-full cursor-pointer accent-[#10B981]"
+      />
+      <span className="text-[10px] font-mono text-[#A1A1AA] leading-tight">{config.hint}</span>
+    </label>
+  );
+};
 
 export interface FilterPanelProps {
   filters: QueryFilters;
@@ -12,6 +70,8 @@ export interface FilterPanelProps {
   onToggleTag: (tag: string) => void;
   onToggleAllergen: (allergen: string) => void;
   onSetZeroFlagsOnly: (val: boolean) => void;
+  onSetMetricRange: (key: MetricKey, value: number | undefined) => void;
+  onSetNearMe: (val: boolean) => void;
   onClearFilters: () => void;
   hideCategoryFilter?: boolean;
   className?: string;
@@ -24,12 +84,16 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   onToggleTag,
   onToggleAllergen,
   onSetZeroFlagsOnly,
+  onSetMetricRange,
+  onSetNearMe,
   onClearFilters,
   hideCategoryFilter = false,
   className,
 }) => {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     category: true,
+    metrics: true,
+    near: true,
     tier: true,
     tags: true,
     allergens: false,
@@ -44,7 +108,11 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
     Boolean(filters.proteinTiers?.length) ||
     Boolean(filters.dietaryTags?.length) ||
     Boolean(filters.excludeAllergens?.length) ||
-    Boolean(filters.zeroFlagsOnly);
+    Boolean(filters.zeroFlagsOnly) ||
+    Boolean(filters.nearMe) ||
+    METRIC_RANGES.some((r) => filters[r.key] !== undefined);
+
+  const { pincode } = usePincode();
 
   return (
     <div
@@ -98,9 +166,74 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
         </label>
       </div>
 
+      {/* Protein Metrics Section */}
+      <div className="flex flex-col gap-3">
+        <button
+          type="button"
+          onClick={() => toggleSection("metrics")}
+          className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
+        >
+          <span>Protein Metrics</span>
+          <span className="text-zinc-600 font-mono">{openSections.metrics ? "−" : "+"}</span>
+        </button>
+
+        {openSections.metrics && (
+          <div className="flex flex-col gap-4 pt-1">
+            {METRIC_RANGES.map((range) => (
+              <MetricSlider
+                key={range.key}
+                config={range}
+                value={filters[range.key]}
+                onCommit={(value) => onSetMetricRange(range.key, value)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Quick Delivery Near Me Section */}
+      <div className="flex flex-col gap-3 pt-3 border-t border-[#27272A]">
+        <button
+          type="button"
+          onClick={() => toggleSection("near")}
+          className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-[#A1A1AA] hover:text-white transition-colors"
+        >
+          <span>Quick Delivery Near Me</span>
+          <span className="text-zinc-600 font-mono">{openSections.near ? "−" : "+"}</span>
+        </button>
+
+        {openSections.near && (
+          <div className="flex flex-col gap-3 pt-1">
+            <PincodeInput />
+            <label
+              className={cn(
+                "flex items-start gap-3 text-xs select-none",
+                pincode ? "cursor-pointer" : "opacity-50 cursor-not-allowed"
+              )}
+            >
+              <input
+                type="checkbox"
+                checked={Boolean(filters.nearMe)}
+                disabled={!pincode}
+                onChange={(e) => onSetNearMe(e.target.checked)}
+                className="mt-0.5 rounded border-[#3F3F46] bg-[#27272A] cursor-pointer accent-[#10B981]"
+              />
+              <div className="flex flex-col">
+                <span className="font-mono font-medium text-[#E4E4E7]">
+                  Only products reported on Blinkit / Zepto / Instamart near me
+                </span>
+                <span className="text-[10px] font-mono text-[#A1A1AA] leading-tight">
+                  Based on shopper reports from your area in the last 30 days
+                </span>
+              </div>
+            </label>
+          </div>
+        )}
+      </div>
+
       {/* Category Section */}
       {!hideCategoryFilter && (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 pt-3 border-t border-[#27272A]">
           <button
             type="button"
             onClick={() => toggleSection("category")}

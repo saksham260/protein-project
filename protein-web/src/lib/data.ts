@@ -1,7 +1,15 @@
-import { ProductWithVariants, Platform, FlagSeverity } from "@/types/product";
+import { ProductWithVariants, ProductVariant, Platform, FlagSeverity } from "@/types/product";
 import { CATEGORIES } from "@/lib/constants";
 import rawSeedData from "@/data/seedCatalog.json";
-import { createClient } from "@/lib/supabase/client";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { getAvailabilitySummaries, isReportedAvailable } from "@/lib/availability";
+import {
+  METRIC_RANGES,
+  caloriesPerGramProtein,
+  effectiveCostPerGram,
+  passesRange,
+  proteinPer100Inr,
+} from "@/lib/metrics";
 import { AwardCategory, TOP_PICKS_CONFIG } from "@/lib/topPicksConfig";
 
 interface RawSeedVariant {
@@ -215,169 +223,156 @@ export interface QueryFilters {
   excludeAllergens?: string[];
   zeroFlagsOnly?: boolean;
   sortBy?: string;
+  maxCostPerG?: number;
+  minProteinPer100?: number;
+  maxCaloriesPerGProtein?: number;
+  minDensity?: number;
+  /** Keep only products reported available on quick commerce near `pincode`. */
+  nearMe?: boolean;
+  /** The viewer's pincode (from local storage, never the URL). */
+  pincode?: string;
 }
 
-export async function getProducts(filters?: QueryFilters): Promise<ProductWithVariants[]> {
-  try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const PRODUCT_SELECT = `
+  *,
+  brand:brands(*),
+  category:categories(*),
+  variants:product_variants(
+    *,
+    red_flags:variant_red_flags(*),
+    redirect_links:redirect_links(*)
+  )
+`;
 
-    // If live Supabase credentials are configured and not placeholders, attempt Supabase query
-    if (
-      supabaseUrl &&
-      !supabaseUrl.includes("placeholder") &&
-      supabaseKey &&
-      !supabaseKey.includes("placeholder")
-    ) {
-      const supabase = createClient();
-
-      let query = supabase
+async function loadCatalog(): Promise<ProductWithVariants[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const { data, error } = await createClient()
         .from("products")
-        .select(
-          `
-          *,
-          brand:brands(*),
-          category:categories(*),
-          variants:product_variants(
-            *,
-            red_flags:variant_red_flags(*),
-            redirect_links:redirect_links(*)
-          )
-        `
-        )
+        .select(PRODUCT_SELECT)
         .eq("is_active", true);
-
-      if (filters?.categorySlug) {
-        query = query.eq("category.slug", filters.categorySlug);
-      }
-
-      const { data, error } = await query;
       if (!error && data && data.length > 0) {
         return data as ProductWithVariants[];
       }
+    } catch {
+      // Fall back to seed catalog on connection error
     }
-  } catch {
-    // Fall back to seed catalog on connection error
   }
+  return normalizedSeedCatalog;
+}
 
-  // Use normalized seed catalog with client-side filtering and sorting
-  let list = [...normalizedSeedCatalog];
+/** Variant ids reported available on any quick-commerce platform in the pincode's area. */
+async function getVariantIdsAvailableNear(
+  products: ProductWithVariants[],
+  pincode: string
+): Promise<Set<string>> {
+  const variantIds = products.flatMap((p) => p.variants.map((v) => v.id));
+  const summaries = await getAvailabilitySummaries(variantIds, pincode);
+  return new Set(summaries.filter(isReportedAvailable).map((s) => s.variant_id));
+}
 
-  if (filters?.categorySlug) {
-    list = list.filter((p) => p.category.slug === filters.categorySlug);
+function variantMatches(
+  v: ProductVariant,
+  filters: QueryFilters,
+  availableNearIds: Set<string> | undefined
+): boolean {
+  if (filters.proteinTiers?.length && !(v.protein_tier && filters.proteinTiers.includes(v.protein_tier))) {
+    return false;
   }
+  if (filters.dietaryTags?.length) {
+    const tags = v.dietary_tags.map((t) => t.toLowerCase());
+    if (!filters.dietaryTags.every((tag) => tags.includes(tag.toLowerCase()))) return false;
+  }
+  if (filters.excludeAllergens?.length) {
+    const excluded = filters.excludeAllergens.map((e) => e.toLowerCase());
+    if (v.allergens.some((a) => excluded.includes(a.toLowerCase()))) return false;
+  }
+  if (filters.zeroFlagsOnly && v.red_flags && v.red_flags.length > 0) return false;
+  if (!METRIC_RANGES.every((range) => passesRange(range, v, filters[range.key]))) return false;
+  if (availableNearIds && !availableNearIds.has(v.id)) return false;
+  return true;
+}
 
-  if (filters?.searchQuery) {
-    const q = filters.searchQuery.toLowerCase().trim();
-    list = list.filter(
-      (p) =>
+function sortValue(v: ProductVariant, sort: string): number {
+  switch (sort) {
+    case "density_desc":
+      return -(v.protein_density_pct ?? 0);
+    case "p100_desc":
+      return -(proteinPer100Inr(v) ?? 0);
+    case "kcal_per_g_asc":
+      return caloriesPerGramProtein(v) ?? 999;
+    case "best_price_asc":
+      return v.best_price_inr ?? v.mrp_inr;
+    case "price_asc":
+      return v.mrp_inr;
+    case "price_desc":
+      return -v.mrp_inr;
+    case "protein_desc":
+      return -v.protein_g;
+    case "cost_per_g_asc":
+    default:
+      return effectiveCostPerGram(v) ?? 999;
+  }
+}
+
+/**
+ * Filter and sort products. A product is kept when at least one variant passes every filter;
+ * its first passing variant decides its sort position.
+ */
+export function applyFilters(
+  products: ProductWithVariants[],
+  filters: QueryFilters = {},
+  availableNearIds?: Set<string>
+): ProductWithVariants[] {
+  const q = filters.searchQuery?.toLowerCase().trim();
+  const sort = filters.sortBy || "cost_per_g_asc";
+
+  const matches: { product: ProductWithVariants; key: number }[] = [];
+  for (const p of products) {
+    if (filters.categorySlug && p.category?.slug !== filters.categorySlug) continue;
+    if (
+      q &&
+      !(
         p.name.toLowerCase().includes(q) ||
-        p.brand.name.toLowerCase().includes(q) ||
+        p.brand?.name.toLowerCase().includes(q) ||
         p.variants.some((v) => v.variant_name.toLowerCase().includes(q))
-    );
-  }
-
-  if (filters?.proteinTiers && filters.proteinTiers.length > 0) {
-    list = list.filter((p) =>
-      p.variants.some((v) => v.protein_tier && filters.proteinTiers?.includes(v.protein_tier))
-    );
-  }
-
-  if (filters?.dietaryTags && filters.dietaryTags.length > 0) {
-    list = list.filter((p) =>
-      p.variants.some((v) =>
-        filters.dietaryTags?.every((tag) =>
-          v.dietary_tags.map((t) => t.toLowerCase()).includes(tag.toLowerCase())
-        )
       )
-    );
-  }
-
-  if (filters?.excludeAllergens && filters.excludeAllergens.length > 0) {
-    list = list.filter((p) =>
-      p.variants.some(
-        (v) =>
-          !v.allergens.some((a) =>
-            filters.excludeAllergens?.map((e) => e.toLowerCase()).includes(a.toLowerCase())
-          )
-      )
-    );
-  }
-
-  if (filters?.zeroFlagsOnly) {
-    list = list.filter((p) =>
-      p.variants.some((v) => !v.red_flags || v.red_flags.length === 0)
-    );
-  }
-
-  // Sort logic
-  const sort = filters?.sortBy || "cost_per_g_asc";
-  list.sort((a, b) => {
-    const vA = a.variants[0];
-    const vB = b.variants[0];
-    if (!vA || !vB) return 0;
-
-    switch (sort) {
-      case "cost_per_g_asc":
-        return (vA.cost_per_g_protein ?? 999) - (vB.cost_per_g_protein ?? 999);
-      case "density_desc":
-        return (vB.protein_density_pct ?? 0) - (vA.protein_density_pct ?? 0);
-      case "best_price_asc":
-        return (vA.best_price_inr ?? vA.mrp_inr) - (vB.best_price_inr ?? vB.mrp_inr);
-      case "price_asc":
-        return vA.mrp_inr - vB.mrp_inr;
-      case "price_desc":
-        return vB.mrp_inr - vA.mrp_inr;
-      case "protein_desc":
-        return vB.protein_g - vA.protein_g;
-      default:
-        return (vA.cost_per_g_protein ?? 999) - (vB.cost_per_g_protein ?? 999);
+    ) {
+      continue;
     }
-  });
+    const variant = p.variants.find((v) => variantMatches(v, filters, availableNearIds));
+    if (variant) matches.push({ product: p, key: sortValue(variant, sort) });
+  }
 
-  return list;
+  return matches.sort((a, b) => a.key - b.key).map((m) => m.product);
+}
+
+export async function getProducts(filters?: QueryFilters): Promise<ProductWithVariants[]> {
+  const catalog = await loadCatalog();
+  const availableNearIds =
+    filters?.nearMe && filters.pincode
+      ? await getVariantIdsAvailableNear(catalog, filters.pincode)
+      : undefined;
+  return applyFilters(catalog, filters, availableNearIds);
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductWithVariants | null> {
-  try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    if (
-      supabaseUrl &&
-      !supabaseUrl.includes("placeholder") &&
-      supabaseKey &&
-      !supabaseKey.includes("placeholder")
-    ) {
-      const supabase = createClient();
-
-      const { data, error } = await supabase
+  if (isSupabaseConfigured()) {
+    try {
+      const { data, error } = await createClient()
         .from("products")
-        .select(
-          `
-          *,
-          brand:brands(*),
-          category:categories(*),
-          variants:product_variants(
-            *,
-            red_flags:variant_red_flags(*),
-            redirect_links:redirect_links(*)
-          )
-        `
-        )
+        .select(PRODUCT_SELECT)
         .eq("slug", slug)
         .single();
-
       if (!error && data) {
         return data as ProductWithVariants;
       }
+    } catch {
+      // Fall back to seed catalog
     }
-  } catch {
-    // Fall back to seed catalog
   }
 
-  const found = normalizedSeedCatalog.find((p) => p.slug === slug);
-  return found || null;
+  return normalizedSeedCatalog.find((p) => p.slug === slug) || null;
 }
 
 export interface TopPickResult {
@@ -405,7 +400,7 @@ export async function getTopPicks(): Promise<TopPickResult[]> {
 
     // Auto-rule calculation
     const rule = award.autoRule;
-    const candidates = await getProducts({
+    const candidates = applyFilters(allProducts, {
       categorySlug: rule.categorySlug,
       sortBy: rule.sortBy || "cost_per_g_asc",
       zeroFlagsOnly: rule.requireZeroFlags,

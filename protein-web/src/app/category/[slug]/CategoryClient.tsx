@@ -7,6 +7,8 @@ import { SortDropdown } from "@/components/search/SortDropdown";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Button } from "@/components/ui/Button";
 import { useFilters } from "@/hooks/useFilters";
+import { usePincode } from "@/hooks/usePincode";
+import { METRIC_RANGES } from "@/lib/metrics";
 import { getProducts } from "@/lib/data";
 import { ProductWithVariants } from "@/types/product";
 
@@ -29,8 +31,11 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
     toggleAllergen,
     setZeroFlagsOnly,
     setSortBy,
+    setMetricRange,
+    setNearMe,
     clearFilters,
   } = useFilters();
+  const { pincode } = usePincode();
 
   const [products, setProducts] = useState<ProductWithVariants[]>(initialProducts);
   const [loading, setLoading] = useState(false);
@@ -41,7 +46,9 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
       (filters.proteinTiers?.length || 0) +
       (filters.dietaryTags?.length || 0) +
       (filters.excludeAllergens?.length || 0) +
-      (filters.zeroFlagsOnly ? 1 : 0)
+      (filters.zeroFlagsOnly ? 1 : 0) +
+    (filters.nearMe ? 1 : 0) +
+    METRIC_RANGES.filter((r) => filters[r.key] !== undefined).length
     );
   }, [filters]);
 
@@ -50,6 +57,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
 
     getProducts({
       ...filters,
+      pincode,
       categorySlug: category.slug,
     })
       .then((data) => {
@@ -62,7 +70,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
     return () => {
       isMounted = false;
     };
-  }, [filters, category.slug]);
+  }, [filters, pincode, category.slug]);
 
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex flex-col gap-8">
@@ -108,6 +116,8 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
             onToggleTag={toggleTag}
             onToggleAllergen={toggleAllergen}
             onSetZeroFlagsOnly={setZeroFlagsOnly}
+            onSetMetricRange={setMetricRange}
+            onSetNearMe={setNearMe}
             onClearFilters={clearFilters}
           />
         </aside>
@@ -203,6 +213,8 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
               onToggleTag={toggleTag}
               onToggleAllergen={toggleAllergen}
               onSetZeroFlagsOnly={setZeroFlagsOnly}
+            onSetMetricRange={setMetricRange}
+            onSetNearMe={setNearMe}
               onClearFilters={clearFilters}
               className="border-0 p-0 bg-transparent shadow-none"
             />
