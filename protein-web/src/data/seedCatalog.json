@@ -1,0 +1,1198 @@
+[
+  {
+    "name": "High Protein Buttermilk",
+    "brand_name": "Amul",
+    "category_slug": "rtd-drinks",
+    "slug": "amul-high-protein-buttermilk",
+    "description": "Amul High Protein Buttermilk offering unmatched cost efficiency and pure protein density.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Spiced Buttermilk 200ml",
+        "slug": "spiced-buttermilk-200ml",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 15.0,
+        "net_weight_g": 200.0,
+        "serving_size_g": 200.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 82.0,
+          "protein_g": 15.0,
+          "total_fat_g": 1.5,
+          "saturated_fat_g": 0.8,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 2.2,
+          "dietary_fiber_g": 0.0,
+          "total_sugars_g": 2.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 280.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Pasteurized Toned Milk",
+          "Milk Solids",
+          "Whey Protein Isolate",
+          "Common Salt",
+          "Spices and Condiments",
+          "Active Lactic Culture"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Keto-Friendly",
+          "Gluten-Free",
+          "No Added Sugar"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Amul+High+Protein+Buttermilk",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Amul+High+Protein+Buttermilk",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "zepto",
+            "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Buttermilk",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 1.0,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 73.17,
+          "true_net_carbs_g": 2.2
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Isolate",
+          "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "High Protein Lassi",
+    "brand_name": "Amul",
+    "category_slug": "rtd-drinks",
+    "slug": "amul-high-protein-lassi",
+    "description": "Amul High Protein Rose Lassi with 15g protein per pack and no added cane sugar.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Rose 200ml",
+        "slug": "rose-200ml",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 25.0,
+        "net_weight_g": 200.0,
+        "serving_size_g": 200.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 130.0,
+          "protein_g": 15.0,
+          "total_fat_g": 2.0,
+          "saturated_fat_g": 1.2,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 13.0,
+          "dietary_fiber_g": 0.0,
+          "total_sugars_g": 10.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 90.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Pasteurized Toned Milk",
+          "Milk Solids",
+          "Whey Protein Concentrate",
+          "Lassi Culture",
+          "Stevia Extract"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free",
+          "No Added Sugar"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Amul+High+Protein+Lassi",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "zepto",
+            "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 1.67,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 46.15,
+          "true_net_carbs_g": 13.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Concentrate",
+          "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Plant Protein Powder",
+    "brand_name": "Cosmix",
+    "category_slug": "protein-powders",
+    "slug": "cosmix-plant-protein-powder",
+    "description": "Herbal-infused plant protein formulated with gut herbs and organic cacao.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Indonesian Cacao 750g (20 Servings)",
+        "slug": "indonesian-cacao-750g-20-servings",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 2150.0,
+        "net_weight_g": 750.0,
+        "serving_size_g": 38.0,
+        "servings_per_pack": 20,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 145.0,
+          "protein_g": 25.0,
+          "total_fat_g": 2.5,
+          "saturated_fat_g": 0.5,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 6.0,
+          "dietary_fiber_g": 4.0,
+          "total_sugars_g": 0.5,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 110.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Pea Protein Isolate",
+          "Brown Rice Protein",
+          "Raw Cacao",
+          "Ginger Root Powder",
+          "Fennel Seed Powder",
+          "Monk Fruit Extract"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [],
+        "dietary_tags": [
+          "Vegan",
+          "Gluten-Free",
+          "Dairy-Free",
+          "Gut-Friendly"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Cosmix+Plant+Protein+Powder",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 4.36,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 68.97,
+          "true_net_carbs_g": 2.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Pea Protein Isolate",
+          "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "High Protein Greek Yogurt Drink",
+    "brand_name": "Epigamia",
+    "category_slug": "rtd-drinks",
+    "slug": "epigamia-high-protein-greek-yogurt-drink",
+    "description": "Smooth Greek yogurt smoothie packed with protein and gut-friendly cultures.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Strawberry 180ml",
+        "slug": "strawberry-180ml",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 80.0,
+        "net_weight_g": 180.0,
+        "serving_size_g": 180.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 120.0,
+          "protein_g": 10.0,
+          "total_fat_g": 2.0,
+          "saturated_fat_g": 1.1,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 15.0,
+          "dietary_fiber_g": 1.0,
+          "total_sugars_g": 12.0,
+          "added_sugars_g": 6.0,
+          "sodium_mg": 70.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Pasteurized Double Toned Milk",
+          "Milk Solids",
+          "Strawberry Puree",
+          "Permitted Starter Cultures"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Epigamia+High+Protein+Greek+Yogurt+Drink",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Epigamia+Greek+Yogurt+Drink",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "zepto",
+            "url": "https://www.zeptonow.com/search?query=Epigamia+Greek+Yogurt+Drink",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 8.0,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 33.33,
+          "true_net_carbs_g": 14.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Unknown",
+          "protein_tier": "Unknown / Unclassified",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Biozyme Whey Isolate",
+    "brand_name": "MuscleBlaze",
+    "category_slug": "protein-powders",
+    "slug": "muscleblaze-biozyme-whey-isolate",
+    "description": "Clinically tested biozyme formula optimized for 50% higher protein absorption in Indian bodies.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Rich Chocolate 1kg (32 Servings)",
+        "slug": "rich-chocolate-1kg-32-servings",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 3499.0,
+        "net_weight_g": 1000.0,
+        "serving_size_g": 31.0,
+        "servings_per_pack": 32,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 118.0,
+          "protein_g": 25.0,
+          "total_fat_g": 1.0,
+          "saturated_fat_g": 0.5,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 2.0,
+          "dietary_fiber_g": 0.0,
+          "total_sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 130.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Whey Protein Isolate (90%)",
+          "Cocoa Powder",
+          "Enhanced Absorption Formula (Digestive Enzymes)",
+          "Sodium Chloride",
+          "Sweetener (INS 955)"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free",
+          "Low Carb",
+          "Keto-Friendly"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=MuscleBlaze+Biozyme+Whey+Isolate",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 4.34,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 84.75,
+          "true_net_carbs_g": 2.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Isolate",
+          "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Gold Whey Protein Concentrate",
+    "brand_name": "Nakpro",
+    "category_slug": "protein-powders",
+    "slug": "nakpro-gold-whey-protein-concentrate",
+    "description": "High value-per-rupee unadulterated whey protein concentrate for muscle building.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Chocolate 1kg (30 Servings)",
+        "slug": "chocolate-1kg-30-servings",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 1799.0,
+        "net_weight_g": 1000.0,
+        "serving_size_g": 33.0,
+        "servings_per_pack": 30,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 130.0,
+          "protein_g": 24.0,
+          "total_fat_g": 2.0,
+          "saturated_fat_g": 1.2,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 3.5,
+          "dietary_fiber_g": 0.0,
+          "total_sugars_g": 1.5,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 95.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Whey Protein Concentrate (80%)",
+          "Cocoa Powder",
+          "Nature Identical Flavors",
+          "Sweetener (Sucralose)"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Nakpro+Gold+Whey+Protein+Concentrate",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 2.47,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 73.85,
+          "true_net_carbs_g": 3.5
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Concentrate",
+          "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Warm Cocoa Protein Bar",
+    "brand_name": "Phab",
+    "category_slug": "protein-bars",
+    "slug": "phab-warm-cocoa-protein-bar",
+    "description": "Decadent cocoa protein bar sweetened with prebiotic fiber and stevia.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Single Bar 55g",
+        "slug": "single-bar-55g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 130.0,
+        "net_weight_g": 55.0,
+        "serving_size_g": 55.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 210.0,
+          "protein_g": 17.0,
+          "total_fat_g": 7.0,
+          "saturated_fat_g": 2.0,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 22.0,
+          "dietary_fiber_g": 6.0,
+          "total_sugars_g": 2.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 85.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Whey Protein Concentrate",
+          "Milk Protein Isolate",
+          "Almonds",
+          "Fructooligosaccharides",
+          "Cocoa Mass",
+          "Steviol Glycosides"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "Gluten-Free"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Phab+Warm+Cocoa+Protein+Bar",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 7.65,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 32.38,
+          "true_net_carbs_g": 16.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Concentrate",
+          "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Organic Plant Protein",
+    "brand_name": "Plantigo",
+    "category_slug": "protein-powders",
+    "slug": "plantigo-organic-plant-protein",
+    "description": "100% plant-based protein crafted from organic pea and brown rice isolate.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Rich Chocolate 1kg (28 Servings)",
+        "slug": "rich-chocolate-1kg-28-servings",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 2499.0,
+        "net_weight_g": 1000.0,
+        "serving_size_g": 35.0,
+        "servings_per_pack": 28,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 135.0,
+          "protein_g": 24.0,
+          "total_fat_g": 2.2,
+          "saturated_fat_g": 0.4,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 5.0,
+          "dietary_fiber_g": 3.0,
+          "total_sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 140.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Organic Pea Protein Isolate",
+          "Organic Sprouted Brown Rice Protein",
+          "Organic Raw Cocoa",
+          "Digestive Enzyme Blend",
+          "Stevia Leaf Extract"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [],
+        "dietary_tags": [
+          "Vegan",
+          "Organic",
+          "Gluten-Free",
+          "Soy-Free",
+          "Dairy-Free"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Plantigo+Organic+Plant+Protein",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 3.64,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 71.11,
+          "true_net_carbs_g": 2.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Pea Protein Isolate",
+          "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Choco Slim Protein Bar",
+    "brand_name": "RiteBite Max Protein",
+    "category_slug": "protein-bars",
+    "slug": "ritebite-max-protein-choco-slim-protein-bar",
+    "description": "Marketed as a slim protein bar; contains maltitol syrup, palmolein, and hydrolyzed collagen.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Choco Slim 67g",
+        "slug": "choco-slim-67g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 130.0,
+        "net_weight_g": 67.0,
+        "serving_size_g": 67.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 275.0,
+          "protein_g": 20.0,
+          "total_fat_g": 9.0,
+          "saturated_fat_g": 4.5,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 35.0,
+          "dietary_fiber_g": 5.0,
+          "total_sugars_g": 1.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 180.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Protein Blend (Soy Protein Isolate, Whey Protein Concentrate, Calcium Caseinate, Hydrolyzed Collagen)",
+          "Maltitol Syrup (INS 965(ii))",
+          "Refined Palmolein Oil",
+          "Dextrose Monohydrate",
+          "Dietary Fiber (Oat Fiber)",
+          "Cocoa Powder",
+          "Soy Lecithin (INS 322)"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk",
+          "soy"
+        ],
+        "dietary_tags": [
+          "Non-Vegetarian"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=RiteBite+Max+Protein+Choco+Slim+Protein+Bar",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=RiteBite+Max+Protein+Choco+Slim",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 6.5,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 29.09,
+          "true_net_carbs_g": 30.0
+        },
+        "red_flags": [
+          {
+            "flag_type": "maltitol_alert",
+            "flag_severity": "high",
+            "flag_label": "Maltitol Detected \u2014 GI 35-52",
+            "flag_description": "Maltitol has a Glycemic Index of 35-52, significantly higher than erythritol (0) or stevia (0). Often used in 'sugar-free' products marketed to diabetics.",
+            "matched_ingredient": "Maltitol Syrup",
+            "ins_number": "INS 965(ii)"
+          },
+          {
+            "flag_type": "fat_quality",
+            "flag_severity": "high",
+            "flag_label": "Palm Oil / Hydrogenated Fat",
+            "flag_description": "Hydrogenated and partially hydrogenated oils contain trans fats linked to cardiovascular disease. Palm oil raises LDL cholesterol.",
+            "matched_ingredient": "Palm Oil",
+            "ins_number": null
+          },
+          {
+            "flag_type": "hidden_sugars",
+            "flag_severity": "amber",
+            "flag_label": "Hidden Sugar Source Detected",
+            "flag_description": "These ingredients are functionally equivalent to sugar but may not appear in the 'Added Sugars' line on the nutrition panel. They spike blood glucose similarly to table sugar.",
+            "matched_ingredient": "Dextrose",
+            "ins_number": null
+          }
+        ],
+        "protein_profile": {
+          "primary_protein_source": "Soy Protein Isolate",
+          "protein_tier": "Tier 4 \u2013 Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Protein Chips",
+    "brand_name": "RiteBite Max Protein",
+    "category_slug": "savory-snacks",
+    "slug": "ritebite-max-protein-protein-chips",
+    "description": "7-grain protein chips; contains palmolein oil and maltodextrin seasoning.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Spanish Tomato 60g",
+        "slug": "spanish-tomato-60g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 60.0,
+        "net_weight_g": 60.0,
+        "serving_size_g": 60.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 240.0,
+          "protein_g": 10.0,
+          "total_fat_g": 8.0,
+          "saturated_fat_g": 3.8,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 32.0,
+          "dietary_fiber_g": 4.0,
+          "total_sugars_g": 3.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 310.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Grain Blend (Oats, Brown Rice, Jowar, Ragi, Bajra)",
+          "Soy Protein Isolate",
+          "Whey Protein Concentrate",
+          "Refined Palmolein Oil",
+          "Maltodextrin (INS 1400)",
+          "Tomato Powder",
+          "Spices and Condiments"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk",
+          "soy"
+        ],
+        "dietary_tags": [
+          "Vegetarian"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=RiteBite+Max+Protein+Protein+Chips",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Max+Protein+Spanish+Tomato+Chips",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 6.0,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 16.67,
+          "true_net_carbs_g": 28.0
+        },
+        "red_flags": [
+          {
+            "flag_type": "fat_quality",
+            "flag_severity": "high",
+            "flag_label": "Palm Oil / Hydrogenated Fat",
+            "flag_description": "Hydrogenated and partially hydrogenated oils contain trans fats linked to cardiovascular disease. Palm oil raises LDL cholesterol.",
+            "matched_ingredient": "Palm Oil",
+            "ins_number": null
+          },
+          {
+            "flag_type": "hidden_sugars",
+            "flag_severity": "amber",
+            "flag_label": "Hidden Sugar Source Detected",
+            "flag_description": "These ingredients are functionally equivalent to sugar but may not appear in the 'Added Sugars' line on the nutrition panel. They spike blood glucose similarly to table sugar.",
+            "matched_ingredient": "Maltodextrin",
+            "ins_number": "INS 1400"
+          }
+        ],
+        "protein_profile": {
+          "primary_protein_source": "Soy Protein Isolate",
+          "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Double Cocoa Protein Bar",
+    "brand_name": "The Whole Truth",
+    "category_slug": "protein-bars",
+    "slug": "the-whole-truth-double-cocoa-protein-bar",
+    "description": "Clean protein bar with 100% real ingredients, zero added sugar, zero maltitol.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Single Bar 52g",
+        "slug": "single-bar-52g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 150.0,
+        "net_weight_g": 52.0,
+        "serving_size_g": 52.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 212.0,
+          "protein_g": 20.0,
+          "total_fat_g": 8.0,
+          "saturated_fat_g": 2.5,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 20.0,
+          "dietary_fiber_g": 6.0,
+          "total_sugars_g": 3.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 95.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Whey Protein Isolate",
+          "Raw Almonds",
+          "Chicory Root Fiber",
+          "Cocoa Butter",
+          "Dark Chocolate (Cocoa Mass)",
+          "Dates",
+          "Stevia Leaf Extract"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "dietary_tags": [
+          "Gluten-Free",
+          "No Added Sugar",
+          "Vegetarian"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=The+Whole+Truth+Double+Cocoa+Protein+Bar",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 7.5,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 37.74,
+          "true_net_carbs_g": 14.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Isolate",
+          "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Peanut Butter Protein Bar",
+    "brand_name": "The Whole Truth",
+    "category_slug": "protein-bars",
+    "slug": "the-whole-truth-peanut-butter-protein-bar",
+    "description": "Wholesome peanut butter bar with whey isolate and pure roasted peanuts.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Single Bar 52g",
+        "slug": "single-bar-52g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 150.0,
+        "net_weight_g": 52.0,
+        "serving_size_g": 52.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 220.0,
+          "protein_g": 20.0,
+          "total_fat_g": 9.0,
+          "saturated_fat_g": 2.0,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 18.0,
+          "dietary_fiber_g": 5.0,
+          "total_sugars_g": 3.5,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 110.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Whey Protein Isolate",
+          "Roasted Peanuts",
+          "Chicory Root Fiber",
+          "Dates",
+          "Sea Salt"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk",
+          "peanuts"
+        ],
+        "dietary_tags": [
+          "Gluten-Free",
+          "No Added Sugar",
+          "Vegetarian"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=The+Whole+Truth+Peanut+Butter+Protein+Bar",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 7.5,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 36.36,
+          "true_net_carbs_g": 13.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Isolate",
+          "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "Protein Namkeen Mixture",
+    "brand_name": "The Whole Truth",
+    "category_slug": "savory-snacks",
+    "slug": "the-whole-truth-protein-namkeen-mixture",
+    "description": "High-protein savory namkeen roasted in cold-pressed groundnut oil, zero palm oil.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Roasted Mixture 120g",
+        "slug": "roasted-mixture-120g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 199.0,
+        "net_weight_g": 120.0,
+        "serving_size_g": 40.0,
+        "servings_per_pack": 3,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 180.0,
+          "protein_g": 10.0,
+          "total_fat_g": 8.0,
+          "saturated_fat_g": 1.8,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 18.0,
+          "dietary_fiber_g": 4.0,
+          "total_sugars_g": 1.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 220.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Moong Dal",
+          "Pea Protein Isolate",
+          "Roasted Cashews",
+          "Spices (Chilli, Turmeric, Cumin)",
+          "Cold Pressed Groundnut Oil",
+          "Rock Salt"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "tree nuts",
+          "peanuts"
+        ],
+        "dietary_tags": [
+          "Vegan",
+          "Gluten-Free",
+          "Zero Palm Oil"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=The+Whole+Truth+Protein+Namkeen+Mixture",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=The+Whole+Truth+Protein+Namkeen",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 6.63,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 22.22,
+          "true_net_carbs_g": 14.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Pea Protein Isolate",
+          "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "20g Protein Bar",
+    "brand_name": "Yoga Bar",
+    "category_slug": "protein-bars",
+    "slug": "yoga-bar-20g-protein-bar",
+    "description": "High fiber and concentrate whey protein bar with nuts and whole grains.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Almond Fudge 60g",
+        "slug": "almond-fudge-60g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 120.0,
+        "net_weight_g": 60.0,
+        "serving_size_g": 60.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 245.0,
+          "protein_g": 20.0,
+          "total_fat_g": 8.5,
+          "saturated_fat_g": 2.2,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 23.0,
+          "dietary_fiber_g": 8.0,
+          "total_sugars_g": 5.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 120.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Whey Protein Concentrate",
+          "Almonds",
+          "Chicory Root Fiber",
+          "Rolled Oats",
+          "Dates",
+          "Cocoa Powder",
+          "High Oleic Sunflower Oil"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "dietary_tags": [
+          "Vegetarian",
+          "High Fiber"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Yoga+Bar+20g+Protein+Bar",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 6.0,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 32.65,
+          "true_net_carbs_g": 15.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Concentrate",
+          "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  },
+  {
+    "name": "High Protein Oats Crisps",
+    "brand_name": "Yoga Bar",
+    "category_slug": "savory-snacks",
+    "slug": "yoga-bar-high-protein-oats-crisps",
+    "description": "Crunchy roasted oats snack with whey protein and spicy peri peri herbs.",
+    "image_url": null,
+    "variants": [
+      {
+        "variant_name": "Peri Peri 50g",
+        "slug": "peri-peri-50g",
+        "sku": null,
+        "barcode_ean": null,
+        "mrp_inr": 75.0,
+        "net_weight_g": 50.0,
+        "serving_size_g": 50.0,
+        "servings_per_pack": 1,
+        "serving_size_label": null,
+        "nutrition": {
+          "calories_kcal": 195.0,
+          "protein_g": 8.0,
+          "total_fat_g": 6.5,
+          "saturated_fat_g": 1.0,
+          "trans_fat_g": 0.0,
+          "cholesterol_mg": 0.0,
+          "total_carbs_g": 26.0,
+          "dietary_fiber_g": 4.0,
+          "total_sugars_g": 2.0,
+          "added_sugars_g": 0.0,
+          "sodium_mg": 240.0,
+          "non_glycemic_polyols_g": 0.0,
+          "additional_nutrients": {}
+        },
+        "ingredient_list": [
+          "Rolled Oats (45%)",
+          "Whey Protein Concentrate",
+          "Rice Crisps",
+          "High Oleic Sunflower Oil",
+          "Peri Peri Seasoning",
+          "Sea Salt"
+        ],
+        "ingredient_deck_raw": [],
+        "allergens": [
+          "milk"
+        ],
+        "dietary_tags": [
+          "Vegetarian"
+        ],
+        "image_url": null,
+        "redirect_links": [
+          {
+            "platform": "amazon",
+            "url": "https://www.amazon.in/s?k=Yoga+Bar+High+Protein+Oats+Crisps",
+            "platform_price_inr": null
+          },
+          {
+            "platform": "blinkit",
+            "url": "https://blinkit.com/s/?q=Yoga+Bar+Oats+Crisps",
+            "platform_price_inr": null
+          }
+        ],
+        "computed_metrics": {
+          "cost_per_g_protein": 9.38,
+          "best_price_inr": null,
+          "best_cost_per_g_protein": null,
+          "protein_density_pct": 16.41,
+          "true_net_carbs_g": 22.0
+        },
+        "red_flags": [],
+        "protein_profile": {
+          "primary_protein_source": "Whey Protein Concentrate",
+          "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+          "has_added_free_form_aminos": false
+        }
+      }
+    ]
+  }
+]
