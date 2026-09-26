@@ -1,0 +1,37 @@
+name: Poll Amazon prices
+
+on:
+  schedule:
+    - cron: "30 */6 * * *" # every 6 hours
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Accept price changes larger than 50%"
+        type: boolean
+        default: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: protein-etl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e .
+      - run: python src/cli.py poll-prices ${{ inputs.force && '--force' || '' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          AMAZON_CREATORS_CLIENT_ID: ${{ secrets.AMAZON_CREATORS_CLIENT_ID }}
+          AMAZON_CREATORS_CLIENT_SECRET: ${{ secrets.AMAZON_CREATORS_CLIENT_SECRET }}
+          AMAZON_CREATORS_CREDENTIAL_VERSION: ${{ secrets.AMAZON_CREATORS_CREDENTIAL_VERSION }}
+          AMAZON_CREATORS_TOKEN_URL: ${{ secrets.AMAZON_CREATORS_TOKEN_URL }}
+          AMAZON_CREATORS_API_URL: ${{ secrets.AMAZON_CREATORS_API_URL }}
+          AMAZON_PARTNER_TAG: ${{ secrets.AMAZON_PARTNER_TAG }}
+          REVALIDATE_URL: ${{ secrets.REVALIDATE_URL }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}

@@ -43,7 +43,20 @@ export interface RedirectLink {
   url: string;
   platform_price_inr: number | null;
   price_last_checked: string;
+  external_id?: string | null;
+  in_stock?: boolean | null;
   created_at: string;
+}
+
+export type QuickCommercePlatform = "blinkit" | "zepto" | "instamart";
+
+export interface AvailabilitySummary {
+  variant_id: string;
+  platform: QuickCommercePlatform;
+  area_code: string;
+  yes_count: number;
+  no_count: number;
+  last_reported_at: string;
 }
 
 export interface ProductVariant {

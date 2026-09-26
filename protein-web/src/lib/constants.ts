@@ -26,8 +26,10 @@ export const CATEGORIES = [
 ] as const;
 
 export const SORT_OPTIONS = [
-  { label: "Cost per Gram (₹/g) — Low to High", value: "cost_per_g_asc", column: "cost_per_g_protein", ascending: true },
+  { label: "Cost per Gram (₹/g) — Low to High", value: "cost_per_g_asc", column: "best_cost_per_g_protein", ascending: true },
   { label: "Protein Density — High to Low", value: "density_desc", column: "protein_density_pct", ascending: false },
+  { label: "Protein per ₹100 — High to Low", value: "p100_desc", column: "best_cost_per_g_protein", ascending: true },
+  { label: "Calories per g Protein — Low to High", value: "kcal_per_g_asc", column: "calories_kcal", ascending: true },
   { label: "Best Price — Low to High", value: "best_price_asc", column: "best_price_inr", ascending: true },
   { label: "MRP — Low to High", value: "price_asc", column: "mrp_inr", ascending: true },
   { label: "MRP — High to Low", value: "price_desc", column: "mrp_inr", ascending: false },

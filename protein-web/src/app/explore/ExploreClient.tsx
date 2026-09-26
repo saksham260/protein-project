@@ -5,6 +5,8 @@ import { FilterPanel } from "@/components/search/FilterPanel";
 import { SortDropdown } from "@/components/search/SortDropdown";
 import { ProductCard } from "@/components/product/ProductCard";
 import { useFilters } from "@/hooks/useFilters";
+import { usePincode } from "@/hooks/usePincode";
+import { METRIC_RANGES } from "@/lib/metrics";
 import { getProducts } from "@/lib/data";
 import { ProductWithVariants } from "@/types/product";
 import { CATEGORIES } from "@/lib/constants";
@@ -20,8 +22,11 @@ export function ExploreClient() {
     toggleAllergen,
     setZeroFlagsOnly,
     setSortBy,
+    setMetricRange,
+    setNearMe,
     clearFilters,
   } = useFilters();
+  const { pincode } = usePincode();
 
   const [products, setProducts] = useState<ProductWithVariants[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,7 +35,7 @@ export function ExploreClient() {
   useEffect(() => {
     let isMounted = true;
 
-    getProducts(filters)
+    getProducts({ ...filters, pincode })
       .then((data) => {
         if (isMounted) {
           setProducts(data);
@@ -44,7 +49,7 @@ export function ExploreClient() {
     return () => {
       isMounted = false;
     };
-  }, [filters]);
+  }, [filters, pincode]);
 
   const activeCategory = CATEGORIES.find((c) => c.slug === filters.categorySlug);
 
@@ -53,7 +58,9 @@ export function ExploreClient() {
     (filters.proteinTiers?.length || 0) +
     (filters.dietaryTags?.length || 0) +
     (filters.excludeAllergens?.length || 0) +
-    (filters.zeroFlagsOnly ? 1 : 0);
+    (filters.zeroFlagsOnly ? 1 : 0) +
+    (filters.nearMe ? 1 : 0) +
+    METRIC_RANGES.filter((r) => filters[r.key] !== undefined).length;
 
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col gap-10">
@@ -116,6 +123,8 @@ export function ExploreClient() {
             onToggleTag={toggleTag}
             onToggleAllergen={toggleAllergen}
             onSetZeroFlagsOnly={setZeroFlagsOnly}
+            onSetMetricRange={setMetricRange}
+            onSetNearMe={setNearMe}
             onClearFilters={clearFilters}
           />
         </aside>
@@ -285,6 +294,8 @@ export function ExploreClient() {
               onToggleTag={toggleTag}
               onToggleAllergen={toggleAllergen}
               onSetZeroFlagsOnly={setZeroFlagsOnly}
+            onSetMetricRange={setMetricRange}
+            onSetNearMe={setNearMe}
               onClearFilters={clearFilters}
               className="border-0 p-0 bg-transparent shadow-none"
             />

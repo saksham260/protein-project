@@ -34,3 +34,14 @@ export function computePer100g(value: number, netWeightG: number): number {
 export function cn(...classes: (string | boolean | undefined | null | number | false)[]): string {
   return classes.filter(Boolean).join(" ");
 }
+
+/** "just now", "5 min ago", "3 h ago", "2 days ago". */
+export function formatTimeAgo(iso: string | null | undefined, now: number = Date.now()): string {
+  if (!iso) return "—";
+  const minutes = Math.max(0, Math.round((now - new Date(iso).getTime()) / 60000));
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 48) return `${hours} h ago`;
+  return `${Math.round(hours / 24)} days ago`;
+}
