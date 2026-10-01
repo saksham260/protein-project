@@ -1,24 +1,27 @@
-"""Unit tests for the Amazon price poller."""
+"""Unit tests for the Amazon Creators API and price poller — Suites 8 & 9."""
 
+import os
 from types import SimpleNamespace
-from src.pricing.amazon import AmazonOffer, parse_get_items_response
-from src.pricing.poller import best_price_metrics, extract_asin, is_plausible_price, poll_amazon_prices
+from unittest.mock import MagicMock, patch
+import httpx
+import pytest
+from src.pricing.amazon import (
+    AmazonCreatorsClient,
+    AmazonOffer,
+    parse_get_items_response,
+)
+from src.pricing.poller import (
+    best_price_metrics,
+    extract_asin,
+    is_plausible_price,
+    poll_amazon_prices,
+    trigger_revalidate,
+)
 
 
-def test_extract_asin_from_product_urls():
-    assert extract_asin("https://www.amazon.in/dp/B07XJ8C8F5") == "B07XJ8C8F5"
-    assert extract_asin("https://www.amazon.in/MuscleBlaze-Whey/dp/B07XJ8C8F5/ref=sr_1_1?tag=x") == "B07XJ8C8F5"
-    assert extract_asin("https://www.amazon.in/gp/product/B07XJ8C8F5?th=1") == "B07XJ8C8F5"
-    assert extract_asin("https://www.amazon.in/s?k=whey+protein") is None
-
-
-def test_is_plausible_price():
-    assert is_plausible_price(None, 2999)
-    assert is_plausible_price(3000, 2600)
-    assert not is_plausible_price(3000, 1200)  # -60%
-    assert not is_plausible_price(3000, 0)
-    assert not is_plausible_price(3000, None)
-
+# ==========================================
+# Suite 8: Amazon Creators API
+# ==========================================
 
 def test_parse_get_items_response_reads_first_listing():
     payload = {
@@ -44,11 +47,149 @@ def test_parse_get_items_response_reads_first_listing():
     assert offers["B000000002"] == AmazonOffer("B000000002", None, None)
 
 
+def test_parse_get_items_response_out_of_stock():
+    payload = {
+        "itemResults": {
+            "items": [
+                {
+                    "asin": "B000000003",
+                    "offersV2": {
+                        "listings": [
+                            {
+                                "price": {"money": {"amount": 1500.0, "currency": "INR"}},
+                                "availability": {"type": "OUT_OF_STOCK"},
+                            }
+                        ]
+                    },
+                }
+            ]
+        }
+    }
+    offers = parse_get_items_response(payload)
+    assert offers["B000000003"] == AmazonOffer("B000000003", 1500.0, False)
+
+
+def test_parse_get_items_response_pascal_case():
+    payload = {
+        "ItemsResult": {
+            "Items": [
+                {
+                    "Asin": "B000000004",
+                    "OffersV2": {
+                        "Listings": [
+                            {
+                                "Price": {"Money": {"Amount": 2000.0}},
+                                "Availability": {"Type": "IN_STOCK"},
+                            }
+                        ]
+                    },
+                }
+            ]
+        }
+    }
+    offers = parse_get_items_response(payload)
+    assert offers["B000000004"] == AmazonOffer("B000000004", 2000.0, True)
+
+
+def test_parse_get_items_empty_or_missing_amount():
+    assert parse_get_items_response({}) == {}
+    payload = {
+        "itemResults": {
+            "items": [
+                {
+                    "asin": "B000000005",
+                    "offersV2": {"listings": [{"price": {}}]},
+                }
+            ]
+        }
+    }
+    offers = parse_get_items_response(payload)
+    assert offers["B000000005"].price_inr is None
+
+
+def test_amazon_client_from_env_all_and_missing():
+    with patch.dict(os.environ, {}, clear=True):
+        assert AmazonCreatorsClient.from_env() is None
+
+    env = {
+        "AMAZON_CREATORS_CLIENT_ID": "cid",
+        "AMAZON_CREATORS_CLIENT_SECRET": "csec",
+        "AMAZON_PARTNER_TAG": "tag",
+    }
+    with patch.dict(os.environ, env, clear=True):
+        client = AmazonCreatorsClient.from_env()
+        assert client is not None
+        assert client.client_id == "cid"
+        assert client.partner_tag == "tag"
+        assert client.credential_version == "2.2"
+
+
+def test_amazon_client_auth_header_versions():
+    mock_http = MagicMock()
+    mock_resp = MagicMock()
+    mock_resp.json.return_value = {"access_token": "token123", "expires_in": 3600}
+    mock_http.post.return_value = mock_resp
+
+    # Version 2.2
+    c2 = AmazonCreatorsClient("id", "sec", "2.2", "tag", http=mock_http)
+    assert c2._auth_header() == "Bearer token123, Version 2.2"
+
+    # Version 3.0
+    c3 = AmazonCreatorsClient("id", "sec", "3.0", "tag", http=mock_http)
+    c3._token = "token123"
+    c3._token_expires_at = 9999999999.0
+    assert c3._auth_header() == "Bearer token123"
+
+
+# ==========================================
+# Suite 9: Price Poller
+# ==========================================
+
+def test_extract_asin_from_product_urls():
+    assert extract_asin("https://www.amazon.in/dp/B07XJ8C8F5") == "B07XJ8C8F5"
+    assert extract_asin("https://www.amazon.in/MuscleBlaze-Whey/dp/B07XJ8C8F5/ref=sr_1_1?tag=x") == "B07XJ8C8F5"
+    assert extract_asin("https://www.amazon.in/gp/product/B07XJ8C8F5?th=1") == "B07XJ8C8F5"
+    assert extract_asin("https://www.amazon.in/s?k=whey+protein") is None
+    assert extract_asin(None) is None
+    assert extract_asin("") is None
+
+
+def test_is_plausible_price():
+    assert is_plausible_price(None, 2999)
+    assert is_plausible_price(0, 500)
+    assert is_plausible_price(1000, 1100)  # +10%
+    assert is_plausible_price(1000, 1500)  # +50% (boundary)
+    assert not is_plausible_price(1000, 1600)  # +60%
+    assert not is_plausible_price(1000, 400)  # -60%
+    assert not is_plausible_price(1000, 0)
+    assert not is_plausible_price(1000, -50)
+    assert not is_plausible_price(1000, None)
+
+
 def test_best_price_metrics_scales_to_whole_pack():
-    # 25g protein per 32g scoop, 1kg tub = 781.25g protein; ₹2899 / 781.25 = ₹3.71/g
     variant = {"protein_g": 25, "net_weight_g": 1000, "serving_size_g": 32}
     metrics = best_price_metrics(variant, [3499, 2899, None])
     assert metrics == {"best_price_inr": 2899.0, "best_cost_per_g_protein": 3.71}
+
+
+def test_best_price_metrics_all_none_or_zeros():
+    variant = {"protein_g": 20, "net_weight_g": 50, "serving_size_g": 50}
+    assert best_price_metrics(variant, [None, 0, -10]) == {
+        "best_price_inr": None,
+        "best_cost_per_g_protein": None,
+    }
+
+
+def test_trigger_revalidate():
+    with patch("httpx.post") as mock_post:
+        mock_post.return_value = MagicMock(status_code=200)
+        assert trigger_revalidate("https://example.com/api/revalidate", "secret") is True
+
+        mock_post.return_value = MagicMock(status_code=401)
+        assert trigger_revalidate("https://example.com/api/revalidate", "wrong") is False
+
+        mock_post.side_effect = httpx.ConnectError("fail")
+        assert trigger_revalidate("https://example.com/api/revalidate", "secret") is False
 
 
 class FakeQuery:
