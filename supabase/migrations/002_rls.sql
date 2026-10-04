@@ -1,5 +1,6 @@
 -- ==============================================================================
 -- 002_rls.sql: Row-Level Security (RLS) & User Profile Trigger
+-- (Idempotent: safe to run multiple times)
 -- ==============================================================================
 
 -- Enable RLS across all tables
@@ -18,10 +19,12 @@ ALTER TABLE user_favorites ENABLE ROW LEVEL SECURITY;
 -- ------------------------------------------------------------------------------
 
 -- BRANDS
+DROP POLICY IF EXISTS "Allow public read on brands" ON brands;
 CREATE POLICY "Allow public read on brands"
     ON brands FOR SELECT
     USING (true);
 
+DROP POLICY IF EXISTS "Allow service_role full access on brands" ON brands;
 CREATE POLICY "Allow service_role full access on brands"
     ON brands FOR ALL
     TO service_role
@@ -29,10 +32,12 @@ CREATE POLICY "Allow service_role full access on brands"
     WITH CHECK (true);
 
 -- CATEGORIES
+DROP POLICY IF EXISTS "Allow public read on categories" ON categories;
 CREATE POLICY "Allow public read on categories"
     ON categories FOR SELECT
     USING (true);
 
+DROP POLICY IF EXISTS "Allow service_role full access on categories" ON categories;
 CREATE POLICY "Allow service_role full access on categories"
     ON categories FOR ALL
     TO service_role
@@ -40,10 +45,12 @@ CREATE POLICY "Allow service_role full access on categories"
     WITH CHECK (true);
 
 -- PRODUCTS
+DROP POLICY IF EXISTS "Allow public read on active products" ON products;
 CREATE POLICY "Allow public read on active products"
     ON products FOR SELECT
     USING (is_active = true);
 
+DROP POLICY IF EXISTS "Allow service_role full access on products" ON products;
 CREATE POLICY "Allow service_role full access on products"
     ON products FOR ALL
     TO service_role
@@ -51,10 +58,12 @@ CREATE POLICY "Allow service_role full access on products"
     WITH CHECK (true);
 
 -- PRODUCT_VARIANTS
+DROP POLICY IF EXISTS "Allow public read on active product_variants" ON product_variants;
 CREATE POLICY "Allow public read on active product_variants"
     ON product_variants FOR SELECT
     USING (is_active = true);
 
+DROP POLICY IF EXISTS "Allow service_role full access on product_variants" ON product_variants;
 CREATE POLICY "Allow service_role full access on product_variants"
     ON product_variants FOR ALL
     TO service_role
@@ -62,10 +71,12 @@ CREATE POLICY "Allow service_role full access on product_variants"
     WITH CHECK (true);
 
 -- VARIANT_RED_FLAGS
+DROP POLICY IF EXISTS "Allow public read on variant_red_flags" ON variant_red_flags;
 CREATE POLICY "Allow public read on variant_red_flags"
     ON variant_red_flags FOR SELECT
     USING (true);
 
+DROP POLICY IF EXISTS "Allow service_role full access on variant_red_flags" ON variant_red_flags;
 CREATE POLICY "Allow service_role full access on variant_red_flags"
     ON variant_red_flags FOR ALL
     TO service_role
@@ -73,10 +84,12 @@ CREATE POLICY "Allow service_role full access on variant_red_flags"
     WITH CHECK (true);
 
 -- REDIRECT_LINKS
+DROP POLICY IF EXISTS "Allow public read on redirect_links" ON redirect_links;
 CREATE POLICY "Allow public read on redirect_links"
     ON redirect_links FOR SELECT
     USING (true);
 
+DROP POLICY IF EXISTS "Allow service_role full access on redirect_links" ON redirect_links;
 CREATE POLICY "Allow service_role full access on redirect_links"
     ON redirect_links FOR ALL
     TO service_role
@@ -88,15 +101,18 @@ CREATE POLICY "Allow service_role full access on redirect_links"
 -- ------------------------------------------------------------------------------
 
 -- USERS
+DROP POLICY IF EXISTS "Users can read their own profile" ON users;
 CREATE POLICY "Users can read their own profile"
     ON users FOR SELECT
     USING (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Users can update their own profile" ON users;
 CREATE POLICY "Users can update their own profile"
     ON users FOR UPDATE
     USING (auth.uid() = id)
     WITH CHECK (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Allow service_role full access on users" ON users;
 CREATE POLICY "Allow service_role full access on users"
     ON users FOR ALL
     TO service_role
@@ -104,23 +120,28 @@ CREATE POLICY "Allow service_role full access on users"
     WITH CHECK (true);
 
 -- USER_PREFERENCES
+DROP POLICY IF EXISTS "Users can read own preferences" ON user_preferences;
 CREATE POLICY "Users can read own preferences"
     ON user_preferences FOR SELECT
     USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can insert own preferences" ON user_preferences;
 CREATE POLICY "Users can insert own preferences"
     ON user_preferences FOR INSERT
     WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can update own preferences" ON user_preferences;
 CREATE POLICY "Users can update own preferences"
     ON user_preferences FOR UPDATE
     USING (auth.uid() = user_id)
     WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can delete own preferences" ON user_preferences;
 CREATE POLICY "Users can delete own preferences"
     ON user_preferences FOR DELETE
     USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Allow service_role full access on user_preferences" ON user_preferences;
 CREATE POLICY "Allow service_role full access on user_preferences"
     ON user_preferences FOR ALL
     TO service_role
@@ -128,18 +149,22 @@ CREATE POLICY "Allow service_role full access on user_preferences"
     WITH CHECK (true);
 
 -- USER_FAVORITES
+DROP POLICY IF EXISTS "Users can read own favorites" ON user_favorites;
 CREATE POLICY "Users can read own favorites"
     ON user_favorites FOR SELECT
     USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can add own favorites" ON user_favorites;
 CREATE POLICY "Users can add own favorites"
     ON user_favorites FOR INSERT
     WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can remove own favorites" ON user_favorites;
 CREATE POLICY "Users can remove own favorites"
     ON user_favorites FOR DELETE
     USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Allow service_role full access on user_favorites" ON user_favorites;
 CREATE POLICY "Allow service_role full access on user_favorites"
     ON user_favorites FOR ALL
     TO service_role
@@ -174,7 +199,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Drop trigger if already exists and recreate
+-- Note: 004_phase1_fixes updates this trigger to fire only on relevant column updates.
+-- Recreate base trigger here safely.
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
     AFTER INSERT OR UPDATE ON auth.users

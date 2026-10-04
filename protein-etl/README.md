@@ -45,9 +45,17 @@ python src/cli.py review                   # approve / skip / reject each draft 
 Nutrition layers, first complete result wins: Open Food Facts (barcode) → Shopify description → product page
 (JSON-LD / tables / text) → Gemini label photos. Drafts live in `data/drafts/`; fix a `needs_input` draft by editing its JSON.
 
-Seed database:
+## Database Connection & Seeding
+
+1. Copy `.env.example` to `.env` and fill in your `SUPABASE_URL` and `SUPABASE_SERVICE_KEY`.
+2. Check database connection:
 ```bash
-python scripts/seed.py --dry-run
+python scripts/check_connection.py
+```
+3. Seed products into Supabase:
+```bash
+python scripts/seed.py --dry-run    # validate locally
+python scripts/seed.py              # live upload to Supabase
 ```
 
 Run tests:

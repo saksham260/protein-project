@@ -1,83 +1,52 @@
-# Supabase Infrastructure: The Protein Discovery Engine
+# Supabase Database & Migrations
 
-This directory contains the database migration scripts, security policies, performance indexing, and configuration instructions for The Protein Discovery Engine.
+This directory contains the database migration scripts and verification tools for **The Protein Discovery Engine**.
 
 ---
 
 ## 1. Directory Structure
 
-```
-supabase/
-├── migrations/
-│   ├── 001_schema.sql       # Core database tables, constraints, triggers
-│   ├── 002_rls.sql          # Row-Level Security policies & user auth sync
-│   ├── 003_indexes.sql      # B-Tree, GIN array, and pg_trgm fuzzy search indexes
-│   └── 004_phase1_fixes.sql # Best-price columns, unique redirect links, auth trigger fix
-└── README.md
-```
+| File | Purpose | Safe to re-run? |
+|---|---|---|
+| [`setup_all.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/setup_all.sql) | Combined single-paste setup script containing 001–007 in exact order. | ✅ Yes |
+| [`verify.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/verify.sql) | Audit query checking tables, views, RLS status, policies, grants, and row counts. | ✅ Yes |
+| [`migrations/001_schema.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/001_schema.sql) | Core schema: brands, categories, products, product_variants, red flags, redirect links, users, preferences, favorites. | ✅ Yes |
+| [`migrations/002_rls.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/002_rls.sql) | Row Level Security policies (public catalog reads, user-scoped CRUD) and auth user trigger. | ✅ Yes |
+| [`migrations/003_indexes.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/003_indexes.sql) | B-tree metric indexes, GIN array indexes, and trigram fuzzy search indexes. | ✅ Yes |
+| [`migrations/004_phase1_fixes.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/004_phase1_fixes.sql) | Unique constraint on `(variant_id, platform)`, polyols, and best-price columns. | ✅ Yes |
+| [`migrations/005_prices_availability.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/005_prices_availability.sql) | `price_history`, crowd-sourced `availability_reports`, ASIN tracking, and `availability_summary` view. | ✅ Yes |
+| [`migrations/006_api_grants.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/006_api_grants.sql) | Explicit Data API table grants for `anon`, `authenticated`, and `service_role`. | ✅ Yes |
+| [`migrations/007_seed_categories.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/007_seed_categories.sql) | Populates the 4 core categories matching frontend `constants.ts`. | ✅ Yes |
 
 ---
 
-## 2. Running the Migrations
+## 2. Pre-Flight Verification Commands
 
-You can run these migrations either through the **Supabase Dashboard** or via the **Supabase CLI**.
+Before and after migrations or data operations, run the pre-flight checks:
 
-### Option A: Via Supabase Dashboard (Recommended for quick setup)
-1. Go to [database.new](https://database.new) or open your Supabase project dashboard.
-2. Navigate to **SQL Editor** in the left sidebar.
-3. Open and run each migration in numeric order:
-   - Run `001_schema.sql` (Creates all tables, types, and triggers).
-   - Run `002_rls.sql` (Enables Row-Level Security and user sync trigger).
-   - Run `003_indexes.sql` (Enables `pg_trgm` extension and performance indexes).
-   - Run `004_phase1_fixes.sql` (Best-price columns, one redirect link per platform, auth trigger fix).
-     If products were already seeded, re-run `python scripts/seed.py` afterwards so ₹/g values are recomputed.
-
-### Option B: Via Supabase CLI
+### Python ETL Pre-Flight Check (Tests service_role write & read)
 ```bash
-# Link your local project to your Supabase project
-supabase link --project-ref <your-project-id>
+python protein-etl/scripts/check_connection.py
+```
 
-# Push the migrations to the linked remote database
-supabase db push
+### Next.js Frontend Pre-Flight Check (Tests publishable key & anonymous report insert)
+```bash
+cd protein-web
+npm run check:supabase
 ```
 
 ---
 
-## 3. Storage Bucket Configuration (`product-images`)
+## 3. Seeding Products
 
-1. Go to **Storage** in the Supabase Dashboard.
-2. Click **New Bucket**:
-   - **Bucket Name**: `product-images`
-   - **Public Bucket**: **Enabled** (Allows anonymous read for product pack photos in web client).
-3. **Storage RLS Policies**:
-   - By default, public buckets allow public `SELECT` access.
-   - For `INSERT` / `UPDATE` / `DELETE`, create a policy restricting writes to `service_role` (used by the Python ETL script) or authenticated admins.
+To seed or refresh the 15 curated Indian protein products:
 
----
+```bash
+cd protein-etl
 
-## 4. Authentication Configuration (Google OAuth)
+# Dry-run test (local validation without database writes)
+python scripts/seed.py --dry-run
 
-1. Navigate to **Authentication** → **Providers** → **Google**.
-2. Toggle Google to **Enabled**.
-3. Create OAuth credentials in [Google Cloud Console](https://console.cloud.google.com/apis/credentials):
-   - **Authorized redirect URI**: `https://<your-supabase-project-id>.supabase.co/auth/v1/callback`
-   - Copy **Client ID** and **Client Secret** into the Supabase Dashboard.
-4. (Optional) Under **URL Configuration**, add your local frontend URL (`http://localhost:3000`) and production domain to **Redirect URLs**.
-
----
-
-## 5. Environment Variables Template
-
-Add the following to `protein-etl/.env` and `protein-web/.env.local`:
-
-```env
-# Shared Supabase Cloud Configuration
-SUPABASE_URL=https://<your-project-id>.supabase.co
-
-# Public Anon Key (for Next.js client-side queries)
-NEXT_PUBLIC_SUPABASE_URL=https://<your-project-id>.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
-
-# Private Service Role Key (NEVER expose to frontend; used only in protein-etl)
-SUPABASE_SERVICE_KEY=eyJhbGciOi...
+# Live upload to Supabase (idempotent, safe to repeat)
+python scripts/seed.py
 ```
