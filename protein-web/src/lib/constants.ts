@@ -23,6 +23,12 @@ export const CATEGORIES = [
     description: "Protein chips, namkeen mixtures, crisps, and roasted savory protein bites.",
     icon: "🥨",
   },
+  {
+    name: "Peanut Butter & Spreads",
+    slug: "protein-spreads",
+    description: "High-protein peanut butters and nut spreads checked for added sugar, palm oil, and protein per spoon.",
+    icon: "🥜",
+  },
 ] as const;
 
 export const SORT_OPTIONS = [
@@ -51,15 +57,15 @@ export const PROTEIN_TIERS = {
     color: "#38bdf8",
     bg: "rgba(56, 189, 248, 0.15)",
     border: "rgba(56, 189, 248, 0.4)",
-    description: "Solid bioavailability (70–80% protein). Whey protein concentrate, milk protein concentrate, isolate/concentrate blends.",
+    description: "Solid bioavailability. Whey protein concentrate, milk protein concentrate, casein, isolate/concentrate blends, and high-protein milk (skimmed milk / milk solids).",
   },
   "Tier 3": {
-    label: "Tier 3: Plant Protein Blends",
-    badgeLabel: "Tier 3: Plant Blend",
+    label: "Tier 3: Plant, Yeast & Peanut Protein",
+    badgeLabel: "Tier 3: Plant / Yeast",
     color: "#fbbf24",
     bg: "rgba(251, 191, 36, 0.15)",
     border: "rgba(251, 191, 36, 0.4)",
-    description: "Complete amino acid profile achieved through pea + brown rice or multi-seed plant blends.",
+    description: "Non-dairy protein: pea, rice, soy, fermented yeast, peanut, and pulse/millet flours. Blends (e.g. pea + rice) give a more complete amino acid profile than single sources.",
   },
   "Tier 4": {
     label: "Tier 4: Incomplete / Spiked / Collagen",

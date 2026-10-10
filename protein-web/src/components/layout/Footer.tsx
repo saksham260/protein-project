@@ -59,10 +59,10 @@ export const Footer: React.FC = () => {
                 <span className="text-[#E4E4E7]">Tier 1:</span> Pure Isolates (&gt;90%)
               </li>
               <li>
-                <span className="text-[#E4E4E7]">Tier 2:</span> Concentrates (70–80%)
+                <span className="text-[#E4E4E7]">Tier 2:</span> Concentrates & Milk Protein
               </li>
               <li>
-                <span className="text-[#E4E4E7]">Tier 3:</span> Complete Plant Blends
+                <span className="text-[#E4E4E7]">Tier 3:</span> Plant, Yeast & Peanut Protein
               </li>
               <li>
                 <span className="text-[#E4E4E7]">Tier 4:</span> Incomplete / Fillers

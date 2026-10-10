@@ -1,0 +1,5023 @@
+{
+ "superyou.in": [
+  {
+   "handle": "chocolate-protein-powder",
+   "title": "Chocolate Fermented Yeast Protein - 1Kg Jar",
+   "images": [
+    {
+     "id": 65246698930466,
+     "created_at": "2026-09-11T18:09:50+05:30",
+     "position": 1,
+     "updated_at": "2026-09-11T18:09:52+05:30",
+     "product_id": 9797445845282,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/1kg_ChocolateJarFOPcopy_2.jpg?v=1789130392",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2349.00",
+     "compare_at_price": "2649.00",
+     "sku": "PRO-YST-CHO-1000-01-N",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "kesar-badam-fermented-yeast-protein-1kg-jar",
+   "title": "Kesar Badam Fermented Yeast Protein - 1Kg Jar",
+   "images": [
+    {
+     "id": 65291446911266,
+     "created_at": "2026-09-15T12:29:37+05:30",
+     "position": 1,
+     "updated_at": "2026-09-15T12:29:39+05:30",
+     "product_id": 10161530700066,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/FOPcopy2.jpg?v=1789455579",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2349.00",
+     "compare_at_price": "2649.00",
+     "sku": "PRO-YST-KSB-1000-01-N",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "unflavoured-1-kg-fermented-yeast-protein",
+   "title": "Unflavoured Fermented Yeast Protein - 1Kg Jar",
+   "images": [
+    {
+     "id": 65291414176034,
+     "created_at": "2026-09-15T12:27:29+05:30",
+     "position": 1,
+     "updated_at": "2026-09-15T12:27:30+05:30",
+     "product_id": 9844890370338,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/1kg_Unflavoured_JarFOPcopy_2.jpg?v=1789455450",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2099.00",
+     "compare_at_price": "2549.00",
+     "sku": "PRO-YST-UNF-1000-01-N",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "vanilla-fermented-yeast-500g",
+   "title": "Vanilla Fermented Yeast Protein - 500g Jar",
+   "images": [
+    {
+     "id": 64654107476258,
+     "created_at": "2026-08-04T12:40:43+05:30",
+     "position": 1,
+     "updated_at": "2026-08-04T12:40:44+05:30",
+     "product_id": 10049632895266,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/500g_Vanila_FOP_Trustified_1.jpg?v=1785827444",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "1299.00",
+     "compare_at_price": "1499.00",
+     "sku": "PRO-YST-VAN-500-01-J-N",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "nakpro.com": [
+  {
+   "handle": "raw-grass-fed-whey-protein-concentrate",
+   "title": "Nakpro Grass Fed Raw Whey Protein Concentrate | 80g Protein | Clean Unflavored Whey Protein",
+   "images": [
+    {
+     "id": 36422323732560,
+     "created_at": "2026-04-24T17:52:59+05:30",
+     "position": 1,
+     "updated_at": "2026-04-24T17:53:00+05:30",
+     "product_id": 7291537490000,
+     "variant_ids": [
+      41989028118608
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/01_unflavoured_b1cf45e7-678b-403c-99ab-4d5ff5d1b9bc.jpg?v=1777033380",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Unflavoured / 1Kg",
+     "price": "3099.00",
+     "compare_at_price": "4800.00",
+     "sku": "GFC-1J",
+     "available": true
+    },
+    {
+     "title": "Unflavoured / 2Kg",
+     "price": "6098.00",
+     "compare_at_price": "9400.00",
+     "sku": "AAIB",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "whey-gold-protein-concentrate",
+   "title": "Nakpro Whey Gold Protein Concentrate | 80g Protein | Clean Unflavored Whey Protein | Trustified Certified",
+   "images": [
+    {
+     "id": 36270853652560,
+     "created_at": "2026-04-02T13:17:15+05:30",
+     "position": 1,
+     "updated_at": "2026-04-02T13:17:45+05:30",
+     "product_id": 7219185254480,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/wheygold_1kg_a64dfaca-59b4-4856-8576-ad427f838800.jpg?v=1775116065",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Unflavored / 500g",
+     "price": "1549.00",
+     "compare_at_price": "2500.00",
+     "sku": "NAKGOLD500",
+     "available": true
+    },
+    {
+     "title": "Unflavored / 1Kg",
+     "price": "2999.00",
+     "compare_at_price": "4800.00",
+     "sku": "GOLD2P",
+     "available": true
+    },
+    {
+     "title": "Unflavored / 2Kg",
+     "price": "5898.00",
+     "compare_at_price": "9400.00",
+     "sku": "N1",
+     "available": true
+    },
+    {
+     "title": "Unflavored / 4Kg",
+     "price": "11596.00",
+     "compare_at_price": "18400.00",
+     "sku": "ABAH",
+     "available": false
+    },
+    {
+     "title": "Unflavored / 1Kg-JAR",
+     "price": "3099.00",
+     "compare_at_price": "5000.00",
+     "sku": "AFAF",
+     "available": true
+    },
+    {
+     "title": "Unflavored / 5Kg",
+     "price": "14495.00",
+     "compare_at_price": "23000.00",
+     "sku": "ABAE",
+     "available": false
+    },
+    {
+     "title": "Unflavored / Unflavoured+Creatine 100g (Fruit Punch)",
+     "price": "3099.00",
+     "compare_at_price": "5000.00",
+     "sku": "GOLD2P-CFP",
+     "available": false
+    },
+    {
+     "title": "Unflavored / Unflavoured+Creatine 100g (Tangy Orange)",
+     "price": "3099.00",
+     "compare_at_price": "5000.00",
+     "sku": "GOLD2P-CTO",
+     "available": false
+    },
+    {
+     "title": "Unflavored / Unflavoured+Creatine 100g (Unflavoured)",
+     "price": "3099.00",
+     "compare_at_price": "5000.00",
+     "sku": "GOLD2P-CUF",
+     "available": true
+    },
+    {
+     "title": "Unflavored / Unflavoured+Shaker",
+     "price": "3099.00",
+     "compare_at_price": "5000.00",
+     "sku": "GOLD2P-SB",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "nakpro-pea-protein-isolate",
+   "title": "Nakpro Pea Protein Isolate | 72g Protein | Plant-Based Protein Powder",
+   "images": [
+    {
+     "id": 36377172082768,
+     "created_at": "2026-04-18T12:38:25+05:30",
+     "position": 1,
+     "updated_at": "2026-04-18T12:46:29+05:30",
+     "product_id": 6827969413200,
+     "variant_ids": [
+      40133969510480
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/01_chocolate_70376b0d-14d8-4a5c-a570-1de4c7b19786.jpg?v=1776496589",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Chocolate / 500g",
+     "price": "674.00",
+     "compare_at_price": "1290.00",
+     "sku": "AIQA",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 1Kg",
+     "price": "1299.00",
+     "compare_at_price": "2260.00",
+     "sku": "AIGA",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 2Kg",
+     "price": "2548.00",
+     "compare_at_price": "4450.00",
+     "sku": "AIGB",
+     "available": true
+    },
+    {
+     "title": "Mango / 500g",
+     "price": "674.00",
+     "compare_at_price": "1290.00",
+     "sku": "AIOA",
+     "available": true
+    },
+    {
+     "title": "Mango / 1Kg",
+     "price": "1299.00",
+     "compare_at_price": "2260.00",
+     "sku": "AIJA",
+     "available": true
+    },
+    {
+     "title": "Mango / 2Kg",
+     "price": "2548.00",
+     "compare_at_price": "4450.00",
+     "sku": "AIGC",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 500g",
+     "price": "674.00",
+     "compare_at_price": "1290.00",
+     "sku": "AIPA",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 1Kg",
+     "price": "1299.00",
+     "compare_at_price": "2260.00",
+     "sku": "AIHA",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 2Kg",
+     "price": "2548.00",
+     "compare_at_price": "4450.00",
+     "sku": "AIGF",
+     "available": true
+    },
+    {
+     "title": "Unflavoured / 500g",
+     "price": "549.00",
+     "compare_at_price": "1450.00",
+     "sku": "AIRA",
+     "available": true
+    },
+    {
+     "title": "Unflavoured / 1Kg",
+     "price": "1049.00",
+     "compare_at_price": "2500.00",
+     "sku": "AIIA",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "nakpro-100-micellar-casein-protein-supplement-powder",
+   "title": "Nakpro Micellar Casein Protein Powder | 80g Protein | Slow Release Protein",
+   "images": [
+    {
+     "id": 36444117303376,
+     "created_at": "2026-04-28T10:04:02+05:30",
+     "position": 1,
+     "updated_at": "2026-04-28T10:04:04+05:30",
+     "product_id": 6777978060880,
+     "variant_ids": [
+      39996996091984
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/01_vanilla_bf4b179c-d0ee-4ae4-a682-5f3844a2f9ea.jpg?v=1777350844",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Banana / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKAA",
+     "available": true
+    },
+    {
+     "title": "Banana / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKAB",
+     "available": false
+    },
+    {
+     "title": "Cookies & Cream / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKFA",
+     "available": true
+    },
+    {
+     "title": "Cookies & Cream / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKFB",
+     "available": false
+    },
+    {
+     "title": "Chocolate Cream / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKEA",
+     "available": false
+    },
+    {
+     "title": "Chocolate Cream / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKEB",
+     "available": false
+    },
+    {
+     "title": "Chocolate / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKDA",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKDB",
+     "available": false
+    },
+    {
+     "title": "Coffee / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKCA",
+     "available": true
+    },
+    {
+     "title": "Coffee / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKCB",
+     "available": false
+    },
+    {
+     "title": "Double Rich Chocolate / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKJA",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKJB",
+     "available": false
+    },
+    {
+     "title": "Mango / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKGA",
+     "available": true
+    },
+    {
+     "title": "Mango / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKGB",
+     "available": false
+    },
+    {
+     "title": "Malai Kulfi / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKKA",
+     "available": true
+    },
+    {
+     "title": "Strawberry / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKHA",
+     "available": true
+    },
+    {
+     "title": "Strawberry / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKHB",
+     "available": false
+    },
+    {
+     "title": "Unflavored / 1Kg",
+     "price": "1599.00",
+     "compare_at_price": "3500.00",
+     "sku": "AKLA",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 1Kg",
+     "price": "1699.00",
+     "compare_at_price": "3400.00",
+     "sku": "AKIA",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 2Kg",
+     "price": "3298.00",
+     "compare_at_price": "6600.00",
+     "sku": "AKIB",
+     "available": false
+    },
+    {
+     "title": "Unflavored / 2Kg",
+     "price": "3098.00",
+     "compare_at_price": "7000.00",
+     "sku": "AKLB",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "nakpro-plant-protein-powder",
+   "title": "Nakpro Plant Protein Powder | 70g Protein | Pea & Brown Rice Protein Blend | Trustified Certified",
+   "images": [
+    {
+     "id": 36137431498832,
+     "created_at": "2026-03-16T10:46:16+05:30",
+     "position": 1,
+     "updated_at": "2026-04-21T11:53:35+05:30",
+     "product_id": 6769724063824,
+     "variant_ids": [
+      40031814647888
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/01_chocolate_1kg.jpg?v=1776752615",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Chocolate / 500g",
+     "price": "724.00",
+     "compare_at_price": "1350.00",
+     "sku": "AINA",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 1Kg",
+     "price": "1399.00",
+     "compare_at_price": "2600.00",
+     "sku": "AIAD",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 2Kg",
+     "price": "2698.00",
+     "compare_at_price": "5000.00",
+     "sku": "AIKD",
+     "available": true
+    },
+    {
+     "title": "Mango / 500g",
+     "price": "724.00",
+     "compare_at_price": "1350.00",
+     "sku": "AILA",
+     "available": true
+    },
+    {
+     "title": "Mango / 1Kg",
+     "price": "1399.00",
+     "compare_at_price": "2600.00",
+     "sku": "AIKA",
+     "available": true
+    },
+    {
+     "title": "Mango / 2Kg",
+     "price": "2698.00",
+     "compare_at_price": "5000.00",
+     "sku": "AIKB",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 500g",
+     "price": "724.00",
+     "compare_at_price": "1350.00",
+     "sku": "AIMA",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 1Kg",
+     "price": "1399.00",
+     "compare_at_price": "2600.00",
+     "sku": "AIFA",
+     "available": true
+    },
+    {
+     "title": "Vanilla / 2Kg",
+     "price": "2698.00",
+     "compare_at_price": "5000.00",
+     "sku": "AIKC",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "raw-platinum-whey-protein-isolate",
+   "title": "Nakpro Platinum Raw Whey Protein Isolate | 90g Protein | Clean Unflavored | Trustified Certified",
+   "images": [
+    {
+     "src": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/01_unflavoured_45b05573-b1c6-455f-95f6-beb948734420.jpg?v=1779173840"
+    }
+   ],
+   "variants": [
+    {
+     "title": "Unflavored / 500g",
+     "price": "2274.00",
+     "compare_at_price": "3700.00",
+     "sku": "PLAT-1P",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 1Kg",
+     "price": "4449.00",
+     "compare_at_price": "7200.00",
+     "sku": "PLAT-1J-SF",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 2Kg",
+     "price": "8798.00",
+     "compare_at_price": "14200.00",
+     "sku": "AAAC",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 4Kg",
+     "price": "17396.00",
+     "compare_at_price": "28000.00",
+     "sku": "AAAG",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 5Kg",
+     "price": "21745.00",
+     "compare_at_price": "35000.00",
+     "sku": "AAAE",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 1Kg+Shaker",
+     "price": "4549.00",
+     "compare_at_price": "7400.00",
+     "sku": "PLAT-1J-SF-SB",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 1Kg-JAR",
+     "price": "4549.00",
+     "compare_at_price": "7400.00",
+     "sku": "ABAA",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 1Kg+Creatine (Fruit Punch)",
+     "price": "4549.00",
+     "compare_at_price": "7400.00",
+     "sku": "Nakpro_Platinum_1kg-CFP",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 1Kg+Creatine (Tangy Orange)",
+     "price": "4549.00",
+     "compare_at_price": "7400.00",
+     "sku": "Nakpro_Platinum_1kg-CTO",
+     "available": null
+    },
+    {
+     "title": "Unflavored / 1Kg+Creatine (Unflavoured)",
+     "price": "4549.00",
+     "compare_at_price": "7400.00",
+     "sku": "Nakpro_Platinum_1kg-CUF",
+     "available": null
+    }
+   ]
+  }
+ ],
+ "yogabars.in": [
+  {
+   "handle": "ultimate-whey-isolate-with-fermented-yeast-protein-chocolate-500gm",
+   "title": "Ultimate Whey Isolate with Fermented Yeast Protein - Chocolate - 500gm",
+   "images": [
+    {
+     "id": 42937603424428,
+     "created_at": "2026-06-24T11:16:36+05:30",
+     "position": 1,
+     "updated_at": "2026-07-23T16:39:01+05:30",
+     "product_id": 8626772082860,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/whey-isolate-yeast-protein-chocolate-flavour-pack.jpg?v=1784804941",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "500g x 1 (500g)",
+     "price": "1699.00",
+     "compare_at_price": "2099.00",
+     "sku": "21102N-1",
+     "available": true
+    },
+    {
+     "title": "500g x 2 (1kg)",
+     "price": "3198.00",
+     "compare_at_price": "4198.00",
+     "sku": "21102N-2",
+     "available": true
+    },
+    {
+     "title": "500g x 3 (1.5kg)",
+     "price": "4497.00",
+     "compare_at_price": "6297.00",
+     "sku": "21102N-3",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "proclean-plantprotein-chocolate",
+   "title": "ProClean Plant Protein with Monk Fruit (Chocolate) 500g",
+   "images": [
+    {
+     "id": 41645712146604,
+     "created_at": "2026-02-13T11:38:03+05:30",
+     "position": 1,
+     "updated_at": "2026-06-23T18:26:36+05:30",
+     "product_id": 8245550252204,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-proclean-chocolate-flavour-plant-protein.jpg?v=1782219396",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Chocolate",
+     "price": "699.00",
+     "compare_at_price": "1645.00",
+     "sku": "15015",
+     "available": true
+    },
+    {
+     "title": "Chocolate & Coffee Combo",
+     "price": "1399.00",
+     "compare_at_price": "1645.00",
+     "sku": "18595/1",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "dates-monk-fruit-sweetened-whey",
+   "title": "ProClean Whey with Monk Fruit (Chocolate) 680g",
+   "images": [
+    {
+     "id": 41645740196012,
+     "created_at": "2026-02-13T11:54:23+05:30",
+     "position": 1,
+     "updated_at": "2026-06-09T18:25:10+05:30",
+     "product_id": 8120132239532,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-pro-clean-whey-protein-chocolate-flavour.jpg?v=1781009710",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2499.00",
+     "compare_at_price": "2670.00",
+     "sku": "15007",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "power-up-coffee-crush-butter-20g-protein-bar-70g",
+   "title": "Power Up Coffee Crush Butter 20g Protein Bar 70g",
+   "images": [
+    {
+     "id": 43099720581292,
+     "created_at": "2026-07-03T17:13:27+05:30",
+     "position": 1,
+     "updated_at": "2026-07-21T13:00:02+05:30",
+     "product_id": 8646555697324,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-power-up-coffee-crush-protein-bar-70g.jpg?v=1784619002",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "125.00",
+     "compare_at_price": "125.00",
+     "sku": "18603",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "10g-protein-wafer-bars-dark-chocolate-flavour-pack-of-10",
+   "title": "10g Protein Wafer Bars Dark Chocolate Flavour - Pack of 10",
+   "images": [
+    {
+     "id": 42083602890924,
+     "created_at": "2026-04-06T11:42:29+05:30",
+     "position": 1,
+     "updated_at": "2026-06-29T16:04:33+05:30",
+     "product_id": 8521622126764,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabars-protein-wafer-bar-dark-chocolate-pack-of-10-box-10g-protein-0-percent-maida.jpg?v=1782729273",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Dark Chocolate",
+     "price": "399.00",
+     "compare_at_price": "600.00",
+     "sku": "18825G",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "10g-protein-wafer-bars-cookies-cream-flavour-pack-of-10",
+   "title": "10g Protein Wafer Bars Cookies & Cream Flavour - Pack of 10",
+   "images": [
+    {
+     "id": 42083605217452,
+     "created_at": "2026-04-06T11:44:01+05:30",
+     "position": 1,
+     "updated_at": "2026-06-29T16:09:52+05:30",
+     "product_id": 8521623142572,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabars-protein-wafer-bar-cookies-and-cream-pack-of-10-box-10g-protein-0-percent-maida..jpg?v=1782729592",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "399.00",
+     "compare_at_price": "600.00",
+     "sku": "18826G",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "yogabar-protein-minis-4g-protein-bar-24-bars-choco-peanut-butter",
+   "title": "Protein Minis, 4g Choco Peanut Butter Protein Bar - Pack of 24 480g",
+   "images": [
+    {
+     "id": 41645722665132,
+     "created_at": "2026-02-13T11:43:58+05:30",
+     "position": 1,
+     "updated_at": "2026-02-13T11:44:07+05:30",
+     "product_id": 8152070914220,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-protein-minis-4g-protein-bar-24-bars-choco-peanut.jpg?v=1770963247",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "349.00",
+     "compare_at_price": "432.00",
+     "sku": "18624",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "26g-protein-shake-mango-rizz",
+   "title": "26g Protein Shake Mango Rizz - 250ml/bottle",
+   "images": [
+    {
+     "id": 41645701857452,
+     "created_at": "2026-02-13T11:33:29+05:30",
+     "position": 1,
+     "updated_at": "2026-06-24T11:17:00+05:30",
+     "product_id": 8246276718764,
+     "variant_ids": [
+      45111149199532
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-26g-protein-shake-mango-rizz-6-pack.jpg?v=1782280020",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "250ml x 6 (1.5L)",
+     "price": "699.00",
+     "compare_at_price": "786.00",
+     "sku": "18415",
+     "available": true
+    },
+    {
+     "title": "250ml x 12 (3L)",
+     "price": "1399.00",
+     "compare_at_price": "1572.00",
+     "sku": "18416",
+     "available": true
+    },
+    {
+     "title": "250ml x 24 (6L)",
+     "price": "2399.00",
+     "compare_at_price": "3144.00",
+     "sku": "18416/1",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "26g-protein-shake-double-chocolate",
+   "title": "26g Protein Shake Double Chocolate 250ml/bottle",
+   "images": [
+    {
+     "id": 41645731348652,
+     "created_at": "2026-02-13T11:48:30+05:30",
+     "position": 1,
+     "updated_at": "2026-06-30T15:52:54+05:30",
+     "product_id": 8124408004780,
+     "variant_ids": [
+      44110275117228
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-26g-protein-shake-double-chocolate-pack-of-6-bottles.jpg?v=1782814974",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 6",
+     "price": "699.00",
+     "compare_at_price": "786.00",
+     "sku": "18410",
+     "available": true
+    },
+    {
+     "title": "Pack of 24",
+     "price": "2399.00",
+     "compare_at_price": "3144.00",
+     "sku": "18413",
+     "available": true
+    },
+    {
+     "title": "Pack of 30",
+     "price": "2799.00",
+     "compare_at_price": "3930.00",
+     "sku": "18410/3",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "26g-protein-shake-cold-coffee-pack-of-6",
+   "title": "26g Protein Shake Cold Coffee 250ml/bottle",
+   "images": [
+    {
+     "id": 41645728792748,
+     "created_at": "2026-02-13T11:47:32+05:30",
+     "position": 1,
+     "updated_at": "2026-02-13T11:55:48+05:30",
+     "product_id": 8076673253548,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0267/5245/files/26g-protein-shake-cold-coffee-pack-of-6.jpg?v=1770963948",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 6",
+     "price": "699.00",
+     "compare_at_price": "786.00",
+     "sku": "18410",
+     "available": true
+    },
+    {
+     "title": "Pack of 24",
+     "price": "2399.00",
+     "compare_at_price": "3144.00",
+     "sku": "18413",
+     "available": true
+    },
+    {
+     "title": "Pack of 30",
+     "price": "2799.00",
+     "compare_at_price": "3930.00",
+     "sku": "18410/3",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "wellbeingnutrition.com": [
+  {
+   "handle": "whey-protein-isolate-dark-chocolate",
+   "title": "Whey Protein Isolate 26g | 1kg | 4B CFU Probiotics | Dark Chocolate",
+   "images": [
+    {
+     "id": 37806012039248,
+     "created_at": "2026-09-22T17:42:59+05:30",
+     "position": 1,
+     "updated_at": "2026-09-22T17:43:01+05:30",
+     "product_id": 7122192859216,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0240/2942/9840/files/FOP_1kg.jpg?v=1790079181",
+     "width": 1080,
+     "height": 1081
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 1KG",
+     "price": "7599.00",
+     "compare_at_price": "7999.00",
+     "sku": "DCP1",
+     "available": true
+    },
+    {
+     "title": "Pack of 2KG",
+     "price": "14724.00",
+     "compare_at_price": "15499.00",
+     "sku": "DC2P1",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "whey-protein-concentrate-unflavored",
+   "title": "Whey Protein Concentrate 27g | 1kg | 4B CFU Probiotics | Unflavoured",
+   "images": [
+    {
+     "id": 35575410458704,
+     "created_at": "2026-01-05T22:37:16+05:30",
+     "position": 1,
+     "updated_at": "2026-01-05T22:37:17+05:30",
+     "product_id": 7122193416272,
+     "variant_ids": [
+      40976647979088
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0240/2942/9840/files/1_0318420b-bcec-4e7b-a633-67b7e6b1b1eb.jpg?v=1767632837",
+     "width": 720,
+     "height": 720
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 1",
+     "price": "4749.00",
+     "compare_at_price": "4999.00",
+     "sku": "N-WPCU-1",
+     "available": true
+    },
+    {
+     "title": "Pack of 2",
+     "price": "9498.00",
+     "compare_at_price": "9998.00",
+     "sku": "N-WPCU-2",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "vegan-protein-belgian-chocolate",
+   "title": "Plant Protein 22g | 500g | 3B CFU Probiotics | Belgian Dark Chocolate",
+   "images": [
+    {
+     "id": 34388550418512,
+     "created_at": "2025-07-09T12:51:07+05:30",
+     "position": 1,
+     "updated_at": "2026-08-14T01:04:15+05:30",
+     "product_id": 7115732713552,
+     "variant_ids": [
+      40948470841424
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0240/2942/9840/files/Vegan_Protein_22g_907g3B_CFU_Probiotics_Belgian_Dark_Chocolate_d986bf60-6125-48a5-b9f3-17c43007415a.jpg?v=1786649655",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 1",
+     "price": "1529.00",
+     "compare_at_price": "1799.00",
+     "sku": "PLPROHER-1",
+     "available": true
+    },
+    {
+     "title": "Pack of 2",
+     "price": "3058.00",
+     "compare_at_price": "3598.00",
+     "sku": "PLPROHER-2",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "oziva.in": [
+  {
+   "handle": "clean-whey-concentrate-27g-protein-100-cold-processed",
+   "title": "Clean Whey Concentrate | Cold-Processed",
+   "images": [
+    {
+     "id": 33494843621435,
+     "created_at": "2025-06-02T15:10:46+05:30",
+     "position": 1,
+     "updated_at": "2025-06-02T15:10:57+05:30",
+     "product_id": 7388244410427,
+     "variant_ids": [
+      42173589487675
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/2393/2199/files/Pack_of_1_f321c13c-955d-45b4-a6f9-144f9234cb38.png?v=1748857257",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Coffee / Starter Pack",
+     "price": "3699.00",
+     "compare_at_price": "3899.00",
+     "sku": null,
+     "available": true
+    },
+    {
+     "title": "Coffee / Power Pack",
+     "price": "7299.00",
+     "compare_at_price": "7798.00",
+     "sku": null,
+     "available": true
+    },
+    {
+     "title": "Coffee / Performance Pack",
+     "price": "10999.00",
+     "compare_at_price": "11697.00",
+     "sku": null,
+     "available": true
+    },
+    {
+     "title": "Unflavoured / Starter Pack",
+     "price": "2279.00",
+     "compare_at_price": "2399.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Unflavoured / Power Pack",
+     "price": "4499.00",
+     "compare_at_price": "4798.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Unflavoured / Performance Pack",
+     "price": "6699.00",
+     "compare_at_price": "7197.00",
+     "sku": "",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "oziva-organic-plant-protein-for-everyday-fitness-lactose-free-cholesterol-free-soy-free-sugar-free",
+   "title": "Plant Protein + Quinoa",
+   "images": [
+    {
+     "id": 28161108213819,
+     "created_at": "2021-05-11T12:33:39+05:30",
+     "position": 1,
+     "updated_at": "2023-11-28T18:14:00+05:30",
+     "product_id": 2049403420731,
+     "variant_ids": [
+      41683545129019
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/2393/2199/products/OPPU_1_d1901b8a-5738-40af-8f91-7e93e753c9cf.jpg?v=1701175440",
+     "width": 1500,
+     "height": 1500
+    }
+   ],
+   "variants": [
+    {
+     "title": "Unflavored / Starter Pack",
+     "price": "1299.00",
+     "compare_at_price": "1329.00",
+     "sku": "PH01PPU01",
+     "available": true
+    },
+    {
+     "title": "Unflavored / Result Pack",
+     "price": "2199.00",
+     "compare_at_price": "2499.00",
+     "sku": "PH01PPU02",
+     "available": true
+    },
+    {
+     "title": "Unflavored / Value Pack",
+     "price": "4299.00",
+     "compare_at_price": "4998.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Unflavored / Organic Plant Protein (500gm) + Collagen (250gm) + Black Shaker (500ml)",
+     "price": "2348.00",
+     "compare_at_price": "2548.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Unflavored / Organic Plant Protein (500gm) + Protein & Herbs Women (Chocolate 500gm) + Black Shaker (500ml)",
+     "price": "3074.00",
+     "compare_at_price": "3348.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rich Chocolate / Starter Pack",
+     "price": "1359.00",
+     "compare_at_price": "1459.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Rich Chocolate / Result Pack",
+     "price": "2199.00",
+     "compare_at_price": "2649.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Rich Chocolate / Value Pack",
+     "price": "3999.00",
+     "compare_at_price": "5298.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Rich Chocolate / Result Pack-500gx2",
+     "price": "2199.00",
+     "compare_at_price": "2918.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Rich Chocolate / Value Pack-500gx4",
+     "price": "3999.00",
+     "compare_at_price": "5836.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Malabar Vanilla / Starter Pack",
+     "price": "1359.00",
+     "compare_at_price": "1459.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Malabar Vanilla / Result Pack",
+     "price": "2199.00",
+     "compare_at_price": "2649.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Malabar Vanilla / Value Pack",
+     "price": "3999.00",
+     "compare_at_price": "5298.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Malabar Vanilla / Result Pack-500gx2",
+     "price": "2199.00",
+     "compare_at_price": "2918.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Malabar Vanilla / Value Pack-500gx4",
+     "price": "3999.00",
+     "compare_at_price": "5836.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Mango Delight / Starter Pack",
+     "price": "1359.00",
+     "compare_at_price": "1459.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango Delight / Result Pack",
+     "price": "2199.00",
+     "compare_at_price": "2649.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango Delight / Value Pack",
+     "price": "3999.00",
+     "compare_at_price": "5298.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Strawberry Bliss / Starter Pack",
+     "price": "1359.00",
+     "compare_at_price": "1459.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Strawberry Bliss / Result Pack",
+     "price": "2199.00",
+     "compare_at_price": "2649.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Strawberry Bliss / Value Pack",
+     "price": "3999.00",
+     "compare_at_price": "5298.00",
+     "sku": "",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "originnutrition.in": [
+  {
+   "handle": "origin-vegan-plant-protein-powder-chocolate-1",
+   "title": "Daily Plant Protein - Chocolate Fudge",
+   "images": [
+    {
+     "id": 49732671340728,
+     "created_at": "2025-02-24T19:41:42+05:30",
+     "position": 1,
+     "updated_at": "2025-02-28T23:39:00+05:30",
+     "product_id": 9903252865208,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0869/4051/6536/files/ChocolateFudgeFinalMock.png?v=1740766140",
+     "width": 592,
+     "height": 592
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "1799.00",
+     "compare_at_price": "2399.00",
+     "sku": "PROCHOC1",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "daily-plant-protein-mocha",
+   "title": "Daily Plant Protein - Mocha",
+   "images": [
+    {
+     "id": 50415866118328,
+     "created_at": "2025-04-04T11:31:44+05:30",
+     "position": 1,
+     "updated_at": "2025-04-04T11:31:45+05:30",
+     "product_id": 9946726596792,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0869/4051/6536/files/FinalMockMocha.png?v=1743746505",
+     "width": 592,
+     "height": 592
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "1799.00",
+     "compare_at_price": "2399.00",
+     "sku": "PROMOCHA1",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "in.fastandup.com": [
+  {
+   "handle": "yeast-protein-rich-chocolate-1kg",
+   "title": "Yeast Protein - Rich Chocolate - 1kg",
+   "images": [
+    {
+     "id": 37674970742859,
+     "created_at": "2026-09-23T20:01:53+05:30",
+     "position": 1,
+     "updated_at": "2026-09-23T20:01:54+05:30",
+     "product_id": 9586453020747,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0574/6035/9243/files/1_4610c68b-1128-4717-b46e-735c4002fdab.png?v=1790173914",
+     "width": 1100,
+     "height": 1100
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2249.00",
+     "compare_at_price": "2499.00",
+     "sku": "A10633",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "plant-protein-rich-chocolate-1kg",
+   "title": "Plant Protein - Rich Chocolate - 1kg",
+   "images": [
+    {
+     "id": 35494600310859,
+     "created_at": "2026-06-08T18:04:52+05:30",
+     "position": 1,
+     "updated_at": "2026-06-08T18:04:54+05:30",
+     "product_id": 7393772273739,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0574/6035/9243/files/1_efcf69ac-ad36-4c67-abd1-414928ac114d.jpg?v=1780922094",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "3115.00",
+     "compare_at_price": "3115.00",
+     "sku": "A10520",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "asitisnutrition.com": [
+  {
+   "handle": "best-whey-protein-concentrate-in-india",
+   "title": "AS-IT-IS ONE Whey Protein Concentrate | 28g Protein per Serving | Unflavoured",
+   "images": [
+    {
+     "id": 38027801788467,
+     "created_at": "2026-09-08T11:53:47+05:30",
+     "position": 1,
+     "updated_at": "2026-09-08T11:53:49+05:30",
+     "product_id": 519572095027,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/AS-IT-IS_ONE_RPD_Front_3.jpg?v=1788848629",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "1Kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720113",
+     "available": true
+    },
+    {
+     "title": "250g",
+     "price": "995.00",
+     "compare_at_price": "1606.00",
+     "sku": "6600720115",
+     "available": true
+    },
+    {
+     "title": "500g",
+     "price": "1764.00",
+     "compare_at_price": "2588.00",
+     "sku": "6600720114",
+     "available": true
+    },
+    {
+     "title": "2Kg",
+     "price": "6512.00",
+     "compare_at_price": "10504.00",
+     "sku": "6600720164",
+     "available": true
+    },
+    {
+     "title": "780g (No Sunday Workout Pack)",
+     "price": "2704.00",
+     "compare_at_price": "4361.00",
+     "sku": "6600720208",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "buy-whey-protein-isolate",
+   "title": "AS-IT-IS ONE Whey Protein Isolate | 30g Protein per Serving | Unflavoured",
+   "images": [
+    {
+     "id": 38041337921587,
+     "created_at": "2026-09-09T15:11:26+05:30",
+     "position": 1,
+     "updated_at": "2026-09-09T15:11:28+05:30",
+     "product_id": 566377513011,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/AS-IT-IS_ONE_WPI_RPD_Front-min_1.jpg?v=1788946888",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "250g",
+     "price": "1378.00",
+     "compare_at_price": "2223.00",
+     "sku": "6600720123",
+     "available": true
+    },
+    {
+     "title": "500g",
+     "price": "2349.00",
+     "compare_at_price": "3790.00",
+     "sku": "6600720129",
+     "available": true
+    },
+    {
+     "title": "1kg",
+     "price": "4613.00",
+     "compare_at_price": "7443.00",
+     "sku": "6600720130",
+     "available": true
+    },
+    {
+     "title": "2kg",
+     "price": "8979.00",
+     "compare_at_price": "14485.00",
+     "sku": "6600720186",
+     "available": true
+    },
+    {
+     "title": "4kg - Container",
+     "price": "15122.00",
+     "compare_at_price": "22446.00",
+     "sku": "6600720299",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "atom-whey-protein",
+   "title": "AS-IT-IS ATOM Whey Protein | 27g Protein per Serving | DigeZyme® Enzymes & 1 Billion CFU Probiotics",
+   "images": [
+    {
+     "id": 35563342364723,
+     "created_at": "2025-07-29T15:50:25+05:30",
+     "position": 1,
+     "updated_at": "2025-12-23T11:08:10+05:30",
+     "product_id": 6584923947059,
+     "variant_ids": [
+      42346295001139
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/ATOM_Whey_Protein_DRC_1kg_New_Branding_Design_Product_front_image_1_1.jpg?v=1766468290",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Double Rich Chocolate / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "4500112126",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720211",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 910g",
+     "price": "3015.00",
+     "compare_at_price": "4865.00",
+     "sku": "6600720483",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 4kg Container",
+     "price": "12641.00",
+     "compare_at_price": "20389.00",
+     "sku": "6600720279",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 500g",
+     "price": "1755.00",
+     "compare_at_price": "2831.00",
+     "sku": "6600720212",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 250g",
+     "price": "860.00",
+     "compare_at_price": "1386.00",
+     "sku": "6600720476",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 1.36kg(3lbs)",
+     "price": "4501.00",
+     "compare_at_price": "7260.00",
+     "sku": "6600720370",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 1.8kg(4lbs)",
+     "price": "3700.00",
+     "compare_at_price": "5655.00",
+     "sku": "6600720328",
+     "available": false
+    },
+    {
+     "title": "Double Rich Chocolate / (36g Travel Sachet)",
+     "price": "167.00",
+     "compare_at_price": "262.00",
+     "sku": "6600720492",
+     "available": true
+    },
+    {
+     "title": "Double Rich Chocolate / 36g(6 Travel Sachets)",
+     "price": "699.00",
+     "compare_at_price": "1093.00",
+     "sku": "6600720501",
+     "available": true
+    },
+    {
+     "title": "Kesar Kulfi / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720308",
+     "available": true
+    },
+    {
+     "title": "Kesar Kulfi / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720333",
+     "available": true
+    },
+    {
+     "title": "Kesar Kulfi / 910g",
+     "price": "3015.00",
+     "compare_at_price": "4865.00",
+     "sku": "6600720557",
+     "available": true
+    },
+    {
+     "title": "Kesar Kulfi / 4kg Container",
+     "price": "12641.00",
+     "compare_at_price": "20389.00",
+     "sku": "6600720383",
+     "available": true
+    },
+    {
+     "title": "Kesar Kulfi / 1.8kg(4lbs)",
+     "price": "3700.00",
+     "compare_at_price": "5655.00",
+     "sku": "6600720330",
+     "available": false
+    },
+    {
+     "title": "Kesar Kulfi / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Kesar Kulfi / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Raw Whey Unflavoured / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720335",
+     "available": true
+    },
+    {
+     "title": "Raw Whey Unflavoured / 1.36kg(3lbs)",
+     "price": "4501.00",
+     "compare_at_price": "7260.00",
+     "sku": "6600720365",
+     "available": false
+    },
+    {
+     "title": "Raw Whey Unflavoured / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Raw Whey Unflavoured / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "French vanilla / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "4500112137",
+     "available": true
+    },
+    {
+     "title": "French vanilla / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720214",
+     "available": true
+    },
+    {
+     "title": "French vanilla / 4kg Container",
+     "price": "12641.00",
+     "compare_at_price": "20389.00",
+     "sku": "6600720305",
+     "available": true
+    },
+    {
+     "title": "French vanilla / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "French vanilla / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Choco Hazel Fusion / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720215",
+     "available": true
+    },
+    {
+     "title": "Choco Hazel Fusion / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720281",
+     "available": true
+    },
+    {
+     "title": "Choco Hazel Fusion / 910g",
+     "price": "3015.00",
+     "compare_at_price": "4865.00",
+     "sku": "6600720558",
+     "available": true
+    },
+    {
+     "title": "Choco Hazel Fusion / 4kg Container",
+     "price": "12641.00",
+     "compare_at_price": "20389.00",
+     "sku": "6600720297",
+     "available": true
+    },
+    {
+     "title": "Choco Hazel Fusion / 500g",
+     "price": "1755.00",
+     "compare_at_price": "2575.00",
+     "sku": "6600720399",
+     "available": true
+    },
+    {
+     "title": "Choco Hazel Fusion / 1.36kg(3lbs)",
+     "price": "4501.00",
+     "compare_at_price": "7260.00",
+     "sku": "6600720368",
+     "available": true
+    },
+    {
+     "title": "Choco Hazel Fusion / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Choco Hazel Fusion / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Cookies & Cream / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720250",
+     "available": true
+    },
+    {
+     "title": "Cookies & Cream / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "9499.00",
+     "sku": "6600720257",
+     "available": true
+    },
+    {
+     "title": "Cookies & Cream / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Cookies & Cream / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Mango Fusion / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720252",
+     "available": true
+    },
+    {
+     "title": "Mango Fusion / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720261",
+     "available": true
+    },
+    {
+     "title": "Mango Fusion / 4kg Container",
+     "price": "12641.00",
+     "compare_at_price": "20389.00",
+     "sku": "6600720387",
+     "available": false
+    },
+    {
+     "title": "Mango Fusion / 500g",
+     "price": "1755.00",
+     "compare_at_price": "2575.00",
+     "sku": "6600720400",
+     "available": true
+    },
+    {
+     "title": "Mango Fusion / 1.36kg(3lbs)",
+     "price": "4501.00",
+     "compare_at_price": "7260.00",
+     "sku": "6600720367",
+     "available": false
+    },
+    {
+     "title": "Mango Fusion / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Mango Fusion / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Cafe Latte / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720255",
+     "available": true
+    },
+    {
+     "title": "Cafe Latte / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Cafe Latte / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Banana Fusion / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720254",
+     "available": true
+    },
+    {
+     "title": "Banana Fusion / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Banana Fusion / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Kesar Elaichi / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720276",
+     "available": true
+    },
+    {
+     "title": "Kesar Elaichi / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720287",
+     "available": true
+    },
+    {
+     "title": "Kesar Elaichi / 4kg Container",
+     "price": "12641.00",
+     "compare_at_price": "20389.00",
+     "sku": "6600720291",
+     "available": true
+    },
+    {
+     "title": "Kesar Elaichi / 1.8kg(4lbs)",
+     "price": "3700.00",
+     "compare_at_price": "5655.00",
+     "sku": "6600720331",
+     "available": false
+    },
+    {
+     "title": "Kesar Elaichi / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Kesar Elaichi / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Mocha Cappuccino / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720309",
+     "available": true
+    },
+    {
+     "title": "Mocha Cappuccino / 2kg",
+     "price": "6475.00",
+     "compare_at_price": "10445.00",
+     "sku": "6600720334",
+     "available": true
+    },
+    {
+     "title": "Mocha Cappuccino / 1.8kg(4lbs)",
+     "price": "3700.00",
+     "compare_at_price": "5655.00",
+     "sku": "6600720329",
+     "available": false
+    },
+    {
+     "title": "Mocha Cappuccino / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Mocha Cappuccino / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Mawa Malai / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720317",
+     "available": true
+    },
+    {
+     "title": "Mawa Malai / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Mawa Malai / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Royal Gulab Jamun / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720343",
+     "available": false
+    },
+    {
+     "title": "Royal Gulab Jamun / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Royal Gulab Jamun / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Classic Red Velvet / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720344",
+     "available": true
+    },
+    {
+     "title": "Classic Red Velvet / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Classic Red Velvet / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Shahi Paan / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720345",
+     "available": false
+    },
+    {
+     "title": "Shahi Paan / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Shahi Paan / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Creamy Strawberry / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720354",
+     "available": true
+    },
+    {
+     "title": "Creamy Strawberry / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Creamy Strawberry / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Choco Peanut / 1kg",
+     "price": "3299.00",
+     "compare_at_price": "5320.00",
+     "sku": "6600720355",
+     "available": true
+    },
+    {
+     "title": "Choco Peanut / 250g",
+     "price": "860.00",
+     "compare_at_price": "1260.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Choco Peanut / 1.36kg(3lbs)",
+     "price": "4501.00",
+     "compare_at_price": "7260.00",
+     "sku": "6600720522",
+     "available": true
+    },
+    {
+     "title": "Choco Peanut / (36g Travel Sachet)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    },
+    {
+     "title": "Choco Peanut / 36g(6 Travel Sachets)",
+     "price": "563.00",
+     "compare_at_price": "783.00",
+     "sku": null,
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "as-it-is-nutrition-pure-micellar-casein",
+   "title": "AS-IT-IS ONE Micellar Casein | 25g Protein per Serving | Single-Ingredient, Unflavoured",
+   "images": [
+    {
+     "id": 36750014152755,
+     "created_at": "2026-02-10T12:21:23+05:30",
+     "position": 1,
+     "updated_at": "2026-02-10T14:42:05+05:30",
+     "product_id": 1493368995891,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/AS-IT-IS_ONE_Micellar_Casein_RPD_500_front.jpg?v=1770714725",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "500g",
+     "price": "828.00",
+     "compare_at_price": "1145.00",
+     "sku": "6600720141",
+     "available": true
+    },
+    {
+     "title": "1kg",
+     "price": "1526.00",
+     "compare_at_price": "2108.00",
+     "sku": "6600720140",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "as-it-is-nutrition-pea-protein-isolate-powder",
+   "title": "AS-IT-IS ONE Pea Protein Isolate | 29g Protein per Serving | Plant Protein | Single-Ingredient, Unflavoured",
+   "images": [
+    {
+     "id": 36474386907187,
+     "created_at": "2025-12-26T15:32:07+05:30",
+     "position": 1,
+     "updated_at": "2025-12-26T16:02:53+05:30",
+     "product_id": 722099798067,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/AS-IT-IS_ONE_Pea_Protein_RPD_Front-min.png?v=1766745173",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "1kg",
+     "price": "999.00",
+     "compare_at_price": "1428.00",
+     "sku": "6600720138",
+     "available": true
+    },
+    {
+     "title": "500 gms",
+     "price": "582.00",
+     "compare_at_price": "832.00",
+     "sku": "6600720137",
+     "available": true
+    },
+    {
+     "title": "2kg",
+     "price": "1801.00",
+     "compare_at_price": "2575.00",
+     "sku": "6600720284",
+     "available": true
+    },
+    {
+     "title": "36g-Sachet",
+     "price": "122.00",
+     "compare_at_price": "175.00",
+     "sku": "6600720495",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "as-it-is-atom-chocolate-peanut-butter-crunchy-1kg-gluten-free-cholesterol-free",
+   "title": "AS-IT-IS ATOM Peanut Butter | Chocolate | 6.25g Protein per Serving",
+   "images": [
+    {
+     "id": 36817645633587,
+     "created_at": "2026-02-17T15:07:49+05:30",
+     "position": 1,
+     "updated_at": "2026-02-17T15:10:18+05:30",
+     "product_id": 6712844484659,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/ATOM_Chocolate_Peanut_Butter_1Kg_Creamy_Product_Front_Image_1.jpg?v=1771321218",
+     "width": 3000,
+     "height": 3000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Crunchy",
+     "price": "479.00",
+     "compare_at_price": "649.00",
+     "sku": "6600720237",
+     "available": true
+    },
+    {
+     "title": "Creamy",
+     "price": "479.00",
+     "compare_at_price": "649.00",
+     "sku": "6600720238",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "beastlife.in": [
+  {
+   "handle": "performance-protein-with-ultrasorb-tech-1-kg-chocolate",
+   "title": "Performance Fermented Yeast Protein with Ultrasorb Tech | Chocolate | 1 kg",
+   "images": [
+    {
+     "id": 48372685668569,
+     "created_at": "2026-03-13T18:15:25+05:30",
+     "position": 1,
+     "updated_at": "2026-03-13T18:15:43+05:30",
+     "product_id": 9240783061209,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0690/7723/7977/files/Artboard17.png?v=1773405943",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2104.00",
+     "compare_at_price": "2669.00",
+     "sku": "BL153",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "isorich-blend-whey-protein-with-ultrasorb-tech-924g",
+   "title": "Isorich Blend Whey Protein with Ultrasorb Tech | Chocolate | 924 g",
+   "images": [
+    {
+     "id": 48372592869593,
+     "created_at": "2026-03-13T17:45:50+05:30",
+     "position": 1,
+     "updated_at": "2026-03-13T17:46:03+05:30",
+     "product_id": 8658529386713,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0690/7723/7977/files/Artboard2_5875f46a-6244-4e1b-ae67-78b65abb97a1.png?v=1773404163",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "6499.00",
+     "compare_at_price": "7999.00",
+     "sku": "BL001",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "beastlife-pro-whey-protein-unflavoured",
+   "title": "Pro Whey Protein with Ultrasorb Tech | Unflavoured | 924 g",
+   "images": [
+    {
+     "id": 44032966820057,
+     "created_at": "2024-11-29T13:06:46+05:30",
+     "position": 1,
+     "updated_at": "2025-10-16T18:01:48+05:30",
+     "product_id": 9070397063385,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0690/7723/7977/files/Artboard_1_f68e45df-bc30-4776-adb9-7ed7c9d4f733.jpg?v=1760617908",
+     "width": 1100,
+     "height": 1100
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "3156.00",
+     "compare_at_price": "3499.00",
+     "sku": "BL042",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "performance-fermented-yeast-protein-with-ultrasorb-tech-1kg-thandai",
+   "title": "Performance Fermented Yeast Protein with Ultrasorb Tech | Thandai | 1 kg",
+   "images": [
+    {
+     "id": 48405280915673,
+     "created_at": "2026-03-17T12:13:31+05:30",
+     "position": 1,
+     "updated_at": "2026-03-17T12:13:52+05:30",
+     "product_id": 9626547847385,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0690/7723/7977/files/Artboard_21.png?v=1773729832",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "2104.00",
+     "compare_at_price": "2999.00",
+     "sku": "BL299",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "natural-peanut-butter-crunchy-350gm",
+   "title": "Natural Peanut Butter | Crunchy | 100% Peanuts | No Palm Oil | 350 g",
+   "images": [
+    {
+     "id": 46343641170137,
+     "created_at": "2025-10-09T14:00:08+05:30",
+     "position": 1,
+     "updated_at": "2025-10-16T18:00:38+05:30",
+     "product_id": 9083086373081,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0690/7723/7977/files/front_cfb0a0e9-6f32-4273-8284-8760554ae123.png?v=1760617838",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "209.00",
+     "compare_at_price": "222.00",
+     "sku": "BL043",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "beastlife-peanut-butter-crunchy-coffee-350g",
+   "title": "Peanut Butter | Crunchy Coffee | 350 g",
+   "images": [
+    {
+     "id": 46311227392217,
+     "created_at": "2025-10-01T12:48:16+05:30",
+     "position": 1,
+     "updated_at": "2025-10-01T12:48:21+05:30",
+     "product_id": 9322678845657,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0690/7723/7977/files/Artboard1_19ee5aa5-1456-466b-90aa-e403d4a8b697.png?v=1759303101",
+     "width": 5000,
+     "height": 5000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "314.00",
+     "compare_at_price": "349.00",
+     "sku": "BL164",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "steadfastnutrition.in": [
+  {
+   "handle": "whey-protein",
+   "title": "Whey Protein",
+   "images": [
+    {
+     "id": 44925568188594,
+     "created_at": "2026-05-25T16:33:38+05:30",
+     "position": 1,
+     "updated_at": "2026-05-25T16:33:40+05:30",
+     "product_id": 8334421655730,
+     "variant_ids": [
+      44819200508082,
+      44819220136114,
+      46667810439346,
+      46667812929714
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/1672/2599/files/Artboard_1_58643aa2-f143-4a8f-b408-2182d9ed9fcd.jpg?v=1779707020",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "6 Sachets",
+     "price": "1440.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "30 Sachets",
+     "price": "7200.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "60 Sachets",
+     "price": "14100.00",
+     "compare_at_price": "14400.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "120 Sachets",
+     "price": "27600.00",
+     "compare_at_price": "28800.00",
+     "sku": null,
+     "available": true
+    },
+    {
+     "title": "180 Sachets",
+     "price": "40500.00",
+     "compare_at_price": "43200.00",
+     "sku": null,
+     "available": true
+    },
+    {
+     "title": "2 Sachets",
+     "price": "480.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "incredible-whey",
+   "title": "Incredible Whey",
+   "images": [
+    {
+     "id": 43921253531826,
+     "created_at": "2026-03-05T10:25:41+05:30",
+     "position": 1,
+     "updated_at": "2026-03-05T10:28:55+05:30",
+     "product_id": 2547512475732,
+     "variant_ids": [
+      40305701847218,
+      43031743791282,
+      43094128820402,
+      44533471248562
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/1672/2599/files/Incredible_Whey_Chocolate_9a127834-1cb6-4dae-bfa2-b39a68b67149.jpg?v=1772686735",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Chocolate / 6 Sachets",
+     "price": "1380.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 30 Sachets",
+     "price": "6900.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 60 Sachets",
+     "price": "13500.00",
+     "compare_at_price": "13800.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 120 Sachets",
+     "price": "26400.00",
+     "compare_at_price": "27600.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 180 Sachets",
+     "price": "38700.00",
+     "compare_at_price": "41400.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Chocolate / 2 Sachets",
+     "price": "460.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Vanilla / 6 Sachets",
+     "price": "900.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Vanilla / 30 Sachets",
+     "price": "4500.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Vanilla / 60 Sachets",
+     "price": "8700.00",
+     "compare_at_price": "9000.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Vanilla / 120 Sachets",
+     "price": "16800.00",
+     "compare_at_price": "18000.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Vanilla / 180 Sachets",
+     "price": "23400.00",
+     "compare_at_price": "27000.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Vanilla / 2 Sachets",
+     "price": "300.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Strawberry / 6 Sachets",
+     "price": "900.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Strawberry / 30 Sachets",
+     "price": "4500.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Strawberry / 60 Sachets",
+     "price": "8700.00",
+     "compare_at_price": "9000.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Strawberry / 120 Sachets",
+     "price": "16800.00",
+     "compare_at_price": "18000.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Strawberry / 180 Sachets",
+     "price": "23400.00",
+     "compare_at_price": "27000.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Strawberry / 2 Sachets",
+     "price": "300.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Mango / 6 Sachets",
+     "price": "1380.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango / 30 Sachets",
+     "price": "6900.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango / 60 Sachets",
+     "price": "13500.00",
+     "compare_at_price": "13800.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango / 120 Sachets",
+     "price": "26400.00",
+     "compare_at_price": "27600.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango / 180 Sachets",
+     "price": "38700.00",
+     "compare_at_price": "41400.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Mango / 2 Sachets",
+     "price": "460.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Coffee / 6 Sachets",
+     "price": "1380.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Coffee / 30 Sachets",
+     "price": "6900.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Coffee / 60 Sachets",
+     "price": "13500.00",
+     "compare_at_price": "13800.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Coffee / 120 Sachets",
+     "price": "26400.00",
+     "compare_at_price": "27600.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Coffee / 180 Sachets",
+     "price": "38700.00",
+     "compare_at_price": "41400.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "Coffee / 2 Sachets",
+     "price": "460.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rose Thandai / 6 Sachets",
+     "price": "1110.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rose Thandai / 30 Sachets",
+     "price": "5550.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rose Thandai / 60 Sachets",
+     "price": "10800.00",
+     "compare_at_price": "11100.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rose Thandai / 120 Sachets",
+     "price": "21000.00",
+     "compare_at_price": "22200.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rose Thandai / 180 Sachets",
+     "price": "30600.00",
+     "compare_at_price": "33300.00",
+     "sku": "",
+     "available": false
+    },
+    {
+     "title": "Rose Thandai / 2 Sachets",
+     "price": "370.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "livraw-protein",
+   "title": "LIVRAW Protein",
+   "images": [
+    {
+     "id": 43921120821426,
+     "created_at": "2026-03-05T09:46:43+05:30",
+     "position": 1,
+     "updated_at": "2026-03-05T09:46:52+05:30",
+     "product_id": 1344785875028,
+     "variant_ids": [
+      44481443430578,
+      44481446543538,
+      44481449820338,
+      44502787555506,
+      44533419933874
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/1672/2599/files/LivRaw_Protein_1.jpg?v=1772684212",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "6 Sachets",
+     "price": "2100.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "30 Sachets",
+     "price": "10500.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "60 Sachets",
+     "price": "20700.00",
+     "compare_at_price": "21000.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "120 Sachets",
+     "price": "40800.00",
+     "compare_at_price": "42000.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "180 Sachets",
+     "price": "60300.00",
+     "compare_at_price": "63000.00",
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "2 Sachets",
+     "price": "700.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "peanut-butter-chocolate-crispy",
+   "title": "Peanut Butter Chocolate Crispy",
+   "images": [
+    {
+     "id": 43921367466162,
+     "created_at": "2026-03-05T11:03:01+05:30",
+     "position": 1,
+     "updated_at": "2026-03-05T11:03:50+05:30",
+     "product_id": 7733839528114,
+     "variant_ids": [
+      43171352641714,
+      43567624257714
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/1672/2599/files/Peanut_Butter_Crunchy.jpg?v=1772688830",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "500 gm",
+     "price": "450.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "500 gm x 2",
+     "price": "800.00",
+     "compare_at_price": "900.00",
+     "sku": "",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "peanut-butter-honey-crunchy",
+   "title": "Peanut Butter Honey Crunchy",
+   "images": [
+    {
+     "id": 43921365958834,
+     "created_at": "2026-03-05T11:02:10+05:30",
+     "position": 1,
+     "updated_at": "2026-03-05T11:02:34+05:30",
+     "product_id": 7580171010226,
+     "variant_ids": [
+      42781520462002,
+      43567636611250
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/1672/2599/files/Peanut_Butter_Crunchy_1.jpg?v=1772688754",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "500 gm",
+     "price": "400.00",
+     "compare_at_price": null,
+     "sku": "",
+     "available": true
+    },
+    {
+     "title": "500 gm x 2",
+     "price": "700.00",
+     "compare_at_price": "800.00",
+     "sku": "",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "alpino.store": [
+  {
+   "handle": "dark-chocolate-peanut-protein-powder-vegan",
+   "title": "Supernatural Peanut Protein Powder Dark Chocolate",
+   "images": [
+    {
+     "id": 41784838684842,
+     "created_at": "2025-09-08T11:34:57+05:30",
+     "position": 1,
+     "updated_at": "2025-09-30T11:03:28+05:30",
+     "product_id": 7979575345322,
+     "variant_ids": [
+      48216207425706
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/combo_powder_and_shaker.webp?v=1759210408",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "1 Kg + Shaker",
+     "price": "2199.00",
+     "compare_at_price": "2799.00",
+     "sku": "SNPCH1KG_KIT",
+     "available": false
+    },
+    {
+     "title": "1 Kg",
+     "price": "2099.00",
+     "compare_at_price": "2699.00",
+     "sku": "SNPCH1KG",
+     "available": false
+    },
+    {
+     "title": "36g",
+     "price": "109.00",
+     "compare_at_price": "109.00",
+     "sku": "SNPCH36G",
+     "available": false
+    },
+    {
+     "title": "Assorted Pack (2 of each)",
+     "price": "894.00",
+     "compare_at_price": "894.00",
+     "sku": "SNPCH36GX2+SNPCF37GX2+SNPTF37GX2",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "alpino-natural-peanut-butter-crunch",
+   "title": "Natural Peanut Butter Crunch",
+   "images": [
+    {
+     "id": 39026599395498,
+     "created_at": "2024-12-18T12:55:37+05:30",
+     "position": 1,
+     "updated_at": "2025-06-30T16:23:23+05:30",
+     "product_id": 6144171049130,
+     "variant_ids": [
+      37823674613930
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/01_fceda9eb-0634-4684-805f-f7296a0b1a6f.webp?v=1751280803",
+     "width": 1500,
+     "height": 1500
+    }
+   ],
+   "variants": [
+    {
+     "title": "1KG",
+     "price": "349.00",
+     "compare_at_price": "419.00",
+     "sku": "NCR1KG",
+     "available": false
+    },
+    {
+     "title": "2 KG",
+     "price": "699.00",
+     "compare_at_price": "838.00",
+     "sku": "NCR2KG",
+     "available": false
+    },
+    {
+     "title": "800 G",
+     "price": "339.00",
+     "compare_at_price": "378.00",
+     "sku": "NCR800",
+     "available": true
+    },
+    {
+     "title": "400 G",
+     "price": "169.00",
+     "compare_at_price": "189.00",
+     "sku": "NCR400",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "alpino-chocolate-peanut-butter-crunch",
+   "title": "Chocolate Peanut Butter Crunch",
+   "images": [
+    {
+     "id": 39026771951786,
+     "created_at": "2024-12-18T13:29:38+05:30",
+     "position": 1,
+     "updated_at": "2026-01-01T11:13:30+05:30",
+     "product_id": 7580869066922,
+     "variant_ids": [
+      48216221188266
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/01_db700693-079a-4325-ba65-97dcd0085291.webp?v=1767246210",
+     "width": 1500,
+     "height": 1500
+    }
+   ],
+   "variants": [
+    {
+     "title": "1 KG",
+     "price": "399.00",
+     "compare_at_price": "469.00",
+     "sku": "CHCR1KG",
+     "available": true
+    },
+    {
+     "title": "2 KG",
+     "price": "799.00",
+     "compare_at_price": "938.00",
+     "sku": "CHCR2KG",
+     "available": true
+    },
+    {
+     "title": "400 G",
+     "price": "199.00",
+     "compare_at_price": "199.00",
+     "sku": "CHCR400",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "alpino-classic-peanut-butter-crunch",
+   "title": "Classic+ Peanut Butter Crunch",
+   "images": [
+    {
+     "id": 41538934046890,
+     "created_at": "2025-08-12T12:33:06+05:30",
+     "position": 1,
+     "updated_at": "2025-08-12T14:17:34+05:30",
+     "product_id": 6144171245738,
+     "variant_ids": [
+      37823926632618
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/Classic_Peanut_Butter_Crunch_1kg_01.webp?v=1754988454",
+     "width": 1500,
+     "height": 1500
+    }
+   ],
+   "variants": [
+    {
+     "title": "1 KG",
+     "price": "359.00",
+     "compare_at_price": "379.00",
+     "sku": "CR1KG",
+     "available": true
+    },
+    {
+     "title": "2 KG",
+     "price": "719.00",
+     "compare_at_price": "758.00",
+     "sku": "CR2KG",
+     "available": true
+    },
+    {
+     "title": "400 G",
+     "price": "179.00",
+     "compare_at_price": "179.00",
+     "sku": "CR400",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "super-peanut-butter",
+   "title": "Super Peanut Butter Chocolate Crunch",
+   "images": [
+    {
+     "id": 46112030130346,
+     "created_at": "2026-09-29T11:19:59+05:30",
+     "position": 1,
+     "updated_at": "2026-09-29T11:20:00+05:30",
+     "product_id": 8114313396394,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/KSM_Peanut_Butter_Website_Image.webp?v=1790661000",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "1 KG",
+     "price": "729.00",
+     "compare_at_price": "859.00",
+     "sku": "SPB1KG",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "maxprotein.in": [
+  {
+   "handle": "max-protein-bar-daily-choco-classic",
+   "title": "Max Protein Bar - Daily Choco Classic",
+   "images": [
+    {
+     "id": 47716298031326,
+     "created_at": "2026-08-26T16:55:18+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T16:55:20+05:30",
+     "product_id": 9313215971550,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot_2.png?v=1787743520",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009531533",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-daily-fruit-nut",
+   "title": "Max Protein Bar - Daily Fruit & Nut",
+   "images": [
+    {
+     "id": 39070638342366,
+     "created_at": "2023-02-27T18:14:21+05:30",
+     "position": 1,
+     "updated_at": "2025-02-10T15:56:45+05:30",
+     "product_id": 9313214791902,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/products/Max_Protein_Daily_Fruit_Nut_Bar.png?v=1739183205",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009534053",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-daily-salt-caramel-bar",
+   "title": "Max Protein Bar - Daily Salt & Caramel Bar",
+   "images": [
+    {
+     "id": 47716352753886,
+     "created_at": "2026-08-26T17:16:02+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:16:04+05:30",
+     "product_id": 9313201750238,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/DailySaltCaramel_Side.png?v=1787744764",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 1 - 50g",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009536217",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-daily-date-almond",
+   "title": "Max Protein Bar - Daily Date & Almond",
+   "images": [
+    {
+     "id": 42999934189790,
+     "created_at": "2024-12-11T20:32:31+05:30",
+     "position": 1,
+     "updated_at": "2024-12-11T20:33:01+05:30",
+     "product_id": 9313200734430,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/DailyDate_Almond_Side.jpg?v=1733929381",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009536675",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-daily-choco-almond",
+   "title": "Max Protein Bar - Daily Choco Almond",
+   "images": [
+    {
+     "id": 47716162797790,
+     "created_at": "2026-08-26T15:51:15+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T15:51:17+05:30",
+     "product_id": 9313216135390,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Max_Protein_Daily_Choco_Almond_Bar_2.png?v=1787739677",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "single pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009532356",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-daily-choco-berry",
+   "title": "Max Protein Bar - Daily Choco Berry",
+   "images": [
+    {
+     "id": 47716231250142,
+     "created_at": "2026-08-26T16:22:55+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T16:22:56+05:30",
+     "product_id": 9313216069854,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot_1.png?v=1787741576",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "single pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009532363",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-active-choco-fudge",
+   "title": "Max Protein Bar - Active Choco Fudge",
+   "images": [
+    {
+     "id": 47715989291230,
+     "created_at": "2026-08-26T14:40:44+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T14:40:46+05:30",
+     "product_id": 9313215742174,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot_0f8219dd-a638-4dfa-94e0-9f55706c10cc.png?v=1787735446",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "140.00",
+     "compare_at_price": null,
+     "sku": "8906009531335",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-active-choco-slim",
+   "title": "Max Protein Bar - Active Choco Slim",
+   "images": [
+    {
+     "id": 39070505369822,
+     "created_at": "2023-02-27T17:04:40+05:30",
+     "position": 1,
+     "updated_at": "2025-02-11T14:38:19+05:30",
+     "product_id": 9313215643870,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/products/Max_Protein_Active_Choco_Slim_Protein_Bar.png?v=1739264899",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "SINGLE BAR",
+     "price": "140.00",
+     "compare_at_price": null,
+     "sku": "8906009531311",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-active-peanut-butter-bar",
+   "title": "Max Protein Bar - Active Peanut Butter Bar",
+   "images": [
+    {
+     "id": 47716002136286,
+     "created_at": "2026-08-26T14:48:25+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T14:48:26+05:30",
+     "product_id": 9313212694750,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shoot.png?v=1787735906",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "SINGLE PACK",
+     "price": "140.00",
+     "compare_at_price": null,
+     "sku": "8906009532509",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-active-green-coffee-beans",
+   "title": "Max Protein Bar - Active Green Coffee Beans",
+   "images": [
+    {
+     "id": 37615018508510,
+     "created_at": "2022-07-09T02:40:01+05:30",
+     "position": 1,
+     "updated_at": "2022-07-11T07:12:36+05:30",
+     "product_id": 9313216233694,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/products/1_64a7ba2f-7546-45ce-a117-165216325cbf.jpg?v=1657503756",
+     "width": 1000,
+     "height": 1000
+    }
+   ],
+   "variants": [
+    {
+     "title": "single pack",
+     "price": "140.00",
+     "compare_at_price": null,
+     "sku": "8906009532516",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-ultimate-choco-berry",
+   "title": "Max Protein Bar - Ultimate Choco Berry",
+   "images": [
+    {
+     "id": 47716370481374,
+     "created_at": "2026-08-26T17:26:05+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:26:07+05:30",
+     "product_id": 9313215578334,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot_4.png?v=1787745367",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "single pack",
+     "price": "180.00",
+     "compare_at_price": null,
+     "sku": "8906009532158",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-bar-ultimate-choco-almond",
+   "title": "Max Protein Bar - Ultimate Choco Almond",
+   "images": [
+    {
+     "id": 47716357701854,
+     "created_at": "2026-08-26T17:18:19+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:18:21+05:30",
+     "product_id": 9313215447262,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot_3.png?v=1787744901",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "single pack",
+     "price": "180.00",
+     "compare_at_price": null,
+     "sku": "8906009532141",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-roots-cocoa-brownie-protein-bar",
+   "title": "Max Protein Roots – Cocoa Brownie Protein Bar",
+   "images": [
+    {
+     "id": 46520464638174,
+     "created_at": "2026-04-01T16:35:28+05:30",
+     "position": 1,
+     "updated_at": "2026-04-01T16:35:30+05:30",
+     "product_id": 9164432408798,
+     "variant_ids": [
+      48052058915038
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/FOP.png?v=1775041530",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009537122",
+     "available": false
+    },
+    {
+     "title": "Pack of 6",
+     "price": "480.00",
+     "compare_at_price": null,
+     "sku": "8906009537153",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-roots-coffee-mocha-protein-bar",
+   "title": "Max Protein Roots – Coffee Mocha Protein Bar",
+   "images": [
+    {
+     "id": 46520556060894,
+     "created_at": "2026-04-01T17:43:53+05:30",
+     "position": 1,
+     "updated_at": "2026-04-01T17:43:54+05:30",
+     "product_id": 9164440830174,
+     "variant_ids": [
+      48052163084510
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/FOP_8a53f1ce-c90e-40f5-89dd-d4254077efd5.png?v=1775045634",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "80.00",
+     "compare_at_price": null,
+     "sku": "8906009537146",
+     "available": false
+    },
+    {
+     "title": "Pack of 6",
+     "price": "480.00",
+     "compare_at_price": null,
+     "sku": "8906009537177",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "millet-wafer-protein-bar-choco-temptation",
+   "title": "Millet Wafer Protein Bar - Choco Temptation",
+   "images": [
+    {
+     "id": 45018787381470,
+     "created_at": "2025-07-28T15:11:15+05:30",
+     "position": 1,
+     "updated_at": "2025-07-28T15:11:17+05:30",
+     "product_id": 9313200242910,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/ChocoTemptation_Single_5a6130e3-5641-4702-8ed2-9cacadd75f2c.jpg?v=1753695677",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "SINGLE PACK",
+     "price": "71.00",
+     "compare_at_price": null,
+     "sku": "8906009537023",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-cheese-jalapeno-chips",
+   "title": "Max Protein Cheese & Jalapeno Chips",
+   "images": [
+    {
+     "id": 47716414357726,
+     "created_at": "2026-08-26T17:46:14+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:46:15+05:30",
+     "product_id": 9313217151198,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot-Can.png?v=1787746575",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "111.00",
+     "compare_at_price": "0.00",
+     "sku": "8906009532288",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-chinese-manchurian-chips",
+   "title": "Max Protein Chinese Manchurian Chips",
+   "images": [
+    {
+     "id": 47716418584798,
+     "created_at": "2026-08-26T17:48:28+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:48:29+05:30",
+     "product_id": 9313217085662,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Packshot-Can_1.png?v=1787746709",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "111.00",
+     "compare_at_price": "0.00",
+     "sku": "8906009532936",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-peri-peri-chips",
+   "title": "Max Protein Peri Peri Chips",
+   "images": [
+    {
+     "id": 47716431266014,
+     "created_at": "2026-08-26T17:53:09+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:53:11+05:30",
+     "product_id": 9313217249502,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Mood-Shot-can_3.png?v=1787746991",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "111.00",
+     "compare_at_price": "0.00",
+     "sku": "8906009532950",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-cream-onion-chips",
+   "title": "Max Protein Cream & Onion Chips",
+   "images": [
+    {
+     "id": 47716422058206,
+     "created_at": "2026-08-26T17:50:03+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:50:04+05:30",
+     "product_id": 9313217315038,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/packshot-can_2.png?v=1787746804",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "111.00",
+     "compare_at_price": "0.00",
+     "sku": "8906009532967",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-spanish-tomato-chips",
+   "title": "Max Protein Spanish Tomato Chips",
+   "images": [
+    {
+     "id": 47716438147294,
+     "created_at": "2026-08-26T17:56:20+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T17:56:22+05:30",
+     "product_id": 9313216856286,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Packshot-Can_3_2b8292e2-4ec5-4feb-b473-11376f406d05.png?v=1787747182",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "111.00",
+     "compare_at_price": null,
+     "sku": "8906009532271",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-gochujang-korean-chips",
+   "title": "Max Protein Gochujang Korean Chips",
+   "images": [
+    {
+     "id": 46626592260318,
+     "created_at": "2026-04-17T12:47:27+05:30",
+     "position": 1,
+     "updated_at": "2026-04-17T12:47:45+05:30",
+     "product_id": 9181796991198,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/GochujangPackshot1.jpg?v=1776410265",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "45.00",
+     "compare_at_price": "0.00",
+     "sku": "8906009537337",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-cookies-choco-almond-60g-zero-added-sugar",
+   "title": "Max Protein Cookies Choco Almond 60g | Zero Added Sugar",
+   "images": [
+    {
+     "id": 47716469997790,
+     "created_at": "2026-08-26T18:12:03+05:30",
+     "position": 1,
+     "updated_at": "2026-08-26T18:12:05+05:30",
+     "product_id": 9313203814622,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/SideAngle_30b77fa0-b426-4f54-8f3b-109fd662d1ef.png?v=1787748125",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 1",
+     "price": "60.00",
+     "compare_at_price": null,
+     "sku": "8906009535159",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-choco-chips-bliss-cookies",
+   "title": "Max Protein Choco Chips Bliss  Cookies",
+   "images": [
+    {
+     "id": 47625174548702,
+     "created_at": "2026-08-13T17:09:58+05:30",
+     "position": 1,
+     "updated_at": "2026-08-13T17:10:00+05:30",
+     "product_id": 9305035604190,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/CrunchyCookieChocochipf_dcd4e407-d5ca-499b-b5e2-82e0ed19d578.png?v=1786621200",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "60.00",
+     "compare_at_price": null,
+     "sku": "8906009537443",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-milkshake-choco-burst",
+   "title": "Max Protein Milkshake - Choco Burst",
+   "images": [
+    {
+     "id": 46610904350942,
+     "created_at": "2026-04-15T14:13:05+05:30",
+     "position": 1,
+     "updated_at": "2026-04-15T14:13:07+05:30",
+     "product_id": 9178237862110,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Chocoburst1.png?v=1776242587",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "150.00",
+     "compare_at_price": null,
+     "sku": "8906009537184",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-milkshake-berry-blush",
+   "title": "Max Protein Milkshake - Berry Blush",
+   "images": [
+    {
+     "id": 46610895798494,
+     "created_at": "2026-04-15T14:10:22+05:30",
+     "position": 1,
+     "updated_at": "2026-04-15T14:10:23+05:30",
+     "product_id": 9178251591902,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Berry_Blush_1.png?v=1776242423",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Single Pack",
+     "price": "150.00",
+     "compare_at_price": null,
+     "sku": "8906009537276",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-peanut-butter-classic-crunchy-1kg",
+   "title": "Max Protein Peanut Butter Classic Crunchy - 1kg",
+   "images": [
+    {
+     "id": 39204868817118,
+     "created_at": "2023-04-03T12:23:06+05:30",
+     "position": 1,
+     "updated_at": "2023-04-03T12:23:10+05:30",
+     "product_id": 7995993751774,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/products/Mood-Shot_f176412d-859f-4638-8b0a-7f222db1c42a.png?v=1680504790",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "399.00",
+     "compare_at_price": null,
+     "sku": "8906009534343",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "max-protein-peanut-butter-dark-choco-crunchy",
+   "title": "Max Protein Peanut Butter Dark Choco Crunchy",
+   "images": [
+    {
+     "id": 40713450094814,
+     "created_at": "2024-04-01T00:49:05+05:30",
+     "position": 1,
+     "updated_at": "2024-04-01T00:49:09+05:30",
+     "product_id": 9313201127646,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Front_ca463fd6-8e4c-452b-b703-4bc54147a725.jpg?v=1711912749",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "155.00",
+     "compare_at_price": null,
+     "sku": "8906009536477",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "eatanytime.in": [
+  {
+   "handle": "chocolate-protein-bar-no-added-sugar-10g-protein-per-bar-gut-friendly-low-calorie",
+   "title": "Chocolate Protein Bar | No Added Sugar | 10g Protein per bar | Gut friendly | Low Calorie",
+   "images": [
+    {
+     "id": 43598941323425,
+     "created_at": "2026-04-07T18:26:31+05:30",
+     "position": 1,
+     "updated_at": "2026-04-08T12:56:05+05:30",
+     "product_id": 8480095764641,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/Artboard1_f7e29474-797f-4a35-9f7e-fc9782ca522a.png?v=1775633165",
+     "width": 2160,
+     "height": 2160
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3 - 30 Bars",
+     "price": "1399.00",
+     "compare_at_price": "1950.00",
+     "sku": "Kit Chocolate Protein Bars Pack of 10 x 3",
+     "available": false
+    },
+    {
+     "title": "Pack of 2 - 20 Bars",
+     "price": "949.00",
+     "compare_at_price": "1300.00",
+     "sku": "Kit Chocolate Protein Bars Pack of 10 x 2",
+     "available": false
+    },
+    {
+     "title": "Pack of 1 - 10 Bars",
+     "price": "499.00",
+     "compare_at_price": "650.00",
+     "sku": "Kit Chocolate Protein Bars Pack of 10 x 1",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "coffee-protein-bar-no-added-sugar-10g-protein-per-bar-gut-friendly-low-calorie",
+   "title": "Coffee Protein Bar | No Added Sugar | 10g Protein per bar | Gut friendly | Low Calorie",
+   "images": [
+    {
+     "id": 43598944338081,
+     "created_at": "2026-04-07T18:30:52+05:30",
+     "position": 1,
+     "updated_at": "2026-04-08T12:56:06+05:30",
+     "product_id": 8480096911521,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/Artboard1_34c60428-7d46-455b-8735-33877022f77d.png?v=1775633166",
+     "width": 2160,
+     "height": 2160
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3 - 30 Bars",
+     "price": "1399.00",
+     "compare_at_price": "1950.00",
+     "sku": "Kit Coffee Protein Bars_Pack of 10 x 3",
+     "available": false
+    },
+    {
+     "title": "Pack of 2 - 20 Bars",
+     "price": "949.00",
+     "compare_at_price": "1300.00",
+     "sku": "Kit Coffee Protein Bars_Pack of 10 x 2",
+     "available": false
+    },
+    {
+     "title": "Pack of 1 - 10 Bars",
+     "price": "499.00",
+     "compare_at_price": "650.00",
+     "sku": "Kit Coffee Protein Bars_Pack of 10 x 1",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "indian-twist-protein-chips-40-grams-protein",
+   "title": "Indian Twist Protein Chips | 40 grams protein",
+   "images": [
+    {
+     "id": 44517805752481,
+     "created_at": "2026-07-27T15:04:15+05:30",
+     "position": 1,
+     "updated_at": "2026-07-27T19:51:06+05:30",
+     "product_id": 8329230188705,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/Front_Page_4.png?v=1785162066",
+     "width": 2160,
+     "height": 2160
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3",
+     "price": "499.00",
+     "compare_at_price": "1197.00",
+     "sku": "Protein Chips - Indian Twist_150g x 3",
+     "available": true
+    },
+    {
+     "title": "Pack of 2",
+     "price": "375.00",
+     "compare_at_price": "798.00",
+     "sku": "Protein Chips - Indian Twist_150g x 2",
+     "available": true
+    },
+    {
+     "title": "Pack of 1",
+     "price": "195.00",
+     "compare_at_price": "399.00",
+     "sku": "Protein Chips - Indian Twist_150g x 1",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "cream-n-onion-protein-chips-40-grams-protein",
+   "title": "Cream N Onion Protein Chips | 40 grams protein",
+   "images": [
+    {
+     "id": 44517804015777,
+     "created_at": "2026-07-27T15:02:08+05:30",
+     "position": 1,
+     "updated_at": "2026-07-27T19:51:06+05:30",
+     "product_id": 8329228714145,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/Front_Page_3.png?v=1785162066",
+     "width": 2160,
+     "height": 2160
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3",
+     "price": "499.00",
+     "compare_at_price": "1197.00",
+     "sku": "Protein Chips - Cream & Onion_150g x 3",
+     "available": true
+    },
+    {
+     "title": "Pack of 2",
+     "price": "375.00",
+     "compare_at_price": "798.00",
+     "sku": "Combo Protein Chips - Cream & Onion_150g x 2",
+     "available": true
+    },
+    {
+     "title": "Pack of 1",
+     "price": "195.00",
+     "compare_at_price": "399.00",
+     "sku": "Protein Chips - Cream & Onion_150g x 1",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "peri-peri-protein-chips-40-grams-protein",
+   "title": "Peri Peri Protein Chips | 40 grams protein",
+   "images": [
+    {
+     "id": 44517806833825,
+     "created_at": "2026-07-27T15:05:30+05:30",
+     "position": 1,
+     "updated_at": "2026-07-27T19:51:06+05:30",
+     "product_id": 8329227174049,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/Front_Page_6.png?v=1785162066",
+     "width": 2160,
+     "height": 2160
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3",
+     "price": "499.00",
+     "compare_at_price": "1197.00",
+     "sku": "Protein Chips - Peri Peri_150g x 3",
+     "available": false
+    },
+    {
+     "title": "Pack of 2",
+     "price": "375.00",
+     "compare_at_price": "798.00",
+     "sku": "Combo Protein Chips - Peri Peri_150g x 2",
+     "available": false
+    },
+    {
+     "title": "Pack of 1",
+     "price": "195.00",
+     "compare_at_price": "399.00",
+     "sku": "Protein Chips - Peri Peri_150g x 1",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "sea-salt-caramel-protein-truffles-10g-per-ball",
+   "title": "Sea Salt Caramel Protein Balls",
+   "images": [
+    {
+     "id": 39687005536417,
+     "created_at": "2024-07-25T07:40:16+05:30",
+     "position": 1,
+     "updated_at": "2024-07-25T07:40:16+05:30",
+     "product_id": 8100806066337,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/Card_1_Website_7db8728f-f13d-4268-8ac3-63a9c24b9883-837817.jpg?v=1721873416",
+     "width": 1100,
+     "height": 1100
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3",
+     "price": "529.00",
+     "compare_at_price": "735.00",
+     "sku": "seasaltcaramelproteinballs-packof3",
+     "available": true
+    },
+    {
+     "title": "Pack of 2",
+     "price": "382.00",
+     "compare_at_price": "490.00",
+     "sku": "seasaltcaramelproteinballs-packof2",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "peanut-butter-protein-balls",
+   "title": "Peanut Butter Protein Balls",
+   "images": [
+    {
+     "id": 39081708847265,
+     "created_at": "2024-05-04T19:13:04+05:30",
+     "position": 1,
+     "updated_at": "2024-05-04T19:13:04+05:30",
+     "product_id": 5471914983585,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0310/9729/0885/files/5-616203.png?v=1714830184",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Pack of 3 - 300g",
+     "price": "682.00",
+     "compare_at_price": "1050.00",
+     "sku": "PB-PB-2",
+     "available": true
+    },
+    {
+     "title": "Pack of 2 - 200g",
+     "price": "497.00",
+     "compare_at_price": "700.00",
+     "sku": null,
+     "available": true
+    }
+   ]
+  }
+ ],
+ "snackible.com": [
+  {
+   "handle": "cheddar-cheese-protein-chakli-17-protein-per-serve",
+   "title": "Cheddar Cheese Protein Chakli | 18% Protein Per Serve",
+   "images": [
+    {
+     "id": 37476847550530,
+     "created_at": "2026-09-19T12:16:24+05:30",
+     "position": 1,
+     "updated_at": "2026-09-19T12:16:25+05:30",
+     "product_id": 8301832437826,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0126/6732/2432/files/Lifestyle_2_efc9e9ee-7ab1-4083-86e7-5f587b14e4ce.png?v=1789800385",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "50g",
+     "price": "65.00",
+     "compare_at_price": "65.00",
+     "sku": "SNPPRC55",
+     "available": true
+    },
+    {
+     "title": "150g",
+     "price": "185.00",
+     "compare_at_price": "185.00",
+     "sku": "SNPPRC165",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "sweet-chilli-protein-chakli-17-protein-per-serve",
+   "title": "Sweet Chilli Protein Chakli | 17% Protein Per Serve",
+   "images": [
+    {
+     "id": 37476982292546,
+     "created_at": "2026-09-19T12:47:39+05:30",
+     "position": 1,
+     "updated_at": "2026-09-19T12:47:41+05:30",
+     "product_id": 8301828669506,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0126/6732/2432/files/Lifestyle_2_1.png?v=1789802261",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "50g",
+     "price": "65.00",
+     "compare_at_price": "65.00",
+     "sku": "SNPPRC55",
+     "available": true
+    },
+    {
+     "title": "150g",
+     "price": "185.00",
+     "compare_at_price": "185.00",
+     "sku": "SNPPRC165",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "korean-bbq-jowar-puffs",
+   "title": "Korean BBQ Jowar Puffs | Source of Protein",
+   "images": [
+    {
+     "id": 35124014481474,
+     "created_at": "2026-01-07T10:27:45+05:30",
+     "position": 1,
+     "updated_at": "2026-01-07T10:29:48+05:30",
+     "product_id": 7546392444994,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0126/6732/2432/files/lifestyle_2.png?v=1767761988",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "35g",
+     "price": "32.00",
+     "compare_at_price": "40.00",
+     "sku": null,
+     "available": true
+    },
+    {
+     "title": "105g",
+     "price": "115.00",
+     "compare_at_price": "115.00",
+     "sku": null,
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "nacho-cheese-jowar-puffs",
+   "title": "Nacho Cheese Jowar Puffs | Source of Protein",
+   "images": [
+    {
+     "id": 36316655026242,
+     "created_at": "2026-05-29T11:08:06+05:30",
+     "position": 1,
+     "updated_at": "2026-05-29T11:08:08+05:30",
+     "product_id": 4414188617794,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0126/6732/2432/files/lifestyle_467c6870-be14-4d9b-9a28-bc1220d22778.png?v=1780033088",
+     "width": 2000,
+     "height": 2000
+    }
+   ],
+   "variants": [
+    {
+     "title": "35g",
+     "price": "32.00",
+     "compare_at_price": "40.00",
+     "sku": "SNNCJP35",
+     "available": true
+    },
+    {
+     "title": "105g",
+     "price": "115.00",
+     "compare_at_price": "115.00",
+     "sku": "SNJCJP100",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "eatbetterco.com": [
+  {
+   "handle": "protien-bhujia-chilli-lime",
+   "title": "Protein Bhujia - Chilli Lime",
+   "images": [
+    {
+     "id": 66631842267453,
+     "created_at": "2026-09-24T13:03:52+05:30",
+     "position": 1,
+     "updated_at": "2026-09-24T13:03:54+05:30",
+     "product_id": 10516602913085,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0272/5606/2025/files/PB.jpg?v=1790235234",
+     "width": 1500,
+     "height": 1500
+    }
+   ],
+   "variants": [
+    {
+     "title": "4 Packs",
+     "price": "289.00",
+     "compare_at_price": "316.00",
+     "sku": "MN_BHUJIA_CHILI_LMN_100_4",
+     "available": true
+    },
+    {
+     "title": "2 Packs",
+     "price": "149.00",
+     "compare_at_price": "158.00",
+     "sku": "MN_BHUJIA_CHILI_LMN_100_2",
+     "available": true
+    },
+    {
+     "title": "1 Pack",
+     "price": "79.00",
+     "compare_at_price": null,
+     "sku": "MN_BHUJIA_CHILI_LMN-3",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "protein-chips-pudina-punch",
+   "title": "Protein Chips - Pudina Punch",
+   "images": [
+    {
+     "id": 66631824900413,
+     "created_at": "2026-09-24T13:01:23+05:30",
+     "position": 1,
+     "updated_at": "2026-09-24T13:01:24+05:30",
+     "product_id": 10516598227261,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0272/5606/2025/files/Artboard_1_1_1.jpg?v=1790235084",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "6 Packs",
+     "price": "240.00",
+     "compare_at_price": "300.00",
+     "sku": "PC_PUDINA_CHIPS_55_6",
+     "available": true
+    },
+    {
+     "title": "4 Packs",
+     "price": "180.00",
+     "compare_at_price": "200.00",
+     "sku": "PC_PUDINA_CHIPS_55_4",
+     "available": true
+    },
+    {
+     "title": "2 Packs",
+     "price": "100.00",
+     "compare_at_price": "50.00",
+     "sku": "PC_PUDINA_CHIPS_55_2",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "protien-chips-pizza-party",
+   "title": "Protein Chips - Pizza Party",
+   "images": [
+    {
+     "id": 66631796654397,
+     "created_at": "2026-09-24T12:55:49+05:30",
+     "position": 1,
+     "updated_at": "2026-09-24T12:55:50+05:30",
+     "product_id": 10516591640893,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0272/5606/2025/files/Artboard_1_1_d23fe25a-f368-484f-8c6a-e3f314cba105.jpg?v=1790234750",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "6 Packs",
+     "price": "240.00",
+     "compare_at_price": "300.00",
+     "sku": "PC_PIZZA_PARTY_55_6",
+     "available": true
+    },
+    {
+     "title": "4 Packs",
+     "price": "180.00",
+     "compare_at_price": "200.00",
+     "sku": "PC_PIZZA_PARTY_55_4",
+     "available": true
+    },
+    {
+     "title": "2 Packs",
+     "price": "100.00",
+     "compare_at_price": null,
+     "sku": "PC_PIZZA_PARTY_55_2",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "peanut-cranberry-protein-laddoos",
+   "title": "Orange Cranberry - Protein Laddoos",
+   "images": [
+    {
+     "id": 65115003748669,
+     "created_at": "2026-07-16T12:26:13+05:30",
+     "position": 1,
+     "updated_at": "2026-07-16T12:26:15+05:30",
+     "product_id": 10424766791997,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0272/5606/2025/files/Artboard_1_7297447c-33e2-4187-8073-21a49ac8170a.jpg?v=1784184975",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "240 g | 6 Packs",
+     "price": "427.00",
+     "compare_at_price": "474.00",
+     "sku": "PL_PNUTCRANBRY_40_6",
+     "available": true
+    },
+    {
+     "title": "120 g | 3 Packs",
+     "price": "227.00",
+     "compare_at_price": "237.00",
+     "sku": "PL_PNUTCRANBRY_40_3",
+     "available": true
+    },
+    {
+     "title": "40 g | 1 Pack",
+     "price": "79.00",
+     "compare_at_price": "79.00",
+     "sku": "PL_PNUTCRANBRY_40",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "epigamia.com": [
+  {
+   "handle": "turbo-30g-protein-milkshake-malai-kulfi-v-zfwandheri",
+   "title": "turbo 30g protein milkshake, malai kulfi",
+   "images": [
+    {
+     "id": 45011434012825,
+     "created_at": "2026-01-23T00:02:17-05:00",
+     "position": 1,
+     "updated_at": "2026-01-23T00:04:07-05:00",
+     "product_id": 8625043734681,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/30g_Turbo_Milkshake_Malai_Kulfi_Pack_of_1.png?v=1769144647",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "165.00",
+     "compare_at_price": null,
+     "sku": "FG00605zfwandheri",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "turbo-30g-protein-milkshake-mango-v-zfwandheri",
+   "title": "turbo 30g protein milkshake, mango",
+   "images": [
+    {
+     "id": 45011430572185,
+     "created_at": "2026-01-23T00:00:50-05:00",
+     "position": 1,
+     "updated_at": "2026-01-23T00:02:34-05:00",
+     "product_id": 8625043767449,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/30g_Turbo_Milkshake_Alphonso_Mango_Pack_of_1.png?v=1769144554",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "165.00",
+     "compare_at_price": null,
+     "sku": "FG00606zfwandheri",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "turbo-30g-protein-milkshake-chocolate-v-zfwchennai",
+   "title": "turbo 30g protein milkshake, chocolate",
+   "images": [
+    {
+     "id": 45045610774681,
+     "created_at": "2026-01-28T03:16:32-05:00",
+     "position": 1,
+     "updated_at": "2026-01-28T03:16:34-05:00",
+     "product_id": 8628853670041,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/30g_Turbo_Milkshake_Chocolate_Pack_of_1_3d897c16-0596-4060-a4bb-da094af28b1b.png?v=1769588194",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "165.00",
+     "compare_at_price": null,
+     "sku": "FG00604zfwchennai",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "turbo-30g-protein-milkshake-coffee-v-zfwchennai",
+   "title": "turbo 30g protein milkshake, coffee",
+   "images": [
+    {
+     "id": 45045610315929,
+     "created_at": "2026-01-28T03:16:31-05:00",
+     "position": 1,
+     "updated_at": "2026-01-28T03:16:33-05:00",
+     "product_id": 8628853637273,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/30gTurboMilkshake_Coffee_Packof1_3d05a187-a1e0-4cac-8e39-5ce4b2ed1ced.png?v=1769588193",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "165.00",
+     "compare_at_price": null,
+     "sku": "FG00603zfwchennai",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "turbo-25-g-protein-milkshake-cookies-cream-250-ml-v-zfwchennai",
+   "title": "turbo 25g protein milkshake, cookies & cream",
+   "images": [
+    {
+     "id": 41378678997145,
+     "created_at": "2025-04-05T07:16:51-04:00",
+     "position": 1,
+     "updated_at": "2025-04-05T07:16:50-04:00",
+     "product_id": 8391211712665,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/Turbo_Milkshake_C_C_Pack_of_1_cccd0a15-c6ca-407c-a04b-77d6c9ff51a7.png?v=1743851810",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "141.00",
+     "compare_at_price": null,
+     "sku": "FG00520zfwchennai",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "coffee-turbo-25-g-protein-milkshake-250-ml-v-zfwandheri",
+   "title": "turbo 25g protein milkshake, coffee",
+   "images": [
+    {
+     "id": 40637250502809,
+     "created_at": "2025-01-28T01:05:32-05:00",
+     "position": 1,
+     "updated_at": "2025-01-28T01:51:06-05:00",
+     "product_id": 8102686720153,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/Turbo_Milkshake_Coffee_Pack_of_1.png?v=1738047066",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "141.00",
+     "compare_at_price": null,
+     "sku": "FG00558zfwandheri",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "turbo-25-g-protein-milkshake-vanilla-caramel-v-zfwkoramangala",
+   "title": "turbo 25g protein milkshake, vanilla caramel",
+   "images": [
+    {
+     "id": 40657402396825,
+     "created_at": "2025-01-29T03:04:30-05:00",
+     "position": 1,
+     "updated_at": "2025-01-29T04:41:11-05:00",
+     "product_id": 7737596379289,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/Turbo_Milkshake_Vanilla_Caramel_Pack_of_1.png?v=1738143671",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "141.00",
+     "compare_at_price": null,
+     "sku": "FG00483zfwkoramangala",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "turbo-25-g-protein-milkshake-chocolate-v-zfwchennai",
+   "title": "turbo 25g protein milkshake, chocolate",
+   "images": [
+    {
+     "id": 41378661925017,
+     "created_at": "2025-04-05T07:13:45-04:00",
+     "position": 1,
+     "updated_at": "2025-04-05T07:13:45-04:00",
+     "product_id": 8391211188377,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/Turbo_Milkshake_Chocolate_Pack_of_1_79ceffd1-b70c-4473-b4d0-e551739a1f99.png?v=1743851625",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "141.00",
+     "compare_at_price": "0.00",
+     "sku": "FG00482zfwchennai",
+     "available": false
+    }
+   ]
+  },
+  {
+   "handle": "turbo-high-protein-milk-v-zfwandheri",
+   "title": "turbo high protein milk",
+   "images": [
+    {
+     "id": 45475001663641,
+     "created_at": "2026-03-16T05:22:49-04:00",
+     "position": 1,
+     "updated_at": "2026-03-16T05:32:12-04:00",
+     "product_id": 8682257186969,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/0331/1983/0148/files/High_Protein_Milk_Pack_of_1.png?v=1773653532",
+     "width": 2048,
+     "height": 2048
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "125.00",
+     "compare_at_price": null,
+     "sku": "FG00607zfwandheri",
+     "available": false
+    }
+   ]
+  }
+ ],
+ "sleepyowl.co": [
+  {
+   "handle": "protein-coffee-classic",
+   "title": "Classic Protein Coffee Powder",
+   "images": [
+    {
+     "id": 52803684827435,
+     "created_at": "2026-01-07T13:03:07+05:30",
+     "position": 1,
+     "updated_at": "2026-01-07T13:11:39+05:30",
+     "product_id": 10226040144171,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/1308/0907/files/1_9.jpg?v=1767771699",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "549.00",
+     "compare_at_price": "1000.00",
+     "sku": "PMP-CLA-05P-SAC-ONE",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "protein-coffee-hazelnut",
+   "title": "Protein Coffee Powder - Hazelnut",
+   "images": [
+    {
+     "id": 52803822747947,
+     "created_at": "2026-01-07T13:18:57+05:30",
+     "position": 1,
+     "updated_at": "2026-01-07T13:18:59+05:30",
+     "product_id": 10226041356587,
+     "variant_ids": [],
+     "src": "https://cdn.shopify.com/s/files/1/1308/0907/files/Artboard1copy3.jpg?v=1767772139",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "Default Title",
+     "price": "549.00",
+     "compare_at_price": "1000.00",
+     "sku": "PMP-HAZ-05P-SAC-ONE",
+     "available": true
+    }
+   ]
+  }
+ ],
+ "myfitness.in": [
+  {
+   "handle": "myfitness-original-peanut-butter-crunchy",
+   "title": "MyFitness Peanut Butter - Original | 28% Protein | Crunchy | Classic Peanut Butter Spread",
+   "images": [
+    {
+     "id": 48228866719898,
+     "created_at": "2026-04-09T18:55:39+05:30",
+     "position": 1,
+     "updated_at": "2026-04-09T18:57:36+05:30",
+     "product_id": 6777728729242,
+     "variant_ids": [
+      39986292654234
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/1_21__converted.webp?v=1775741256",
+     "width": 2250,
+     "height": 2250
+    }
+   ],
+   "variants": [
+    {
+     "title": "1.25 kg",
+     "price": "499.00",
+     "compare_at_price": "669.00",
+     "sku": "O12502",
+     "available": true
+    },
+    {
+     "title": "510 g",
+     "price": "275.00",
+     "compare_at_price": "319.00",
+     "sku": "O5102",
+     "available": true
+    },
+    {
+     "title": "1.25 kg x 2 pcs",
+     "price": "899.00",
+     "compare_at_price": "1338.00",
+     "sku": "O125022",
+     "available": true
+    },
+    {
+     "title": "510 g x 2 pcs",
+     "price": "409.00",
+     "compare_at_price": "640.00",
+     "sku": "O51022",
+     "available": true
+    },
+    {
+     "title": "900g",
+     "price": "399.00",
+     "compare_at_price": "499.00",
+     "sku": "O90002",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "myfitness-original-peanut-butter-smooth",
+   "title": "MyFitness Peanut Butter - Original | 28% Protein | Smooth | Classic Peanut Butter Spread",
+   "images": [
+    {
+     "id": 48228800200858,
+     "created_at": "2026-04-09T18:38:52+05:30",
+     "position": 1,
+     "updated_at": "2026-04-09T18:45:00+05:30",
+     "product_id": 6777713590426,
+     "variant_ids": [
+      39986150932634
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/1_20__converted.webp?v=1775740500",
+     "width": 2250,
+     "height": 2250
+    }
+   ],
+   "variants": [
+    {
+     "title": "1.25 kg",
+     "price": "499.00",
+     "compare_at_price": "669.00",
+     "sku": "O12501",
+     "available": true
+    },
+    {
+     "title": "1.25 kg x 2 pcs",
+     "price": "899.00",
+     "compare_at_price": "1338.00",
+     "sku": "O125011",
+     "available": true
+    },
+    {
+     "title": "510 g",
+     "price": "275.00",
+     "compare_at_price": "319.00",
+     "sku": "O5101",
+     "available": true
+    },
+    {
+     "title": "510 g x 2 pcs",
+     "price": "479.00",
+     "compare_at_price": "638.00",
+     "sku": "O51011",
+     "available": true
+    },
+    {
+     "title": "900g",
+     "price": "399.00",
+     "compare_at_price": "499.00",
+     "sku": "O90001",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "myfitness-chocolate-peanut-butter-smooth",
+   "title": "MyFitness Peanut Butter - Chocolate | 28% Protein | Smooth | Chocolate Peanut Butter Spread",
+   "images": [
+    {
+     "id": 49622204776602,
+     "created_at": "2026-08-14T16:58:58+05:30",
+     "position": 1,
+     "updated_at": "2026-08-14T16:59:00+05:30",
+     "product_id": 6777751863450,
+     "variant_ids": [
+      39986434539674
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/Artboard_1_44__converted.webp?v=1786706940",
+     "width": 1080,
+     "height": 1080
+    }
+   ],
+   "variants": [
+    {
+     "title": "1.20 kg",
+     "price": "499.00",
+     "compare_at_price": "669.00",
+     "sku": "C12501",
+     "available": true
+    },
+    {
+     "title": "900g",
+     "price": "399.00",
+     "compare_at_price": "499.00",
+     "sku": "C90001",
+     "available": true
+    },
+    {
+     "title": "510 g",
+     "price": "275.00",
+     "compare_at_price": "319.00",
+     "sku": "C5101",
+     "available": true
+    },
+    {
+     "title": "2.2 kg",
+     "price": "849.00",
+     "compare_at_price": "1199.00",
+     "sku": "C22001",
+     "available": true
+    },
+    {
+     "title": "2.5 kg",
+     "price": "899.00",
+     "compare_at_price": "1299.00",
+     "sku": "C25001",
+     "available": true
+    },
+    {
+     "title": "510 g x 2 pcs",
+     "price": "479.00",
+     "compare_at_price": "638.00",
+     "sku": "C51011",
+     "available": true
+    },
+    {
+     "title": "1.20 kg x 2 pcs",
+     "price": "919.00",
+     "compare_at_price": "1338.00",
+     "sku": "C125011",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "myfitness-all-natural-peanut-butter-crunchy",
+   "title": "MyFitness Peanut Butter - Natural Unsweetened | 31% Protein | Crunchy | Zero Sugar Peanut Butter Spread",
+   "images": [
+    {
+     "id": 48227765452954,
+     "created_at": "2026-04-09T16:02:29+05:30",
+     "position": 1,
+     "updated_at": "2026-04-09T16:05:43+05:30",
+     "product_id": 6777793609882,
+     "variant_ids": [
+      39986581602458
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/1_8.jpg?v=1775730943",
+     "width": 2250,
+     "height": 2250
+    }
+   ],
+   "variants": [
+    {
+     "title": "1.25 kg",
+     "price": "499.00",
+     "compare_at_price": "669.00",
+     "sku": "N12502",
+     "available": true
+    },
+    {
+     "title": "510 g",
+     "price": "275.00",
+     "compare_at_price": "319.00",
+     "sku": "N5102",
+     "available": true
+    },
+    {
+     "title": "1.25 kg x 2 pcs",
+     "price": "999.00",
+     "compare_at_price": "1338.00",
+     "sku": "N125022",
+     "available": true
+    },
+    {
+     "title": "510 g x 2 pcs",
+     "price": "479.00",
+     "compare_at_price": "638.00",
+     "sku": "N51022",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "myfitness-zero-peanut-butter-crunchy-510g",
+   "title": "MyFitness Peanut Butter - Classic Zero | 28% Protein | Extra Crunchy | Zero Sugar Peanut Spread",
+   "images": [
+    {
+     "id": 48031473795226,
+     "created_at": "2026-03-14T20:13:35+05:30",
+     "position": 1,
+     "updated_at": "2026-03-16T11:50:12+05:30",
+     "product_id": 8471649878170,
+     "variant_ids": [
+      45646663024794
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/myfitness-zero-peanut-butter-crunchy-510g-1773489552_37256a4c-ac2a-440c-9c53-3cbe6b173d20.webp?v=1773642012",
+     "width": 1200,
+     "height": 1200
+    }
+   ],
+   "variants": [
+    {
+     "title": "510 g",
+     "price": "275.00",
+     "compare_at_price": "349.00",
+     "sku": "ZN5102",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "chocolate-crispy",
+   "title": "MyFitness Peanut Butter - Chocolate | 26% Protein | Crispy | Chocolate Peanut Butter Spread",
+   "images": [
+    {
+     "id": 48031544574106,
+     "created_at": "2026-03-14T20:25:54+05:30",
+     "position": 1,
+     "updated_at": "2026-03-14T20:25:55+05:30",
+     "product_id": 8008868036762,
+     "variant_ids": [
+      44221980475546
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/chocolate-crispy-1773491327_9be99785-30ab-4b4b-accb-dd909c2b27c0.webp?v=1773500155",
+     "width": 647,
+     "height": 691
+    }
+   ],
+   "variants": [
+    {
+     "title": "227g",
+     "price": "149.00",
+     "compare_at_price": "159.00",
+     "sku": "C22703",
+     "available": true
+    }
+   ]
+  },
+  {
+   "handle": "myfitness-olympia-edition-dark-chocolate-peanut-butter-with-added-whey-crunchy",
+   "title": "MyFitness Peanut Butter - Dark Chocolate | 30% Protein | Crunchy | Rich Chocolate Peanut Butter Spread",
+   "images": [
+    {
+     "id": 48227272720538,
+     "created_at": "2026-04-09T15:08:46+05:30",
+     "position": 1,
+     "updated_at": "2026-04-09T15:35:59+05:30",
+     "product_id": 7421395763354,
+     "variant_ids": [
+      42271494963354
+     ],
+     "src": "https://cdn.shopify.com/s/files/1/0440/7921/8842/files/1_3_cbadf69d-26e7-4a88-9161-2e5709bec985.jpg?v=1775729159",
+     "width": 2250,
+     "height": 2250
+    }
+   ],
+   "variants": [
+    {
+     "title": "510 g",
+     "price": "319.00",
+     "compare_at_price": "399.00",
+     "sku": "DC5102",
+     "available": true
+    },
+    {
+     "title": "510 g x 2 pcs",
+     "price": "579.00",
+     "compare_at_price": "798.00",
+     "sku": "DC51022",
+     "available": true
+    },
+    {
+     "title": "1 kg",
+     "price": "539.00",
+     "compare_at_price": "689.00",
+     "sku": "DC1002",
+     "available": true
+    },
+    {
+     "title": "1 kg x 2 pcs",
+     "price": "999.00",
+     "compare_at_price": "1378.00",
+     "sku": "DC10022",
+     "available": true
+    }
+   ]
+  }
+ ]
+}

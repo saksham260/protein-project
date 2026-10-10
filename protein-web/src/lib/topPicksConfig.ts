@@ -74,5 +74,16 @@ export const TOP_PICKS_CONFIG: TopPicksConfig = {
         sortBy: "cost_per_g_asc",
       },
     },
+    {
+      id: "best-spread",
+      label: "Best Peanut Butter",
+      description: "Most protein per rupee in peanut butters and spreads.",
+      glowColor: "#A16207", // Peanut brown
+      badgeEmoji: "🥜",
+      autoRule: {
+        categorySlug: "protein-spreads",
+        sortBy: "cost_per_g_asc",
+      },
+    },
   ],
 };

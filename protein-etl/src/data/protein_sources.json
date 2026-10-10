@@ -10,25 +10,31 @@
       ]
     },
     "tier_2": {
-      "label": "Tier 2 – Concentrate/Casein/Egg",
+      "label": "Tier 2 – Concentrate/Casein/Milk/Egg",
       "rank": 2,
       "sources": [
         {"canonical": "Whey Protein Concentrate", "match": ["whey protein concentrate", "wpc", "instantized whey protein concentrate", "whey concentrate"]},
         {"canonical": "Milk Protein Concentrate", "match": ["milk protein concentrate", "mpc", "milk protein isolate", "milk protein"]},
         {"canonical": "Micellar Casein", "match": ["micellar casein", "casein", "caseinate"]},
         {"canonical": "Calcium Caseinate", "match": ["calcium caseinate", "sodium caseinate", "potassium caseinate"]},
-        {"canonical": "Egg White Protein", "match": ["egg white protein", "egg albumin", "egg white powder", "dried egg white"]}
+        {"canonical": "Egg White Protein", "match": ["egg white protein", "egg albumin", "egg white powder", "dried egg white"]},
+        {"canonical": "Milk Protein (Skimmed Milk / Milk Solids)", "match": ["ultrafiltered skimmed milk", "ultra filtered skimmed milk", "skimmed milk powder", "skimmed milk", "skim milk powder", "skim milk", "milk and milk solids", "milk solids", "toned milk", "whole milk powder"]}
       ]
     },
     "tier_3": {
-      "label": "Tier 3 – Plant Blend (Pea/Rice/Soy)",
+      "label": "Tier 3 – Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
       "rank": 3,
       "sources": [
         {"canonical": "Pea Protein Isolate", "match": ["pea protein isolate", "pea protein", "organic pea protein", "isolated pea protein"]},
         {"canonical": "Brown Rice Protein", "match": ["brown rice protein", "rice protein", "rice protein isolate", "organic brown rice protein"]},
         {"canonical": "Soy Protein Isolate", "match": ["soy protein isolate", "isolated soy protein", "soya protein isolate"]},
         {"canonical": "Hemp Protein", "match": ["hemp protein", "hemp seed protein"]},
-        {"canonical": "Faba Bean Protein", "match": ["faba bean protein", "fava bean protein"]}
+        {"canonical": "Faba Bean Protein", "match": ["faba bean protein", "fava bean protein"]},
+        {"canonical": "Fermented Yeast Protein", "match": ["fermented yeast protein isolate", "fermented yeast protein", "yeast protein isolate", "yeast protein"]},
+        {"canonical": "Peanut Protein", "match": ["peanut protein isolate", "peanut protein", "high protein peanut flour", "peanut flour"]},
+        {"canonical": "Peanuts", "match": ["roasted peanuts", "roasted peanut", "peanuts"]},
+        {"canonical": "Pulse & Millet Flours", "match": ["millets & pulses flour blend", "chickpea flour", "urad flour", "white lentil flour", "lentil flour", "chana dal", "green gram protein"]},
+        {"canonical": "Pumpkin Seed Protein", "match": ["pumpkin seed protein"]}
       ]
     },
     "tier_4": {

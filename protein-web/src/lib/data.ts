@@ -152,6 +152,8 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
             ? "/images/products/protein-bar-pack.jpg"
             : p.category_slug === "rtd-drinks"
             ? "/images/products/rtd-protein-drink.jpg"
+            : p.category_slug === "protein-spreads"
+            ? "/images/products/peanut-butter-jar.jpg"
             : "/images/products/savory-snack-pack.jpg"),
         is_active: true,
         last_verified_at: new Date().toISOString(),
@@ -185,6 +187,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
       "protein-bars": "/images/products/protein-bar-pack.jpg",
       "rtd-drinks": "/images/products/rtd-protein-drink.jpg",
       "savory-snacks": "/images/products/savory-snack-pack.jpg",
+      "protein-spreads": "/images/products/peanut-butter-jar.jpg",
     };
 
     const resolvedImage =

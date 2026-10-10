@@ -317,8 +317,8 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
                     </span>
                     <span className="text-[10px] font-mono text-[#A1A1AA] leading-tight">
                       {tierKey === "Tier 1" && "Isolates (>90% pure)"}
-                      {tierKey === "Tier 2" && "Concentrates (70-80%)"}
-                      {tierKey === "Tier 3" && "Complete Plant Blends"}
+                      {tierKey === "Tier 2" && "Concentrates & Milk Protein"}
+                      {tierKey === "Tier 3" && "Plant, Yeast & Peanut"}
                       {tierKey === "Tier 4" && "Incomplete / Fillers"}
                     </span>
                   </div>

@@ -19,6 +19,7 @@ const CATEGORY_IMAGES: Record<string, string> = {
   "protein-bars": "/images/products/protein-bar-pack.jpg",
   "rtd-drinks": "/images/products/rtd-protein-drink.jpg",
   "savory-snacks": "/images/products/savory-snack-pack.jpg",
+  "protein-spreads": "/images/products/peanut-butter-jar.jpg",
 };
 
 export interface HomeClientProps {
@@ -74,9 +75,10 @@ export const HomeClient: React.FC<HomeClientProps> = ({
     const bars = productsByCategory["protein-bars"] || [];
     const drinks = productsByCategory["rtd-drinks"] || [];
     const snacks = productsByCategory["savory-snacks"] || [];
+    const spreads = productsByCategory["protein-spreads"] || [];
 
     const picked: ProductWithVariants[] = [];
-    const pools = [powders, bars, drinks, snacks].filter((p) => p.length > 0);
+    const pools = [powders, bars, drinks, snacks, spreads].filter((p) => p.length > 0);
     let round = 0;
     while (picked.length < 8 && round < 10) {
       for (const pool of pools) {
@@ -330,7 +332,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
               </div>
 
               {/* Clickable Category Cards Grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 items-stretch">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-6 items-stretch">
                 {CATEGORIES.map((cat) => {
                   const prods = productsByCategory[cat.slug] || [];
                   const catImage = CATEGORY_IMAGES[cat.slug] || "/images/products/whey-protein-tub.jpg";

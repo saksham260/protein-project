@@ -1,0 +1,112 @@
+# store | product handle | category | brand   (line number below this header = reading "i")
+superyou.in|chocolate-protein-powder|protein-powders|SuperYou
+superyou.in|kesar-badam-fermented-yeast-protein-1kg-jar|protein-powders|SuperYou
+superyou.in|unflavoured-1-kg-fermented-yeast-protein|protein-powders|SuperYou
+superyou.in|vanilla-fermented-yeast-500g|protein-powders|SuperYou
+nakpro.com|raw-platinum-whey-protein-isolate|protein-powders|Nakpro
+nakpro.com|raw-grass-fed-whey-protein-concentrate|protein-powders|Nakpro
+nakpro.com|whey-gold-protein-concentrate|protein-powders|Nakpro
+nakpro.com|nakpro-pea-protein-isolate|protein-powders|Nakpro
+nakpro.com|nakpro-100-micellar-casein-protein-supplement-powder|protein-powders|Nakpro
+nakpro.com|nakpro-plant-protein-powder|protein-powders|Nakpro
+yogabars.in|ultimate-whey-isolate-with-fermented-yeast-protein-chocolate-500gm|protein-powders|Yoga Bar
+yogabars.in|proclean-plantprotein-chocolate|protein-powders|Yoga Bar
+yogabars.in|dates-monk-fruit-sweetened-whey|protein-powders|Yoga Bar
+wellbeingnutrition.com|whey-protein-isolate-dark-chocolate|protein-powders|Wellbeing Nutrition
+wellbeingnutrition.com|whey-protein-concentrate-unflavored|protein-powders|Wellbeing Nutrition
+wellbeingnutrition.com|vegan-protein-belgian-chocolate|protein-powders|Wellbeing Nutrition
+oziva.in|clean-whey-concentrate-27g-protein-100-cold-processed|protein-powders|OZiva
+oziva.in|oziva-organic-plant-protein-for-everyday-fitness-lactose-free-cholesterol-free-soy-free-sugar-free|protein-powders|OZiva
+originnutrition.in|origin-vegan-plant-protein-powder-chocolate-1|protein-powders|Origin Nutrition
+originnutrition.in|daily-plant-protein-mocha|protein-powders|Origin Nutrition
+in.fastandup.com|yeast-protein-rich-chocolate-1kg|protein-powders|Fast&Up
+in.fastandup.com|plant-protein-rich-chocolate-1kg|protein-powders|Fast&Up
+asitisnutrition.com|best-whey-protein-concentrate-in-india|protein-powders|AS-IT-IS Nutrition
+asitisnutrition.com|buy-whey-protein-isolate|protein-powders|AS-IT-IS Nutrition
+asitisnutrition.com|atom-whey-protein|protein-powders|AS-IT-IS Nutrition
+asitisnutrition.com|as-it-is-nutrition-pure-micellar-casein|protein-powders|AS-IT-IS Nutrition
+asitisnutrition.com|as-it-is-nutrition-pea-protein-isolate-powder|protein-powders|AS-IT-IS Nutrition
+beastlife.in|performance-protein-with-ultrasorb-tech-1-kg-chocolate|protein-powders|Beastlife
+beastlife.in|isorich-blend-whey-protein-with-ultrasorb-tech-924g|protein-powders|Beastlife
+beastlife.in|beastlife-pro-whey-protein-unflavoured|protein-powders|Beastlife
+beastlife.in|performance-fermented-yeast-protein-with-ultrasorb-tech-1kg-thandai|protein-powders|Beastlife
+steadfastnutrition.in|whey-protein|protein-powders|Steadfast Nutrition
+steadfastnutrition.in|incredible-whey|protein-powders|Steadfast Nutrition
+steadfastnutrition.in|livraw-protein|protein-powders|Steadfast Nutrition
+alpino.store|dark-chocolate-peanut-protein-powder-vegan|protein-powders|Alpino
+maxprotein.in|max-protein-bar-daily-choco-classic|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-daily-fruit-nut|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-daily-salt-caramel-bar|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-daily-date-almond|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-daily-choco-almond|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-daily-choco-berry|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-active-choco-fudge|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-active-choco-slim|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-active-peanut-butter-bar|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-active-green-coffee-beans|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-ultimate-choco-berry|protein-bars|Max Protein
+maxprotein.in|max-protein-bar-ultimate-choco-almond|protein-bars|Max Protein
+maxprotein.in|max-protein-roots-cocoa-brownie-protein-bar|protein-bars|Max Protein
+maxprotein.in|max-protein-roots-coffee-mocha-protein-bar|protein-bars|Max Protein
+maxprotein.in|millet-wafer-protein-bar-choco-temptation|protein-bars|Max Protein
+yogabars.in|power-up-coffee-crush-butter-20g-protein-bar-70g|protein-bars|Yoga Bar
+yogabars.in|10g-protein-wafer-bars-dark-chocolate-flavour-pack-of-10|protein-bars|Yoga Bar
+yogabars.in|10g-protein-wafer-bars-cookies-cream-flavour-pack-of-10|protein-bars|Yoga Bar
+yogabars.in|yogabar-protein-minis-4g-protein-bar-24-bars-choco-peanut-butter|protein-bars|Yoga Bar
+eatanytime.in|chocolate-protein-bar-no-added-sugar-10g-protein-per-bar-gut-friendly-low-calorie|protein-bars|Eat Anytime
+eatanytime.in|coffee-protein-bar-no-added-sugar-10g-protein-per-bar-gut-friendly-low-calorie|protein-bars|Eat Anytime
+maxprotein.in|max-protein-cheese-jalapeno-chips|savory-snacks|Max Protein
+maxprotein.in|max-protein-chinese-manchurian-chips|savory-snacks|Max Protein
+maxprotein.in|max-protein-peri-peri-chips|savory-snacks|Max Protein
+maxprotein.in|max-protein-cream-onion-chips|savory-snacks|Max Protein
+maxprotein.in|max-protein-spanish-tomato-chips|savory-snacks|Max Protein
+maxprotein.in|max-protein-gochujang-korean-chips|savory-snacks|Max Protein
+maxprotein.in|max-protein-cookies-choco-almond-60g-zero-added-sugar|savory-snacks|Max Protein
+maxprotein.in|max-protein-choco-chips-bliss-cookies|savory-snacks|Max Protein
+snackible.com|cheddar-cheese-protein-chakli-17-protein-per-serve|savory-snacks|Snackible
+snackible.com|sweet-chilli-protein-chakli-17-protein-per-serve|savory-snacks|Snackible
+snackible.com|korean-bbq-jowar-puffs|savory-snacks|Snackible
+snackible.com|nacho-cheese-jowar-puffs|savory-snacks|Snackible
+eatanytime.in|indian-twist-protein-chips-40-grams-protein|savory-snacks|Eat Anytime
+eatanytime.in|cream-n-onion-protein-chips-40-grams-protein|savory-snacks|Eat Anytime
+eatanytime.in|peri-peri-protein-chips-40-grams-protein|savory-snacks|Eat Anytime
+eatanytime.in|sea-salt-caramel-protein-truffles-10g-per-ball|savory-snacks|Eat Anytime
+eatanytime.in|peanut-butter-protein-balls|savory-snacks|Eat Anytime
+eatbetterco.com|protien-bhujia-chilli-lime|savory-snacks|Eat Better
+eatbetterco.com|protein-chips-pudina-punch|savory-snacks|Eat Better
+eatbetterco.com|protien-chips-pizza-party|savory-snacks|Eat Better
+eatbetterco.com|peanut-cranberry-protein-laddoos|savory-snacks|Eat Better
+epigamia.com|turbo-30g-protein-milkshake-malai-kulfi-v-zfwandheri|rtd-drinks|Epigamia
+epigamia.com|turbo-30g-protein-milkshake-mango-v-zfwandheri|rtd-drinks|Epigamia
+epigamia.com|turbo-30g-protein-milkshake-chocolate-v-zfwchennai|rtd-drinks|Epigamia
+epigamia.com|turbo-30g-protein-milkshake-coffee-v-zfwchennai|rtd-drinks|Epigamia
+epigamia.com|turbo-25-g-protein-milkshake-cookies-cream-250-ml-v-zfwchennai|rtd-drinks|Epigamia
+epigamia.com|coffee-turbo-25-g-protein-milkshake-250-ml-v-zfwandheri|rtd-drinks|Epigamia
+epigamia.com|turbo-25-g-protein-milkshake-vanilla-caramel-v-zfwkoramangala|rtd-drinks|Epigamia
+epigamia.com|turbo-25-g-protein-milkshake-chocolate-v-zfwchennai|rtd-drinks|Epigamia
+epigamia.com|turbo-high-protein-milk-v-zfwandheri|rtd-drinks|Epigamia
+yogabars.in|26g-protein-shake-mango-rizz|rtd-drinks|Yoga Bar
+yogabars.in|26g-protein-shake-double-chocolate|rtd-drinks|Yoga Bar
+yogabars.in|26g-protein-shake-cold-coffee-pack-of-6|rtd-drinks|Yoga Bar
+maxprotein.in|max-protein-milkshake-choco-burst|rtd-drinks|Max Protein
+maxprotein.in|max-protein-milkshake-berry-blush|rtd-drinks|Max Protein
+sleepyowl.co|protein-coffee-classic|rtd-drinks|Sleepy Owl
+sleepyowl.co|protein-coffee-hazelnut|rtd-drinks|Sleepy Owl
+myfitness.in|myfitness-original-peanut-butter-crunchy|protein-spreads|MyFitness
+myfitness.in|myfitness-original-peanut-butter-smooth|protein-spreads|MyFitness
+myfitness.in|myfitness-chocolate-peanut-butter-smooth|protein-spreads|MyFitness
+myfitness.in|myfitness-all-natural-peanut-butter-crunchy|protein-spreads|MyFitness
+myfitness.in|myfitness-zero-peanut-butter-crunchy-510g|protein-spreads|MyFitness
+myfitness.in|chocolate-crispy|protein-spreads|MyFitness
+myfitness.in|myfitness-olympia-edition-dark-chocolate-peanut-butter-with-added-whey-crunchy|protein-spreads|MyFitness
+alpino.store|alpino-natural-peanut-butter-crunch|protein-spreads|Alpino
+alpino.store|alpino-chocolate-peanut-butter-crunch|protein-spreads|Alpino
+alpino.store|alpino-classic-peanut-butter-crunch|protein-spreads|Alpino
+alpino.store|super-peanut-butter|protein-spreads|Alpino
+beastlife.in|natural-peanut-butter-crunchy-350gm|protein-spreads|Beastlife
+beastlife.in|beastlife-peanut-butter-crunchy-coffee-350g|protein-spreads|Beastlife
+maxprotein.in|max-protein-peanut-butter-classic-crunchy-1kg|protein-spreads|Max Protein
+maxprotein.in|max-protein-peanut-butter-dark-choco-crunchy|protein-spreads|Max Protein
+steadfastnutrition.in|peanut-butter-chocolate-crispy|protein-spreads|Steadfast Nutrition
+steadfastnutrition.in|peanut-butter-honey-crunchy|protein-spreads|Steadfast Nutrition
+asitisnutrition.com|as-it-is-atom-chocolate-peanut-butter-crunchy-1kg-gluten-free-cholesterol-free|protein-spreads|AS-IT-IS Nutrition

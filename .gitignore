@@ -51,3 +51,5 @@ out/
 
 # protein-etl working files
 protein-etl/data/cache/
+protein-etl/data/demo_catalog/labels/
+protein-etl/data/drafts/
