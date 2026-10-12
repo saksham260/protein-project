@@ -1,10 +1,19 @@
-"""Unit tests for Shopify and manual parsers."""
+"""Unit tests for Shopify and manual parsers — Suite 6."""
 
 import pytest
 from unittest.mock import MagicMock
 from src.parsers.manual import parse_raw_ingredient_deck
-from src.parsers.shopify import parse_shopify_url, extract_shopify_product, parse_weight_g
+from src.parsers.shopify import (
+    extract_shopify_product,
+    parse_shopify_product,
+    parse_shopify_url,
+    parse_weight_g,
+)
 
+
+# ==========================================
+# 6.1 parse_shopify_url
+# ==========================================
 
 def test_parse_shopify_url_valid():
     url = "https://thewholetruthfoods.com/products/dark-chocolate-protein-bar?variant=400123"
@@ -13,10 +22,35 @@ def test_parse_shopify_url_valid():
     assert handle == "dark-chocolate-protein-bar"
 
 
+def test_parse_shopify_url_trailing_slash():
+    url = "https://brand.com/products/bar/"
+    domain, handle = parse_shopify_url(url)
+    assert domain == "https://brand.com"
+    assert handle == "bar"
+
+
 def test_parse_shopify_url_invalid():
     with pytest.raises(ValueError):
         parse_shopify_url("https://thewholetruthfoods.com/collections/all")
 
+
+# ==========================================
+# 6.2 parse_weight_g
+# ==========================================
+
+def test_parse_weight_g():
+    assert parse_weight_g("1kg") == 1000.0
+    assert parse_weight_g("Chocolate 500 g") == 500.0
+    assert parse_weight_g("1.5 Kg tub") == 1500.0
+    assert parse_weight_g("Rose 200ml") == 200.0
+    assert parse_weight_g("Whey 2 lbs") == 907.2
+    assert parse_weight_g("Box of 6") is None
+    assert parse_weight_g(None) is None
+
+
+# ==========================================
+# 6.3 parse_shopify_product & extract_shopify_product
+# ==========================================
 
 def test_extract_shopify_product_with_mock():
     mock_client = MagicMock()
@@ -51,7 +85,6 @@ def test_extract_shopify_product_with_mock():
     assert len(result["variants"]) == 1
     assert result["variants"][0]["price_inr"] == 900.0
     assert result["variants"][0]["mrp_inr"] == 900.0
-    # No size in the title, so it falls back to the shipping weight and says so
     assert result["variants"][0]["weight_g"] == 312.0
     assert result["variants"][0]["weight_source"] == "shipping"
 
@@ -79,14 +112,46 @@ def test_extract_shopify_reads_mrp_and_label_weight():
     assert variant["shipping_weight_g"] == 1250.0
 
 
-def test_parse_weight_g():
-    assert parse_weight_g("1kg") == 1000.0
-    assert parse_weight_g("Chocolate 500 g") == 500.0
-    assert parse_weight_g("1.5 Kg tub") == 1500.0
-    assert parse_weight_g("Rose 200ml") == 200.0
-    assert parse_weight_g("Box of 6") is None
-    assert parse_weight_g(None) is None
+def test_parse_shopify_product_compare_at_lower_than_price():
+    raw = {
+        "title": "Bar",
+        "vendor": "Brand",
+        "variants": [
+            {"title": "Single", "price": "100.00", "compare_at_price": "80.00"},
+        ],
+    }
+    res = parse_shopify_product(raw, "https://brand.com/products/bar")
+    # When compare_at_price < price, mrp should fallback to price
+    assert res["variants"][0]["mrp_inr"] == 100.0
 
+
+def test_parse_shopify_product_single_variant_weight_from_product_title():
+    raw = {
+        "title": "Protein Bar 50g",
+        "vendor": "Brand",
+        "variants": [
+            {"title": "Default", "price": "100.00"},
+        ],
+    }
+    res = parse_shopify_product(raw, "https://brand.com/products/bar")
+    assert res["variants"][0]["weight_g"] == 50.0
+    assert res["variants"][0]["weight_source"] == "label"
+
+
+def test_parse_shopify_product_empty_body_html():
+    raw = {
+        "title": "Protein Bar",
+        "vendor": "Brand",
+        "body_html": None,
+        "variants": [],
+    }
+    res = parse_shopify_product(raw, "https://brand.com/products/bar")
+    assert res["description"] == ""
+
+
+# ==========================================
+# 6.4 Manual ingredient deck parser
+# ==========================================
 
 def test_parse_raw_ingredient_deck_simple():
     text = "Whey Protein Isolate, Cocoa Powder, Almonds, Stevia"

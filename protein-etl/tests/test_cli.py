@@ -1,11 +1,11 @@
-"""Unit tests for protein-etl CLI."""
+"""Unit tests for protein-etl CLI — Suite 11."""
 
 import json
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 import pytest
 import src.cli as cli
 import src.db.supabase_client as supabase_client
-from src.cli import main, run_batch, run_check_links
+from src.cli import main, run_batch, run_check_links, run_poll_prices
 
 
 def test_cli_help(capsys):
@@ -18,7 +18,6 @@ def test_cli_help(capsys):
 
 
 def test_run_batch_dry_run(tmp_path, monkeypatch):
-    # Write exports to a temp folder so the test never overwrites data/dry_run_exports
     exports_dir = tmp_path / "exports"
     monkeypatch.setattr(supabase_client, "EXPORTS_DIR", exports_dir)
 
@@ -56,7 +55,6 @@ def test_run_batch_dry_run(tmp_path, monkeypatch):
     with open(test_file, "w", encoding="utf-8") as f:
         json.dump([sample_product], f)
 
-    # Execute batch dry run
     run_batch(str(test_file), dry_run=True)
 
     exported_file = exports_dir / "plantigo-organic-plant-protein.json"
@@ -67,11 +65,18 @@ def test_run_batch_dry_run(tmp_path, monkeypatch):
 
     variant = data["variants"][0]
     assert data["name"] == "Organic Plant Protein"
-    # 24g per 35g serving x 1000g tub = 685.7g protein; ₹2499 / 685.7 = ₹3.64/g
     assert variant["computed_metrics"]["cost_per_g_protein"] == 3.64
     assert variant["servings_per_pack"] == 29
     assert "Tier 3" in variant["protein_profile"]["protein_tier"]
     assert len(variant["red_flags"]) == 0
+
+
+def test_run_batch_invalid_json(tmp_path, capsys):
+    bad_file = tmp_path / "bad.json"
+    bad_file.write_text("{not valid json", encoding="utf-8")
+    run_batch(str(bad_file), dry_run=True)
+    captured = capsys.readouterr()
+    assert "Failed" in captured.out or "Error" in captured.out
 
 
 def test_run_check_links_counts_broken(tmp_path, monkeypatch):
@@ -88,3 +93,33 @@ def test_run_check_links_counts_broken(tmp_path, monkeypatch):
         cli, "check_url", lambda url, client: ("broken", 404) if "bad" in url else ("ok", 200)
     )
     assert run_check_links(str(test_file)) == 1
+
+
+def test_run_check_links_all_ok(tmp_path, monkeypatch):
+    product = {
+        "name": "Bar",
+        "brand_name": "Brand",
+        "image_url": "https://example.com/ok-image.png",
+        "variants": [{"redirect_links": [{"platform": "amazon", "url": "https://example.com/ok"}]}],
+    }
+    test_file = tmp_path / "links.json"
+    test_file.write_text(json.dumps([product]), encoding="utf-8")
+
+    monkeypatch.setattr(cli, "check_url", lambda url, client: ("ok", 200))
+    assert run_check_links(str(test_file)) == 0
+
+
+def test_poll_prices_missing_supabase_env():
+    with patch.dict("os.environ", {}, clear=True):
+        code = run_poll_prices(dry_run=True, force=False)
+        assert code == 1
+
+
+def test_poll_prices_missing_amazon_env():
+    env = {
+        "SUPABASE_URL": "https://example.supabase.co",
+        "SUPABASE_SERVICE_KEY": "secret",
+    }
+    with patch.dict("os.environ", env, clear=True):
+        code = run_poll_prices(dry_run=True, force=False)
+        assert code == 1

@@ -33,11 +33,24 @@ def calculate_protein_per_pack(
     Returns:
         Unrounded protein per pack, or None if protein_g is missing or negative.
     """
-    if protein_g is None or protein_g < 0:
+    if protein_g is None:
         return None
-    if not net_weight_g or not serving_size_g or net_weight_g <= 0 or serving_size_g <= 0:
-        return float(protein_g)
-    return float(protein_g) * float(net_weight_g) / float(serving_size_g)
+    try:
+        p_val = float(protein_g)
+    except (ValueError, TypeError):
+        return None
+    if p_val < 0:
+        return None
+    if not net_weight_g or not serving_size_g:
+        return p_val
+    try:
+        nw = float(net_weight_g)
+        ss = float(serving_size_g)
+    except (ValueError, TypeError):
+        return p_val
+    if nw <= 0 or ss <= 0:
+        return p_val
+    return p_val * nw / ss
 
 
 def calculate_cost_per_g_protein(mrp_inr: float, protein_g: float) -> Optional[float]:
@@ -50,9 +63,16 @@ def calculate_cost_per_g_protein(mrp_inr: float, protein_g: float) -> Optional[f
     Returns:
         Rounded float to 2 decimals, or None if protein_g <= 0 or mrp_inr < 0.
     """
-    if protein_g is None or protein_g <= 0 or mrp_inr is None or mrp_inr < 0:
+    if protein_g is None or mrp_inr is None:
         return None
-    return round(float(mrp_inr) / float(protein_g), 2)
+    try:
+        p_val = float(protein_g)
+        m_val = float(mrp_inr)
+    except (ValueError, TypeError):
+        return None
+    if p_val <= 0 or m_val < 0:
+        return None
+    return round(m_val / p_val, 2)
 
 
 def calculate_protein_density(protein_g: float, calories_kcal: float) -> Optional[float]:
@@ -67,9 +87,16 @@ def calculate_protein_density(protein_g: float, calories_kcal: float) -> Optiona
     Returns:
         Percentage (0-100) rounded to 2 decimals, or None if calories_kcal <= 0.
     """
-    if calories_kcal is None or calories_kcal <= 0 or protein_g is None or protein_g < 0:
+    if protein_g is None or calories_kcal is None:
         return None
-    density = (float(protein_g) * 4.0 / float(calories_kcal)) * 100.0
+    try:
+        p_val = float(protein_g)
+        c_val = float(calories_kcal)
+    except (ValueError, TypeError):
+        return None
+    if c_val <= 0 or p_val < 0:
+        return None
+    density = (p_val * 4.0 / c_val) * 100.0
     return round(density, 2)
 
 

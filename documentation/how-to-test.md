@@ -25,16 +25,17 @@ cp .env.local.example .env.local
 ## 1. Quick checks (no keys needed)
 
 ```bash
-# Website: types + lint
+# Website: types, lint, and Vitest unit tests
 cd protein-web
 npx tsc --noEmit
+npm test
 npx eslint src/lib src/hooks src/components/search src/components/product/RedirectButtons.tsx src/components/location src/app/api
 
-# ETL: unit tests (metrics, parsers, poller, discovery, OCR row parsing, comparison)
+# ETL: unit tests (metrics, text match, red flags, protein tier, models, parsers, links, pricing, uploader, cli, discovery)
 cd ../protein-etl
 python -m pytest -q
 ```
-Expected: no type errors, no lint errors in the Phase 3 files, all tests pass.
+Expected: no type errors, 66 frontend Vitest tests pass, 180 ETL pytest tests pass.
 (`npx eslint src` on everything reports ~115 older problems in files Phase 3 didn't touch — a separate cleanup.)
 
 ## 2. Website without a database (seed data)
@@ -43,7 +44,7 @@ Expected: no type errors, no lint errors in the Phase 3 files, all tests pass.
 cd protein-web
 npm run dev          # open http://localhost:3000
 ```
-Leave the Supabase values in `.env.local` as placeholders: the site uses the 15 built-in seed products.
+Leave the Supabase values in `.env.local` as placeholders: the site uses the 100 built-in seed products.
 
 **Metric filters** — go to `/explore`:
 - [ ] Filter panel shows **Protein Metrics** with 4 sliders; each shows "Any" at its far end.
@@ -54,14 +55,26 @@ Leave the Supabase values in `.env.local` as placeholders: the site uses the 15 
 - [ ] Mobile width: the ⚙️ Filters badge counts the active sliders.
 - [ ] Repeat on a category page, e.g. `/category/protein-powders`.
 
+**Mobile Navigation & Layout** — open in mobile view or shrink browser width:
+- [ ] Navbar row 2 shows "Home", "Top Picks", and a "Categories" dropdown.
+- [ ] Clicking "Categories" expands a searchable dropdown list of categories.
+- [ ] Unscrolled state: Navbar shows logo, website name, search bar icon, login, and cart. Clicking search icon hides website name, expands search bar, and collapses login/cart to icons only.
+- [ ] Scroll down: Website name disappears, search bar icon expands to search input, and login/cart buttons show icons only.
+- [ ] Cart button is cleanly visible on mobile without overflowing text ("Independent Platform" text removed).
+- [ ] Touch/tap check: Verify there are no hover effects triggered on mobile for product cards or buttons.
+
 **Pincode** — on the filter panel or any product page:
 - [ ] Save button is disabled until 6 digits (not starting with 0) are entered.
 - [ ] After saving, "Delivering to 560034 · Change" shows in both the filter panel and product page (same browser).
 - [ ] "Only products reported … near me" checkbox is disabled without a pincode.
 
 **Product page** — open any product:
+- [ ] Core metrics show MRP, Calories, and Protein (Calories replaces Protein Density).
+- [ ] MRP, Calories, and Protein labels are center-aligned and share the orange accent color (`#F59E0B`) matching the brand name.
+- [ ] Brand name is prominently sized and bright white MRP is clearly readable.
 - [ ] Amazon card shows a price (seed price, no "checked" time without a database).
 - [ ] Blinkit / Zepto / Instamart show "Availability depends on your area" or "No reports near <pincode> yet".
+- [ ] Independent platform links have the smooth ambient glow and amber border hover effect on desktop.
 - [ ] Links open the platform search in a new tab.
 
 ## 3. Database (Supabase)
@@ -154,7 +167,7 @@ cd protein-etl
 python src/cli.py --dry-run review    # practise: nothing uploaded, files still move to approved/rejected
 python src/cli.py review              # live (needs Supabase keys)
 ```
-- [ ] Each draft shows source, layers tried, warnings, then the normal preview (₹/g, density, red flags, protein tier).
+- [ ] Each draft shows source, layers tried, warnings, then the normal preview (₹/g, calories, red flags, protein tier).
 - [ ] `needs_input` drafts list the exact missing fields — fix them in the JSON file, then run `review` again.
 - [ ] Approve → product appears on `/explore` immediately; other pages after the refresh call (or within 1–24 h).
 - [ ] Reject → file moves to `data/drafts/rejected/` and `discover` never suggests it again.

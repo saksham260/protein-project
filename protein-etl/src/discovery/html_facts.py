@@ -27,7 +27,7 @@ NUTRIENT_LABELS = [
 ]
 PER_SERVING = re.compile(r"serv|scoop|per\s*(?:bar|bottle|pack|sachet|piece)", re.I)
 PER_100 = re.compile(r"100\s*(?:g|ml)", re.I)
-GRAMS = re.compile(r"(\d+(?:\.\d+)?)\s*(?:g|ml)", re.I)
+GRAMS = re.compile(r"(\d+(?:\.\d+)?)\s*(?:g|ml)\b", re.I)
 INGREDIENTS = re.compile(r"^\s*ingredients?\s*[:\-]\s*(.{10,})$", re.I | re.M)
 # schema.org NutritionInformation property -> our field
 JSON_LD_FIELDS = {
