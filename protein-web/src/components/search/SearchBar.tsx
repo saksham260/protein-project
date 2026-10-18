@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
 import { AnimatedSearchButton } from "@/components/ui/AnimatedSearchButton";
-import { formatPricePerGram } from "@/lib/utils";
+import { formatPricePerGram, splitProductName } from "@/lib/utils";
 
 export interface SearchBarProps {
   id?: string;
@@ -130,6 +130,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                 const variant = p.variants[0];
                 const imageUrl = variant?.image_url || p.image_url;
                 const isSelected = idx === selectedIndex;
+                const { baseName, packInfo } = splitProductName(p.name, variant?.variant_name);
                 return (
                   <Link
                     key={p.id}
@@ -159,8 +160,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
                       <div className="flex flex-col min-w-0">
                         <span className="font-bold text-white font-sans text-sm line-clamp-1">
-                          {p.name}
+                          {baseName}
                         </span>
+                        {packInfo && (
+                          <span className="text-[10px] sm:text-[11px] font-bold text-[#F59E0B] font-mono leading-tight">
+                            {packInfo}
+                          </span>
+                        )}
                         <span className="text-[11px] text-[#A1A1AA] truncate">
                           {p.brand.name} • {p.category.name}
                         </span>

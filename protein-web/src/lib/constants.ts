@@ -29,6 +29,31 @@ export const CATEGORIES = [
     description: "High-protein peanut butters and nut spreads checked for added sugar, palm oil, and protein per spoon.",
     icon: "🥜",
   },
+  {
+    name: "Breakfast & Cereals",
+    slug: "breakfast-cereals",
+    description: "High-protein muesli, breakfast cereals, protein oats, and morning granola bowls.",
+    icon: "🥣",
+  },
+  {
+    name: "Dairy",
+    slug: "dairy",
+    description: "High-protein fresh paneer, curd, and culinary dairy staples.",
+    icon: "🧀",
+  },
+  {
+    name: "Cookies & Baked",
+    slug: "cookies-baked",
+    description: "High-protein cookies, brownies, baked snacks, and confectionery.",
+    icon: "🍪",
+  },
+] as const;
+
+export const PRIMARY_CATEGORY_SLUGS = [
+  "protein-powders",
+  "protein-bars",
+  "rtd-drinks",
+  "savory-snacks",
 ] as const;
 
 export const SORT_OPTIONS = [

@@ -3,13 +3,14 @@
   "brand_name": "Phab",
   "category_slug": "protein-bars",
   "slug": "phab-warm-cocoa-protein-bar",
-  "description": "Decadent cocoa protein bar sweetened with prebiotic fiber and stevia.",
-  "image_url": null,
+  "description": "Phab Chocolate Warm Cocoa Protein Bar provides rich chocolate fudge flavor with 17g high quality whey and milk protein.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0563/1891/8790/files/Frame2087330034.webp?v=1784525025",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Single Bar 55g",
-      "slug": "single-bar-55g",
-      "sku": null,
+      "slug": "phab-warm-cocoa-protein-bar-single-bar-55g",
+      "sku": "PHAB-WARM-COCOA-55G",
       "barcode_ean": null,
       "mrp_inr": 130.0,
       "net_weight_g": 55.0,
@@ -22,7 +23,7 @@
         "total_fat_g": 7.0,
         "saturated_fat_g": 2.0,
         "trans_fat_g": 0.0,
-        "cholesterol_mg": 0.0,
+        "cholesterol_mg": 5.0,
         "total_carbs_g": 22.0,
         "dietary_fiber_g": 6.0,
         "total_sugars_g": 2.0,
@@ -41,34 +42,46 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk",
-        "tree nuts"
+        "Milk",
+        "Tree Nuts"
       ],
       "dietary_tags": [
         "Vegetarian",
         "Gluten-Free"
       ],
-      "image_url": null,
+      "image_url": "https://cdn.shopify.com/s/files/1/0563/1891/8790/files/Frame2087330034.webp?v=1784525025",
       "redirect_links": [
         {
           "platform": "amazon",
           "url": "https://www.amazon.in/s?k=Phab+Warm+Cocoa+Protein+Bar",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://getphab.com/products/phab-21g-protein-bar-chocolate-brownie",
+          "platform_price_inr": 130.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Phab+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 7.65,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 130.0,
+        "best_cost_per_g_protein": 7.65,
         "protein_density_pct": 32.38,
         "true_net_carbs_g": 16.0
       },
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Whey Protein Concentrate",
-        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

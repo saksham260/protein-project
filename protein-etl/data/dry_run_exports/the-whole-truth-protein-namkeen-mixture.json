@@ -3,13 +3,14 @@
   "brand_name": "The Whole Truth",
   "category_slug": "savory-snacks",
   "slug": "the-whole-truth-protein-namkeen-mixture",
-  "description": "High-protein savory namkeen roasted in cold-pressed groundnut oil, zero palm oil.",
-  "image_url": null,
+  "description": "Slow roasted clean protein namkeen mixture made with whole moong dal, roasted nuts, and cold-pressed oil with zero palm oil or fillers.",
+  "image_url": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
+  "is_vegan": true,
   "variants": [
     {
       "variant_name": "Roasted Mixture 120g",
-      "slug": "roasted-mixture-120g",
-      "sku": null,
+      "slug": "the-whole-truth-protein-namkeen-mixture-roasted-mixture-120g",
+      "sku": "TWT-NAMKEEN-MIXTURE-120G",
       "barcode_ean": null,
       "mrp_inr": 199.0,
       "net_weight_g": 120.0,
@@ -41,15 +42,15 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "tree nuts",
-        "peanuts"
+        "Tree Nuts",
+        "Peanuts"
       ],
       "dietary_tags": [
         "Vegan",
         "Gluten-Free",
-        "Zero Palm Oil"
+        "Palm-Oil-Free"
       ],
-      "image_url": null,
+      "image_url": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
       "redirect_links": [
         {
           "platform": "amazon",
@@ -72,9 +73,11 @@
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Pea Protein Isolate",
-        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "protein_tier": "Tier 3 \u2013 Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

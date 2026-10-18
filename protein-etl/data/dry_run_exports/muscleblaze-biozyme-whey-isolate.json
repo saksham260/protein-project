@@ -3,13 +3,14 @@
   "brand_name": "MuscleBlaze",
   "category_slug": "protein-powders",
   "slug": "muscleblaze-biozyme-whey-isolate",
-  "description": "Clinically tested biozyme formula optimized for 50% higher protein absorption in Indian bodies.",
-  "image_url": null,
+  "description": "MuscleBlaze Biozyme Whey Isolate is Labdoor certified with an Enhanced Absorption Formula (EAF) delivering 25g pure whey isolate per scoop.",
+  "image_url": "https://rukminim2.flixcart.com/image/850/1000/kw9krrk0/protein-supplement/o/x/l/whey-protein-biozyme-whey-protein-isolate-rich-milk-chocolate-1-original-imag8zdp8gnh73hh.jpeg",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Rich Chocolate 1kg (32 Servings)",
-      "slug": "rich-chocolate-1kg-32-servings",
-      "sku": null,
+      "slug": "muscleblaze-biozyme-whey-isolate-rich-chocolate-1kg-32-servings",
+      "sku": "MB-BIOZYME-ISO-CHOCO-1KG",
       "barcode_ean": null,
       "mrp_inr": 3499.0,
       "net_weight_g": 1000.0,
@@ -22,7 +23,7 @@
         "total_fat_g": 1.0,
         "saturated_fat_g": 0.5,
         "trans_fat_g": 0.0,
-        "cholesterol_mg": 0.0,
+        "cholesterol_mg": 15.0,
         "total_carbs_g": 2.0,
         "dietary_fiber_g": 0.0,
         "total_sugars_g": 0.0,
@@ -40,26 +41,34 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk"
+        "Milk"
       ],
       "dietary_tags": [
         "Vegetarian",
-        "Gluten-Free",
-        "Low Carb",
-        "Keto-Friendly"
+        "Gluten-Free"
       ],
-      "image_url": null,
+      "image_url": "https://rukminim2.flixcart.com/image/850/1000/kw9krrk0/protein-supplement/o/x/l/whey-protein-biozyme-whey-protein-isolate-rich-milk-chocolate-1-original-imag8zdp8gnh73hh.jpeg",
       "redirect_links": [
         {
           "platform": "amazon",
           "url": "https://www.amazon.in/s?k=MuscleBlaze+Biozyme+Whey+Isolate",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://www.muscleblaze.com/sv/muscleblaze-biozyme-whey-isolate/SP-47672",
+          "platform_price_inr": 3499.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=MuscleBlaze+Biozyme+Whey+Isolate",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 4.34,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 3499.0,
+        "best_cost_per_g_protein": 4.34,
         "protein_density_pct": 84.75,
         "true_net_carbs_g": 2.0
       },
@@ -68,7 +77,9 @@
         "primary_protein_source": "Whey Protein Isolate",
         "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

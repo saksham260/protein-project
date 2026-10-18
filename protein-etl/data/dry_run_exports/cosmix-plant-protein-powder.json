@@ -3,12 +3,13 @@
   "brand_name": "Cosmix",
   "category_slug": "protein-powders",
   "slug": "cosmix-plant-protein-powder",
-  "description": "Herbal-infused plant protein formulated with gut herbs and organic cacao.",
-  "image_url": null,
+  "description": "Cosmix No-Nonsense Plant Protein crafted with pea, rice protein, single-origin Indonesian cacao, and Ayurvedic herbs for gentle digestion.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0281/7507/3373/files/8.webp?v=1788514782",
+  "is_vegan": true,
   "variants": [
     {
       "variant_name": "Indonesian Cacao 750g (20 Servings)",
-      "slug": "indonesian-cacao-750g-20-servings",
+      "slug": "cosmix-plant-protein-powder-indonesian-cacao-750g-20-servings",
       "sku": null,
       "barcode_ean": null,
       "mrp_inr": 2150.0,
@@ -47,7 +48,7 @@
         "Dairy-Free",
         "Gut-Friendly"
       ],
-      "image_url": null,
+      "image_url": "https://cdn.shopify.com/s/files/1/0281/7507/3373/files/8.webp?v=1788514782",
       "redirect_links": [
         {
           "platform": "amazon",
@@ -65,9 +66,81 @@
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Pea Protein Isolate",
-        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "protein_tier": "Tier 3 \u2013 Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
+    },
+    {
+      "variant_name": "Indonesian Cacao 500g (13 Servings)",
+      "slug": "cosmix-plant-protein-powder-indonesian-cacao-500g-13-servings",
+      "sku": "COSMIX-CACAO-500G",
+      "barcode_ean": null,
+      "mrp_inr": 1650.0,
+      "net_weight_g": 500.0,
+      "serving_size_g": 38.0,
+      "servings_per_pack": 13,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 145.0,
+        "protein_g": 24.0,
+        "total_fat_g": 2.5,
+        "saturated_fat_g": 0.5,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 0.0,
+        "total_carbs_g": 6.0,
+        "dietary_fiber_g": 4.0,
+        "total_sugars_g": 0.5,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 110.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pea Protein Isolate",
+        "Brown Rice Protein",
+        "Raw Cacao",
+        "Ginger Root Powder",
+        "Fennel Seed Powder",
+        "Monk Fruit Extract"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [],
+      "dietary_tags": [
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Clean Label"
+      ],
+      "image_url": "https://cdn.shopify.com/s/files/1/0281/7507/3373/files/8.webp?v=1788514782",
+      "redirect_links": [
+        {
+          "platform": "d2c",
+          "url": "https://cosmix.in/products/real-indonesian-cacao",
+          "platform_price_inr": 1650.0
+        },
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Cosmix+Plant+Protein+Powder",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 5.23,
+        "best_price_inr": 1650.0,
+        "best_cost_per_g_protein": 5.23,
+        "protein_density_pct": 66.21,
+        "true_net_carbs_g": 2.0
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Pea Protein Isolate",
+        "protein_tier": "Tier 3 \u2013 Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
+        "has_added_free_form_aminos": false
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

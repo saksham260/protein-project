@@ -1,0 +1,3 @@
+price-box">
+                                		Price: <span class="new-price">₹ 792</span>
+                                	</div>

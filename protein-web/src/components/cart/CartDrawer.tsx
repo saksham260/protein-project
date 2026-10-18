@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { Platform } from "@/types/product";
+import { splitProductName } from "@/lib/utils";
 
 const PLATFORM_LABELS: Record<Platform, { name: string; bg: string; text: string }> = {
   amazon: { name: "Amazon", bg: "bg-[#FF9900]/15 border-[#FF9900]/30 hover:bg-[#FF9900]/25", text: "text-[#FF9900]" },
@@ -117,6 +118,7 @@ export const CartDrawer: React.FC = () => {
               items.map(({ productId, product, variant }) => {
                 const imageUrl = variant?.image_url || product.image_url;
                 const redirectLinks = variant?.redirect_links || [];
+                const { baseName, packInfo } = splitProductName(product.name, variant?.variant_name);
 
                 return (
                   <div
@@ -146,9 +148,14 @@ export const CartDrawer: React.FC = () => {
                         <Link
                           href={`/product/${product.slug}`}
                           onClick={closeCart}
-                          className="block font-bold text-white text-sm hover:text-[#34D399] transition-colors line-clamp-1 leading-snug"
+                          className="block font-bold text-white text-sm hover:text-[#34D399] transition-colors leading-snug"
                         >
-                          {product.name}
+                          <span className="line-clamp-1">{baseName}</span>
+                          {packInfo && (
+                            <span className="block text-[11px] font-bold text-[#F59E0B] font-mono mt-0.5">
+                              {packInfo}
+                            </span>
+                          )}
                         </Link>
                         {variant?.variant_name && variant.variant_name !== product.name && (
                           <span className="text-[11px] text-[#A1A1AA] line-clamp-1">

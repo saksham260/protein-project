@@ -3,13 +3,14 @@
   "brand_name": "Yoga Bar",
   "category_slug": "protein-bars",
   "slug": "yoga-bar-20g-protein-bar",
-  "description": "High fiber and concentrate whey protein bar with nuts and whole grains.",
-  "image_url": null,
+  "description": "High energy 20g protein bar packed with whey concentrate, almonds, whole dates, and cocoa powder.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-power-up-coffee-crush-protein-bar-70g.jpg?v=1784619002",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Almond Fudge 60g",
-      "slug": "almond-fudge-60g",
-      "sku": null,
+      "slug": "yoga-bar-20g-protein-bar-almond-fudge-60g",
+      "sku": "YOGABAR-20G-ALMOND-FUDGE",
       "barcode_ean": null,
       "mrp_inr": 120.0,
       "net_weight_g": 60.0,
@@ -22,7 +23,7 @@
         "total_fat_g": 8.5,
         "saturated_fat_g": 2.2,
         "trans_fat_g": 0.0,
-        "cholesterol_mg": 0.0,
+        "cholesterol_mg": 10.0,
         "total_carbs_g": 23.0,
         "dietary_fiber_g": 8.0,
         "total_sugars_g": 5.0,
@@ -42,34 +43,45 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk",
-        "tree nuts"
+        "Milk",
+        "Tree Nuts"
       ],
       "dietary_tags": [
-        "Vegetarian",
-        "High Fiber"
+        "Vegetarian"
       ],
-      "image_url": null,
+      "image_url": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-power-up-coffee-crush-protein-bar-70g.jpg?v=1784619002",
       "redirect_links": [
         {
           "platform": "amazon",
           "url": "https://www.amazon.in/s?k=Yoga+Bar+20g+Protein+Bar",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://yogabars.in/products/power-up-coffee-crush-butter-20g-protein-bar-70g",
+          "platform_price_inr": 120.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Yoga+Bar+20g+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 6.0,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 120.0,
+        "best_cost_per_g_protein": 6.0,
         "protein_density_pct": 32.65,
         "true_net_carbs_g": 15.0
       },
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Whey Protein Concentrate",
-        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

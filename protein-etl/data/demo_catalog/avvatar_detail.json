@@ -1,0 +1,32 @@
+{
+  "prod_imgs": [
+    "https://www.avvatarindia.com/images/product_images/1736924408_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736924408_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736924408_LEFT.jpg",
+    "https://www.avvatarindia.com/images/product_images/1779774522_Belgian Chocolate 1kg.png",
+    "https://www.avvatarindia.com/images/product_images/1779774775_BC.jpg",
+    "https://www.avvatarindia.com/images/product_images/1789189829_Belgian Chocolate.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736924157_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736164878_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1737017108_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736923624_FOP.jpg"
+  ],
+  "all_imgs": [
+    "https://www.facebook.com/tr?id=686958716653706&ev=PageView&noscript=1",
+    "https://www.facebook.com/tr?id=1482071039418067&ev=PageView&noscript=1",
+    "https://www.avvatarindia.com/assets/images/new/loader-2.gif",
+    "https://www.avvatarindia.com/assets/images/new/logo.png",
+    "https://www.avvatarindia.com/images/product_images/1736924408_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736924408_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736924408_LEFT.jpg",
+    "https://www.avvatarindia.com/images/product_images/1779774522_Belgian Chocolate 1kg.png",
+    "https://www.avvatarindia.com/images/product_images/1779774775_BC.jpg",
+    "https://www.avvatarindia.com/images/product_images/1789189829_Belgian Chocolate.jpg",
+    "/images/nutrition_images/1737610649_1KG BC.jpeg",
+    "/images/nutrition_images/1737610649_BCAA.jpeg",
+    "/images/nutrition_images/1737610649_ING.jpeg",
+    "https://www.avvatarindia.com/images/product_images/1736924157_FOP.jpg",
+    "https://www.avvatarindia.com/images/product_images/1736164878_FOP.jpg"
+  ],
+  "snippet": "'){\r\n\t\t\t\t\t\t?>  \r\n\t\t\t\t\t\t\t</?php\r\n\t\t\t\t\t\t\t\tif($currentProduct->id == 179){  \t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t?>\r\n\t\t\t\t\t\t\t<h1 class=\"product-title\">Avvatar Steel Shaker | 750ML | Silver</h1>\r\n\t\t\t\t\t\t\t</?php\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t?>\r\n\t\t\t\t\t\t\t</?php\r\n\t\t\t\t\t\t\tif($currentProduct->id == 178)\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t?>\r\n\t\t\t\t\t\t\t<h1 class=\"product-title\">Avvatar Steel Shaker | 750ML | Black</h1>\r\n\t\t\t\t\t\t\t</?php  \t\t\t\t\t\t\t\t\t    \r\n\t\t\t\t\t\t\t\t}  \t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t?>\r\n\t\t\t\t\t\t</?php\r\n\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t?> -->\r\n\t\t\t\t\t\t\t<h1 class=\"product-title\">Avvatar Performance Whey | 1 Kg | Belgian Chocolate Flavour</h1>\r\n\t\t\t\t\t\t<!-- </?php\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t?> -->\r\n\t\t\t\t\t\t<h5></h5>\r\n            \t\t\t\t    <div class=\"product-price d-flex\">\r\n                                \t                                \t<div class=\"product-price-box\">\r\n                                \t\tMRP: <span class=\"old-price\">₹ 6649</span>\r\n                                \t</div>\r\n                                \r\n                                \t<div class=\"product-price-box\">\r\n                                \t\tOffer Price: <span class=\"new-price\">₹ 4274</span>\r\n                                \t\t<!-- <small>(MRP incl Taxes)</small> -->\r\n                                \t</div>\r\n                                \t                                </div>\r\n\r\n\t\t\t\t\t\t<!-- <div class=\"snap_emi_txt\"></div>\r\n\t\t\t\t\t\t<span class=\"snapmint_lowest_emi_value\" \r\n\t\t\t\t\t\t\tstyle=\"display:none;\" \r\n\t\t\t\t\t\t\tdata-snapmint-price=\"4274\" \r\n\t\t\t\t\t\t\tdata-snapmint-merchant_id=\"5658\" \r\n\t\t\t\t\t\t\tdata-snapmint-page=\"products_page\">\r\n\t\t\t\t\t\t</span> -->\r\n\r\n\t\t\t\t\t\t<div class=\"chooseFlavourWrapper\">\r\n\t\t\t\t\t\t\t<div class=\"labelWrapper mb-1\">\r\n\t\t\t\t\t\t\t    \t\t\t\t\t\t\t\t\t\t\t<span class=\"fw-400 mr-4 labelText\">Choose Flavour:</span>\r\n\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t    \t\t\t\t\t\t\t\t<div class=\"chooseFlavourBtns d-flex flex-wrap gap-3\">\r\n        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t\t\t<button class=\"btn changeFlavourBtn \" data-url=\"100-performance-whey-badam-milk-1-kg\">Badam Milk Flavour</button>\r\n        \t\t\t\t\t\t\t\t\t\t\t\r\n        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \r\n        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t\t\t<button class=\"btn changeFlavourBtn active\" data-url=\"100-performance-whey-belgain-chocolate-flavour-1-kg\">Belgian Chocolate Flavour</button>\r\n        \t\t\t\t\t\t\t\t\t\t\t\r\n        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \r\n        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t\t        \t\t\t\t\t\t\t\t\t\t<button class=\"btn ch"
+}

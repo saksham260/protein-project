@@ -3,13 +3,14 @@
   "brand_name": "The Whole Truth",
   "category_slug": "protein-bars",
   "slug": "the-whole-truth-double-cocoa-protein-bar",
-  "description": "Clean protein bar with 100% real ingredients, zero added sugar, zero maltitol.",
-  "image_url": null,
+  "description": "100% clean-label Double Cocoa Protein Bar made with whey protein isolate, almonds, cocoa, and dates. Zero added sugars or fake sweeteners.",
+  "image_url": "https://media.thewholetruthfoods.com/public/backend-assets/01M4B73H6JNW4MD0WQ7K9Y1TXB.png",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Single Bar 52g",
-      "slug": "single-bar-52g",
-      "sku": null,
+      "slug": "the-whole-truth-double-cocoa-protein-bar-single-bar-52g",
+      "sku": "TWT-BAR-DOUBLE-COCOA-52G",
       "barcode_ean": null,
       "mrp_inr": 150.0,
       "net_weight_g": 52.0,
@@ -18,14 +19,14 @@
       "serving_size_label": null,
       "nutrition": {
         "calories_kcal": 212.0,
-        "protein_g": 20.0,
+        "protein_g": 15.0,
         "total_fat_g": 8.0,
         "saturated_fat_g": 2.5,
         "trans_fat_g": 0.0,
         "cholesterol_mg": 0.0,
         "total_carbs_g": 20.0,
         "dietary_fiber_g": 6.0,
-        "total_sugars_g": 3.0,
+        "total_sugars_g": 8.0,
         "added_sugars_g": 0.0,
         "sodium_mg": 95.0,
         "non_glycemic_polyols_g": 0.0,
@@ -33,36 +34,46 @@
       },
       "ingredient_list": [
         "Whey Protein Isolate",
-        "Raw Almonds",
-        "Chicory Root Fiber",
-        "Cocoa Butter",
-        "Dark Chocolate (Cocoa Mass)",
+        "Almonds",
         "Dates",
-        "Stevia Leaf Extract"
+        "Cocoa Butter",
+        "Cocoa Powder",
+        "Dark Chocolate (Cocoa Mass, Cocoa Butter)"
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk",
-        "tree nuts"
+        "Milk",
+        "Tree Nuts"
       ],
       "dietary_tags": [
+        "Vegetarian",
         "Gluten-Free",
-        "No Added Sugar",
-        "Vegetarian"
+        "Clean Label",
+        "No Added Sugar"
       ],
-      "image_url": null,
+      "image_url": "https://media.thewholetruthfoods.com/public/backend-assets/01M4B73H6JNW4MD0WQ7K9Y1TXB.png",
       "redirect_links": [
         {
           "platform": "amazon",
           "url": "https://www.amazon.in/s?k=The+Whole+Truth+Double+Cocoa+Protein+Bar",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://thewholetruthfoods.com/product/double-cocoa-protein-bar",
+          "platform_price_inr": 150.0
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=The+Whole+Truth+Double+Cocoa+Protein+Bar",
+          "platform_price_inr": null
         }
       ],
       "computed_metrics": {
-        "cost_per_g_protein": 7.5,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
-        "protein_density_pct": 37.74,
+        "cost_per_g_protein": 10.0,
+        "best_price_inr": 150.0,
+        "best_cost_per_g_protein": 10.0,
+        "protein_density_pct": 28.3,
         "true_net_carbs_g": 14.0
       },
       "red_flags": [],
@@ -70,7 +81,9 @@
         "primary_protein_source": "Whey Protein Isolate",
         "protein_tier": "Tier 1 \u2013 Premium Isolate/Hydrolysate",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

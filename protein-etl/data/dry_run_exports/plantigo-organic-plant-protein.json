@@ -3,18 +3,19 @@
   "brand_name": "Plantigo",
   "category_slug": "protein-powders",
   "slug": "plantigo-organic-plant-protein",
-  "description": "100% plant-based protein crafted from organic pea and brown rice isolate.",
-  "image_url": null,
+  "description": "Plantigo Organic Vegan Plant Protein delivers 24g multi-source protein powered by organic pea, brown rice, and moringa superfoods.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0653/9604/8086/files/MoringaCoffee1kgFrontSplashHdImg.jpg?v=1784024908",
+  "is_vegan": true,
   "variants": [
     {
       "variant_name": "Rich Chocolate 1kg (28 Servings)",
-      "slug": "rich-chocolate-1kg-28-servings",
-      "sku": null,
+      "slug": "plantigo-organic-plant-protein-rich-chocolate-1kg-28-servings",
+      "sku": "PLANTIGO-PLANT-CHOCO-1KG",
       "barcode_ean": null,
       "mrp_inr": 2499.0,
       "net_weight_g": 1000.0,
       "serving_size_g": 35.0,
-      "servings_per_pack": 28,
+      "servings_per_pack": 29,
       "serving_size_label": null,
       "nutrition": {
         "calories_kcal": 135.0,
@@ -42,32 +43,38 @@
       "allergens": [],
       "dietary_tags": [
         "Vegan",
-        "Organic",
         "Gluten-Free",
-        "Soy-Free",
-        "Dairy-Free"
+        "Dairy-Free",
+        "No Added Sugar"
       ],
-      "image_url": null,
+      "image_url": "https://cdn.shopify.com/s/files/1/0653/9604/8086/files/MoringaCoffee1kgFrontSplashHdImg.jpg?v=1784024908",
       "redirect_links": [
         {
           "platform": "amazon",
           "url": "https://www.amazon.in/s?k=Plantigo+Organic+Plant+Protein",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://plantigo.in/products/plant-protein-powered-by-moringa",
+          "platform_price_inr": 2499.0
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 3.64,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 2499.0,
+        "best_cost_per_g_protein": 3.64,
         "protein_density_pct": 71.11,
         "true_net_carbs_g": 2.0
       },
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Pea Protein Isolate",
-        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "protein_tier": "Tier 3 \u2013 Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

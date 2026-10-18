@@ -11,6 +11,7 @@ import { usePincode } from "@/hooks/usePincode";
 import { METRIC_RANGES } from "@/lib/metrics";
 import { getProducts } from "@/lib/data";
 import { ProductWithVariants } from "@/types/product";
+import { cn } from "@/lib/utils";
 
 export interface CategoryClientProps {
   category: {
@@ -132,6 +133,20 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
               <span className="text-xs font-mono font-bold text-[#F5F2EB] px-2.5 py-0.5 rounded-full bg-[#1C1916] border border-[#332D27]">
                 {products.length} Products
               </span>
+              <button
+                type="button"
+                onClick={() => toggleTag("vegan")}
+                className={cn(
+                  "flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer select-none",
+                  filters.dietaryTags?.some((t) => t.toLowerCase() === "vegan")
+                    ? "bg-emerald-500 text-black font-bold shadow-[0_0_12px_rgba(16,185,129,0.35)]"
+                    : "bg-[#1C1916] text-[#A1A1AA] border border-[#332D27] hover:border-emerald-500/50 hover:text-emerald-300"
+                )}
+                title="Toggle Vegan products only"
+              >
+                <span>🌱</span>
+                <span>Vegan</span>
+              </button>
               {isPending && (
                 <span className="text-xs font-mono text-[#D97706] animate-pulse">
                   Updating...

@@ -52,4 +52,8 @@ out/
 # protein-etl working files
 protein-etl/data/cache/
 protein-etl/data/demo_catalog/labels/
+protein-etl/data/demo_catalog/scratch/
+protein-etl/data/dry_run_exports/
 protein-etl/data/drafts/
+supabase/.temp/
+

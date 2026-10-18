@@ -1,0 +1,212 @@
+{
+  "unflavoured-30-g-pure-whey-protein-isolate": {
+    "handle": "unflavoured-30-g-pure-whey-protein-isolate",
+    "title": "Unflavoured 30 g Pure Whey Protein Isolate",
+    "variants": [
+      {
+        "title": "Pack of 500 G",
+        "price": "3849",
+        "compare_at_price": "3849",
+        "sku": "WIU500_3849",
+        "available": true
+      },
+      {
+        "title": "Pack of 1 KG",
+        "price": "7499",
+        "compare_at_price": "7499",
+        "sku": "F2610062",
+        "available": true
+      },
+      {
+        "title": "Pack of 2 KG",
+        "price": "14998",
+        "compare_at_price": "14998",
+        "sku": "F2620051",
+        "available": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/image_1753691679839.png?w=600"
+      },
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/01KZ8ZRK5061GBJZP28WP3KQGW.jpeg?w=600"
+      }
+    ]
+  },
+  "unflavored-26g-whey-protein-isolate-concentrate": {
+    "handle": "unflavored-26g-whey-protein-isolate-concentrate",
+    "title": "Unflavoured Raw Whey Protein Concentrate 26 g",
+    "variants": [
+      {
+        "title": "Pack of 2 KG",
+        "price": "8998",
+        "compare_at_price": "8998",
+        "sku": "F2620058",
+        "available": true
+      },
+      {
+        "title": "Pack of 1 KG",
+        "price": "4499",
+        "compare_at_price": "4499",
+        "sku": "WCU1000_4499",
+        "available": true
+      },
+      {
+        "title": "Pack of 500 G",
+        "price": "2349",
+        "compare_at_price": "2349",
+        "sku": "WCU500_2349",
+        "available": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/image_1753691679575.png?w=600"
+      },
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/01KZ902QHQ6TEC5GXJ0JQKK58V.jpeg?w=600"
+      }
+    ]
+  },
+  "light-cocoa-24g-whey-protein-isolate-concentrate": {
+    "handle": "light-cocoa-24g-whey-protein-isolate-concentrate",
+    "title": "Light Cocoa 24 g Protein Powder",
+    "variants": [
+      {
+        "title": "Pack of 2 KG",
+        "price": "10798",
+        "compare_at_price": "10798",
+        "sku": "F2620061",
+        "available": true
+      },
+      {
+        "title": "Pack of 500 G",
+        "price": "2799",
+        "compare_at_price": "2799",
+        "sku": "PLC500_2799",
+        "available": true
+      },
+      {
+        "title": "Pack of 1 KG",
+        "price": "5399",
+        "compare_at_price": "5399",
+        "sku": "PLC1000_5399",
+        "available": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/image_1753691681322.png?w=600"
+      },
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/01KP3N8FANFSDVD1STRA89XEFW.jpeg?w=600"
+      }
+    ]
+  },
+  "cold-coffee-24g-whey-protein-isolate-concentrate": {
+    "handle": "cold-coffee-24g-whey-protein-isolate-concentrate",
+    "title": "Cold Coffee 24 g Protein Powder",
+    "variants": [
+      {
+        "title": "Pack of 1 KG",
+        "price": "5399",
+        "compare_at_price": "5399",
+        "sku": "PCC1000_5399",
+        "available": true
+      },
+      {
+        "title": "Pack of 2 KG",
+        "price": "10798",
+        "compare_at_price": "10798",
+        "sku": "F2620062",
+        "available": true
+      },
+      {
+        "title": "Pack of 500 G",
+        "price": "2799",
+        "compare_at_price": "2799",
+        "sku": "PCC500_2799",
+        "available": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/image_1753691680871.png?w=600"
+      },
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/01KP3N0TCG3WH96JWNVPP082HY.jpeg?w=600"
+      }
+    ]
+  },
+  "double-cocoa-25g-plant-protein": {
+    "handle": "double-cocoa-25g-plant-protein",
+    "title": "Double Cocoa 25g Plant Protein",
+    "variants": [
+      {
+        "title": "Pack of 500 G",
+        "price": "1425",
+        "compare_at_price": "1425",
+        "sku": "PLDBC500_1425",
+        "available": true
+      },
+      {
+        "title": "Pack of 1 KG",
+        "price": "2650",
+        "compare_at_price": "2650",
+        "sku": "F2610022",
+        "available": true
+      },
+      {
+        "title": "Pack of 2 KG",
+        "price": "5300",
+        "compare_at_price": "5300",
+        "sku": "F2620024",
+        "available": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/image_1753691566136.png?w=600"
+      },
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/01M22WWZBXXBBV22TGYDTACMF2.jpeg?w=600"
+      }
+    ]
+  },
+  "pista-badaam-24g-plant-protein": {
+    "handle": "pista-badaam-24g-plant-protein",
+    "title": "Pista Badaam 24g Plant Protein",
+    "variants": [
+      {
+        "title": "Pack of 500 G",
+        "price": "1575",
+        "compare_at_price": "1575",
+        "sku": "PLPBD500_1575",
+        "available": true
+      },
+      {
+        "title": "Pack of 2 KG",
+        "price": "5900",
+        "compare_at_price": "5900",
+        "sku": "F2620025",
+        "available": true
+      },
+      {
+        "title": "Pack of 1 KG",
+        "price": "2950",
+        "compare_at_price": "2950",
+        "sku": "F2610023",
+        "available": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/image_1753691565681.png?w=600"
+      },
+      {
+        "src": "https://media.thewholetruthfoods.com/public/backend-assets/01M22Y9FDJA8CQTX22M22K58XF.jpeg?w=600"
+      }
+    ]
+  }
+}

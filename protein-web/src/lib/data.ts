@@ -223,6 +223,7 @@ export interface QueryFilters {
   searchQuery?: string;
   proteinTiers?: string[];
   dietaryTags?: string[];
+  veganOnly?: boolean;
   excludeAllergens?: string[];
   zeroFlagsOnly?: boolean;
   sortBy?: string;
@@ -333,6 +334,13 @@ export function applyFilters(
   const matches: { product: ProductWithVariants; key: number }[] = [];
   for (const p of products) {
     if (filters.categorySlug && p.category?.slug !== filters.categorySlug) continue;
+    if (filters.veganOnly) {
+      const isVegan = Boolean(
+        p.is_vegan ||
+        p.variants.some((v) => v.dietary_tags?.some((t) => t.toLowerCase() === "vegan"))
+      );
+      if (!isVegan) continue;
+    }
     if (
       q &&
       !(

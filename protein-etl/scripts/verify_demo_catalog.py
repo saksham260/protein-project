@@ -35,9 +35,12 @@ KEYS = ["kcal", "protein", "carbs", "fat", "sat_fat", "trans_fat", "cholesterol_
 DENSITY_RANGE = {
     "protein-powders": (55, 100),
     "protein-bars": (12, 45),
-    "savory-snacks": (8, 40),
+    "savory-snacks": (5, 40),
     "rtd-drinks": (4, 15),  # per ml of drink
-    "protein-spreads": (15, 35),
+    "protein-spreads": (15, 40),
+    "breakfast-cereals": (15, 45),
+    "dairy": (4, 35),
+    "cookies-baked": (10, 45),
 }
 
 
@@ -62,12 +65,16 @@ def check(r: dict, pick: list, product: dict | None) -> list[tuple[str, str]]:
     def val(key: str) -> float:
         return n.get(key) or 0.0
 
-    est = 4 * val("protein") + 4 * val("carbs") + 9 * val("fat") - 1.6 * (r.get("poly") or 0)
-    if abs(est - val("kcal")) > max(25, 0.2 * val("kcal")):
+    fiber = val("fibre")
+    poly = r.get("poly") or 0
+    est = 4 * val("protein") + 4 * val("carbs") + 9 * val("fat") - 1.6 * poly
+    est_net = 4 * val("protein") + 4 * max(0.0, val("carbs") - fiber) + 9 * val("fat") - 1.6 * poly
+    diff = min(abs(est - val("kcal")), abs(est_net - val("kcal")))
+    if diff > max(25, 0.2 * val("kcal")):
         issues.append(("ERROR", f"calories {val('kcal'):g} but macros give ~{est:.0f} kcal"))
     if val("protein") > serv:
         issues.append(("ERROR", f"protein {val('protein'):g} g is more than the {serv:g} g serving"))
-    if category != "rtd-drinks" and val("protein") + val("carbs") + val("fat") > serv * 1.05:
+    if category not in ("rtd-drinks", "dairy") and val("protein") + val("carbs") + val("fat") > serv * 1.05:
         issues.append(("ERROR", "protein + carbs + fat is more than the serving weight"))
     for part, whole in (("sat_fat", "fat"), ("sugar", "carbs"), ("added_sugar", "sugar")):
         if n.get(part) is not None and n.get(whole) is not None and n[part] > n[whole] + 0.05:

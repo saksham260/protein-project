@@ -23,6 +23,30 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.shopify.com",
       },
+      {
+        protocol: "https",
+        hostname: "shop.amul.com",
+      },
+      {
+        protocol: "https",
+        hostname: "epigamiastore.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media.thewholetruthfoods.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.grofers.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.flixcart.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.bbassets.com",
+      },
     ],
   },
 };

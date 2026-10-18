@@ -42,15 +42,31 @@ def load_picks() -> list[tuple[int, str, str, str, str]]:
 
 
 def fetch_product(client: httpx.Client, store: str, handle: str) -> dict | None:
-    response = client.get(f"https://{store}/products/{handle}.json")
-    if response.status_code != 200:
-        return None
-    return response.json()["product"]
+    for attempt in range(3):
+        try:
+            response = client.get(f"https://{store}/products/{handle}.json")
+            if response.status_code != 200:
+                return None
+            return response.json().get("product")
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(2)
+                continue
+            print(f"Network error fetching {store}/{handle}: {e}")
+            return None
 
 
 def photo(client: httpx.Client, src: str, width: int = 1400) -> Image.Image:
-    data = client.get(f"{src.split('?')[0]}?width={width}").content
-    return Image.open(io.BytesIO(data)).convert("RGB")
+    url = f"{src.split('?')[0]}?width={width}"
+    for attempt in range(3):
+        try:
+            data = client.get(url).content
+            return Image.open(io.BytesIO(data)).convert("RGB")
+        except Exception:
+            if attempt < 2:
+                time.sleep(1)
+                continue
+            raise
 
 
 def contact_sheet(client: httpx.Client, srcs: list[str], path: Path) -> None:
@@ -140,8 +156,13 @@ def main() -> int:
         start = time.time()
         product = fetch_product(client, store, handle)
         if product is None:
-            print(f"[{i:03d}] {brand} | {handle} | NOT FOUND (removed from store?)", flush=True)
-            continue
+            ps = snapshot.get(store, [])
+            match = [x for x in ps if x.get("handle") == handle or x.get("handle", "").startswith(handle)]
+            if match:
+                product = match[0]
+            else:
+                print(f"[{i:03d}] {brand} | {handle} | NOT FOUND (removed from store?)", flush=True)
+                continue
         entry = {
             "handle": product["handle"],
             "title": product["title"],
@@ -153,7 +174,7 @@ def main() -> int:
         if args.snapshot_only:
             print(f"[{i:03d}] {brand} | {product['title'][:50]} | {entry['variants'][0]['price']}", flush=True)
             continue
-        srcs = [im["src"] for im in product.get("images", [])]
+        srcs = [im["src"] for im in product.get("images", [])][:MAX_PHOTOS]
         contact_sheet(client, srcs, LABELS_DIR / f"{i:03d}_sheet.jpg")
         found = find_labels(client, ocr, i, srcs)
         print(

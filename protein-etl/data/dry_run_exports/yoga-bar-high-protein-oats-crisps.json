@@ -1,15 +1,16 @@
 {
   "name": "High Protein Oats Crisps",
   "brand_name": "Yoga Bar",
-  "category_slug": "savory-snacks",
+  "category_slug": "breakfast-cereals",
   "slug": "yoga-bar-high-protein-oats-crisps",
-  "description": "Crunchy roasted oats snack with whey protein and spicy peri peri herbs.",
-  "image_url": null,
+  "description": "Crunchy roasted oats crisps seasoned with fiery Peri Peri spices and boosted with 8g pure whey protein.",
+  "image_url": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Peri Peri 50g",
-      "slug": "peri-peri-50g",
-      "sku": null,
+      "slug": "yoga-bar-high-protein-oats-crisps-peri-peri-50g",
+      "sku": "YOGABAR-OATS-CRISPS-PERIPERI-50G",
       "barcode_ean": null,
       "mrp_inr": 75.0,
       "net_weight_g": 50.0,
@@ -41,12 +42,12 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk"
+        "Milk"
       ],
       "dietary_tags": [
         "Vegetarian"
       ],
-      "image_url": null,
+      "image_url": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80",
       "redirect_links": [
         {
           "platform": "amazon",
@@ -69,9 +70,11 @@
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Whey Protein Concentrate",
-        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

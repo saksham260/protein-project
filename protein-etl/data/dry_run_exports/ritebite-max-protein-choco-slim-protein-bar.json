@@ -3,13 +3,14 @@
   "brand_name": "RiteBite Max Protein",
   "category_slug": "protein-bars",
   "slug": "ritebite-max-protein-choco-slim-protein-bar",
-  "description": "Marketed as a slim protein bar; contains maltitol syrup, palmolein, and hydrolyzed collagen.",
-  "image_url": null,
+  "description": "RiteBite Max Protein Active Choco Slim delivers 20g multi-source protein with 21 vitamins and minerals.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0512/8827/7146/products/Max_Protein_Active_Choco_Slim_Protein_Bar.png?v=1739264899",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Choco Slim 67g",
-      "slug": "choco-slim-67g",
-      "sku": null,
+      "slug": "ritebite-max-protein-choco-slim-protein-bar-choco-slim-67g",
+      "sku": "MAXPRO-ACTIVE-CHOCO-SLIM-67G",
       "barcode_ean": null,
       "mrp_inr": 130.0,
       "net_weight_g": 67.0,
@@ -22,7 +23,7 @@
         "total_fat_g": 9.0,
         "saturated_fat_g": 4.5,
         "trans_fat_g": 0.0,
-        "cholesterol_mg": 0.0,
+        "cholesterol_mg": 5.0,
         "total_carbs_g": 35.0,
         "dietary_fiber_g": 5.0,
         "total_sugars_g": 1.0,
@@ -42,13 +43,11 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk",
-        "soy"
+        "Milk",
+        "Soy"
       ],
-      "dietary_tags": [
-        "Non-Vegetarian"
-      ],
-      "image_url": null,
+      "dietary_tags": [],
+      "image_url": "https://cdn.shopify.com/s/files/1/0512/8827/7146/products/Max_Protein_Active_Choco_Slim_Protein_Bar.png?v=1739264899",
       "redirect_links": [
         {
           "platform": "amazon",
@@ -59,12 +58,17 @@
           "platform": "blinkit",
           "url": "https://blinkit.com/s/?q=RiteBite+Max+Protein+Choco+Slim",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://maxprotein.in/products/max-protein-bar-active-choco-slim",
+          "platform_price_inr": 130.0
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 6.5,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 130.0,
+        "best_cost_per_g_protein": 6.5,
         "protein_density_pct": 29.09,
         "true_net_carbs_g": 30.0
       },
@@ -98,7 +102,9 @@
         "primary_protein_source": "Soy Protein Isolate",
         "protein_tier": "Tier 4 \u2013 Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

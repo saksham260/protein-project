@@ -3,13 +3,14 @@
   "brand_name": "Nakpro",
   "category_slug": "protein-powders",
   "slug": "nakpro-gold-whey-protein-concentrate",
-  "description": "High value-per-rupee unadulterated whey protein concentrate for muscle building.",
-  "image_url": null,
+  "description": "Nakpro Whey Gold offers 24g protein per scoop derived from 100% imported whey concentrate with zero added sugars or fillers.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/wheygold_1kg_a64dfaca-59b4-4856-8576-ad427f838800.jpg?v=1775116065",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Chocolate 1kg (30 Servings)",
-      "slug": "chocolate-1kg-30-servings",
-      "sku": null,
+      "slug": "nakpro-gold-whey-protein-concentrate-chocolate-1kg-30-servings",
+      "sku": "NAKPRO-GOLD-WHEY-CHOCO-1KG",
       "barcode_ean": null,
       "mrp_inr": 1799.0,
       "net_weight_g": 1000.0,
@@ -22,7 +23,7 @@
         "total_fat_g": 2.0,
         "saturated_fat_g": 1.2,
         "trans_fat_g": 0.0,
-        "cholesterol_mg": 0.0,
+        "cholesterol_mg": 20.0,
         "total_carbs_g": 3.5,
         "dietary_fiber_g": 0.0,
         "total_sugars_g": 1.5,
@@ -39,33 +40,40 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk"
+        "Milk"
       ],
       "dietary_tags": [
         "Vegetarian",
         "Gluten-Free"
       ],
-      "image_url": null,
+      "image_url": "https://cdn.shopify.com/s/files/1/0237/4497/0832/files/wheygold_1kg_a64dfaca-59b4-4856-8576-ad427f838800.jpg?v=1775116065",
       "redirect_links": [
         {
           "platform": "amazon",
           "url": "https://www.amazon.in/s?k=Nakpro+Gold+Whey+Protein+Concentrate",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://nakpro.com/products/whey-gold-protein-concentrate",
+          "platform_price_inr": 1799.0
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 2.47,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 1799.0,
+        "best_cost_per_g_protein": 2.47,
         "protein_density_pct": 73.85,
         "true_net_carbs_g": 3.5
       },
       "red_flags": [],
       "protein_profile": {
         "primary_protein_source": "Whey Protein Concentrate",
-        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

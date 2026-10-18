@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { ProductVariant, Product, Brand, Category, VariantRedFlag } from "@/types/product";
-import { cn } from "@/lib/utils";
+import { cn, splitProductName } from "@/lib/utils";
 
 export interface ProductCardProps {
   product: Product & {
@@ -27,6 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const brand = product.brand;
   const category = product.category;
 
+  const { baseName, packInfo } = splitProductName(product.name, variant?.variant_name);
   const targetSlug = product.slug;
   const imageUrl = variant?.image_url || product.image_url;
   const isAdded = isInCart(product.id);
@@ -88,12 +89,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Soft Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
-        {/* Top Category Badge */}
-        {showTopBadges && category && (
-          <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10">
-            <span className="text-[9px] sm:text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-[#1C1916]/90 text-[#F5F2EB] border border-[#332D27] shadow-sm backdrop-blur-sm truncate max-w-[120px] sm:max-w-none">
-              {category.name}
-            </span>
+        {/* Top Badges */}
+        {showTopBadges && (
+          <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 flex items-center gap-1.5 flex-wrap max-w-[80%]">
+            {category && (
+              <span className="text-[9px] sm:text-[10px] font-sans font-medium px-2 py-0.5 rounded-full bg-[#1C1916]/90 text-[#F5F2EB] border border-[#332D27] shadow-sm backdrop-blur-sm truncate max-w-[120px] sm:max-w-none">
+                {category.name}
+              </span>
+            )}
+            {(product.is_vegan || variant?.dietary_tags?.some((t) => t.toLowerCase() === "vegan")) && (
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-950/90 text-emerald-400 border border-emerald-600/50 shadow-sm backdrop-blur-sm flex items-center gap-1">
+                🌱 Vegan
+              </span>
+            )}
           </div>
         )}
 
@@ -156,13 +164,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Card Body */}
       <div className="flex flex-col flex-1 p-2.5 sm:p-4 gap-2 sm:gap-3">
         {/* Brand & Title */}
-        <div className="flex flex-col gap-1 min-h-[2.4rem] sm:min-h-[3rem]">
+        <div className="flex flex-col gap-1 min-h-[2.8rem] sm:min-h-[3.6rem]">
           <span className="text-xs sm:text-[13px] uppercase font-mono tracking-wider text-[#F59E0B] font-bold truncate">
             {brand?.name || "Independent"}
           </span>
-          <h3 className="text-xs sm:text-base font-bold text-white line-clamp-2 leading-snug md:group-hover:text-[#F59E0B] transition-colors duration-300">
-            {product.name}
-          </h3>
+          <div className="flex flex-col gap-0.5">
+            <h3 className="text-xs sm:text-base font-bold text-white line-clamp-2 leading-snug md:group-hover:text-[#F59E0B] transition-colors duration-300">
+              {baseName}
+            </h3>
+            {packInfo && (
+              <span className="text-[11px] sm:text-xs font-bold text-[#F59E0B] font-mono tracking-wide flex items-center gap-1.5 mt-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] inline-block shrink-0" />
+                {packInfo}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Key Metrics: ONLY MRP & Protein */}

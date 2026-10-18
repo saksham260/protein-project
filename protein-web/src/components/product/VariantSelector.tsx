@@ -40,6 +40,16 @@ export const VariantSelector: React.FC<VariantSelectorProps> = ({
               )}
             >
               <span className="font-bold text-white">{v.variant_name}</span>
+              {v.is_combo && (
+                <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">
+                  Combo
+                </span>
+              )}
+              {v.is_available === false && (
+                <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-bold border border-red-500/30">
+                  Out of stock
+                </span>
+              )}
               <span className="text-zinc-500">
                 {formatWeight(v.net_weight_g)}
               </span>

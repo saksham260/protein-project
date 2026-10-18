@@ -7,7 +7,7 @@ import { NavbarSearch } from "@/components/search/NavbarSearch";
 import { CartButton } from "@/components/cart/CartButton";
 import { LoginButton } from "@/components/auth/LoginButton";
 import { useCategory } from "@/context/CategoryContext";
-import { CATEGORY_TABS } from "@/components/layout/CategoryBar";
+import { PRIMARY_CATEGORY_TABS, SECONDARY_CATEGORIES, CATEGORY_TABS } from "@/components/layout/CategoryBar";
 import { CATEGORIES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -170,6 +170,33 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     setIsMobileCategoriesOpen(false);
+  }, [pathname]);
+
+  // Desktop More Categories dropdown state
+  const [isDesktopMoreOpen, setIsDesktopMoreOpen] = useState(false);
+  const desktopMoreRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (
+        desktopMoreRef.current &&
+        !desktopMoreRef.current.contains(e.target as Node)
+      ) {
+        setIsDesktopMoreOpen(false);
+      }
+    };
+    if (isDesktopMoreOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isDesktopMoreOpen]);
+
+  useEffect(() => {
+    setIsDesktopMoreOpen(false);
   }, [pathname]);
 
   // Glass tracking state and refs
@@ -512,9 +539,9 @@ export const Navbar: React.FC = () => {
 
         {/* Row 2: Product Category Tabs */}
         <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex justify-center relative z-10 pb-2.5 pt-0">
-          {/* Desktop Version: Full horizontal category tabs (Unchanged) */}
-          <div className="hidden md:flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-auto">
-            {CATEGORY_TABS.map((tab) => {
+          {/* Desktop Version: Primary category tabs + More Categories Dropdown */}
+          <div className="hidden md:flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-auto relative">
+            {PRIMARY_CATEGORY_TABS.map((tab) => {
               const currentCategorySlug = pathname.startsWith("/category/")
                 ? pathname.replace("/category/", "").split("/")[0]
                 : null;
@@ -559,6 +586,102 @@ export const Navbar: React.FC = () => {
                 </button>
               );
             })}
+
+            {/* Desktop More Categories Dropdown Button */}
+            {(() => {
+              const currentCategorySlug = pathname.startsWith("/category/")
+                ? pathname.replace("/category/", "").split("/")[0]
+                : null;
+              const activeSecondaryCat = SECONDARY_CATEGORIES.find((c) => c.slug === currentCategorySlug);
+              const isSecondaryActive = !!activeSecondaryCat;
+
+              return (
+                <div className="relative" ref={desktopMoreRef}>
+                  <button
+                    type="button"
+                    onClick={() => setIsDesktopMoreOpen((prev) => !prev)}
+                    aria-expanded={isDesktopMoreOpen}
+                    aria-label="Toggle more categories"
+                    className={cn(
+                      "group flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer shrink-0 border select-none touch-manipulation active:scale-[0.98] transition-all duration-300 ease-out focus:outline-none focus-visible:outline-none outline-none ring-0 focus:ring-0 focus-visible:ring-0",
+                      isSecondaryActive || isDesktopMoreOpen
+                        ? "bg-[#D97706] text-white border-transparent font-black shadow-none"
+                        : "bg-[#1C1916]/85 text-[#968E85] border-[#332D27] md:hover:bg-[#26221E] md:hover:text-[#F5F2EB] md:hover:border-[#D97706]/50 md:hover:shadow-[0_0_16px_rgba(217,119,6,0.18),0_2px_8px_rgba(0,0,0,0.4)]"
+                    )}
+                  >
+                    <span className="text-sm select-none transition-transform duration-300 md:group-hover:scale-110">
+                      {activeSecondaryCat ? activeSecondaryCat.icon : "✨"}
+                    </span>
+                    <span className="tracking-tight transition-colors duration-300">
+                      {activeSecondaryCat ? activeSecondaryCat.name : "More Categories"}
+                    </span>
+                    <svg
+                      className={cn(
+                        "w-3.5 h-3.5 transition-transform duration-200 shrink-0 opacity-80",
+                        isDesktopMoreOpen && "rotate-180"
+                      )}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
+
+                  {/* Desktop More Categories Floating Menu */}
+                  {isDesktopMoreOpen && (
+                    <div className="absolute top-full right-0 mt-2 w-[260px] p-2 rounded-2xl bg-[#181614]/98 border border-[#332D27] shadow-[0_16px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl z-50 flex flex-col gap-1 animate-in fade-in zoom-in-95 duration-150">
+                      <div className="px-3 py-1.5 border-b border-[#332D27]/80 flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#968E85] font-bold">
+                          More Categories
+                        </span>
+                        <span className="text-[10px] font-mono text-[#D97706] font-bold">
+                          {SECONDARY_CATEGORIES.length} Categories
+                        </span>
+                      </div>
+
+                      <div className="flex flex-col gap-1 pt-1">
+                        {SECONDARY_CATEGORIES.map((cat) => {
+                          const isCatActive = currentCategorySlug === cat.slug;
+                          return (
+                            <button
+                              key={cat.slug}
+                              type="button"
+                              onClick={() => {
+                                setIsDesktopMoreOpen(false);
+                                router.push(`/category/${cat.slug}`);
+                              }}
+                              className={cn(
+                                "flex items-center justify-between p-2.5 rounded-xl text-left transition-colors text-xs font-sans cursor-pointer",
+                                isCatActive
+                                  ? "bg-[#D97706] text-white font-bold"
+                                  : "text-[#F5F2EB] hover:bg-[#26221E] active:bg-[#26221E]"
+                              )}
+                            >
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <span className="text-base shrink-0">{cat.icon}</span>
+                                <div className="truncate">
+                                  <div className="font-bold tracking-tight truncate">{cat.name}</div>
+                                  <div className="text-[10px] text-[#968E85] truncate opacity-85">
+                                    {cat.description.slice(0, 36)}...
+                                  </div>
+                                </div>
+                              </div>
+                              {isCatActive && (
+                                <span className="text-white text-xs font-bold pl-2">✓</span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
           </div>
 
           {/* Mobile Version: Home, Top Picks, and Categories Dropdown */}

@@ -11,7 +11,7 @@ import { NutritionToggle, NutritionMode } from "@/components/product/NutritionTo
 import { RedirectButtons } from "@/components/product/RedirectButtons";
 import { RedFlagWarning } from "@/components/product/RedFlagWarning";
 import { OversizedMetric } from "@/components/ui/OversizedMetric";
-import { formatPrice, formatPricePerGram } from "@/lib/utils";
+import { formatPrice, formatPricePerGram, splitProductName } from "@/lib/utils";
 
 export interface ProductDetailProps {
   product: ProductWithVariants;
@@ -27,6 +27,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const category = product.category;
   const redFlags = activeVariant?.red_flags || [];
   const imageUrl = activeVariant?.image_url || product.image_url;
+
+  const { baseName, packInfo } = splitProductName(product.name, activeVariant?.variant_name);
 
   const costPerG = activeVariant?.cost_per_g_protein != null ? activeVariant.cost_per_g_protein.toFixed(1) : "—";
   const calories = activeVariant?.calories_kcal != null ? Math.round(activeVariant.calories_kcal).toLocaleString("en-IN") : "—";
@@ -79,11 +81,16 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             {/* Subtle Vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
-            {/* Top Category Badge */}
-            <div className="absolute top-5 left-5 z-10">
+            {/* Top Category & Vegan Badge */}
+            <div className="absolute top-5 left-5 z-10 flex items-center gap-2">
               <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#27272A]/90 text-[#E4E4E7] border border-[#3F3F46] shadow-sm backdrop-blur-sm">
                 {category.name}
               </span>
+              {(product.is_vegan || activeVariant?.dietary_tags?.some((t) => t.toLowerCase() === "vegan")) && (
+                <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-950/90 text-emerald-400 border border-emerald-600/50 shadow-sm backdrop-blur-sm flex items-center gap-1.5">
+                  🌱 Vegan
+                </span>
+              )}
             </div>
 
             {/* Top Right Tier Badge */}
@@ -123,9 +130,17 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-              {product.name}
-            </h1>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+                {baseName}
+              </h1>
+              {packInfo && (
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-sm sm:text-base font-bold text-[#F59E0B] font-mono w-fit tracking-wide shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-[#F59E0B] shrink-0" />
+                  {packInfo}
+                </div>
+              )}
+            </div>
 
             {product.description && (
               <p className="text-sm text-[#A1A1AA] leading-relaxed mt-1 font-sans">

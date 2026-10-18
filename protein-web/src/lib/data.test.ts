@@ -243,8 +243,8 @@ describe("Suite 17: Data Layer and Filtering", () => {
     });
   });
 
-  it("loads 100 seed products in offline fallback mode", async () => {
+  it("loads all seed products in offline fallback mode", async () => {
     const catalog = await getProducts();
-    expect(catalog.length).toBe(100);
+    expect(catalog.length).toBeGreaterThanOrEqual(235);
   });
 });

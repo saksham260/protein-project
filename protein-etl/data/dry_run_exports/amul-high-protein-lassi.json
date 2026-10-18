@@ -1,83 +1,240 @@
 {
   "name": "High Protein Lassi",
   "brand_name": "Amul",
-  "category_slug": "rtd-drinks",
+  "category_slug": "dairy",
   "slug": "amul-high-protein-lassi",
-  "description": "Amul High Protein Rose Lassi with 15g protein per pack and no added cane sugar.",
-  "image_url": null,
+  "description": null,
+  "image_url": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/66d15f3206e72f00e5bcef29/01-hero-image_multipack-30-360x360.png",
+  "is_vegan": false,
   "variants": [
     {
-      "variant_name": "Rose 200ml",
-      "slug": "rose-200ml",
-      "sku": null,
+      "variant_name": "Plain Lassi (Pack of 30)",
+      "slug": "plain-lassi-pack-of-30",
+      "sku": "AHPL01_30",
       "barcode_ean": null,
-      "mrp_inr": 25.0,
-      "net_weight_g": 200.0,
+      "mrp_inr": 900.0,
+      "net_weight_g": 6000.0,
       "serving_size_g": 200.0,
-      "servings_per_pack": 1,
-      "serving_size_label": null,
+      "servings_per_pack": 30,
+      "serving_size_label": "1 Pack (200ml)",
       "nutrition": {
-        "calories_kcal": 130.0,
+        "calories_kcal": 92.0,
         "protein_g": 15.0,
-        "total_fat_g": 2.0,
-        "saturated_fat_g": 1.2,
+        "total_fat_g": 0.7,
+        "saturated_fat_g": 0.45,
         "trans_fat_g": 0.0,
-        "cholesterol_mg": 0.0,
-        "total_carbs_g": 13.0,
+        "cholesterol_mg": 6.0,
+        "total_carbs_g": 6.5,
         "dietary_fiber_g": 0.0,
-        "total_sugars_g": 10.0,
+        "total_sugars_g": 6.5,
         "added_sugars_g": 0.0,
-        "sodium_mg": 90.0,
+        "sodium_mg": 80.0,
         "non_glycemic_polyols_g": 0.0,
         "additional_nutrients": {}
       },
       "ingredient_list": [
-        "Pasteurized Toned Milk",
+        "Pasteurized Toned Dahi",
+        "Water",
         "Milk Solids",
-        "Whey Protein Concentrate",
-        "Lassi Culture",
-        "Stevia Extract"
+        "Permitted Stabilizers",
+        "Sucralose"
       ],
-      "ingredient_deck_raw": [],
+      "ingredient_deck_raw": [
+        {
+          "name": "Pasteurized Toned Dahi",
+          "position": 1
+        },
+        {
+          "name": "Water",
+          "position": 2
+        },
+        {
+          "name": "Milk Solids",
+          "position": 3
+        },
+        {
+          "name": "Permitted Stabilizers",
+          "position": 4
+        },
+        {
+          "name": "Sucralose",
+          "position": 5
+        }
+      ],
       "allergens": [
-        "milk"
+        "Milk"
       ],
       "dietary_tags": [
         "Vegetarian",
-        "Gluten-Free",
-        "No Added Sugar"
+        "High Protein",
+        "No Added Sugar",
+        "Gluten Free"
       ],
-      "image_url": null,
+      "image_url": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/66d15f3206e72f00e5bcef29/01-hero-image_multipack-30-360x360.png",
       "redirect_links": [
         {
+          "platform": "d2c",
+          "url": "https://shop.amul.com/en/product/amul-high-protein-plain-lassi-200-ml-or-pack-of-30",
+          "platform_price_inr": 900.0
+        },
+        {
           "platform": "amazon",
-          "url": "https://www.amazon.in/s?k=Amul+High+Protein+Lassi",
+          "url": "https://www.amazon.in/s?k=Amul+High+Protein+Lassi+Plain+Lassi+%28Pack+of+30%29",
           "platform_price_inr": null
         },
         {
           "platform": "blinkit",
-          "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi",
+          "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi+Plain+Lassi+%28Pack+of+30%29",
           "platform_price_inr": null
         },
         {
           "platform": "zepto",
-          "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi",
+          "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi+Plain+Lassi+%28Pack+of+30%29",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "instamart",
+          "url": "https://www.swiggy.com/instamart/search?query=Amul+High+Protein+Lassi+Plain+Lassi+%28Pack+of+30%29",
           "platform_price_inr": null
         }
       ],
       "computed_metrics": {
-        "cost_per_g_protein": 1.67,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
-        "protein_density_pct": 46.15,
-        "true_net_carbs_g": 13.0
+        "cost_per_g_protein": 2.0,
+        "best_price_inr": 900.0,
+        "best_cost_per_g_protein": 2.0,
+        "protein_density_pct": 65.22,
+        "true_net_carbs_g": 6.5
       },
       "red_flags": [],
       "protein_profile": {
-        "primary_protein_source": "Whey Protein Concentrate",
-        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Egg",
+        "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
+    },
+    {
+      "variant_name": "Rose Lassi (Pack of 30)",
+      "slug": "rose-lassi-pack-of-30",
+      "sku": "AHPRL01_30",
+      "barcode_ean": null,
+      "mrp_inr": 900.0,
+      "net_weight_g": 6000.0,
+      "serving_size_g": 200.0,
+      "servings_per_pack": 30,
+      "serving_size_label": "1 Pack (200ml)",
+      "nutrition": {
+        "calories_kcal": 95.0,
+        "protein_g": 15.0,
+        "total_fat_g": 0.7,
+        "saturated_fat_g": 0.45,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 6.0,
+        "total_carbs_g": 7.2,
+        "dietary_fiber_g": 0.0,
+        "total_sugars_g": 7.2,
+        "added_sugars_g": 0.0,
+        "sodium_mg": 80.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pasteurized Toned Dahi",
+        "Water",
+        "Milk Solids",
+        "Rose Petal Extract",
+        "Nature Identical Flavouring Substances",
+        "Permitted Natural Colour",
+        "Permitted Stabilizers",
+        "Sucralose"
+      ],
+      "ingredient_deck_raw": [
+        {
+          "name": "Pasteurized Toned Dahi",
+          "position": 1
+        },
+        {
+          "name": "Water",
+          "position": 2
+        },
+        {
+          "name": "Milk Solids",
+          "position": 3
+        },
+        {
+          "name": "Rose Petal Extract",
+          "position": 4
+        },
+        {
+          "name": "Nature Identical Flavouring Substances",
+          "position": 5
+        },
+        {
+          "name": "Permitted Natural Colour",
+          "position": 6
+        },
+        {
+          "name": "Permitted Stabilizers",
+          "position": 7
+        },
+        {
+          "name": "Sucralose",
+          "position": 8
+        }
+      ],
+      "allergens": [
+        "Milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "High Protein",
+        "No Added Sugar",
+        "Gluten Free"
+      ],
+      "image_url": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/66d15f3206e72f00e5bcef29/01-hero-image_multipack-30-360x360.png",
+      "redirect_links": [
+        {
+          "platform": "d2c",
+          "url": "https://shop.amul.com/en/product/amul-high-protein-plain-lassi-200-ml-or-pack-of-30",
+          "platform_price_inr": 900.0
+        },
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Amul+High+Protein+Lassi+Rose+Lassi+%28Pack+of+30%29",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Amul+High+Protein+Lassi+Rose+Lassi+%28Pack+of+30%29",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "zepto",
+          "url": "https://www.zeptonow.com/search?query=Amul+High+Protein+Lassi+Rose+Lassi+%28Pack+of+30%29",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "instamart",
+          "url": "https://www.swiggy.com/instamart/search?query=Amul+High+Protein+Lassi+Rose+Lassi+%28Pack+of+30%29",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 2.0,
+        "best_price_inr": 900.0,
+        "best_cost_per_g_protein": 2.0,
+        "protein_density_pct": 63.16,
+        "true_net_carbs_g": 7.2
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
+        "has_added_free_form_aminos": false
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

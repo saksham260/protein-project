@@ -22,7 +22,8 @@ except (ImportError, ModuleNotFoundError):
     from models import ProductCreate, slugify
 
 # Load .env if present
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parents[2] / "protein-etl" / ".env")
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 console = Console()
 EXPORTS_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "dry_run_exports"
@@ -43,6 +44,19 @@ class SupabaseUploader:
             self.dry_run = False
             from supabase import create_client
             self.client = create_client(self.supabase_url, self.supabase_key)
+            self.supports_variant_flags = False
+            try:
+                self.client.table("product_variants").select("is_combo").limit(1).execute()
+                self.supports_variant_flags = True
+            except Exception:
+                self.supports_variant_flags = False
+
+            self.supports_is_vegan = False
+            try:
+                self.client.table("products").select("is_vegan").limit(1).execute()
+                self.supports_is_vegan = True
+            except Exception:
+                self.supports_is_vegan = False
 
     def process_and_enrich_product(self, product: ProductCreate) -> ProductCreate:
         """Enrich all product variants with computed metrics, red flags, and protein tiers."""
@@ -135,18 +149,33 @@ class SupabaseUploader:
             category_id = cat_res.data[0]["id"]
 
         # 3. Upsert Product
-        prod_res = self.client.table("products").upsert(
-            {
-                "brand_id": brand_id,
-                "category_id": category_id,
-                "name": product.name,
-                "slug": product.slug,
-                "description": product.description,
-                "image_url": product.image_url,
-                "is_active": True,
-            },
-            on_conflict="slug",
-        ).execute()
+        prod_payload = {
+            "brand_id": brand_id,
+            "category_id": category_id,
+            "name": product.name,
+            "slug": product.slug,
+            "description": product.description,
+            "image_url": product.image_url,
+            "is_active": True,
+        }
+        if self.supports_is_vegan:
+            prod_payload["is_vegan"] = getattr(product, "is_vegan", False)
+
+        try:
+            prod_res = self.client.table("products").upsert(
+                prod_payload,
+                on_conflict="slug",
+            ).execute()
+        except Exception as e:
+            if "is_vegan" in str(e):
+                prod_payload.pop("is_vegan", None)
+                self.supports_is_vegan = False
+                prod_res = self.client.table("products").upsert(
+                    prod_payload,
+                    on_conflict="slug",
+                ).execute()
+            else:
+                raise
         product_id = prod_res.data[0]["id"]
 
         uploaded_variant_ids = []
@@ -167,6 +196,7 @@ class SupabaseUploader:
                 "net_weight_g": variant.net_weight_g,
                 "serving_size_g": variant.serving_size_g,
                 "servings_per_pack": variant.servings_per_pack,
+                "serving_size_label": variant.serving_size_label,
                 "calories_kcal": variant.nutrition.calories_kcal,
                 "protein_g": variant.nutrition.protein_g,
                 "total_fat_g": variant.nutrition.total_fat_g,
@@ -197,10 +227,27 @@ class SupabaseUploader:
                 "last_verified_at": now_iso,
             }
 
-            var_res = self.client.table("product_variants").upsert(
-                var_payload,
-                on_conflict="slug",
-            ).execute()
+            if self.supports_variant_flags:
+                var_payload["is_combo"] = variant.is_combo
+                var_payload["is_available"] = variant.is_available
+
+            try:
+                var_res = self.client.table("product_variants").upsert(
+                    var_payload,
+                    on_conflict="slug",
+                ).execute()
+            except Exception as e:
+                err_msg = str(e)
+                if "is_combo" in err_msg or "is_available" in err_msg:
+                    var_payload.pop("is_combo", None)
+                    var_payload.pop("is_available", None)
+                    self.supports_variant_flags = False
+                    var_res = self.client.table("product_variants").upsert(
+                        var_payload,
+                        on_conflict="slug",
+                    ).execute()
+                else:
+                    raise
             variant_id = var_res.data[0]["id"]
             uploaded_variant_ids.append(variant_id)
 

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
-import { formatPricePerGram, cn } from "@/lib/utils";
+import { formatPricePerGram, cn, splitProductName } from "@/lib/utils";
 
 const SEARCH_SUGGESTIONS = [
   // Categories
@@ -295,6 +295,8 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                 const variant = p.variants[0];
                 const imageUrl = variant?.image_url || p.image_url;
                 const isSelected = idx === selectedIndex;
+                const { baseName, packInfo } = splitProductName(p.name, variant?.variant_name);
+
                 return (
                   <Link
                     key={p.id}
@@ -327,8 +329,13 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
 
                       <div className="flex flex-col min-w-0">
                         <span className="font-bold text-[#F5F2EB] font-sans text-xs sm:text-sm line-clamp-1">
-                          {p.name}
+                          {baseName}
                         </span>
+                        {packInfo && (
+                          <span className="text-[10px] sm:text-[11px] font-bold text-[#F59E0B] font-mono leading-tight">
+                            {packInfo}
+                          </span>
+                        )}
                         <span className="text-[11px] text-[#968E85] truncate">
                           {p.brand.name} • {p.category.name}
                         </span>

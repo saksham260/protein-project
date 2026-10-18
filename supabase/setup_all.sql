@@ -647,3 +647,71 @@ ON CONFLICT (slug) DO UPDATE SET
     description = EXCLUDED.description,
     icon = EXCLUDED.icon,
     display_order = EXCLUDED.display_order;
+
+-- ##############################################################################
+-- SECTION 8: 008_variant_flags_breakfast.sql (Variant Flags & Breakfast Cereals)
+-- ##############################################################################
+
+ALTER TABLE public.product_variants 
+ADD COLUMN IF NOT EXISTS is_combo boolean DEFAULT false,
+ADD COLUMN IF NOT EXISTS is_available boolean DEFAULT true;
+
+INSERT INTO public.categories (name, slug, description, icon, display_order)
+VALUES
+    (
+        'Breakfast & Cereals',
+        'breakfast-cereals',
+        'High-protein muesli, breakfast cereals, protein oats, and morning granola bowls.',
+        '🥣',
+        6
+    )
+ON CONFLICT (slug) DO UPDATE SET
+    name = EXCLUDED.name,
+    description = EXCLUDED.description,
+    icon = EXCLUDED.icon,
+    display_order = EXCLUDED.display_order;
+
+-- ##############################################################################
+-- SECTION 9: 009_dairy_category.sql (Dairy Category Addition)
+-- ##############################################################################
+
+INSERT INTO public.categories (name, slug, description, icon, display_order)
+VALUES
+    (
+        'Dairy',
+        'dairy',
+        'High-protein paneer, Greek yogurt, fresh curd, and everyday dairy staples.',
+        '🧀',
+        7
+    )
+ON CONFLICT (slug) DO UPDATE SET
+    name = EXCLUDED.name,
+    description = EXCLUDED.description,
+    icon = EXCLUDED.icon,
+    display_order = EXCLUDED.display_order;
+
+-- ##############################################################################
+-- SECTION 10: 010_vegan_cookies.sql (Vegan Flag & Cookies & Baked Category)
+-- ##############################################################################
+
+ALTER TABLE public.products 
+ADD COLUMN IF NOT EXISTS is_vegan boolean NOT NULL DEFAULT false;
+
+CREATE INDEX IF NOT EXISTS idx_products_is_vegan ON public.products (is_vegan);
+
+INSERT INTO public.categories (name, slug, description, icon, display_order)
+VALUES
+    (
+        'Cookies & Baked',
+        'cookies-baked',
+        'High-protein cookies, brownies, baked snacks, and confectionery.',
+        '🍪',
+        8
+    )
+ON CONFLICT (slug) DO UPDATE SET
+    name = EXCLUDED.name,
+    description = EXCLUDED.description,
+    icon = EXCLUDED.icon,
+    display_order = EXCLUDED.display_order;
+
+

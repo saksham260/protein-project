@@ -3,12 +3,13 @@
   "brand_name": "Epigamia",
   "category_slug": "rtd-drinks",
   "slug": "epigamia-high-protein-greek-yogurt-drink",
-  "description": "Smooth Greek yogurt smoothie packed with protein and gut-friendly cultures.",
-  "image_url": null,
+  "description": "Epigamia Strawberry Greek Yogurt Drink offers creamy dairy protein smoothie made with real strawberries and zero preservatives.",
+  "image_url": "https://epigamiastore.com/cdn/shop/files/Smoothie_Strawberry_01_750afe84-af22-4e0d-981a-c029eb1ef633.png?v=1750323334",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Strawberry 180ml",
-      "slug": "strawberry-180ml",
+      "slug": "epigamia-high-protein-greek-yogurt-drink-strawberry-180ml",
       "sku": null,
       "barcode_ean": null,
       "mrp_inr": 80.0,
@@ -45,7 +46,7 @@
         "Vegetarian",
         "Gluten-Free"
       ],
-      "image_url": null,
+      "image_url": "https://epigamiastore.com/cdn/shop/files/Smoothie_Strawberry_01_750afe84-af22-4e0d-981a-c029eb1ef633.png?v=1750323334",
       "redirect_links": [
         {
           "platform": "amazon",
@@ -72,10 +73,92 @@
       },
       "red_flags": [],
       "protein_profile": {
-        "primary_protein_source": "Unknown",
-        "protein_tier": "Unknown / Unclassified",
+        "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
+    },
+    {
+      "variant_name": "Strawberry 200ml",
+      "slug": "epigamia-high-protein-greek-yogurt-drink-strawberry-200ml",
+      "sku": "EPIGAMIA-SMOOTHIE-STRAWBERRY-200ML",
+      "barcode_ean": null,
+      "mrp_inr": 80.0,
+      "net_weight_g": 200.0,
+      "serving_size_g": 200.0,
+      "servings_per_pack": 1,
+      "serving_size_label": null,
+      "nutrition": {
+        "calories_kcal": 140.0,
+        "protein_g": 10.0,
+        "total_fat_g": 2.2,
+        "saturated_fat_g": 1.4,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 6.0,
+        "total_carbs_g": 19.8,
+        "dietary_fiber_g": 1.0,
+        "total_sugars_g": 15.0,
+        "added_sugars_g": 6.0,
+        "sodium_mg": 80.0,
+        "non_glycemic_polyols_g": 0.0,
+        "additional_nutrients": {}
+      },
+      "ingredient_list": [
+        "Pasteurized Double Toned Milk",
+        "Milk Solids",
+        "Strawberry Puree",
+        "Sugar",
+        "Pectin (INS 440)",
+        "Permitted Starter Cultures"
+      ],
+      "ingredient_deck_raw": [],
+      "allergens": [
+        "Milk"
+      ],
+      "dietary_tags": [
+        "Vegetarian",
+        "Gluten-Free"
+      ],
+      "image_url": "https://epigamiastore.com/cdn/shop/files/Smoothie_Strawberry_01_750afe84-af22-4e0d-981a-c029eb1ef633.png?v=1750323334",
+      "redirect_links": [
+        {
+          "platform": "d2c",
+          "url": "https://epigamiastore.com/products/high-protein-smoothie-strawberry",
+          "platform_price_inr": 80.0
+        },
+        {
+          "platform": "amazon",
+          "url": "https://www.amazon.in/s?k=Epigamia+High+Protein+Greek+Yogurt+Drink",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "blinkit",
+          "url": "https://blinkit.com/s/?q=Epigamia+Greek+Yogurt+Drink",
+          "platform_price_inr": null
+        },
+        {
+          "platform": "zepto",
+          "url": "https://www.zeptonow.com/search?query=Epigamia+Greek+Yogurt+Drink",
+          "platform_price_inr": null
+        }
+      ],
+      "computed_metrics": {
+        "cost_per_g_protein": 8.0,
+        "best_price_inr": 80.0,
+        "best_cost_per_g_protein": 8.0,
+        "protein_density_pct": 28.57,
+        "true_net_carbs_g": 18.8
+      },
+      "red_flags": [],
+      "protein_profile": {
+        "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+        "protein_tier": "Tier 2 \u2013 Concentrate/Casein/Milk/Egg",
+        "has_added_free_form_aminos": false
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

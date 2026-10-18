@@ -98,6 +98,8 @@ export interface ProductVariant {
   best_cost_per_g_protein?: number | null;
   image_url: string | null;
   is_active: boolean;
+  is_combo?: boolean;
+  is_available?: boolean;
   last_verified_at: string;
   created_at: string;
   updated_at: string;
@@ -114,6 +116,7 @@ export interface Product {
   description: string | null;
   image_url: string | null;
   is_active: boolean;
+  is_vegan?: boolean;
   created_at: string;
   updated_at: string;
   brand?: Brand;

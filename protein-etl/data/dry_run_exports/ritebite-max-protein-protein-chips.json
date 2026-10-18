@@ -3,13 +3,14 @@
   "brand_name": "RiteBite Max Protein",
   "category_slug": "savory-snacks",
   "slug": "ritebite-max-protein-protein-chips",
-  "description": "7-grain protein chips; contains palmolein oil and maltodextrin seasoning.",
-  "image_url": null,
+  "description": "Max Protein 7-Grain Spanish Tomato Protein Chips baked with 7 super grains and 10g protein per pack with 65% less fat than fried chips.",
+  "image_url": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Packshot-Can_3_2b8292e2-4ec5-4feb-b473-11376f406d05.png?v=1787747182",
+  "is_vegan": false,
   "variants": [
     {
       "variant_name": "Spanish Tomato 60g",
-      "slug": "spanish-tomato-60g",
-      "sku": null,
+      "slug": "ritebite-max-protein-protein-chips-spanish-tomato-60g",
+      "sku": "MAXPRO-CHIPS-SPANISH-TOMATO-60G",
       "barcode_ean": null,
       "mrp_inr": 60.0,
       "net_weight_g": 60.0,
@@ -42,13 +43,13 @@
       ],
       "ingredient_deck_raw": [],
       "allergens": [
-        "milk",
-        "soy"
+        "Soy",
+        "Milk"
       ],
       "dietary_tags": [
         "Vegetarian"
       ],
-      "image_url": null,
+      "image_url": "https://cdn.shopify.com/s/files/1/0512/8827/7146/files/Packshot-Can_3_2b8292e2-4ec5-4feb-b473-11376f406d05.png?v=1787747182",
       "redirect_links": [
         {
           "platform": "amazon",
@@ -59,12 +60,17 @@
           "platform": "blinkit",
           "url": "https://blinkit.com/s/?q=Max+Protein+Spanish+Tomato+Chips",
           "platform_price_inr": null
+        },
+        {
+          "platform": "d2c",
+          "url": "https://maxprotein.in/products/max-protein-spanish-tomato-chips",
+          "platform_price_inr": 60.0
         }
       ],
       "computed_metrics": {
         "cost_per_g_protein": 6.0,
-        "best_price_inr": null,
-        "best_cost_per_g_protein": null,
+        "best_price_inr": 60.0,
+        "best_cost_per_g_protein": 6.0,
         "protein_density_pct": 16.67,
         "true_net_carbs_g": 28.0
       },
@@ -88,9 +94,11 @@
       ],
       "protein_profile": {
         "primary_protein_source": "Soy Protein Isolate",
-        "protein_tier": "Tier 3 \u2013 Plant Blend (Pea/Rice/Soy)",
+        "protein_tier": "Tier 3 \u2013 Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
         "has_added_free_form_aminos": false
-      }
+      },
+      "is_combo": false,
+      "is_available": true
     }
   ]
 }

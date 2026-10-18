@@ -95,6 +95,9 @@ class VariantCreate(BaseModel):
     computed_metrics: Optional[ComputedMetrics] = None
     red_flags: list[RedFlagItem] = Field(default_factory=list)
     protein_profile: Optional[ProteinProfile] = None
+    is_combo: bool = False
+    is_available: bool = True
+
 
     @model_validator(mode="after")
     def populate_slug_if_missing(self) -> VariantCreate:
@@ -137,6 +140,7 @@ class ProductCreate(BaseModel):
     slug: Optional[str] = None
     description: Optional[str] = None
     image_url: Optional[str] = None
+    is_vegan: bool = False
     variants: list[VariantCreate] = Field(default_factory=list)
 
     @model_validator(mode="after")

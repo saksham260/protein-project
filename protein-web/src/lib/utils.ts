@@ -45,3 +45,41 @@ export function formatTimeAgo(iso: string | null | undefined, now: number = Date
   if (hours < 48) return `${hours} h ago`;
   return `${Math.round(hours / 24)} days ago`;
 }
+
+export interface ProductNameParts {
+  baseName: string;
+  packInfo: string | null;
+}
+
+const PACK_REGEX = /\s*[\(\[]?\b((?:Pack|Box)\s+of\s+[^)\]]+)\b[\)\]]?/i;
+
+/**
+ * Splits a product name into base product name and pack specification.
+ * e.g. "Millionaire Brownie 20g Protein Bar (Pack of 8)" -> { baseName: "Millionaire Brownie 20g Protein Bar", packInfo: "Pack of 8" }
+ */
+export function splitProductName(name: string, variantName?: string): ProductNameParts {
+  if (!name) return { baseName: "", packInfo: null };
+
+  const match = name.match(PACK_REGEX);
+  if (match) {
+    const packInfo = match[1].trim();
+    const baseName = name.replace(match[0], "").replace(/[\s\-,]+$/, "").trim();
+    return {
+      baseName: baseName || name,
+      packInfo,
+    };
+  }
+
+  if (variantName) {
+    const vMatch = variantName.match(PACK_REGEX);
+    if (vMatch) {
+      return {
+        baseName: name.trim(),
+        packInfo: vMatch[1].trim(),
+      };
+    }
+  }
+
+  return { baseName: name.trim(), packInfo: null };
+}
+

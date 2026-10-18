@@ -12,6 +12,9 @@ function parseFiltersFromSearchParams(
   const sortBy = sp.get("sort") || "cost_per_g_asc";
   const proteinTiers = sp.getAll("tier").filter(Boolean);
   const dietaryTags = sp.getAll("tag").filter(Boolean);
+  if (sp.get("vegan") === "1" && !dietaryTags.some((t) => t.toLowerCase() === "vegan")) {
+    dietaryTags.push("vegan");
+  }
   const excludeAllergens = sp.getAll("exclude_allergen").filter(Boolean);
   const zeroFlagsOnly = sp.get("clean") === "true";
   const searchQuery = sp.get("q") || undefined;

@@ -7,6 +7,7 @@ import {
   computePer100g,
   cn,
   formatTimeAgo,
+  splitProductName,
 } from "./utils";
 
 describe("Suite 14: Formatters and Utils", () => {
@@ -114,4 +115,37 @@ describe("Suite 14: Formatters and Utils", () => {
       expect(formatTimeAgo(undefined)).toBe("—");
     });
   });
+
+  describe("splitProductName", () => {
+    it("splits (Pack of 8) cleanly from Chase products", () => {
+      const res = splitProductName("Millionaire Brownie 20g Protein Bar (Pack of 8)");
+      expect(res.baseName).toBe("Millionaire Brownie 20g Protein Bar");
+      expect(res.packInfo).toBe("Pack of 8");
+    });
+
+    it("splits (Pack of 6) from SuperYou mega wafers", () => {
+      const res = splitProductName("20g MEGA Protein Wafer Kesar Pista Badam (Pack of 6)");
+      expect(res.baseName).toBe("20g MEGA Protein Wafer Kesar Pista Badam");
+      expect(res.packInfo).toBe("Pack of 6");
+    });
+
+    it("splits (Box of 30) from sachet products", () => {
+      const res = splitProductName("Whey Protein Sachets (Box of 30)");
+      expect(res.baseName).toBe("Whey Protein Sachets");
+      expect(res.packInfo).toBe("Box of 30");
+    });
+
+    it("returns null packInfo for single unit products", () => {
+      const res = splitProductName("Unflavoured Fermented Yeast Protein");
+      expect(res.baseName).toBe("Unflavoured Fermented Yeast Protein");
+      expect(res.packInfo).toBeNull();
+    });
+
+    it("extracts pack info from variantName if not present in product name", () => {
+      const res = splitProductName("Protein Bar", "Pack of 12 x 50g");
+      expect(res.baseName).toBe("Protein Bar");
+      expect(res.packInfo).toBe("Pack of 12 x 50g");
+    });
+  });
 });
+
