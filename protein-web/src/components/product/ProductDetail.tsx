@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
 import { ProductWithVariants } from "@/types/product";
 import { VariantSelector } from "@/components/product/VariantSelector";
@@ -9,6 +9,7 @@ import { ProteinTierBadge } from "@/components/product/ProteinTierBadge";
 import { NutritionPanel } from "@/components/product/NutritionPanel";
 import { NutritionToggle, NutritionMode } from "@/components/product/NutritionToggle";
 import { RedirectButtons } from "@/components/product/RedirectButtons";
+import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { RedFlagWarning } from "@/components/product/RedFlagWarning";
 import { OversizedMetric } from "@/components/ui/OversizedMetric";
 import { formatPrice, formatPricePerGram, splitProductName } from "@/lib/utils";
@@ -36,6 +37,15 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
     ? (activeVariant.protein_g * (activeVariant.servings_per_pack || 1)).toFixed(0)
     : "—";
 
+  const noImage = (
+    <div className="flex flex-col items-center justify-center text-center p-8 gap-3">
+      <span className="text-7xl">{category.icon}</span>
+      <span className="text-xs uppercase font-mono tracking-widest text-[#A1A1AA]">
+        {brand.name}
+      </span>
+    </div>
+  );
+
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col gap-12">
       {/* Minimalist Breadcrumbs */}
@@ -61,21 +71,17 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
         <div className="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-6">
           <div className="relative w-full h-[380px] sm:h-[480px] rounded-3xl bg-[#121215] border border-[#27272A] flex items-center justify-center overflow-hidden shadow-[0_24px_70px_rgba(0,0,0,0.85)]">
             {imageUrl ? (
-              <Image
+              <ImageWithFallback
                 src={imageUrl}
                 alt={product.name}
                 fill
                 priority
                 className="object-cover object-center transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 42vw"
+                fallback={noImage}
               />
             ) : (
-              <div className="flex flex-col items-center justify-center text-center p-8 gap-3">
-                <span className="text-7xl">{category.icon}</span>
-                <span className="text-xs uppercase font-mono tracking-widest text-[#A1A1AA]">
-                  {brand.name}
-                </span>
-              </div>
+              noImage
             )}
 
             {/* Subtle Vignette */}
@@ -193,7 +199,9 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           />
 
           {/* Purchase Section with Cheapest in Neon Yellow */}
+          <ProductViewTracker productId={product.id} variantId={activeVariant?.id} />
           <RedirectButtons
+            productId={product.id}
             redirectLinks={activeVariant?.redirect_links || []}
             brandName={brand.name}
             productName={product.name}

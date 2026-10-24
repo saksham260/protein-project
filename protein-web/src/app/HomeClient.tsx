@@ -11,6 +11,7 @@ import { useCategory } from "@/context/CategoryContext";
 import { ProductCard } from "@/components/product/ProductCard";
 import { AwardProductCard } from "@/components/product/AwardProductCard";
 import { ExploreAllCard } from "@/components/product/ExploreAllCard";
+import { SuggestedForYou } from "@/components/product/SuggestedForYou";
 import { VolumetricText } from "@/components/ui/VolumetricText";
 import { RotatingText } from "@/components/ui/RotatingText";
 
@@ -70,28 +71,6 @@ export const HomeClient: React.FC<HomeClientProps> = ({
     }
     return map;
   }, [initialProducts]);
-
-  // Suggested for you (mix of 8 representative products across categories)
-  const suggestedProducts = useMemo(() => {
-    if (!initialProducts || initialProducts.length === 0) return [];
-    const pools = CATEGORIES.map((c) => productsByCategory[c.slug] || []).filter(
-      (p) => p.length > 0
-    );
-    const picked: ProductWithVariants[] = [];
-    let round = 0;
-    while (picked.length < 8 && round < 10) {
-      for (const pool of pools) {
-        if (pool[round] && picked.length < 8 && !picked.some((p) => p.id === pool[round].id)) {
-          picked.push(pool[round]);
-        }
-      }
-      round++;
-    }
-    if (picked.length < 4) {
-      return initialProducts.slice(0, 8);
-    }
-    return picked;
-  }, [initialProducts, productsByCategory]);
 
   // Products to display in current view
   const filteredProducts = useMemo(() => {
@@ -283,36 +262,8 @@ export const HomeClient: React.FC<HomeClientProps> = ({
         {/* CASE 3: Default "All" Products Experience */}
         {activeCategory === "all" && (
           <>
-            {/* SECTION 1: Suggested for You */}
-            <section className="flex flex-col gap-4 sm:gap-6 pt-1">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-3 border-b border-[#332D27]/70">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">✨</span>
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
-                      Curated For You
-                    </span>
-                  </div>
-                  <h2 className="text-xl sm:text-3xl font-black text-[#F5F2EB] mt-0.5 tracking-tight">
-                    Suggested for You
-                  </h2>
-                </div>
-                <Link
-                  href="/explore"
-                  className="text-xs font-mono font-bold text-[#968E85] hover:text-[#F5F2EB] transition-colors flex items-center gap-1 self-start sm:self-auto"
-                >
-                  <span>Explore Full Catalog</span>
-                  <span>→</span>
-                </Link>
-              </div>
-
-              {/* Suggested Product Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
-                {suggestedProducts.map((product) => (
-                  <ProductCard key={`suggested-${product.id}`} product={product} />
-                ))}
-              </div>
-            </section>
+            {/* SECTION 1: Suggested for You (signed-in users only) */}
+            <SuggestedForYou products={initialProducts} />
 
             {/* SECTION 2: Explore by Categories */}
             <section className="flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-12 border-t border-[#332D27]/80">

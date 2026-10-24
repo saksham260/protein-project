@@ -11,6 +11,8 @@ import { ProductWithVariants } from "@/types/product";
 export function SearchClient() {
   const searchParams = useSearchParams();
   const queryParam = searchParams.get("q") || "";
+  // While a search is active, the top search bar is the input: skip the big title and second search box
+  const hasQuery = queryParam.trim().length > 0;
 
   const [products, setProducts] = useState<ProductWithVariants[]>([]);
   const [loading, setLoading] = useState(false);
@@ -39,24 +41,32 @@ export function SearchClient() {
   }, [queryParam]);
 
   return (
-    <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 flex flex-col gap-12">
-      {/* Search Header */}
-      <div className="flex flex-col items-center text-center gap-4">
-        <span className="text-xs font-mono uppercase tracking-widest text-[#10B981] font-bold">
-          Database Search
-        </span>
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-          Find Any Protein Product in India
-        </h1>
-        <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-lg leading-relaxed font-sans">
-          Search by brand name (e.g. MuscleBlaze, The Whole Truth, Amul), protein source, or
-          formulation keywords.
-        </p>
+    <div
+      className={
+        hasQuery
+          ? "container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 flex flex-col gap-6"
+          : "container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 flex flex-col gap-12"
+      }
+    >
+      {/* Search Header (only before a search is made) */}
+      {!hasQuery && (
+        <div className="flex flex-col items-center text-center gap-4">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#10B981] font-bold">
+            Database Search
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            Find Any Protein Product in India
+          </h1>
+          <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-lg leading-relaxed font-sans">
+            Search by brand name (e.g. MuscleBlaze, The Whole Truth, Amul), protein source, or
+            formulation keywords.
+          </p>
 
-        <div className="w-full max-w-2xl mt-4">
-          <SearchBar initialValue={queryParam} autoFocus={!queryParam} />
+          <div className="w-full max-w-2xl mt-4">
+            <SearchBar initialValue={queryParam} autoFocus />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Results Header */}
       <div className="flex items-center justify-between border-b border-[#27272A] pb-4 font-mono text-xs">

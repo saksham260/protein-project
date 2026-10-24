@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { ProductVariant, Product, Brand, Category, VariantRedFlag } from "@/types/product";
@@ -62,6 +62,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     }
   };
 
+  const noImage = (
+    <div className="flex flex-col items-center justify-center text-center p-3 gap-1">
+      <span className="text-3xl sm:text-4xl">{category?.icon || "⚡"}</span>
+      <span className="text-xs uppercase font-mono tracking-widest text-[#F59E0B] font-bold">
+        {brand?.name || "Protein"}
+      </span>
+    </div>
+  );
+
   return (
     <Link
       href={`/product/${targetSlug}`}
@@ -70,20 +79,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Product Visual Area */}
       <div className="relative w-full h-36 sm:h-44 md:h-48 bg-[#141210] flex items-center justify-center overflow-hidden border-b border-[#332D27]">
         {imageUrl ? (
-          <Image
+          <ImageWithFallback
             src={imageUrl}
             alt={product.name}
             fill
             className="object-cover md:group-hover:scale-105 transition-transform duration-500 ease-out"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            fallback={noImage}
           />
         ) : (
-          <div className="flex flex-col items-center justify-center text-center p-3 gap-1">
-            <span className="text-3xl sm:text-4xl">{category?.icon || "⚡"}</span>
-            <span className="text-xs uppercase font-mono tracking-widest text-[#F59E0B] font-bold">
-              {brand?.name || "Protein"}
-            </span>
-          </div>
+          noImage
         )}
 
         {/* Soft Vignette Overlay */}

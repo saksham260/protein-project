@@ -108,17 +108,22 @@ export const LoginButton: React.FC<LoginButtonProps> = ({
 
       {/* Account menu */}
       {user && menuOpen && (
-        <div className="absolute top-full right-0 mt-2 z-50 min-w-[200px] rounded-xl bg-[#1C1916] border border-[#332D27] shadow-[0_8px_24px_rgba(0,0,0,0.8)] p-1.5 font-sans">
-          <p className="px-3 py-2 text-[11px] text-[#968E85] truncate max-w-[240px]">{user.email}</p>
+        <div className="absolute top-full right-0 mt-2 z-50 w-[260px] max-w-[calc(100vw-24px)] p-2 rounded-2xl bg-[#181614]/98 border border-[#332D27] shadow-[0_16px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl flex flex-col gap-1 font-sans">
+          <div className="px-3 py-1.5 border-b border-[#332D27]/80 flex flex-col gap-0.5 min-w-0">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-[#968E85] font-bold">Signed in</span>
+            <span className="text-xs text-[#F5F2EB] font-bold truncate">{displayName}</span>
+            <span className="text-[11px] text-[#968E85] truncate">{user.email}</span>
+          </div>
           <button
             type="button"
             onClick={() => {
               setMenuOpen(false);
               void signOut();
             }}
-            className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-[#F5F2EB] hover:bg-[#26221E] cursor-pointer"
+            className="mt-1 flex items-center gap-2.5 p-2.5 rounded-xl text-left text-xs font-bold text-[#F5F2EB] hover:bg-[#26221E] active:bg-[#26221E] transition-colors cursor-pointer"
           >
-            Sign out
+            <span className="text-base shrink-0">🚪</span>
+            <span>Sign out</span>
           </button>
         </div>
       )}
