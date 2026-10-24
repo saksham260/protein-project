@@ -214,7 +214,7 @@
     },
     {
       "handle": "choco-peanut-butter-protein-wafer",
-      "title": "Choco Peanut Butter Protein Wafer \u2014 Pack of 10",
+      "title": "Choco Peanut Butter Protein Wafer — Pack of 10",
       "images": [
         {
           "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/1_15.jpg?v=1782214909"
@@ -268,7 +268,7 @@
     },
     {
       "handle": "strawberry-creme-protein-wafer",
-      "title": "Strawberry Cr\u00e8me Protein Wafer \u2014 Pack of 10",
+      "title": "Strawberry Crème Protein Wafer — Pack of 10",
       "images": [
         {
           "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/1_16.jpg?v=1782214909"
@@ -286,7 +286,7 @@
     },
     {
       "handle": "cheese-protein-wafer",
-      "title": "Cheese Protein Wafer \u2014 Pack of 10",
+      "title": "Cheese Protein Wafer — Pack of 10",
       "images": [
         {
           "src": "https://cdn.shopify.com/s/files/1/0902/2590/1858/files/1_1_cd8f03eb-1994-49d0-96a7-bb18b9c8cadd.jpg?v=1783662537"
@@ -2065,7 +2065,7 @@
     },
     {
       "handle": "as-it-is-atom-nxt-protein",
-      "title": "AS-IT-IS ATOM NXT Yeast Protein | 31g Protein per Serving | 2.8g Leucine | DigeZyme\u00ae Enzymes & 1 Billion CFU Probiotics",
+      "title": "AS-IT-IS ATOM NXT Yeast Protein | 31g Protein per Serving | 2.8g Leucine | DigeZyme® Enzymes & 1 Billion CFU Probiotics",
       "images": [
         {
           "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/ATOM_NXT_Protein_500g_Cafe_Product_Front_Image_ad6e6e4a-5461-4366-b525-58d664f46418.jpg?v=1786078298"
@@ -2129,7 +2129,7 @@
     },
     {
       "handle": "atom-whey-protein",
-      "title": "AS-IT-IS ATOM Whey Protein | 27g Protein per Serving | DigeZyme\u00ae Enzymes & 1 Billion CFU Probiotics",
+      "title": "AS-IT-IS ATOM Whey Protein | 27g Protein per Serving | DigeZyme® Enzymes & 1 Billion CFU Probiotics",
       "images": [
         {
           "src": "https://cdn.shopify.com/s/files/1/0005/5335/3267/files/ATOM_Whey_Protein_DRC_1kg_New_Branding_Design_Product_front_image_1_1.jpg?v=1766468290"
@@ -4022,7 +4022,7 @@
     },
     {
       "handle": "max-protein-roots-cocoa-brownie-protein-bar",
-      "title": "Max Protein Roots \u2013 Cocoa Brownie Protein Bar",
+      "title": "Max Protein Roots – Cocoa Brownie Protein Bar",
       "images": [
         {
           "id": 46520464638174,
@@ -4057,7 +4057,7 @@
     },
     {
       "handle": "max-protein-roots-coffee-mocha-protein-bar",
-      "title": "Max Protein Roots \u2013 Coffee Mocha Protein Bar",
+      "title": "Max Protein Roots – Coffee Mocha Protein Bar",
       "images": [
         {
           "id": 46520556060894,
@@ -6991,7 +6991,7 @@
       ],
       "variants": [
         {
-          "title": "2 lbs / Caf\u00e9 Mocha",
+          "title": "2 lbs / Café Mocha",
           "price": "3299.00",
           "compare_at_price": "4399.00",
           "sku": "90200764",
@@ -8432,7 +8432,7 @@
     },
     {
       "handle": "protein-almonds-bar-peanuts-sea-salt-50-almonds",
-      "title": "Protein Almonds Bar \u2013 Peanuts & Sea Salt | 50% Almonds | Muscle Nectar",
+      "title": "Protein Almonds Bar – Peanuts & Sea Salt | 50% Almonds | Muscle Nectar",
       "images": [
         {
           "src": "https://cdn.shopify.com/s/files/1/0503/7844/0897/files/Muscle-Nectar-Protein-Almonds-Bar.jpg?v=1707200591"
@@ -10284,11 +10284,11 @@
     },
     {
       "handle": "100-performance-whey-caramel-creme-flavour-1-kg",
-      "title": "Avvatar Performance Whey | 1 Kg | Caramel Cr\u00e8me Flavour",
+      "title": "Avvatar Performance Whey | 1 Kg | Caramel Crème Flavour",
       "url": "https://www.avvatarindia.com/product/100-performance-whey-caramel-creme-flavour-1-kg",
       "variants": [
         {
-          "title": "Avvatar Performance Whey | 1 Kg | Caramel Cr\u00e8me Flavour",
+          "title": "Avvatar Performance Whey | 1 Kg | Caramel Crème Flavour",
           "price": "0",
           "compare_at_price": "0",
           "sku": "100-performance-whey-caramel-creme-flavour-1-kg",
@@ -15229,139 +15229,6 @@
           "available": true
         }
       ]
-    },
-    {
-      "handle": "amul-high-protein-paneer-400-g-or-pack-of-2",
-      "title": "Amul High Protein Paneer",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-paneer-400-g-or-pack-of-2",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/671b30a3caec6f032c8154ed/01-hero-image_amul-high-protein-paneer-400g-360x360.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Pack of 2 (800g)",
-          "price": "330.0",
-          "compare_at_price": "330.0",
-          "sku": "HPPCP01_2",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-whey-protein-32-g-or-pack-of-30-sachets",
-      "title": "Amul High Protein Whey Protein Sachets",
-      "url": "https://shop.amul.com/en/product/amul-whey-protein-32-g-or-pack-of-30-sachets",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/6523d269b4624b6c91f32572/01-hero-image_amul-whey-protein-960g-360x360.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Chocolate 30 Sachets",
-          "price": "2550.0",
-          "compare_at_price": "2550.0",
-          "sku": "ACWP01_30",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-high-protein-blueberry-shake-200-ml-or-pack-of-30",
-      "title": "Amul High Protein Blueberry Milkshake",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-blueberry-shake-200-ml-or-pack-of-30",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/651d0bb0f3bfadbbcc5f7214/01-hero-image-multipack-amul-protein-blueberry-shake-200ml-360x360.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Blueberry Shake (Pack of 30)",
-          "price": "1800.0",
-          "compare_at_price": "1800.0",
-          "sku": "AHPBS01_30",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-high-protein-buttermilk-200-ml-or-pack-of-30",
-      "title": "Amul High Protein Buttermilk",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-buttermilk-200-ml-or-pack-of-30",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/641a9c5dd94fc09d55a79318/01-hero-image_-multipack-30-360x360.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Spiced Buttermilk (Pack of 30)",
-          "price": "900.0",
-          "compare_at_price": "900.0",
-          "sku": "AHPBM01_30",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-high-protein-plain-lassi-200-ml-or-pack-of-30",
-      "title": "Amul High Protein Lassi",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-plain-lassi-200-ml-or-pack-of-30",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/66d15f3206e72f00e5bcef29/01-hero-image_multipack-30-360x360.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Plain Lassi (Pack of 30)",
-          "price": "900.0",
-          "compare_at_price": "900.0",
-          "sku": "AHPL01_30",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-high-protein-milk-250-ml-or-pack-of-30",
-      "title": "Amul High Protein Milk",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-milk-250-ml-or-pack-of-30",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/671b30a3caec6f032c8154ed/amul-high-protein-milk.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Pack of 30 (250ml)",
-          "price": "750.0",
-          "compare_at_price": "750.0",
-          "sku": "HPMILK_30",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-high-protein-dahi-400g",
-      "title": "Amul High Protein Probiotic Dahi",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-dahi-400g",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/671b30a3caec6f032c8154ed/amul-high-protein-dahi.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "400g Tub",
-          "price": "70.0",
-          "compare_at_price": "70.0",
-          "sku": "HPDAHI_400",
-          "available": true
-        }
-      ]
     }
   ],
   "onesciencenutrition.com": [
@@ -15589,120 +15456,6 @@
           "title": "Dark Choco Crunchy / 400g",
           "price": "499",
           "compare_at_price": "649",
-          "sku": "OSN-MUESLI-400G-DCC",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "iso-gold-protein-5lbs",
-      "title": "One Science Nutrition ISO Gold 100% Whey Isolate",
-      "url": "https://onesciencenutrition.com/products/iso-gold-protein-5lbs",
-      "images": [
-        {
-          "src": "https://cdn.shopify.com/s/files/1/0952/0483/5648/files/1_3ed7a5d3-97e8-431b-a9ca-d02a68b5f846.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Chocolate Charge 907g",
-          "price": "4699.0",
-          "compare_at_price": "4699.0",
-          "sku": "OSN-ISO-2LB-CC",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "tiger-combo-pack-nitra-whey-protein-4-lb-with-daily-multivitams-60-capsules",
-      "title": "One Science Nutrition Nitra Whey Protein",
-      "url": "https://onesciencenutrition.com/products/tiger-combo-pack-nitra-whey-protein-4-lb-with-daily-multivitams-60-capsules",
-      "images": [
-        {
-          "src": "https://cdn.shopify.com/s/files/1/0952/0483/5648/files/4lb-NitraWhey-Chocolatebrownie-Front_1.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Chocolate Brownie 907g",
-          "price": "3399.0",
-          "compare_at_price": "3399.0",
-          "sku": "OSN-NITRA-2LB-CB",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "ripped-professional-whey-4lbs",
-      "title": "One Science Nutrition Ripped Professional Whey Protein",
-      "url": "https://onesciencenutrition.com/products/ripped-professional-whey-4lbs",
-      "images": [
-        {
-          "src": "https://cdn.shopify.com/s/files/1/0952/0483/5648/files/Ripped_whey.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Chocolate 1.81kg",
-          "price": "6499.0",
-          "compare_at_price": "6499.0",
-          "sku": "OSN-RIPPED-4LB-CHOC",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "one-science-nutrition-plant-protein-pea-protein-isolate-1kg",
-      "title": "One Science Nutrition 100% Plant Pea Protein Isolate",
-      "url": "https://onesciencenutrition.com/products/one-science-nutrition-plant-protein-pea-protein-isolate-1kg",
-      "images": [
-        {
-          "src": "https://cdn.shopify.com/s/files/1/0952/0483/5648/files/1_1a73634e-6c40-4251-ac4e-e7ff5d43dd28.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Rich Chocolate 1kg",
-          "price": "3199.0",
-          "compare_at_price": "3199.0",
-          "sku": "OSN-PLANT-1KG-CHOC",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "one-science-nutrition-high-protein-oats-dark-chocolate",
-      "title": "One Science Nutrition High Protein Oats Dark Chocolate",
-      "url": "https://onesciencenutrition.com/products/one-science-nutrition-high-protein-oats-dark-chocolate",
-      "images": [
-        {
-          "src": "https://cdn.shopify.com/s/files/1/0952/0483/5648/files/1_8b572bc3-7bd3-4b08-b0a0-0be3bf27cb0f.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Dark Chocolate 400g",
-          "price": "599.0",
-          "compare_at_price": "599.0",
-          "sku": "OSN-OATS-400G-DC",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "one-science-nutrition-high-protein-muesli-dark-choco-crunchy",
-      "title": "One Science Nutrition High Protein Muesli Dark Choco Crunchy",
-      "url": "https://onesciencenutrition.com/products/one-science-nutrition-high-protein-muesli-dark-choco-crunchy",
-      "images": [
-        {
-          "src": "https://cdn.shopify.com/s/files/1/0952/0483/5648/files/1_f16895f9-8c21-4404-82fc-dbafbd309e7d.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Dark Choco Crunchy 400g",
-          "price": "649.0",
-          "compare_at_price": "649.0",
           "sku": "OSN-MUESLI-400G-DCC",
           "available": true
         }
@@ -15964,44 +15717,6 @@
           "price": "699",
           "compare_at_price": "1199",
           "sku": "NB-NUT-1035-03",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "nutrabay-whey-protein-concentrate",
-      "title": "Nutrabay Pure 100% Raw Whey Protein Concentrate",
-      "url": "https://nutrabay.com/product/nutrabay-whey-protein-concentrate",
-      "images": [
-        {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1001-01-1758998117.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Unflavoured 1kg",
-          "price": "2299.0",
-          "compare_at_price": "2299.0",
-          "sku": "NB-NUT-1001-01",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "nutrabay-wellness-vegan-plant-protein-powder-superfoods",
-      "title": "Nutrabay Wellness Vegan Plant Protein Powder with Superfoods",
-      "url": "https://nutrabay.com/product/nutrabay-wellness-vegan-plant-protein-powder-superfoods",
-      "images": [
-        {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1035-01-1758998117.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Rich Chocolate 1kg",
-          "price": "1699.0",
-          "compare_at_price": "1699.0",
-          "sku": "NB-NUT-1035-01",
           "available": true
         }
       ]
@@ -16551,7 +16266,7 @@
   "taalifoods.in": [
     {
       "handle": "masala-mania-pack-of-6",
-      "title": "Taali Protein Puffs \u2013 Masala Mania (60 g)",
+      "title": "Taali Protein Puffs – Masala Mania (60 g)",
       "url": "https://taalifoods.in/products/masala-mania-pack-of-6",
       "images": [
         {
@@ -16582,7 +16297,7 @@
     },
     {
       "handle": "taali-korean-style-protein-puffs-pack-of-6-korean-puff",
-      "title": "Taali Protein Puffs \u2013 Korean Style (Limited Edition) (60 g)",
+      "title": "Taali Protein Puffs – Korean Style (Limited Edition) (60 g)",
       "url": "https://taalifoods.in/products/taali-korean-style-protein-puffs-pack-of-6-korean-puff",
       "images": [
         {
@@ -16613,7 +16328,7 @@
     },
     {
       "handle": "pudina-pop-60gm-x-3",
-      "title": "Roasted Makhana Crunch \u2013 Pudina Pop (60 g)",
+      "title": "Roasted Makhana Crunch – Pudina Pop (60 g)",
       "url": "https://taalifoods.in/products/pudina-pop-60gm-x-3",
       "images": [
         {
@@ -16644,7 +16359,7 @@
     },
     {
       "handle": "taali-roasted-peanuts-korean-style-pack-of-4",
-      "title": "Taali Roasted Peanuts \u2013 Korean Style (140 g)",
+      "title": "Taali Roasted Peanuts – Korean Style (140 g)",
       "url": "https://taalifoods.in/products/taali-roasted-peanuts-korean-style-pack-of-4",
       "images": [
         {
@@ -17094,447 +16809,6 @@
           "price": "660.00",
           "compare_at_price": "660.00",
           "sku": "58522902",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "whey-protein-with-24-g-protein-5-4-g-bcaa",
-      "title": "XLR8 Sports Nutrition Whey Protein Powder 4 lbs",
-      "url": "https://xlr8sport.com/products/whey-protein-with-24-g-protein-5-4-g-bcaa",
-      "images": [
-        {
-          "src": "https://dukaan.b-cdn.net/700x700/webp/media/253c6f4c-d0b5-492c-8667-3e8aecc4b964.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "4 lbs / Milk Chocolate Fudge",
-          "price": "6499.0",
-          "compare_at_price": "6499.0",
-          "sku": "50656688",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "xlr8-whey-protein-with-24-g-protein-5-4-g-bcaa-cookies-and-cream",
-      "title": "XLR8 Sports Nutrition Whey Protein Powder 2 lbs",
-      "url": "https://xlr8sport.com/products/xlr8-whey-protein-with-24-g-protein-5-4-g-bcaa-cookies-and-cream",
-      "images": [
-        {
-          "src": "https://dukaan.b-cdn.net/700x700/webp/media/8c2a3e7e-fd7d-4eda-96e7-6a0fc45e53ee.png"
-        }
-      ],
-      "variants": [
-        {
-          "title": "2 lbs / Cookies & Cream",
-          "price": "3399.0",
-          "compare_at_price": "3399.0",
-          "sku": "50656573",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "xlr8-classic-whey-24-g-protein-5-5-bcaa-chocolate",
-      "title": "XLR8 Sports Nutrition Classic Whey Protein Powder 1kg",
-      "url": "https://xlr8sport.com/products/xlr8-classic-whey-24-g-protein-5-5-bcaa-chocolate",
-      "images": [
-        {
-          "src": "https://dukaan.b-cdn.net/700x700/webp/media/2e740955-bdac-4b4d-b478-83a1a4d328bd.jpeg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "1 kg / Chocolate",
-          "price": "1449.0",
-          "compare_at_price": "1449.0",
-          "sku": "61198295",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "xlr8-whey-protein-136gm-4-units-34gm-each",
-      "title": "XLR8 Sports Nutrition Whey Protein Powder Pack of 4 Sachets",
-      "url": "https://xlr8sport.com/products/xlr8-whey-protein-136gm-4-units-34gm-each",
-      "images": [
-        {
-          "src": "https://dukaan.b-cdn.net/700x700/webp/media/95edf8ae-05e4-4562-9298-175f19eef9f4.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Pack of 4 (136g)",
-          "price": "660.0",
-          "compare_at_price": "660.0",
-          "sku": "58522902",
-          "available": true
-        }
-      ]
-    }
-  ],
-  "www.avvatarindia.com": [
-    {
-      "handle": "100-performance-whey-belgain-chocolate-flavour-1-kg",
-      "title": "Avvatar 100% Performance Whey Protein",
-      "url": "https://www.avvatarindia.com/product/100-performance-whey-belgain-chocolate-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1736924408_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Belgian Chocolate 1kg",
-          "price": "6649.0",
-          "compare_at_price": "6649.0",
-          "sku": "100-performance-whey-belgain-chocolate-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "100-performance-whey-malai-kulfi-flavour-1-kg",
-      "title": "Avvatar 100% Performance Whey Protein",
-      "url": "https://www.avvatarindia.com/product/100-performance-whey-malai-kulfi-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1736165076_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Malai Kulfi 1kg",
-          "price": "6649.0",
-          "compare_at_price": "6649.0",
-          "sku": "100-performance-whey-malai-kulfi-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "100-performance-whey-unflavored-1-kg",
-      "title": "Avvatar 100% Performance Whey Protein",
-      "url": "https://www.avvatarindia.com/product/100-performance-whey-unflavored-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1736923624_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Raw Unflavoured 1kg",
-          "price": "6749.0",
-          "compare_at_price": "6749.0",
-          "sku": "100-performance-whey-unflavored-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "100-performance-whey-belgain-chocolate-flavour-2-kg",
-      "title": "Avvatar 100% Performance Whey Protein",
-      "url": "https://www.avvatarindia.com/product/100-performance-whey-belgain-chocolate-flavour-2-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1736924157_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Belgian Chocolate 2kg",
-          "price": "12899.0",
-          "compare_at_price": "12899.0",
-          "sku": "100-performance-whey-belgain-chocolate-flavour-2-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "100-performance-whey-malai-kulfi-flavour-2-kg",
-      "title": "Avvatar 100% Performance Whey Protein",
-      "url": "https://www.avvatarindia.com/product/100-performance-whey-malai-kulfi-flavour-2-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1736765177_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Malai Kulfi 2kg",
-          "price": "12899.0",
-          "compare_at_price": "12899.0",
-          "sku": "100-performance-whey-malai-kulfi-flavour-2-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "100-performance-whey-cold-coffee-flavour-2-kg",
-      "title": "Avvatar 100% Performance Whey Protein",
-      "url": "https://www.avvatarindia.com/product/100-performance-whey-cold-coffee-flavour-2-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1737017108_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Cold Coffee 2kg",
-          "price": "12899.0",
-          "compare_at_price": "12899.0",
-          "sku": "100-performance-whey-cold-coffee-flavour-2-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "isorich-protein-belgian-chocolate-flavour-1-kg",
-      "title": "Avvatar ISORICH Whey Protein Isolate",
-      "url": "https://www.avvatarindia.com/product/isorich-protein-belgian-chocolate-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1697612281_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Belgian Chocolate 1kg",
-          "price": "10399.0",
-          "compare_at_price": "10399.0",
-          "sku": "isorich-protein-belgian-chocolate-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "isorich-protein-malai-kulfi-flavour-1-kg",
-      "title": "Avvatar ISORICH Whey Protein Isolate",
-      "url": "https://www.avvatarindia.com/product/isorich-protein-malai-kulfi-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1697618942_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Malai Kulfi 1kg",
-          "price": "10399.0",
-          "compare_at_price": "10399.0",
-          "sku": "isorich-protein-malai-kulfi-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "isorich-protein-chocolate-hazelnut-flavour-1-kg",
-      "title": "Avvatar ISORICH Whey Protein Isolate",
-      "url": "https://www.avvatarindia.com/product/isorich-protein-chocolate-hazelnut-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1697618284_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Chocolate Hazelnut 1kg",
-          "price": "10399.0",
-          "compare_at_price": "10399.0",
-          "sku": "isorich-protein-chocolate-hazelnut-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "isorich-protein-belgian-chocolate-flavour-2-kg",
-      "title": "Avvatar ISORICH Whey Protein Isolate",
-      "url": "https://www.avvatarindia.com/product/isorich-protein-belgian-chocolate-flavour-2-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1697612484_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Belgian Chocolate 2kg",
-          "price": "19149.0",
-          "compare_at_price": "19149.0",
-          "sku": "isorich-protein-belgian-chocolate-flavour-2-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "isorich-protein-malai-kulfi-flavour-2-kg",
-      "title": "Avvatar ISORICH Whey Protein Isolate",
-      "url": "https://www.avvatarindia.com/product/isorich-protein-malai-kulfi-flavour-2-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1697619078_Isorich - FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Malai Kulfi 2kg",
-          "price": "19149.0",
-          "compare_at_price": "19149.0",
-          "sku": "isorich-protein-malai-kulfi-flavour-2-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "alpha-whey-belgian-chocolate-flavour-1-kg-2509104129-263",
-      "title": "Avvatar Alpha Whey Protein",
-      "url": "https://www.avvatarindia.com/product/alpha-whey-belgian-chocolate-flavour-1-kg-2509104129-263",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1757488289_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Belgian Chocolate 1kg",
-          "price": "4999.0",
-          "compare_at_price": "4999.0",
-          "sku": "alpha-whey-belgian-chocolate-flavour-1-kg-2509104129-263",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "alpha-whey-malai-kulfi-flavour-1-kg",
-      "title": "Avvatar Alpha Whey Protein",
-      "url": "https://www.avvatarindia.com/product/alpha-whey-malai-kulfi-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1757490800_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Malai Kulfi 1kg",
-          "price": "4999.0",
-          "compare_at_price": "4999.0",
-          "sku": "alpha-whey-malai-kulfi-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "alpha-whey-cold-coffee-flavour-1-kg",
-      "title": "Avvatar Alpha Whey Protein",
-      "url": "https://www.avvatarindia.com/product/alpha-whey-cold-coffee-flavour-1-kg",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1757489295_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Cold Coffee 1kg",
-          "price": "4999.0",
-          "compare_at_price": "4999.0",
-          "sku": "alpha-whey-cold-coffee-flavour-1-kg",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "alpha-whey-belgian-chocolate-flavour-2-kg-2509104551-890",
-      "title": "Avvatar Alpha Whey Protein",
-      "url": "https://www.avvatarindia.com/product/alpha-whey-belgian-chocolate-flavour-2-kg-2509104551-890",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1757488551_FOP.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Belgian Chocolate 2kg",
-          "price": "9749.0",
-          "compare_at_price": "9749.0",
-          "sku": "alpha-whey-belgian-chocolate-flavour-2-kg-2509104551-890",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "protein-wafer-bar-coffee-flavour-320g",
-      "title": "Avvatar Protein Wafer Bar",
-      "url": "https://www.avvatarindia.com/product/protein-wafer-bar-coffee-flavour-320g",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1754284949_WhatsApp Image 2025-07-25 at 12.08.28 PM.jpeg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Coffee Flavour (Pack of 8)",
-          "price": "792.0",
-          "compare_at_price": "792.0",
-          "sku": "protein-wafer-bar-coffee-flavour-320g",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "protein-wafer-bar-tiramisu-flavour-320g",
-      "title": "Avvatar Protein Wafer Bar",
-      "url": "https://www.avvatarindia.com/product/protein-wafer-bar-tiramisu-flavour-320g",
-      "images": [
-        {
-          "src": "https://www.avvatarindia.com/images/product_images/1764825611_WhatsApp Image 2025-12-04 at 10.33.07.jpeg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Tiramisu Flavour (Pack of 8)",
-          "price": "792.0",
-          "compare_at_price": "792.0",
-          "sku": "protein-wafer-bar-tiramisu-flavour-320g",
-          "available": true
-        }
-      ]
-    }
-  ],
-  "www.plixlife.com": [
-    {
-      "handle": "plant-protein-powder",
-      "title": "Plix EVOLVE 100% Plant Protein Powder",
-      "url": "https://www.plixlife.com/product/plant-protein-powder",
-      "images": [
-        {
-          "src": "https://plixlifefc-media.farziengineer.co/hosted/Evolve_aqualogica_image-ff087774d4d8.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Rich Chocolate 1kg (30 Scoops)",
-          "price": "2499.0",
-          "compare_at_price": "2499.0",
-          "sku": "PLX-EVL-1KG-CHOC",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "super-strength-fermented-yeast-protein",
-      "title": "Plix Super Strength Fermented Yeast Protein",
-      "url": "https://www.plixlife.com/product/super-strength-fermented-yeast-protein",
-      "images": [
-        {
-          "src": "https://plixlifefc-media.farziengineer.co/hosted/Pack_of_1_With_Icons_Super_Strength_fermented_yeast_protein_19-1-26-1e46e7093fb8.jpg"
-        }
-      ],
-      "variants": [
-        {
-          "title": "Milk Chocolate 1kg (27 Scoops)",
-          "price": "2700.0",
-          "compare_at_price": "2700.0",
-          "sku": "FG-SSP-POW-YEAST-CHOC-1KG",
           "available": true
         }
       ]

@@ -20,6 +20,9 @@ const CATEGORY_IMAGES: Record<string, string> = {
   "rtd-drinks": "/images/products/rtd-protein-drink.jpg",
   "savory-snacks": "/images/products/savory-snack-pack.jpg",
   "protein-spreads": "/images/products/peanut-butter-jar.jpg",
+  "breakfast-cereals": "/images/products/savory-snack-pack.jpg",
+  "dairy": "/images/products/rtd-protein-drink.jpg",
+  "cookies-baked": "/images/products/protein-bar-pack.jpg",
 };
 
 export interface HomeClientProps {
@@ -71,14 +74,10 @@ export const HomeClient: React.FC<HomeClientProps> = ({
   // Suggested for you (mix of 8 representative products across categories)
   const suggestedProducts = useMemo(() => {
     if (!initialProducts || initialProducts.length === 0) return [];
-    const powders = productsByCategory["protein-powders"] || [];
-    const bars = productsByCategory["protein-bars"] || [];
-    const drinks = productsByCategory["rtd-drinks"] || [];
-    const snacks = productsByCategory["savory-snacks"] || [];
-    const spreads = productsByCategory["protein-spreads"] || [];
-
+    const pools = CATEGORIES.map((c) => productsByCategory[c.slug] || []).filter(
+      (p) => p.length > 0
+    );
     const picked: ProductWithVariants[] = [];
-    const pools = [powders, bars, drinks, snacks, spreads].filter((p) => p.length > 0);
     let round = 0;
     while (picked.length < 8 && round < 10) {
       for (const pool of pools) {

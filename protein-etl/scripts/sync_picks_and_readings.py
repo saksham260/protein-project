@@ -95,22 +95,34 @@ def main():
             nut = v.get("nutrition", {})
             n_vals = [nut.get(k, 0.0) for k in NUTRIENT_KEYS]
             
+            d2c_price = next(
+                (l.get("platform_price_inr") for l in v.get("redirect_links", [])
+                 if l.get("platform") == "d2c" and l.get("platform_price_inr")),
+                None
+            )
+            price_val = float(d2c_price) if d2c_price is not None else float(v.get("mrp_inr", 0.0))
+            mrp_val = float(v.get("mrp_inr", price_val))
+
+            prof = v.get("protein_profile") or {}
+            
             reading = {
                 "i": curr_i,
-                "v": 0,
+                "v": v_idx,
                 "g": group_key,
                 "name": prod_name,
                 "variant": v.get("variant_name"),
                 "net": float(v.get("net_weight_g", 0.0)),
                 "serv": float(v.get("serving_size_g", 0.0)),
                 "label": v.get("serving_size_label") or f"{v.get('serving_size_g')}g",
-                "price": float(v.get("mrp_inr", 0.0)),
-                "mrp": float(v.get("mrp_inr", 0.0)),
+                "price": price_val,
+                "mrp": mrp_val,
                 "n": n_vals,
                 "ing": ", ".join(v.get("ingredient_list", [])) if isinstance(v.get("ingredient_list"), list) else str(v.get("ingredient_list", "")),
                 "allergens": v.get("allergens", []),
                 "tags": v.get("dietary_tags", []),
-                "is_vegan": is_vegan
+                "is_vegan": is_vegan,
+                "protein_tier": prof.get("protein_tier"),
+                "protein_source": prof.get("primary_protein_source"),
             }
             if nut.get("non_glycemic_polyols_g"):
                 reading["poly"] = float(nut["non_glycemic_polyols_g"])

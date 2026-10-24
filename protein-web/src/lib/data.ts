@@ -67,6 +67,8 @@ interface RawSeedVariant {
     url: string;
     platform_price_inr?: number | null;
   }>;
+  is_combo?: boolean;
+  is_available?: boolean;
 }
 
 interface RawSeedProduct {
@@ -76,7 +78,41 @@ interface RawSeedProduct {
   slug: string;
   description?: string | null;
   image_url?: string | null;
+  is_vegan?: boolean;
   variants?: RawSeedVariant[];
+}
+
+const defaultCategoryImages: Record<string, string> = {
+  "protein-powders": "/images/products/whey-protein-tub.jpg",
+  "protein-bars": "/images/products/protein-bar-pack.jpg",
+  "rtd-drinks": "/images/products/rtd-protein-drink.jpg",
+  "savory-snacks": "/images/products/savory-snack-pack.jpg",
+  "protein-spreads": "/images/products/peanut-butter-jar.jpg",
+  "breakfast-cereals": "/images/products/savory-snack-pack.jpg",
+  "dairy": "/images/products/rtd-protein-drink.jpg",
+  "cookies-baked": "/images/products/protein-bar-pack.jpg",
+};
+
+function normalizeTier(tier?: string | null): string {
+  if (!tier) return "Tier 2";
+  if (tier.startsWith("Tier 1")) return "Tier 1";
+  if (tier.startsWith("Tier 2")) return "Tier 2";
+  if (tier.startsWith("Tier 3")) return "Tier 3";
+  if (tier.startsWith("Tier 4")) return "Tier 4";
+  return tier;
+}
+
+function normalizeLiveProduct(p: ProductWithVariants): ProductWithVariants {
+  return {
+    ...p,
+    is_vegan: Boolean(p.is_vegan),
+    variants: (p.variants || []).map((v) => ({
+      ...v,
+      protein_tier: normalizeTier(v.protein_tier),
+      is_combo: Boolean(v.is_combo),
+      is_available: v.is_available ?? true,
+    })),
+  };
 }
 
 // Transform raw seed data to ProductWithVariants format
@@ -100,12 +136,11 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
       created_at: new Date().toISOString(),
     };
 
+    const fallbackImage =
+      defaultCategoryImages[p.category_slug] || "/images/products/whey-protein-tub.jpg";
+
     const variants = (p.variants || []).map((v, vIdx) => {
-      let tier = v.protein_profile?.protein_tier || "Tier 2";
-      if (tier.startsWith("Tier 1")) tier = "Tier 1";
-      else if (tier.startsWith("Tier 2")) tier = "Tier 2";
-      else if (tier.startsWith("Tier 3")) tier = "Tier 3";
-      else if (tier.startsWith("Tier 4")) tier = "Tier 4";
+      const tier = normalizeTier(v.protein_profile?.protein_tier);
 
       return {
         id: `variant-${idx}-${vIdx}`,
@@ -144,18 +179,10 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
         true_net_carbs_g: v.computed_metrics?.true_net_carbs_g ?? null,
         best_price_inr: v.computed_metrics?.best_price_inr ?? null,
         best_cost_per_g_protein: v.computed_metrics?.best_cost_per_g_protein ?? null,
-        image_url:
-          v.image_url ||
-          (p.category_slug === "protein-powders"
-            ? "/images/products/whey-protein-tub.jpg"
-            : p.category_slug === "protein-bars"
-            ? "/images/products/protein-bar-pack.jpg"
-            : p.category_slug === "rtd-drinks"
-            ? "/images/products/rtd-protein-drink.jpg"
-            : p.category_slug === "protein-spreads"
-            ? "/images/products/peanut-butter-jar.jpg"
-            : "/images/products/savory-snack-pack.jpg"),
+        image_url: v.image_url || fallbackImage,
         is_active: true,
+        is_combo: Boolean(v.is_combo),
+        is_available: v.is_available ?? true,
         last_verified_at: new Date().toISOString(),
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
@@ -182,16 +209,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
       };
     });
 
-    const defaultCategoryImages: Record<string, string> = {
-      "protein-powders": "/images/products/whey-protein-tub.jpg",
-      "protein-bars": "/images/products/protein-bar-pack.jpg",
-      "rtd-drinks": "/images/products/rtd-protein-drink.jpg",
-      "savory-snacks": "/images/products/savory-snack-pack.jpg",
-      "protein-spreads": "/images/products/peanut-butter-jar.jpg",
-    };
-
-    const resolvedImage =
-      p.image_url || defaultCategoryImages[p.category_slug] || "/images/products/whey-protein-tub.jpg";
+    const resolvedImage = p.image_url || fallbackImage;
 
     return {
       id: `product-${idx}`,
@@ -202,6 +220,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
       description: p.description || null,
       image_url: resolvedImage,
       is_active: true,
+      is_vegan: Boolean(p.is_vegan),
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       brand,
@@ -256,7 +275,7 @@ async function loadCatalog(): Promise<ProductWithVariants[]> {
         .select(PRODUCT_SELECT)
         .eq("is_active", true);
       if (!error && data && data.length > 0) {
-        return data as ProductWithVariants[];
+        return (data as ProductWithVariants[]).map(normalizeLiveProduct);
       }
     } catch {
       // Fall back to seed catalog on connection error
@@ -278,14 +297,32 @@ async function getVariantIdsAvailableNear(
 function variantMatches(
   v: ProductVariant,
   filters: QueryFilters,
-  availableNearIds: Set<string> | undefined
+  availableNearIds: Set<string> | undefined,
+  productIsVegan?: boolean
 ): boolean {
-  if (filters.proteinTiers?.length && !(v.protein_tier && filters.proteinTiers.includes(v.protein_tier))) {
-    return false;
+  if (filters.proteinTiers?.length) {
+    const normTier = normalizeTier(v.protein_tier);
+    if (
+      !v.protein_tier ||
+      (!filters.proteinTiers.includes(v.protein_tier) &&
+        !filters.proteinTiers.includes(normTier))
+    ) {
+      return false;
+    }
   }
   if (filters.dietaryTags?.length) {
     const tags = v.dietary_tags.map((t) => t.toLowerCase());
-    if (!filters.dietaryTags.every((tag) => tags.includes(tag.toLowerCase()))) return false;
+    if (
+      !filters.dietaryTags.every((tag) => {
+        const lower = tag.toLowerCase();
+        if (lower === "vegan") {
+          return Boolean(productIsVegan || tags.includes("vegan"));
+        }
+        return tags.includes(lower);
+      })
+    ) {
+      return false;
+    }
   }
   if (filters.excludeAllergens?.length) {
     const excluded = filters.excludeAllergens.map((e) => e.toLowerCase());
@@ -351,7 +388,9 @@ export function applyFilters(
     ) {
       continue;
     }
-    const variant = p.variants.find((v) => variantMatches(v, filters, availableNearIds));
+    const variant = p.variants.find((v) =>
+      variantMatches(v, filters, availableNearIds, p.is_vegan)
+    );
     if (variant) matches.push({ product: p, key: sortValue(variant, sort) });
   }
 
@@ -376,7 +415,7 @@ export async function getProductBySlug(slug: string): Promise<ProductWithVariant
         .eq("slug", slug)
         .single();
       if (!error && data) {
-        return data as ProductWithVariants;
+        return normalizeLiveProduct(data as ProductWithVariants);
       }
     } catch {
       // Fall back to seed catalog

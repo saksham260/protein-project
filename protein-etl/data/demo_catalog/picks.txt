@@ -197,30 +197,29 @@ in.fastandup.com|yeast-protein-unflavoured-1kg|protein-powders|Fast&Up
 in.fastandup.com|yeast-protein-coffee-1kg|protein-powders|Fast&Up
 asitisnutrition.com|as-it-is-atom-nxt-protein|protein-powders|AS-IT-IS Nutrition
 asitisnutrition.com|as-it-is-one-fermented-yeast-protein-unflavoured-unsweetened|protein-powders|AS-IT-IS Nutrition
-asitisnutrition.com|atom-whey-protein|protein-powders|AS-IT-IS Nutrition
 asitisnutrition.com|atom-whey-assorted-36-gms-pack-of-6|protein-powders|AS-IT-IS Nutrition
 alpino.store|super-bar-chocolate-40g|protein-bars|Alpino
 alpino.store|super-bar-cookies-n-cream|protein-bars|Alpino
 alpino.store|supernatural-peanut-protein-powder-cold-coffee-protein|protein-powders|Alpino
 alpino.store|alpino-chocolate-peanut-butter-smooth|protein-spreads|Alpino
 alpino.store|high-protein-dark-chocolate-peanut-butter-crunch|protein-spreads|Alpino
-www.avvatarindia.com|100-performance-whey-belgain-chocolate-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|100-performance-whey-malai-kulfi-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|100-performance-whey-unflavored-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|100-performance-whey-belgain-chocolate-flavour-2-kg|protein-powders|Avvatar
-www.avvatarindia.com|100-performance-whey-malai-kulfi-flavour-2-kg|protein-powders|Avvatar
-www.avvatarindia.com|100-performance-whey-cold-coffee-flavour-2-kg|protein-powders|Avvatar
-www.avvatarindia.com|isorich-protein-belgian-chocolate-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|isorich-protein-malai-kulfi-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|isorich-protein-chocolate-hazelnut-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|isorich-protein-belgian-chocolate-flavour-2-kg|protein-powders|Avvatar
-www.avvatarindia.com|isorich-protein-malai-kulfi-flavour-2-kg|protein-powders|Avvatar
-www.avvatarindia.com|alpha-whey-belgian-chocolate-flavour-1-kg-2509104129-263|protein-powders|Avvatar
-www.avvatarindia.com|alpha-whey-malai-kulfi-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|alpha-whey-cold-coffee-flavour-1-kg|protein-powders|Avvatar
-www.avvatarindia.com|alpha-whey-belgian-chocolate-flavour-2-kg-2509104551-890|protein-powders|Avvatar
-www.avvatarindia.com|protein-wafer-bar-coffee-flavour-320g|protein-bars|Avvatar
-www.avvatarindia.com|protein-wafer-bar-tiramisu-flavour-320g|protein-bars|Avvatar
+avvatarindia.com|100-performance-whey-belgain-chocolate-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|100-performance-whey-malai-kulfi-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|100-performance-whey-unflavored-1-kg|protein-powders|Avvatar
+avvatarindia.com|100-performance-whey-belgain-chocolate-flavour-2-kg|protein-powders|Avvatar
+avvatarindia.com|100-performance-whey-malai-kulfi-flavour-2-kg|protein-powders|Avvatar
+avvatarindia.com|100-performance-whey-cold-coffee-flavour-2-kg|protein-powders|Avvatar
+avvatarindia.com|isorich-protein-belgian-chocolate-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|isorich-protein-malai-kulfi-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|isorich-protein-chocolate-hazelnut-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|isorich-protein-belgian-chocolate-flavour-2-kg|protein-powders|Avvatar
+avvatarindia.com|isorich-protein-malai-kulfi-flavour-2-kg|protein-powders|Avvatar
+avvatarindia.com|alpha-whey-belgian-chocolate-flavour-1-kg-2509104129-263|protein-powders|Avvatar
+avvatarindia.com|alpha-whey-malai-kulfi-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|alpha-whey-cold-coffee-flavour-1-kg|protein-powders|Avvatar
+avvatarindia.com|alpha-whey-belgian-chocolate-flavour-2-kg-2509104551-890|protein-powders|Avvatar
+avvatarindia.com|protein-wafer-bar-coffee-flavour-320g|protein-bars|Avvatar
+avvatarindia.com|protein-wafer-bar-tiramisu-flavour-320g|protein-bars|Avvatar
 muscleblaze.com|muscleblaze-biozyme-performance-whey|protein-powders|MuscleBlaze
 www.fuelone.in|fuel-one-whey-protein|protein-powders|MuscleBlaze
 muscleblaze.com|muscleblaze-100-clean-raw-whey-protein-concentrate|protein-powders|MuscleBlaze
@@ -254,35 +253,35 @@ bagrrys.com|high-protein-oats-tangy-masala-25g-protein|breakfast-cereals|Bagrry'
 true-elements.com|high-protein-muesli-dark-chocolate-400g|breakfast-cereals|True Elements
 true-elements.com|high-protein-muesli-fruits-nut-seeds-400g|breakfast-cereals|True Elements
 true-elements.com|28g-high-protein-oats-400g|breakfast-cereals|True Elements
-shop.amul.com|amul-high-protein-paneer-400-g-or-pack-of-2|dairy|Amul
-shop.amul.com|amul-high-protein-paneer-400-g-or-pack-of-2|dairy|Amul
-shop.amul.com|amul-whey-protein-32-g-or-pack-of-30-sachets|protein-powders|Amul
-shop.amul.com|amul-whey-protein-32-g-or-pack-of-30-sachets|protein-powders|Amul
-shop.amul.com|amul-whey-protein-32-g-or-pack-of-30-sachets|protein-powders|Amul
-shop.amul.com|amul-whey-protein-32-g-or-pack-of-30-sachets|protein-powders|Amul
-shop.amul.com|amul-high-protein-blueberry-shake-200-ml-or-pack-of-30|dairy|Amul
-shop.amul.com|amul-high-protein-buttermilk-200-ml-or-pack-of-30|dairy|Amul
-shop.amul.com|amul-high-protein-plain-lassi-200-ml-or-pack-of-30|dairy|Amul
-shop.amul.com|amul-high-protein-plain-lassi-200-ml-or-pack-of-30|dairy|Amul
+shop.amul.com|amul-high-protein-paneer|dairy|Amul
+shop.amul.com|amul-high-protein-paneer|dairy|Amul
+shop.amul.com|amul-whey-protein-sachets|protein-powders|Amul
+shop.amul.com|amul-whey-protein-sachets|protein-powders|Amul
+shop.amul.com|amul-whey-protein-sachets|protein-powders|Amul
+shop.amul.com|amul-whey-protein-sachets|protein-powders|Amul
+shop.amul.com|amul-high-protein-milkshake|dairy|Amul
+shop.amul.com|amul-high-protein-buttermilk|dairy|Amul
+shop.amul.com|amul-high-protein-lassi|dairy|Amul
+shop.amul.com|amul-high-protein-lassi|dairy|Amul
 onesciencenutrition.com|one-science-nutrition-premium-whey-protein|protein-powders|One Science Nutrition
 onesciencenutrition.com|one-science-nutrition-premium-whey-protein|protein-powders|One Science Nutrition
 onesciencenutrition.com|one-science-nutrition-premium-whey-protein|protein-powders|One Science Nutrition
 onesciencenutrition.com|one-science-nutrition-premium-whey-protein|protein-powders|One Science Nutrition
 onesciencenutrition.com|one-science-nutrition-premium-whey-protein|protein-powders|One Science Nutrition
 onesciencenutrition.com|one-science-nutrition-premium-whey-protein|protein-powders|One Science Nutrition
-onesciencenutrition.com|iso-gold-protein-5lbs|protein-powders|One Science Nutrition
-onesciencenutrition.com|iso-gold-protein-5lbs|protein-powders|One Science Nutrition
-onesciencenutrition.com|iso-gold-protein-5lbs|protein-powders|One Science Nutrition
-onesciencenutrition.com|iso-gold-protein-5lbs|protein-powders|One Science Nutrition
-onesciencenutrition.com|tiger-combo-pack-nitra-whey-protein-4-lb-with-daily-multivitams-60-capsules|protein-powders|One Science Nutrition
-onesciencenutrition.com|tiger-combo-pack-nitra-whey-protein-4-lb-with-daily-multivitams-60-capsules|protein-powders|One Science Nutrition
-onesciencenutrition.com|tiger-combo-pack-nitra-whey-protein-4-lb-with-daily-multivitams-60-capsules|protein-powders|One Science Nutrition
-onesciencenutrition.com|tiger-combo-pack-nitra-whey-protein-4-lb-with-daily-multivitams-60-capsules|protein-powders|One Science Nutrition
-onesciencenutrition.com|ripped-professional-whey-4lbs|protein-powders|One Science Nutrition
-onesciencenutrition.com|ripped-professional-whey-4lbs|protein-powders|One Science Nutrition
-onesciencenutrition.com|one-science-nutrition-plant-protein-pea-protein-isolate-1kg|protein-powders|One Science Nutrition
-onesciencenutrition.com|one-science-nutrition-high-protein-oats-dark-chocolate|breakfast-cereals|One Science Nutrition
-onesciencenutrition.com|one-science-nutrition-high-protein-muesli-dark-choco-crunchy|breakfast-cereals|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-iso-gold-whey-isolate|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-iso-gold-whey-isolate|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-iso-gold-whey-isolate|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-iso-gold-whey-isolate|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-nitra-whey|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-nitra-whey|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-nitra-whey|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-nitra-whey|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-ripped-professional-whey|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-ripped-professional-whey|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-plant-protein-pea-isolate|protein-powders|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-high-protein-oats|breakfast-cereals|One Science Nutrition
+onesciencenutrition.com|one-science-nutrition-high-protein-muesli|breakfast-cereals|One Science Nutrition
 nutrabay.com|nutrabay-gold-100-whey-protein-concentrate|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-100-whey-protein-concentrate|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-100-whey-protein-concentrate|protein-powders|Nutrabay
@@ -294,9 +293,9 @@ nutrabay.com|nutrabay-gold-100-whey-protein-isolate|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-100-whey-protein-isolate|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-100-whey-protein-isolate|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-100-whey-protein-isolate|protein-powders|Nutrabay
-nutrabay.com|nutrabay-whey-protein-concentrate|protein-powders|Nutrabay
-nutrabay.com|nutrabay-whey-protein-concentrate|protein-powders|Nutrabay
-nutrabay.com|nutrabay-whey-protein-concentrate|protein-powders|Nutrabay
+nutrabay.com|nutrabay-pure-whey-protein-concentrate|protein-powders|Nutrabay
+nutrabay.com|nutrabay-pure-whey-protein-concentrate|protein-powders|Nutrabay
+nutrabay.com|nutrabay-pure-whey-protein-concentrate|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-tri-blend-whey-protein|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-tri-blend-whey-protein|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-tri-blend-whey-protein|protein-powders|Nutrabay
@@ -304,27 +303,27 @@ nutrabay.com|nutrabay-gold-tri-blend-whey-protein|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-hydrolyzed-pea-protein|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-hydrolyzed-pea-protein|protein-powders|Nutrabay
 nutrabay.com|nutrabay-gold-hydrolyzed-pea-protein|protein-powders|Nutrabay
-nutrabay.com|nutrabay-wellness-vegan-plant-protein-powder-superfoods|protein-powders|Nutrabay
-nutrabay.com|nutrabay-wellness-vegan-plant-protein-powder-superfoods|protein-powders|Nutrabay
-nutrabay.com|nutrabay-wellness-vegan-plant-protein-powder-superfoods|protein-powders|Nutrabay
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|plant-protein-powder|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-www.plixlife.com|super-strength-fermented-yeast-protein|protein-powders|Plix
-shop.amul.com|amul-high-protein-milk-250-ml-or-pack-of-30|dairy|Amul
-shop.amul.com|amul-high-protein-dahi-400g|dairy|Amul
+nutrabay.com|nutrabay-wellness-vegan-plant-protein-superfoods|protein-powders|Nutrabay
+nutrabay.com|nutrabay-wellness-vegan-plant-protein-superfoods|protein-powders|Nutrabay
+nutrabay.com|nutrabay-wellness-vegan-plant-protein-superfoods|protein-powders|Nutrabay
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-evolve-plant-protein-powder|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+plixlife.com|plix-super-strength-fermented-yeast-protein|protein-powders|Plix
+shop.amul.com|amul-high-protein-milk|dairy|Amul
+shop.amul.com|amul-high-protein-dahi|dairy|Amul
 opensecret.in|daily-whey-blend-of-whey-plant-protein-1kg|protein-powders|Open Secret
 opensecret.in|open-secret-high-protein-rusk-elaichi-80g|cookies-baked|Open Secret
 opensecret.in|choco-almond-story-box-x5-nutty-cookies|cookies-baked|Open Secret
@@ -352,10 +351,10 @@ boltnutritions.com|whey-isolate-protein-2lb|protein-powders|Bolt Nutrition
 boltnutritions.com|bolt-fermented-yeast-protein|protein-powders|Bolt Nutrition
 boltnutritions.com|bolt-plant-protein|protein-powders|Bolt Nutrition
 boltnutritions.com|protein-bar-22g-protein-cookies-cream|protein-bars|Bolt Nutrition
-xlr8sport.com|whey-protein-with-24-g-protein-5-4-g-bcaa|protein-powders|XLR8 Sports Nutrition
-xlr8sport.com|xlr8-whey-protein-with-24-g-protein-5-4-g-bcaa-cookies-and-cream|protein-powders|XLR8 Sports Nutrition
-xlr8sport.com|xlr8-classic-whey-24-g-protein-5-5-bcaa-chocolate|protein-powders|XLR8 Sports Nutrition
-xlr8sport.com|xlr8-whey-protein-136gm-4-units-34gm-each|protein-powders|XLR8 Sports Nutrition
+xlr8sport.com|xlr8-whey-protein-chocolate|protein-powders|XLR8 Sports Nutrition
+xlr8sport.com|xlr8-whey-protein-cookies-cream|protein-powders|XLR8 Sports Nutrition
+xlr8sport.com|xlr8-classic-whey-chocolate|protein-powders|XLR8 Sports Nutrition
+xlr8sport.com|xlr8-whey-protein-sachets|protein-powders|XLR8 Sports Nutrition
 yogabars.in|power-up-coffee-crush-butter-20g-protein-bar-70g|protein-bars|Yoga Bar
 www.muscleblaze.com|muscleblaze-biozyme-whey-isolate-rich-chocolate-1kg-32-servings|protein-powders|MuscleBlaze
 maxprotein.in|max-protein-bar-active-choco-slim|protein-bars|RiteBite Max Protein

@@ -26,6 +26,7 @@ NUTRIENT_KEYS = ["calories_kcal", "protein_g", "total_carbs_g", "total_fat_g", "
                  "cholesterol_mg", "dietary_fiber_g", "total_sugars_g", "added_sugars_g", "sodium_mg"]
 
 catalogs = json.load(open(HERE / "store_snapshot.json", encoding="utf-8"))
+tier_defs = json.load(open(REPO / "protein-etl/src/data/protein_sources.json", encoding="utf-8"))["tier_definitions"]
 
 
 def find_product(store, prefix):
@@ -126,6 +127,16 @@ for group_key, r_list in grouped_readings.items():
 
         is_avail = True if v.get("available") is None else bool(v.get("available"))
         is_combo = bool(r.get("combo", False))
+
+        tier_key = r.get("protein_tier") or primary_r.get("protein_tier")
+        source_key = r.get("protein_source") or primary_r.get("protein_source")
+        initial_profile = None
+        if tier_key and tier_key in tier_defs:
+            initial_profile = {
+                "primary_protein_source": source_key,
+                "protein_tier": tier_defs[tier_key]["label"],
+                "has_added_free_form_aminos": False,
+            }
         
         try:
             variant_obj = VariantCreate(
@@ -140,6 +151,7 @@ for group_key, r_list in grouped_readings.items():
                 ingredient_deck_raw=[{"name": x, "position": k + 1} for k, x in enumerate(ingredients)],
                 allergens=r.get("allergens", []),
                 dietary_tags=r.get("tags", []),
+                protein_profile=initial_profile,
                 image_url=r_rec["image_url"],
                 redirect_links=links,
                 is_combo=is_combo,
@@ -199,8 +211,8 @@ for prod, primary_r in products:
     for v, orig_v in zip(enriched_prod.variants, prod.variants):
         v.is_combo = orig_v.is_combo
         v.is_available = orig_v.is_available
-        # Enrich protein source if not set
-        if primary_r.get("protein_tier") and not v.ingredient_list:
+        # Enrich protein source if not set or unclassified
+        if primary_r.get("protein_tier") and (not v.ingredient_list or v.protein_profile.protein_tier in (None, "", "Unknown / Unclassified")):
             v.protein_profile.primary_protein_source = primary_r["protein_source"]
             v.protein_profile.protein_tier = tier_defs[primary_r["protein_tier"]]["label"]
     enriched.append(enriched_prod)

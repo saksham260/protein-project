@@ -22,7 +22,14 @@ export const ProteinTierBadge: React.FC<ProteinTierBadgeProps> = ({
     );
   }
 
-  const tierKey = (tier.startsWith("Tier") ? tier : `Tier ${tier}`) as keyof typeof PROTEIN_TIERS;
+  const matchedTier = tier.match(/Tier\s*[1-4]/i)?.[0];
+  const tierKey = (
+    matchedTier
+      ? matchedTier.replace(/\s+/g, " ").replace(/^tier/i, "Tier")
+      : tier.startsWith("Tier")
+      ? tier
+      : `Tier ${tier}`
+  ) as keyof typeof PROTEIN_TIERS;
   const config = PROTEIN_TIERS[tierKey];
   const isTier1 = tierKey === "Tier 1";
 

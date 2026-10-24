@@ -47,6 +47,30 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.bbassets.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.bigcommerce.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.nutrabay.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.b-cdn.net",
+      },
+      {
+        protocol: "https",
+        hostname: "**.hkrtcdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.farziengineer.co",
+      },
+      {
+        protocol: "https",
+        hostname: "**.avvatarindia.com",
+      },
     ],
   },
 };

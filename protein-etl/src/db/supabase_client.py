@@ -74,10 +74,19 @@ class SupabaseUploader:
             variant.red_flags = scan_ingredients_for_red_flags(variant.ingredient_list)
 
             # 3. Protein Tier Profile
-            variant.protein_profile = classify_protein_profile(
+            computed_profile = classify_protein_profile(
                 ingredients=variant.ingredient_list,
                 red_flags=variant.red_flags,
             )
+            if (
+                not variant.ingredient_list
+                and variant.protein_profile is not None
+                and variant.protein_profile.protein_tier
+                not in (None, "", "Unknown / Unclassified")
+            ):
+                pass
+            else:
+                variant.protein_profile = computed_profile
 
         return product
 
@@ -186,10 +195,15 @@ class SupabaseUploader:
             v_metrics = variant.computed_metrics
             v_profile = variant.protein_profile
 
+            v_slug = (
+                variant.slug
+                if variant.slug and variant.slug.startswith(f"{product.slug}-")
+                else f"{product.slug}-{variant.slug}"
+            )
             var_payload = {
                 "product_id": product_id,
                 "variant_name": variant.variant_name,
-                "slug": f"{product.slug}-{variant.slug}",
+                "slug": v_slug,
                 "sku": variant.sku,
                 "barcode_ean": variant.barcode_ean,
                 "mrp_inr": variant.mrp_inr,
