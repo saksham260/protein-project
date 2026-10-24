@@ -7,33 +7,61 @@ import { useAuth } from "@/context/AuthContext";
 import { getRecentActivity, recentProducts, type RecentProduct } from "@/lib/activity";
 import type { ProductWithVariants } from "@/types/product";
 
+const cacheKey = (userId: string) => `suggested:v1:${userId}`;
+
+/** Last list shown to this user, so the section can appear instantly on the next visit while fresh data loads. */
+function readCache(userId: string): RecentProduct[] | null {
+  try {
+    const raw = localStorage.getItem(cacheKey(userId));
+    return raw ? (JSON.parse(raw) as RecentProduct[]) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeCache(userId: string, items: RecentProduct[]) {
+  try {
+    localStorage.setItem(cacheKey(userId), JSON.stringify(items));
+  } catch {
+    // storage blocked: the section simply loads fresh each time
+  }
+}
+
 /** Home-page section for signed-in users: what they last viewed or clicked through to buy. Hidden when logged out. */
 export const SuggestedForYou: React.FC<{ products: ProductWithVariants[] }> = ({ products }) => {
   const { user, isReady } = useAuth();
   const userId = user?.id;
   const [loaded, setLoaded] = useState<{ userId: string; recent: RecentProduct[] } | null>(null);
 
+  // Only runs once a user exists (client side), so reading local storage here cannot cause a hydration mismatch.
+  const cached = useMemo(() => (userId ? readCache(userId) : null), [userId]);
+
   useEffect(() => {
     if (!userId) return;
     let isMounted = true;
     getRecentActivity(userId).then((rows) => {
-      if (isMounted) setLoaded({ userId, recent: recentProducts(rows) });
+      if (!isMounted) return;
+      const recent = recentProducts(rows);
+      writeCache(userId, recent);
+      setLoaded({ userId, recent });
     });
     return () => {
       isMounted = false;
     };
   }, [userId]);
 
+  const recent = loaded && loaded.userId === userId ? loaded.recent : cached;
+
   const items = useMemo(() => {
-    if (!loaded || loaded.userId !== userId) return null;
+    if (!recent) return null;
     const byId = new Map(products.map((p) => [p.id, p]));
-    return loaded.recent.flatMap((r) => {
+    return recent.flatMap((r) => {
       const product = byId.get(r.productId);
       return product ? [{ product, wentToBuy: r.wentToBuy }] : [];
     });
-  }, [loaded, userId, products]);
+  }, [recent, products]);
 
-  if (!isReady || !user || items === null) return null;
+  if (!isReady || !user) return null;
 
   return (
     <section className="flex flex-col gap-4 sm:gap-6 pt-1">
@@ -56,7 +84,14 @@ export const SuggestedForYou: React.FC<{ products: ProductWithVariants[] }> = ({
         </Link>
       </div>
 
-      {items.length === 0 ? (
+      {items === null ? (
+        // Holds the space while the list loads, so the page doesn't jump
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch" aria-hidden>
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="h-72 rounded-2xl bg-[#1C1916] border border-[#332D27] skeleton-shimmer" />
+          ))}
+        </div>
+      ) : items.length === 0 ? (
         <div className="flex flex-col items-center text-center gap-3 p-8 rounded-2xl bg-[#1C1916] border border-[#332D27]">
           <p className="text-sm text-[#968E85] max-w-md font-sans">
             Nothing here yet. Open a few products and the ones you look at, or click through to buy, will show up here.
