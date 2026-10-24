@@ -32,6 +32,7 @@ try:
     from src.discovery.ocr import OcrLabelReader
     from src.discovery.pipeline import DRAFTS_DIR, discover_brand, http_client
     from src.pricing.amazon import AmazonCreatorsClient
+    from src.pricing.d2c import HttpStoreFeed, poll_d2c_prices
     from src.pricing.poller import poll_amazon_prices, trigger_revalidate
 except (ImportError, ModuleNotFoundError):
     from db.supabase_client import SupabaseUploader
@@ -47,6 +48,7 @@ except (ImportError, ModuleNotFoundError):
     from discovery.ocr import OcrLabelReader
     from discovery.pipeline import DRAFTS_DIR, discover_brand, http_client
     from pricing.amazon import AmazonCreatorsClient
+    from pricing.d2c import HttpStoreFeed, poll_d2c_prices
     from pricing.poller import poll_amazon_prices, trigger_revalidate
 
 # Ensure UTF-8 output on Windows consoles
@@ -304,6 +306,44 @@ def run_poll_prices(dry_run: bool = False, force: bool = False) -> int:
     return 0
 
 
+def run_poll_d2c_prices(dry_run: bool = False, force: bool = False) -> int:
+    """Refresh brand-store prices in Supabase. Returns a process exit code (1 when too many stores fail)."""
+    supabase_url = os.getenv("SUPABASE_URL", "").strip()
+    supabase_key = os.getenv("SUPABASE_SERVICE_KEY", "").strip()
+    if not supabase_url or not supabase_key:
+        console.print("[red]SUPABASE_URL and SUPABASE_SERVICE_KEY are required (the poller reads links from the database).[/]")
+        return 1
+
+    from supabase import create_client
+
+    db = create_client(supabase_url, supabase_key)
+    console.print(f"[bold green]Polling brand-store prices[/] | Mode: {'DRY-RUN' if dry_run else 'LIVE'}")
+    summary = poll_d2c_prices(db, HttpStoreFeed(), dry_run=dry_run, force=force)
+
+    console.print(
+        f"{summary.stores} store(s) ({len(summary.failed_stores)} unreachable) | checked {summary.checked} link(s), "
+        f"{summary.changed} {'would change' if dry_run else 'changed'}, recomputed {summary.variants_recomputed} variant(s), "
+        f"skipped {len(summary.skipped)}."
+    )
+    for line in summary.changes:
+        console.print(f"  [cyan]change[/] {line}")
+    for reason in summary.skipped:
+        console.print(f"  [yellow]skipped[/] {reason}")
+    for reason in summary.failed_stores:
+        console.print(f"  [red]store failed[/] {reason}")
+
+    revalidate_url = os.getenv("REVALIDATE_URL", "").strip()
+    revalidate_secret = os.getenv("REVALIDATE_SECRET", "").strip()
+    if not dry_run and summary.changed and revalidate_url and revalidate_secret:
+        ok = trigger_revalidate(revalidate_url, revalidate_secret)
+        console.print("[green]Website pages refreshed.[/]" if ok else "[yellow]Website refresh request failed.[/]")
+
+    if summary.too_many_stores_failed:
+        console.print("[bold red]More than 30% of stores were unreachable - check the store list or your network.[/]")
+        return 1
+    return 0
+
+
 def load_brands(brands_file: str, only_brand: str | None) -> list[dict] | None:
     """Brands from the JSON file, optionally just one. None (after printing why) when the brand is unknown."""
     with open(brands_file, "r", encoding="utf-8") as f:
@@ -493,6 +533,9 @@ def main():
     poll_parser = subparsers.add_parser("poll-prices", help="Refresh Amazon prices in Supabase via the Creators API")
     poll_parser.add_argument("--force", action="store_true", help="Accept price changes larger than 50%%")
 
+    d2c_parser = subparsers.add_parser("poll-d2c-prices", help="Refresh brand-store (D2C) prices from each brand's public product feed")
+    d2c_parser.add_argument("--force", action="store_true", help="Accept price changes larger than 50%%")
+
     # Discovery subparsers
     discover_parser = subparsers.add_parser("discover", help="Find protein products on brand Shopify stores and draft them")
     discover_parser.add_argument("--brands", default=str(Path(_pkg_root) / "data" / "brands.json"), help="Brands JSON file")
@@ -519,6 +562,8 @@ def main():
         sys.exit(1 if run_check_links(args.path) else 0)
     elif args.command == "poll-prices":
         sys.exit(run_poll_prices(dry_run=args.dry_run, force=args.force))
+    elif args.command == "poll-d2c-prices":
+        sys.exit(run_poll_d2c_prices(dry_run=args.dry_run, force=args.force))
     elif args.command == "discover":
         sys.exit(run_discover(args.brands, args.brand, args.readers, not args.no_ai, args.refresh, args.limit))
     elif args.command == "compare-readers":

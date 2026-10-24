@@ -49,7 +49,15 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
   productName,
   variantId,
 }) => {
-  const platformsToDisplay: Platform[] = ["amazon", "blinkit", "zepto", "instamart"];
+  // The brand's own store is listed first, but only when we have a link to it.
+  const hasBrandStore = redirectLinks.some((l) => l.platform === "d2c");
+  const platformsToDisplay: Platform[] = [
+    ...(hasBrandStore ? (["d2c"] as Platform[]) : []),
+    "amazon",
+    "blinkit",
+    "zepto",
+    "instamart",
+  ];
   const { pincode } = usePincode();
   const [summaries, setSummaries] = useState<AvailabilitySummary[]>([]);
   const [askFor, setAskFor] = useState<QuickCommercePlatform | null>(null);

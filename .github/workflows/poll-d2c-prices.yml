@@ -1,0 +1,37 @@
+name: Poll brand-store prices
+
+on:
+  # Scheduled runs only fire from the default branch (main). Keep this commented until the
+  # catalog is uploaded to Supabase and a manual run has been checked.
+  # schedule:
+  #   - cron: "15 */6 * * *" # every 6 hours
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Report what would change without writing"
+        type: boolean
+        default: true
+      force:
+        description: "Accept price changes larger than 50%"
+        type: boolean
+        default: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: protein-etl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e .
+      - run: python src/cli.py ${{ inputs.dry_run && '--dry-run' || '' }} poll-d2c-prices ${{ inputs.force && '--force' || '' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          REVALIDATE_URL: ${{ secrets.REVALIDATE_URL }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}

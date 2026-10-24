@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Any, Optional, Protocol
+from typing import Any, Iterable, Optional, Protocol
 import httpx
 
 try:
@@ -109,22 +109,44 @@ def poll_amazon_prices(db: Any, amazon: OfferSource, dry_run: bool = False, forc
         if dry_run:
             continue
 
-        update = {"in_stock": offer.in_stock, "price_last_checked": now_iso, "external_id": asin}
-        if price is not None:
-            update["platform_price_inr"] = price
-        db.table("redirect_links").update(update).eq("id", link["id"]).execute()
+        write_price(db, link, "amazon", price, offer.in_stock, now_iso, extra={"external_id": asin})
+        touched_variants.add(link["variant_id"])
+
+    summary.variants_recomputed = recompute_best_prices(db, touched_variants)
+    return summary
+
+
+def write_price(
+    db: Any,
+    link: dict,
+    platform: str,
+    price: Optional[float],
+    in_stock: Optional[bool],
+    now_iso: str,
+    extra: Optional[dict] = None,
+    record_history: bool = True,
+) -> None:
+    """Save a polled price on its redirect link and (optionally) add a price_history row."""
+    update: dict[str, Any] = {"in_stock": in_stock, "price_last_checked": now_iso, **(extra or {})}
+    if price is not None:
+        update["platform_price_inr"] = price
+    db.table("redirect_links").update(update).eq("id", link["id"]).execute()
+    if record_history:
         db.table("price_history").insert(
             {
                 "variant_id": link["variant_id"],
-                "platform": "amazon",
+                "platform": platform,
                 "price_inr": price,
-                "in_stock": offer.in_stock,
+                "in_stock": in_stock,
                 "recorded_at": now_iso,
             }
         ).execute()
-        touched_variants.add(link["variant_id"])
 
-    for variant_id in touched_variants:
+
+def recompute_best_prices(db: Any, variant_ids: Iterable[str]) -> int:
+    """Refresh best_price_inr / best_cost_per_g_protein on each variant from all its platform prices."""
+    count = 0
+    for variant_id in variant_ids:
         variant = (
             db.table("product_variants")
             .select("protein_g, net_weight_g, serving_size_g")
@@ -138,9 +160,8 @@ def poll_amazon_prices(db: Any, amazon: OfferSource, dry_run: bool = False, forc
             for row in db.table("redirect_links").select("platform_price_inr").eq("variant_id", variant_id).execute().data
         ]
         db.table("product_variants").update(best_price_metrics(variant, prices)).eq("id", variant_id).execute()
-        summary.variants_recomputed += 1
-
-    return summary
+        count += 1
+    return count
 
 
 def trigger_revalidate(url: str, secret: str) -> bool:
