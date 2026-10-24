@@ -3,6 +3,7 @@ import {
   effectiveCostPerGram,
   proteinPer100Inr,
   caloriesPerGramProtein,
+  proteinPer100Calories,
   passesRange,
   METRIC_RANGES,
 } from "./metrics";
@@ -107,13 +108,37 @@ describe("Suite 13: Client-side Metrics", () => {
     });
   });
 
+  describe("proteinPer100Calories", () => {
+    it("calculates (protein / calories) * 100 correctly", () => {
+      const v = makeMockVariant({ calories_kcal: 200, protein_g: 25 });
+      expect(proteinPer100Calories(v)).toBe(12.5);
+    });
+
+    it("calculates pure protein variant correctly", () => {
+      const v = makeMockVariant({ calories_kcal: 100, protein_g: 25 });
+      expect(proteinPer100Calories(v)).toBe(25);
+    });
+
+    it("returns null when calories_kcal is 0", () => {
+      const v = makeMockVariant({ calories_kcal: 0, protein_g: 20 });
+      expect(proteinPer100Calories(v)).toBeNull();
+    });
+
+    it("returns null when protein_g is 0", () => {
+      const v = makeMockVariant({ calories_kcal: 200, protein_g: 0 });
+      expect(proteinPer100Calories(v)).toBeNull();
+    });
+  });
+
   describe("passesRange", () => {
     const maxCostConfig = METRIC_RANGES.find((r) => r.key === "maxCostPerG")!;
     const minDensityConfig = METRIC_RANGES.find((r) => r.key === "minDensity")!;
+    const minP100CalConfig = METRIC_RANGES.find((r) => r.key === "minProteinPer100Calories")!;
 
     it("returns true when limit is undefined", () => {
       const v = makeMockVariant();
       expect(passesRange(maxCostConfig, v, undefined)).toBe(true);
+      expect(passesRange(minP100CalConfig, v, undefined)).toBe(true);
     });
 
     it("handles max bound correctly", () => {
@@ -128,6 +153,14 @@ describe("Suite 13: Client-side Metrics", () => {
       expect(passesRange(minDensityConfig, v, 50.0)).toBe(true);
       expect(passesRange(minDensityConfig, v, 70.0)).toBe(false);
       expect(passesRange(minDensityConfig, v, 60.0)).toBe(true);
+    });
+
+    it("handles minProteinPer100Calories bound correctly", () => {
+      // 25g protein / 200 kcal = 12.5 g / 100 cal
+      const v = makeMockVariant({ calories_kcal: 200, protein_g: 25 });
+      expect(passesRange(minP100CalConfig, v, 10.0)).toBe(true);
+      expect(passesRange(minP100CalConfig, v, 15.0)).toBe(false);
+      expect(passesRange(minP100CalConfig, v, 12.5)).toBe(true);
     });
 
     it("returns false when metric value is null and limit is active", () => {

@@ -218,6 +218,25 @@ export function ExploreClient() {
                   <span>×</span>
                 </button>
               ))}
+
+              {METRIC_RANGES.map((range) => {
+                const val = filters[range.key];
+                if (val === undefined) return null;
+                return (
+                  <button
+                    key={range.key}
+                    type="button"
+                    onClick={() => setMetricRange(range.key, undefined)}
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-[#10B981]/15 text-[#34D399] border border-[#10B981]/30 hover:bg-[#10B981]/25 transition-colors"
+                  >
+                    <span>
+                      {range.label}: {range.bound === "max" ? "≤" : "≥"} {val}
+                      {range.unit === "%" ? "%" : ` ${range.unit}`}
+                    </span>
+                    <span>×</span>
+                  </button>
+                );
+              })}
             </div>
           )}
 

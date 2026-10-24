@@ -248,6 +248,7 @@ export interface QueryFilters {
   sortBy?: string;
   maxCostPerG?: number;
   minProteinPer100?: number;
+  minProteinPer100Calories?: number;
   maxCaloriesPerGProtein?: number;
   minDensity?: number;
   /** Keep only products reported available on quick commerce near `pincode`. */
