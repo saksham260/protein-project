@@ -493,7 +493,12 @@ export const Navbar: React.FC = () => {
         )}
 
         {/* Row 1: Navbar Brand, Search, Actions */}
-        <div className="container max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-1.5 sm:gap-4 relative z-20">
+        <div
+          className={cn(
+            "container max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-1.5 sm:gap-4 relative transition-all duration-200",
+            isSearchOpen ? "z-40" : "z-30"
+          )}
+        >
           {/* Logo & Brand Title */}
           <Link
             href="/"

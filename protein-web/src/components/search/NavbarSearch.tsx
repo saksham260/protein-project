@@ -194,6 +194,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       ref={containerRef}
       className={cn(
         "relative md:flex-1 md:w-full md:max-w-xl md:transition-none",
+        isOpen && query.trim() ? "z-50" : "z-30",
         isExpanded
           ? "flex-1 w-full max-w-xl transition-[max-width,width,flex] duration-300 ease-out"
           : "max-md:w-10 max-md:max-w-[40px] max-md:shrink-0 transition-[max-width,width,flex] duration-300 ease-out",
@@ -277,7 +278,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
 
       {/* Live Dropdown Suggestions */}
       {isOpen && query.trim() && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute top-full left-0 right-0 z-[100] mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
           {isLoading ? (
             <div className="p-4 text-[#968E85] text-center">
               Searching verified database...

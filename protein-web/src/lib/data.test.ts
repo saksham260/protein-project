@@ -132,6 +132,8 @@ describe("Suite 17: Data Layer and Filtering", () => {
         best_cost_per_g_protein: 7.0,
         best_price_inr: 140,
         mrp_inr: 150,
+        calories_kcal: 200,
+        protein_g: 10,
         protein_density_pct: 37.7,
         red_flags: [
           {
@@ -215,6 +217,12 @@ describe("Suite 17: Data Layer and Filtering", () => {
     const res = applyFilters(products, { minDensity: 50.0 });
     expect(res.length).toBe(1);
     expect(res[0].id).toBe("p-1"); // p1 is 84.75%, p2 is 37.7%
+  });
+
+  it("filters by metric range (minProteinPer100Calories)", () => {
+    const res = applyFilters(products, { minProteinPer100Calories: 15.0 });
+    expect(res.length).toBe(1);
+    expect(res[0].id).toBe("p-1"); // p1 is 21.19 g/100cal, p2 is 5.0 g/100cal
   });
 
   it("filters by nearMe with availableNearIds", () => {
