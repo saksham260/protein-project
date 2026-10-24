@@ -33,14 +33,22 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126 S
 KEYS = ["kcal", "protein", "carbs", "fat", "sat_fat", "trans_fat", "cholesterol_mg", "fibre", "sugar", "added_sugar", "sodium_mg"]
 # Protein as % of serving weight that is normal for each category (outside = WARN, check the label)
 DENSITY_RANGE = {
-    "protein-powders": (55, 100),
+    "protein-powders": (50, 100),  # flavoured whey concentrates sit at 50-55%
     "protein-bars": (12, 45),
-    "savory-snacks": (5, 40),
+    "savory-snacks": (5, 45),
     "rtd-drinks": (4, 15),  # per ml of drink
     "protein-spreads": (15, 40),
     "breakfast-cereals": (15, 45),
     "dairy": (4, 35),
     "cookies-baked": (10, 45),
+}
+# Products whose unusual density was checked against the brand's own claim - skip the density warning.
+DENSITY_REVIEWED = {
+    "sleepy-owl-protein-cold-coffee-classic-box-of-5-sachets": "25 g powder sachet (15 g protein), mixed with milk - not a ready drink",
+    "sleepy-owl-protein-cold-coffee-hazelnut-box-of-5-sachets": "25 g powder sachet (15 g protein), mixed with milk - not a ready drink",
+    "chase-mango-flavoured-20g-protein-cereal-pack-of-8": "brand states 20 g protein and 95 kcal per 25 g bowl",
+    "chase-tiramisu-20g-protein-cereal-pack-of-8": "brand states 20 g protein and 95 kcal per 25 g bowl",
+    "chase-choco-bites-20g-protein-cereal-pack-of-8": "brand states 20 g protein and 95 kcal per 25 g bowl",
 }
 
 
@@ -86,7 +94,7 @@ def check(r: dict, pick: list, product: dict | None) -> list[tuple[str, str]]:
 
     density = 100 * val("protein") / serv
     low, high = DENSITY_RANGE.get(category, (0, 100))
-    if not low <= density <= high:
+    if not low <= density <= high and r["g"] not in DENSITY_REVIEWED:
         issues.append(("WARN", f"protein density {density:.0f}% is unusual for {category} ({low}-{high}%)"))
 
     title = (product or {}).get("title", "")

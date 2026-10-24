@@ -45436,11 +45436,6 @@
         "image_url": "https://epigamiastore.com/cdn/shop/files/Smoothie_Strawberry_01_750afe84-af22-4e0d-981a-c029eb1ef633.png?v=1750323334",
         "redirect_links": [
           {
-            "platform": "d2c",
-            "url": "https://unknown.com/products/epigamia-high-protein-greek-yogurt-drink-strawberry-180ml",
-            "platform_price_inr": 80.0
-          },
-          {
             "platform": "amazon",
             "url": "https://www.amazon.in/s?k=Epigamia+High+Protein+Greek+Yogurt+Drink+Strawberry+180ml",
             "platform_price_inr": null
@@ -45665,11 +45660,6 @@
         ],
         "image_url": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80",
         "redirect_links": [
-          {
-            "platform": "d2c",
-            "url": "https://unknown.com/products/yoga-bar-high-protein-oats-crisps-peri-peri-50g",
-            "platform_price_inr": 75.0
-          },
           {
             "platform": "amazon",
             "url": "https://www.amazon.in/s?k=Yoga+Bar+High+Protein+Oats+Crisps+Peri+Peri+50g",
@@ -46021,11 +46011,6 @@
         ],
         "image_url": "https://cdn.shopify.com/s/files/1/0281/7507/3373/files/8.webp?v=1788514782",
         "redirect_links": [
-          {
-            "platform": "d2c",
-            "url": "https://unknown.com/products/cosmix-plant-protein-powder-indonesian-cacao-750g-20-servings",
-            "platform_price_inr": 2150.0
-          },
           {
             "platform": "amazon",
             "url": "https://www.amazon.in/s?k=Cosmix+Plant+Protein+Powder+Indonesian+Cacao+750g+%2820+Servings%29",
@@ -46398,11 +46383,6 @@
         "image_url": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
         "redirect_links": [
           {
-            "platform": "d2c",
-            "url": "https://unknown.com/products/the-whole-truth-protein-namkeen-mixture-roasted-mixture-120g",
-            "platform_price_inr": 199.0
-          },
-          {
             "platform": "amazon",
             "url": "https://www.amazon.in/s?k=The+Whole+Truth+Protein+Namkeen+Mixture+Roasted+Mixture+120g",
             "platform_price_inr": null
@@ -46434,128 +46414,6 @@
         "protein_profile": {
           "primary_protein_source": "Pea Protein Isolate",
           "protein_tier": "Tier 3 – Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
-          "has_added_free_form_aminos": false
-        },
-        "is_combo": false,
-        "is_available": true
-      }
-    ]
-  },
-  {
-    "name": "Warm Cocoa Protein Bar",
-    "brand_name": "Phab",
-    "category_slug": "protein-bars",
-    "slug": "phab-warm-cocoa-protein-bar",
-    "description": null,
-    "image_url": "https://cdn.shopify.com/s/files/1/0563/1891/8790/files/Frame2087330034.webp?v=1784525025",
-    "is_vegan": false,
-    "variants": [
-      {
-        "variant_name": "Single Bar 55g",
-        "slug": "single-bar-55g",
-        "sku": "6000089",
-        "barcode_ean": null,
-        "mrp_inr": 130.0,
-        "net_weight_g": 55.0,
-        "serving_size_g": 55.0,
-        "servings_per_pack": 1,
-        "serving_size_label": "55.0g",
-        "nutrition": {
-          "calories_kcal": 210.0,
-          "protein_g": 17.0,
-          "total_fat_g": 7.0,
-          "saturated_fat_g": 2.0,
-          "trans_fat_g": 0.0,
-          "cholesterol_mg": 5.0,
-          "total_carbs_g": 22.0,
-          "dietary_fiber_g": 6.0,
-          "total_sugars_g": 2.0,
-          "added_sugars_g": 0.0,
-          "sodium_mg": 85.0,
-          "non_glycemic_polyols_g": 0.0,
-          "additional_nutrients": {}
-        },
-        "ingredient_list": [
-          "Whey Protein Concentrate",
-          "Milk Protein Isolate",
-          "Almonds",
-          "Fructooligosaccharides",
-          "Cocoa Mass",
-          "Steviol Glycosides"
-        ],
-        "ingredient_deck_raw": [
-          {
-            "name": "Whey Protein Concentrate",
-            "position": 1
-          },
-          {
-            "name": "Milk Protein Isolate",
-            "position": 2
-          },
-          {
-            "name": "Almonds",
-            "position": 3
-          },
-          {
-            "name": "Fructooligosaccharides",
-            "position": 4
-          },
-          {
-            "name": "Cocoa Mass",
-            "position": 5
-          },
-          {
-            "name": "Steviol Glycosides",
-            "position": 6
-          }
-        ],
-        "allergens": [
-          "Milk",
-          "Tree Nuts"
-        ],
-        "dietary_tags": [
-          "Vegetarian",
-          "Gluten-Free"
-        ],
-        "image_url": "https://cdn.shopify.com/s/files/1/0563/1891/8790/files/Frame2087330034.webp?v=1784525025",
-        "redirect_links": [
-          {
-            "platform": "d2c",
-            "url": "https://getphab.com/products/phab-21g-protein-bar-chocolate-brownie",
-            "platform_price_inr": 130.0
-          },
-          {
-            "platform": "amazon",
-            "url": "https://www.amazon.in/s?k=Phab+Warm+Cocoa+Protein+Bar+Single+Bar+55g",
-            "platform_price_inr": null
-          },
-          {
-            "platform": "blinkit",
-            "url": "https://blinkit.com/s/?q=Phab+Warm+Cocoa+Protein+Bar+Single+Bar+55g",
-            "platform_price_inr": null
-          },
-          {
-            "platform": "zepto",
-            "url": "https://www.zeptonow.com/search?query=Phab+Warm+Cocoa+Protein+Bar+Single+Bar+55g",
-            "platform_price_inr": null
-          },
-          {
-            "platform": "instamart",
-            "url": "https://www.swiggy.com/instamart/search?query=Phab+Warm+Cocoa+Protein+Bar+Single+Bar+55g",
-            "platform_price_inr": null
-          }
-        ],
-        "computed_metrics": {
-          "cost_per_g_protein": 7.65,
-          "best_price_inr": 130.0,
-          "best_cost_per_g_protein": 7.65,
-          "protein_density_pct": 32.38,
-          "true_net_carbs_g": 16.0
-        },
-        "red_flags": [],
-        "protein_profile": {
-          "primary_protein_source": "Whey Protein Concentrate",
-          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
