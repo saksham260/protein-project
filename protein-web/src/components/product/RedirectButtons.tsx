@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { usePincode } from "@/hooks/usePincode";
 import { getAvailabilitySummaries, isReportedAvailable, reportAvailability } from "@/lib/availability";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { useAuth } from "@/context/AuthContext";
+import { logActivity } from "@/lib/activity";
 import { PincodeInput } from "@/components/location/PincodeInput";
 
 export interface RedirectButtonsProps {
@@ -16,6 +18,8 @@ export interface RedirectButtonsProps {
   brandName: string;
   productName: string;
   variantId?: string;
+  /** When set, clicks through to a purchase page are saved to the signed-in user's activity. */
+  productId?: string;
 }
 
 const QUICK_COMMERCE: QuickCommercePlatform[] = ["blinkit", "zepto", "instamart"];
@@ -48,7 +52,9 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
   brandName,
   productName,
   variantId,
+  productId,
 }) => {
+  const { user } = useAuth();
   // The brand's own store is listed first, but only when we have a link to it.
   const hasBrandStore = redirectLinks.some((l) => l.platform === "d2c");
   const platformsToDisplay: Platform[] = [
@@ -143,6 +149,9 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
+              if (user && productId) {
+                void logActivity(user.id, { productId, variantId, eventType: "purchase_click", platform: item.platform });
+              }
               if (isQuickCommerce(item.platform) && canReport) {
                 setAskFor(item.platform);
                 setThanked(false);
