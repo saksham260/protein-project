@@ -233,10 +233,19 @@ describe("Suite 17: Data Layer and Filtering", () => {
   });
 
   describe("sorting", () => {
-    it("sorts by cost_per_g_asc by default", () => {
-      const res = applyFilters(products);
+    it("sorts by cost_per_g_asc when asked", () => {
+      const res = applyFilters(products, { sortBy: "cost_per_g_asc" });
       expect(res[0].id).toBe("p-1"); // ₹4.0/g vs ₹7.0/g
       expect(res[1].id).toBe("p-2");
+    });
+
+    it("defaults to featured: individual items before multi-packs, bigger brands first", () => {
+      const withBrand = (name: string) => ({ ...makeProduct().brand, name });
+      const bigSingle = makeProduct({ id: "big", name: "Whey A", brand: withBrand("MuscleBlaze") });
+      const smallSingle = makeProduct({ id: "small", name: "Whey B", brand: withBrand("Nobody Yet") });
+      const bigMulti = makeProduct({ id: "multi", name: "Whey C (Pack of 6)", brand: withBrand("MuscleBlaze") });
+      const res = applyFilters([bigMulti, smallSingle, bigSingle]);
+      expect(res.map((p) => p.id)).toEqual(["big", "small", "multi"]);
     });
 
     it("sorts by density_desc", () => {
