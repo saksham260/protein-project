@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CATEGORIES } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 
 export interface MobileNavProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export interface MobileNavProps {
 
 export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
   const { itemCount, openCart } = useCart();
+  const { user, isReady, isAvailable, signInWithGoogle, signOut } = useAuth();
   const [showLoginToast, setShowLoginToast] = useState(false);
 
   // Lock body scroll when mobile nav is open
@@ -105,15 +107,23 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              setShowLoginToast(true);
-              setTimeout(() => setShowLoginToast(false), 2500);
+              if (user) {
+                onClose();
+                void signOut();
+              } else if (isAvailable) {
+                void signInWithGoogle();
+              } else {
+                setShowLoginToast(true);
+                setTimeout(() => setShowLoginToast(false), 2500);
+              }
             }}
+            disabled={!isReady}
             className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-[#18181B] border border-[#27272A] text-[#E4E4E7] text-xs font-medium active:scale-[0.98] transition-all relative"
           >
-            <span>👤 Login</span>
+            <span>{user ? "👤 Sign out" : "👤 Login"}</span>
             {showLoginToast && (
               <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-[#18181B] border border-[#10B981]/50 text-[10px] text-white shadow-lg">
-                Coming soon
+                Login isn&apos;t set up yet
               </span>
             )}
           </button>

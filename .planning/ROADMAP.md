@@ -63,7 +63,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Supabase Auth integration (Google OAuth, callback routes, session middleware, login/signup UI).
+- [x] 03-01: Supabase Auth integration (Google OAuth, callback routes, session proxy, login UI). Code done 2026-10-24; needs Google/Supabase dashboard setup — see documentation/phase3-google-auth-walkthrough.md.
 - [ ] 03-02: User preferences form, favorites CRUD operations, and rule-based SQL recommendation engine.
 
 ---
@@ -94,5 +94,5 @@ Phases execute in numeric order: 1 ➔ 2 ➔ 3 ➔ 4
 |---|---|---|---|
 | 1. Foundation & Data Ingestion Pipeline | 3/3 | Complete | 2026-09-11 |
 | 2. Core Consumer Web App & Discovery | 3/3 | Complete | 2026-09-13 |
-| 3. User Auth & Personalization Dashboard | 0/2 | Not started | - |
+| 3. User Auth & Personalization Dashboard | 1/2 | In progress | - |
 | 4. SEO, Launch Optimization & Catalog Expansion | 0/2 | Not started | - |

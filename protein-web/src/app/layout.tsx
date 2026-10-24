@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { CategoryProvider } from "@/context/CategoryContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
@@ -40,16 +41,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans antialiased selection:bg-[var(--color-primary)] selection:text-white relative">
-        <CartProvider>
-          <CategoryProvider>
-            <div className="relative z-10 flex flex-col min-h-screen">
-              <Navbar />
-              <main className="flex-1 w-full">{children}</main>
-              <Footer />
-            </div>
-            <CartDrawer />
-          </CategoryProvider>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <CategoryProvider>
+              <div className="relative z-10 flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-1 w-full">{children}</main>
+                <Footer />
+              </div>
+              <CartDrawer />
+            </CategoryProvider>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 
 export interface LoginButtonProps {
   className?: string;
@@ -12,11 +13,26 @@ export const LoginButton: React.FC<LoginButtonProps> = ({
   className,
   hideTextOnMobile = false,
 }) => {
+  const { user, isReady, isAvailable, signInWithGoogle, signOut } = useAuth();
   const [showToast, setShowToast] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const displayName: string =
+    user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || "Account";
+  const firstName = displayName.split(" ")[0];
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (user) {
+      setMenuOpen((open) => !open);
+      return;
+    }
+    if (isAvailable) {
+      void signInWithGoogle();
+      return;
+    }
     setShowToast(true);
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
@@ -30,12 +46,24 @@ export const LoginButton: React.FC<LoginButtonProps> = ({
     };
   }, []);
 
+  // Close the account menu when clicking elsewhere
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) setMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [menuOpen]);
+
   return (
-    <div className="relative inline-flex items-center">
+    <div ref={wrapperRef} className="relative inline-flex items-center">
       <button
         type="button"
         onClick={handleClick}
-        aria-label="Account Login"
+        aria-label={user ? "Account menu" : "Login with Google"}
+        aria-expanded={user ? menuOpen : undefined}
+        disabled={!isReady}
         className={cn(
           "group flex items-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer shrink-0 border select-none touch-manipulation",
           hideTextOnMobile ? "max-md:px-2.5 px-3 sm:px-4" : "px-2.5 sm:px-4",
@@ -66,7 +94,7 @@ export const LoginButton: React.FC<LoginButtonProps> = ({
             hideTextOnMobile ? "max-md:hidden" : "inline"
           )}
         >
-          Login
+          {user ? firstName : "Login"}
         </span>
       </button>
 
@@ -74,7 +102,24 @@ export const LoginButton: React.FC<LoginButtonProps> = ({
       {showToast && (
         <div className="absolute top-full right-0 mt-2 z-50 whitespace-nowrap px-3 py-1.5 rounded-xl bg-[#1C1916] border border-[#D97706]/40 shadow-[0_8px_24px_rgba(0,0,0,0.8)] text-[#F5F2EB] text-[11px] font-sans flex items-center gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
           <span className="w-2 h-2 rounded-full bg-[#D97706] animate-pulse" />
-          <span>Coming soon — Login with Google</span>
+          <span>Login isn&apos;t set up yet</span>
+        </div>
+      )}
+
+      {/* Account menu */}
+      {user && menuOpen && (
+        <div className="absolute top-full right-0 mt-2 z-50 min-w-[200px] rounded-xl bg-[#1C1916] border border-[#332D27] shadow-[0_8px_24px_rgba(0,0,0,0.8)] p-1.5 font-sans">
+          <p className="px-3 py-2 text-[11px] text-[#968E85] truncate max-w-[240px]">{user.email}</p>
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              void signOut();
+            }}
+            className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-[#F5F2EB] hover:bg-[#26221E] cursor-pointer"
+          >
+            Sign out
+          </button>
         </div>
       )}
     </div>
