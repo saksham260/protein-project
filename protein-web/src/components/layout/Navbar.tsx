@@ -493,7 +493,7 @@ export const Navbar: React.FC = () => {
         )}
 
         {/* Row 1: Navbar Brand, Search, Actions */}
-        <div className="container max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-1.5 sm:gap-4 relative z-10">
+        <div className="container max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-1.5 sm:gap-4 relative z-20">
           {/* Logo & Brand Title */}
           <Link
             href="/"
@@ -540,7 +540,7 @@ export const Navbar: React.FC = () => {
         {/* Row 2: Product Category Tabs */}
         <div className="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex justify-center relative z-10 pb-2.5 pt-0">
           {/* Desktop Version: Primary category tabs + More Categories Dropdown */}
-          <div className="hidden md:flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth w-auto relative">
+          <div className="hidden md:flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 w-auto relative">
             {PRIMARY_CATEGORY_TABS.map((tab) => {
               const currentCategorySlug = pathname.startsWith("/category/")
                 ? pathname.replace("/category/", "").split("/")[0]
