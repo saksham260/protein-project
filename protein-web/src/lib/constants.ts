@@ -57,6 +57,7 @@ export const PRIMARY_CATEGORY_SLUGS = [
 ] as const;
 
 export const SORT_OPTIONS = [
+  { label: "Featured — Popular brands first", value: "featured", column: "best_cost_per_g_protein", ascending: true },
   { label: "Cost per Gram (₹/g) — Low to High", value: "cost_per_g_asc", column: "best_cost_per_g_protein", ascending: true },
   { label: "Protein Density — High to Low", value: "density_desc", column: "protein_density_pct", ascending: false },
   { label: "Protein per ₹100 — High to Low", value: "p100_desc", column: "best_cost_per_g_protein", ascending: true },

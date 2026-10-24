@@ -9,7 +9,7 @@ function parseFiltersFromSearchParams(
   sp: URLSearchParams | { get: (k: string) => string | null; getAll: (k: string) => string[] }
 ): QueryFilters {
   const categorySlug = sp.get("category") || undefined;
-  const sortBy = sp.get("sort") || "cost_per_g_asc";
+  const sortBy = sp.get("sort") || "featured";
   const proteinTiers = sp.getAll("tier").filter(Boolean);
   const dietaryTags = sp.getAll("tag").filter(Boolean);
   if (sp.get("vegan") === "1" && !dietaryTags.some((t) => t.toLowerCase() === "vegan")) {
@@ -68,7 +68,7 @@ export function useFilters() {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams();
       if (filters.categorySlug) params.set("category", filters.categorySlug);
-      if (filters.sortBy && filters.sortBy !== "cost_per_g_asc") params.set("sort", filters.sortBy);
+      if (filters.sortBy && filters.sortBy !== "featured") params.set("sort", filters.sortBy);
       if (filters.proteinTiers?.length) {
         filters.proteinTiers.forEach((t) => params.append("tier", t));
       }
@@ -194,7 +194,7 @@ export function useFilters() {
   const clearFilters = useCallback(() => {
     updateFilters((prev) => ({
       categorySlug: pathname.startsWith("/category") ? prev.categorySlug : undefined,
-      sortBy: "cost_per_g_asc",
+      sortBy: "featured",
       proteinTiers: undefined,
       dietaryTags: undefined,
       excludeAllergens: undefined,

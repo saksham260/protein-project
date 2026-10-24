@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
+import { useRecentSearches } from "@/hooks/useRecentSearches";
 import { formatPricePerGram, cn, splitProductName } from "@/lib/utils";
 
 const SEARCH_SUGGESTIONS = [
@@ -108,6 +109,15 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
   const { results, isLoading } = useSearch(query, 250);
   const suggestions = results.slice(0, 5);
 
+  // Signed-in users see their recent searches when they click the empty search bar
+  const recent = useRecentSearches();
+  const showRecent = isFocused && !query.trim() && recent.isSignedIn && recent.items.length > 0;
+
+  const runSearch = (term: string) => {
+    recent.record(term);
+    router.push(`/search?q=${encodeURIComponent(term.trim())}`);
+  };
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -151,11 +161,12 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
     } else if (e.key === "Enter") {
       e.preventDefault();
       if (selectedIndex >= 0 && suggestions[selectedIndex]) {
+        recent.record(query);
         router.push(`/product/${suggestions[selectedIndex].slug}`);
         setIsOpen(false);
         setIsFocused(false);
       } else if (query.trim()) {
-        router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+        runSearch(query);
         setIsOpen(false);
         setIsFocused(false);
       }
@@ -180,7 +191,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       return;
     }
     if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      runSearch(query);
       setIsOpen(false);
       setIsFocused(false);
       inputRef.current?.blur();
@@ -194,6 +205,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       ref={containerRef}
       className={cn(
         "relative md:flex-1 md:w-full md:max-w-xl md:transition-none",
+        (isOpen && query.trim()) || showRecent ? "z-50" : "z-30",
         isExpanded
           ? "flex-1 w-full max-w-xl transition-[max-width,width,flex] duration-300 ease-out"
           : "max-md:w-10 max-md:max-w-[40px] max-md:shrink-0 transition-[max-width,width,flex] duration-300 ease-out",
@@ -275,9 +287,50 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
         )}
       </form>
 
+      {/* Recent searches (signed-in users, empty search bar) */}
+      {showRecent && (
+        <div className="absolute top-full left-0 right-0 z-[100] mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
+          <div className="px-4 py-1.5 flex items-center justify-between">
+            <span className="text-[10px] uppercase tracking-widest text-[#968E85]">Recent searches</span>
+            <button
+              type="button"
+              onClick={recent.clear}
+              className="text-[10px] uppercase tracking-widest text-[#968E85] hover:text-[#D97706] transition-colors cursor-pointer"
+            >
+              Clear all
+            </button>
+          </div>
+          {recent.items.map((item) => (
+            <div key={item.key} className="flex items-center hover:bg-[#26221E] transition-colors">
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery(item.query);
+                  setIsOpen(false);
+                  setIsFocused(false);
+                  runSearch(item.query);
+                }}
+                className="flex-1 min-w-0 flex items-center gap-3 px-4 py-2.5 text-left text-[#F5F2EB] cursor-pointer"
+              >
+                <span aria-hidden className="text-[#968E85]">🕘</span>
+                <span className="truncate font-sans text-xs sm:text-sm">{item.query}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => recent.remove(item.key)}
+                aria-label={`Remove ${item.query} from recent searches`}
+                className="px-3.5 py-2.5 text-[#968E85] hover:text-[#F5F2EB] transition-colors cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Live Dropdown Suggestions */}
       {isOpen && query.trim() && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute top-full left-0 right-0 z-[100] mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
           {isLoading ? (
             <div className="p-4 text-[#968E85] text-center">
               Searching verified database...
@@ -302,6 +355,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                     key={p.id}
                     href={`/product/${p.slug}`}
                     onClick={() => {
+                      recent.record(query);
                       setIsOpen(false);
                       setIsFocused(false);
                     }}
@@ -356,6 +410,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
               <Link
                 href={`/search?q=${encodeURIComponent(query.trim())}`}
                 onClick={() => {
+                  recent.record(query);
                   setIsOpen(false);
                   setIsFocused(false);
                 }}

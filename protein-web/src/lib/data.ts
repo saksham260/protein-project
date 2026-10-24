@@ -1,5 +1,6 @@
 import { ProductWithVariants, ProductVariant, Platform, FlagSeverity } from "@/types/product";
 import { CATEGORIES } from "@/lib/constants";
+import { featuredScore } from "@/lib/ranking";
 import rawSeedData from "@/data/seedCatalog.json";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { getAvailabilitySummaries, isReportedAvailable } from "@/lib/availability";
@@ -248,6 +249,7 @@ export interface QueryFilters {
   sortBy?: string;
   maxCostPerG?: number;
   minProteinPer100?: number;
+  minProteinPer100Calories?: number;
   maxCaloriesPerGProtein?: number;
   minDensity?: number;
   /** Keep only products reported available on quick commerce near `pincode`. */
@@ -334,8 +336,16 @@ function variantMatches(
   return true;
 }
 
-function sortValue(v: ProductVariant, sort: string): number {
+function sortValue(p: ProductWithVariants, v: ProductVariant, sort: string): number {
   switch (sort) {
+    case "featured":
+      return featuredScore({
+        productName: p.name,
+        variantName: v.variant_name,
+        isCombo: v.is_combo,
+        brandName: p.brand?.name,
+        costPerGram: effectiveCostPerGram(v),
+      });
     case "density_desc":
       return -(v.protein_density_pct ?? 0);
     case "p100_desc":
@@ -366,7 +376,7 @@ export function applyFilters(
   availableNearIds?: Set<string>
 ): ProductWithVariants[] {
   const q = filters.searchQuery?.toLowerCase().trim();
-  const sort = filters.sortBy || "cost_per_g_asc";
+  const sort = filters.sortBy || "featured";
 
   const matches: { product: ProductWithVariants; key: number }[] = [];
   for (const p of products) {
@@ -391,7 +401,7 @@ export function applyFilters(
     const variant = p.variants.find((v) =>
       variantMatches(v, filters, availableNearIds, p.is_vegan)
     );
-    if (variant) matches.push({ product: p, key: sortValue(variant, sort) });
+    if (variant) matches.push({ product: p, key: sortValue(p, variant, sort) });
   }
 
   return matches.sort((a, b) => a.key - b.key).map((m) => m.product);

@@ -18,7 +18,17 @@ export function caloriesPerGramProtein(v: ProductVariant): number | null {
   return v.protein_g > 0 && v.calories_kcal > 0 ? v.calories_kcal / v.protein_g : null;
 }
 
-export type MetricKey = "maxCostPerG" | "minProteinPer100" | "maxCaloriesPerGProtein" | "minDensity";
+/** Grams of protein per 100 calories eaten (25 = pure protein). Higher is better. */
+export function proteinPer100Calories(v: ProductVariant): number | null {
+  return v.protein_g > 0 && v.calories_kcal > 0 ? (v.protein_g / v.calories_kcal) * 100 : null;
+}
+
+export type MetricKey =
+  | "maxCostPerG"
+  | "minProteinPer100"
+  | "minProteinPer100Calories"
+  | "maxCaloriesPerGProtein"
+  | "minDensity";
 
 export interface MetricRangeConfig {
   key: MetricKey;
@@ -58,6 +68,18 @@ export const METRIC_RANGES: MetricRangeConfig[] = [
     bound: "min",
     unit: "g",
     value: proteinPer100Inr,
+  },
+  {
+    key: "minProteinPer100Calories",
+    param: "min_p100cal",
+    label: "Min protein per 100 cal",
+    hint: "25g = pure protein; higher is leaner",
+    min: 0,
+    max: 25,
+    step: 1,
+    bound: "min",
+    unit: "g",
+    value: proteinPer100Calories,
   },
   {
     key: "maxCaloriesPerGProtein",

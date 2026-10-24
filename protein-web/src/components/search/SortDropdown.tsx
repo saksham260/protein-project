@@ -10,7 +10,7 @@ export interface SortDropdownProps {
 }
 
 export const SortDropdown: React.FC<SortDropdownProps> = ({
-  currentSort = "cost_per_g_asc",
+  currentSort = "featured",
   onSortChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);

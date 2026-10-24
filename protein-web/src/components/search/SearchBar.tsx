@@ -73,7 +73,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div ref={containerRef} className={`relative w-full ${className}`}>
+    <div ref={containerRef} className={`relative w-full ${isOpen && query.trim() ? "z-50" : "z-30"} ${className}`}>
       <form onSubmit={handleSubmit} className="relative flex items-center w-full">
         <input
           ref={inputRef}
@@ -112,7 +112,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
       {/* Live Dropdown Suggestions */}
       {isOpen && query.trim() && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden py-2 animate-fade-in font-mono text-xs">
+        <div className="absolute top-full left-0 right-0 z-[100] mt-2 rounded-2xl bg-[#18181B] border border-[#27272A] shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden py-2 animate-fade-in font-mono text-xs">
           {isLoading ? (
             <div className="p-4 text-[#A1A1AA] text-center">
               Searching database...

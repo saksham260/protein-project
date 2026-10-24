@@ -48,6 +48,7 @@ WITH table_stats AS (
           'user_preferences',
           'user_favorites',
           'user_activity',
+          'user_searches',
           'availability_summary'
       )
 )
@@ -75,6 +76,7 @@ SELECT
         WHEN 'user_preferences' THEN (SELECT COUNT(*)::text FROM public.user_preferences)
         WHEN 'user_favorites' THEN (SELECT COUNT(*)::text FROM public.user_favorites)
         WHEN 'user_activity' THEN (SELECT COUNT(*)::text FROM public.user_activity)
+        WHEN 'user_searches' THEN (SELECT COUNT(*)::text FROM public.user_searches)
         ELSE 'N/A'
     END AS row_count
 FROM table_stats t

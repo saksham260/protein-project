@@ -132,6 +132,8 @@ describe("Suite 17: Data Layer and Filtering", () => {
         best_cost_per_g_protein: 7.0,
         best_price_inr: 140,
         mrp_inr: 150,
+        calories_kcal: 200,
+        protein_g: 10,
         protein_density_pct: 37.7,
         red_flags: [
           {
@@ -217,6 +219,12 @@ describe("Suite 17: Data Layer and Filtering", () => {
     expect(res[0].id).toBe("p-1"); // p1 is 84.75%, p2 is 37.7%
   });
 
+  it("filters by metric range (minProteinPer100Calories)", () => {
+    const res = applyFilters(products, { minProteinPer100Calories: 15.0 });
+    expect(res.length).toBe(1);
+    expect(res[0].id).toBe("p-1"); // p1 is 21.19 g/100cal, p2 is 5.0 g/100cal
+  });
+
   it("filters by nearMe with availableNearIds", () => {
     const availableSet = new Set(["v-2"]);
     const res = applyFilters(products, {}, availableSet);
@@ -225,10 +233,19 @@ describe("Suite 17: Data Layer and Filtering", () => {
   });
 
   describe("sorting", () => {
-    it("sorts by cost_per_g_asc by default", () => {
-      const res = applyFilters(products);
+    it("sorts by cost_per_g_asc when asked", () => {
+      const res = applyFilters(products, { sortBy: "cost_per_g_asc" });
       expect(res[0].id).toBe("p-1"); // ₹4.0/g vs ₹7.0/g
       expect(res[1].id).toBe("p-2");
+    });
+
+    it("defaults to featured: individual items before multi-packs, bigger brands first", () => {
+      const withBrand = (name: string) => ({ ...makeProduct().brand, name });
+      const bigSingle = makeProduct({ id: "big", name: "Whey A", brand: withBrand("MuscleBlaze") });
+      const smallSingle = makeProduct({ id: "small", name: "Whey B", brand: withBrand("Nobody Yet") });
+      const bigMulti = makeProduct({ id: "multi", name: "Whey C (Pack of 6)", brand: withBrand("MuscleBlaze") });
+      const res = applyFilters([bigMulti, smallSingle, bigSingle]);
+      expect(res.map((p) => p.id)).toEqual(["big", "small", "multi"]);
     });
 
     it("sorts by density_desc", () => {
