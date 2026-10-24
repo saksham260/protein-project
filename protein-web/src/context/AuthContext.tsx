@@ -24,12 +24,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     if (!isAvailable) return;
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user);
-      setIsReady(true);
-    });
+    // The saved session is available straight away, so the page can show signed-in content without waiting
+    // on a network call. The server check below then corrects it if the session was revoked.
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
+      setIsReady(true);
+    });
+    supabase.auth.getUser().then(({ data: checked }) => {
+      setUser(checked.user);
+      setIsReady(true);
     });
     return () => data.subscription.unsubscribe();
   }, [isAvailable]);
