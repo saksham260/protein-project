@@ -121,7 +121,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
   };
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
       const target = e.target as Node;
 
       // If clicking inside container, do nothing
@@ -139,18 +139,20 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, [query, isScrolled]);
 
   const handleOpenSearch = (e: React.MouseEvent) => {
     if (!isExpanded) {
-      e.preventDefault();
-      e.stopPropagation();
       setSearchOpen(true);
       setIsFocused(true);
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 50);
+      inputRef.current?.focus();
+    } else if (e.target !== inputRef.current) {
+      inputRef.current?.focus();
     }
   };
 
@@ -191,9 +193,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
     if (!isExpanded) {
       setSearchOpen(true);
       setIsFocused(true);
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 50);
+      inputRef.current?.focus();
       return;
     }
     inputRef.current?.blur();
@@ -262,14 +262,24 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
             setSearchOpen(true);
             if (query.trim()) setIsOpen(true);
           }}
+          onBlur={(e) => {
+            if (containerRef.current && containerRef.current.contains(e.relatedTarget as Node)) {
+              return;
+            }
+            setIsFocused(false);
+            resetMobileZoom();
+            if (!query.trim() && !isScrolled) {
+              setSearchOpen(false);
+            }
+          }}
           onKeyDown={handleKeyDown}
           placeholder={activePlaceholder}
           tabIndex={0}
           className={cn(
-            "h-full text-[#F5F2EB] text-xs sm:text-sm font-sans placeholder-[#787067] bg-transparent outline-none pr-9 md:w-full md:opacity-100 md:pointer-events-auto md:block md:transition-none",
+            "h-full text-[#F5F2EB] text-xs sm:text-sm font-sans placeholder-[#787067] bg-transparent outline-none pr-9 md:w-full md:opacity-100 md:pointer-events-auto md:relative md:block md:transition-none",
             isExpanded
-              ? "w-full opacity-100 block transition-opacity duration-300"
-              : "max-md:w-0 max-md:opacity-0 max-md:pointer-events-none transition-opacity duration-300"
+              ? "relative w-full opacity-100 block transition-opacity duration-300"
+              : "max-md:absolute max-md:inset-0 max-md:w-full max-md:h-full max-md:opacity-0 max-md:z-10 max-md:cursor-pointer"
           )}
         />
 
@@ -284,7 +294,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
               inputRef.current?.focus();
             }}
             className={cn(
-              "absolute right-3 text-xs text-[#968E85] hover:text-[#F5F2EB] p-1 transition-colors duration-200 cursor-pointer",
+              "absolute right-3 text-xs text-[#968E85] hover:text-[#F5F2EB] p-1 transition-colors duration-200 cursor-pointer z-20",
               !isExpanded && "max-md:hidden"
             )}
             aria-label="Clear search text"

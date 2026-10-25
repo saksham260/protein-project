@@ -199,6 +199,79 @@ This document serves as the complete, chronological audit history of all tasks, 
   - Pushed to `origin/newchanges1` via `git push -u origin newchanges1`.
 - **Branch**: `newchanges1`
 
+---
+
+### Entry 11: Mobile Navbar Search Single-Tap Auto-Focus
+- **Timestamp**: 2026-10-25 14:24 IST
+- **Request**: "mobile version change - when unscrolled and clicked on the search icon, only the search icon expands to a searchbar and then i have to click on the bar once more to type. it should be when i click the search icon, the bar opens up(like it does now) but i should be able to type in it without pressing on the bar again"
+- **End-to-End Tracing & Analysis**:
+  - **Root Cause**:
+    - In [`NavbarSearch.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/search/NavbarSearch.tsx), when collapsed on mobile (`!isExpanded`), the `<input>` element was given `max-md:w-0 max-md:opacity-0 max-md:pointer-events-none`.
+    - Clicking the collapsed search icon triggered `<form onClick={handleOpenSearch}>`, which ran `e.preventDefault()`, `e.stopPropagation()`, and attempted to focus via a deferred `setTimeout(() => inputRef.current?.focus(), 50)`.
+    - On mobile browsers (especially iOS Safari / WebKit and mobile Chrome), programmatic `.focus()` calls inside timers are stripped of user gesture trust and completely rejected, preventing the virtual keyboard from opening. Consequently, the bar expanded, but required a second physical tap on the input to focus and type.
+  - **Implementation**:
+    1. **Direct Native Touch Surface**: Updated the collapsed mobile `<input>` to `max-md:absolute max-md:inset-0 max-md:w-full max-md:h-full max-md:opacity-0 max-md:z-10 max-md:cursor-pointer`. When a user taps the 40px search button on mobile, their finger touches the native input directly, triggering instant native keyboard invocation on the first tap.
+    2. **Synchronous Focus Delegation**: Removed `e.preventDefault()` and `setTimeout` from `handleOpenSearch` and `handleSubmit`, calling `inputRef.current?.focus()` synchronously within the gesture call stack.
+    3. **Touch Event Outside Listener**: Added `touchstart` listener alongside `mousedown` to reliably collapse the bar when tapping outside on mobile touch screens.
+- **Files Modified**:
+  - [`protein-web/src/components/search/NavbarSearch.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/search/NavbarSearch.tsx)
+- **Git & Safety Status**:
+  - No git commits executed (per Rule 3).
+  - No git pushes executed (per Rule 3).
+  - No tests run (per Rule 3).
+
+---
+
+### Entry 12: Mobile Auto-Zoom Out on Inactive Searchbar & Results Load
+- **Timestamp**: 2026-10-25 15:09 IST
+- **Request**: "mobile version problem, when the searchbar is active, the screen zooms in then we type our search but when the results are loaded, the screen does not zoom out automatically. After searching, when the searchbar becomes inactive, the screen should zoom out to its original level."
+- **User Preference Alignment**:
+  - Asked user whether to eliminate auto-zoom entirely via 16px font or preserve the zoom-in during active typing while ensuring an automatic zoom-out once inactive / results load. User confirmed: *Keep the zoom-in when active, and implement an automatic zoom-out trigger when the searchbar blurs / when results finish loading.*
+- **End-to-End Tracing & Analysis**:
+  - **Inspection**:
+    - Identified why previous zoom reset attempts failed: when an input blurs or submits, the mobile virtual keyboard animates down over ~300ms. An immediate viewport rewrite during that window gets superseded by the browser's keyboard dismissal animation.
+    - Missing triggers: neither `NavbarSearch.tsx` nor `SearchBar.tsx` had `onBlur` handlers calling `resetMobileZoom()`. Furthermore, in `SearchClient.tsx`, `resetMobileZoom()` was only called on initial mount, not when `getProducts()` finished loading asynchronous search results.
+    - Missing viewport tag in `layout.tsx`: Next.js was relying on fallback implicit viewport rather than an explicit `Viewport` export.
+  - **Implementation**:
+    1. **Multi-Stage `resetMobileZoom()` ([`utils.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/utils.ts))**:
+       - Applies immediate scale reset and re-applies post-dismissal (~200ms) with `user-scalable=no, initial-scale=1.0, maximum-scale=1.0` to force WebKit (Safari) and Blink (Chrome Android) to snap scale back to 1.0.
+       - Triggers CSS body layout reflow (`document.body.style.zoom = '0.9999'` -> `'1'`) and resets horizontal scroll.
+       - Restores `user-scalable=yes, maximum-scale=5.0` after 450ms for accessibility.
+    2. **Results Loaded Trigger ([`SearchClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/search/SearchClient.tsx))**:
+       - Called `resetMobileZoom()` inside `getProducts().then()` and `.catch()` so that the moment verified products render on screen, the viewport smoothly snaps back to 100% normal view.
+    3. **Inactive Searchbar Blur Handlers ([`NavbarSearch.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/search/NavbarSearch.tsx), [`SearchBar.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/search/SearchBar.tsx))**:
+       - Added `onBlur` handlers checking `e.relatedTarget` inside the container before triggering `resetMobileZoom()`, so tapping away or closing the search automatically zooms the screen back out.
+    4. **Viewport Metadata ([`layout.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/layout.tsx))**:
+       - Exported standard `Viewport` object with `width: "device-width", initialScale: 1, maximumScale: 5`.
+- **Files Modified**:
+  - [`protein-web/src/lib/utils.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/utils.ts)
+  - [`protein-web/src/app/search/SearchClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/search/SearchClient.tsx)
+  - [`protein-web/src/components/search/NavbarSearch.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/search/NavbarSearch.tsx)
+  - [`protein-web/src/components/search/SearchBar.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/search/SearchBar.tsx)
+  - [`protein-web/src/app/layout.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/layout.tsx)
+- **Git & Safety Status**:
+  - No git commits executed (per Rule 3).
+  - No git pushes executed (per Rule 3).
+  - No tests run (per Rule 3).
+
+---
+
+### Entry 13: Commit and Push to Branch `newchanges1`
+- **Timestamp**: 2026-10-25 22:28 IST
+- **Request**: "push to branch"
+- **Actions Taken**:
+  - Staged all modified files on branch `newchanges1`:
+    - `protein-web/src/lib/utils.ts` (multi-stage zoom reset engine with keyboard animation dismiss timing)
+    - `protein-web/src/app/search/SearchClient.tsx` (auto-zoom out upon search results loading)
+    - `protein-web/src/components/search/NavbarSearch.tsx` (single-tap immediate focus & input onBlur zoom reset)
+    - `protein-web/src/components/search/SearchBar.tsx` (input onBlur zoom reset)
+    - `protein-web/src/app/layout.tsx` (Next.js Viewport metadata export)
+    - `documentation/session-audit-log.md` (complete session audit history)
+  - Committed with message: `feat(search): single-tap mobile search expansion and multi-stage zoom-out on blur and results load`
+  - Pushed commit to `origin/newchanges1`.
+- **Branch**: `newchanges1`
+
+
 
 
 
