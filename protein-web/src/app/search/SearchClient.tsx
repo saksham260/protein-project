@@ -33,10 +33,14 @@ export function SearchClient() {
           if (isMounted) {
             setProducts(data);
             setLoading(false);
+            resetMobileZoom();
           }
         })
         .catch(() => {
-          if (isMounted) setLoading(false);
+          if (isMounted) {
+            setLoading(false);
+            resetMobileZoom();
+          }
         });
     }, 0);
 

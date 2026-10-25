@@ -84,13 +84,18 @@ export function splitProductName(name: string, variantName?: string): ProductNam
 }
 
 let restoreViewportTimer: ReturnType<typeof setTimeout> | null = null;
+let postKeyboardTimer: ReturnType<typeof setTimeout> | null = null;
 
 /**
- * Resets mobile viewport zoom back to 1.0 (default unzoomed state).
- * On mobile browsers (especially iOS Safari and mobile Chrome), focusing inputs triggers an auto-zoom
- * that persists even after submission or blur. By temporarily enforcing maximum-scale=1,
- * the browser resets its viewport scale back to 1.0, after which standard scalable viewport
- * is restored so user pinch-to-zoom remains fully supported.
+ * Resets mobile viewport zoom back to 1.0 (original scale) across Android and iOS browsers.
+ * When the searchbar is active, mobile browsers zoom in for easier typing.
+ * Once searching completes or the input blurs (becomes inactive), this function:
+ * 1. Blurs any active element to trigger virtual keyboard dismissal.
+ * 2. Horizontally re-centers the viewport (window.scrollX to 0).
+ * 3. Enforces initial-scale=1.0, maximum-scale=1.0, user-scalable=no immediately and again
+ *    after keyboard dismissal (~200ms) to force rendering engines (WebKit and Blink) to snap back to 1.0.
+ * 4. Triggers a CSS layout reflow.
+ * 5. Restores user-scalable pinch-to-zoom after 450ms.
  */
 export function resetMobileZoom(): void {
   if (typeof window === "undefined" || typeof document === "undefined") return;
@@ -103,35 +108,64 @@ export function resetMobileZoom(): void {
   // 2. Only run zoom reset logic on mobile devices/screens
   const isMobile =
     window.innerWidth <= 768 ||
-    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+    (typeof window.visualViewport !== "undefined" && (window.visualViewport?.scale ?? 1) > 1);
+
   if (!isMobile) return;
 
-  // 3. Reset any horizontal scroll offset that auto-zoom introduced
-  if (window.scrollX !== 0) {
-    window.scrollTo({ left: 0, top: window.scrollY });
-  }
+  const applyZoomReset = () => {
+    // Reset any horizontal scroll offset that auto-zoom introduced
+    if (window.scrollX !== 0) {
+      window.scrollTo({ left: 0, top: window.scrollY });
+    }
 
-  // 4. Force viewport scale to 1.0 via viewport meta tag
-  let viewport = document.querySelector<HTMLMetaElement>('meta[name="viewport"]');
-  if (!viewport) {
-    viewport = document.createElement("meta");
-    viewport.name = "viewport";
-    document.head.appendChild(viewport);
-  }
+    let viewport = document.querySelector<HTMLMetaElement>('meta[name="viewport"]');
+    if (!viewport) {
+      viewport = document.createElement("meta");
+      viewport.name = "viewport";
+      document.head.appendChild(viewport);
+    }
 
-  if (restoreViewportTimer) {
-    clearTimeout(restoreViewportTimer);
-  }
+    // Force viewport to snap back to 1.0
+    viewport.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    );
 
-  // Setting maximum-scale=1 forces iOS Safari / mobile WebKit to immediately scale back to 1.0
-  viewport.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1");
+    // CSS zoom reflow trick: triggers a rendering engine layout refresh
+    try {
+      const prevZoom = document.body.style.zoom;
+      document.body.style.zoom = "0.9999";
+      requestAnimationFrame(() => {
+        document.body.style.zoom = prevZoom || "1";
+      });
+    } catch {
+      // Ignore if browser doesn't support body.zoom
+    }
+  };
+
+  // Run immediately
+  applyZoomReset();
+
+  if (postKeyboardTimer) clearTimeout(postKeyboardTimer);
+  if (restoreViewportTimer) clearTimeout(restoreViewportTimer);
+
+  // Re-run once the virtual keyboard is mid-to-fully dismissed (200ms)
+  postKeyboardTimer = setTimeout(() => {
+    applyZoomReset();
+  }, 200);
 
   // Restore scalable viewport after the browser finishes rescaling so pinch-zoom is preserved
   restoreViewportTimer = setTimeout(() => {
+    const viewport = document.querySelector<HTMLMetaElement>('meta[name="viewport"]');
     if (viewport) {
-      viewport.setAttribute("content", "width=device-width, initial-scale=1");
+      viewport.setAttribute(
+        "content",
+        "width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+      );
     }
     restoreViewportTimer = null;
-  }, 300);
+    postKeyboardTimer = null;
+  }, 450);
 }
 

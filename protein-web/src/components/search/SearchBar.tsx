@@ -94,6 +94,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             setSelectedIndex(-1);
           }}
           onFocus={() => setIsOpen(Boolean(query.trim()))}
+          onBlur={(e) => {
+            if (containerRef.current && containerRef.current.contains(e.relatedTarget as Node)) {
+              return;
+            }
+            setIsOpen(false);
+            resetMobileZoom();
+          }}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="w-full pl-5 sm:pl-6 pr-14 sm:pr-16 py-3.5 rounded-full bg-[#18181B] border border-[#27272A] text-white text-xs sm:text-sm font-sans placeholder-[#A1A1AA] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] shadow-[0_4px_24px_rgba(0,0,0,0.5)] transition-all"
