@@ -83,3 +83,55 @@ export function splitProductName(name: string, variantName?: string): ProductNam
   return { baseName: name.trim(), packInfo: null };
 }
 
+let restoreViewportTimer: ReturnType<typeof setTimeout> | null = null;
+
+/**
+ * Resets mobile viewport zoom back to 1.0 (default unzoomed state).
+ * On mobile browsers (especially iOS Safari and mobile Chrome), focusing inputs triggers an auto-zoom
+ * that persists even after submission or blur. By temporarily enforcing maximum-scale=1,
+ * the browser resets its viewport scale back to 1.0, after which standard scalable viewport
+ * is restored so user pinch-to-zoom remains fully supported.
+ */
+export function resetMobileZoom(): void {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+
+  // 1. Blur any active input element to close virtual keyboard
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+
+  // 2. Only run zoom reset logic on mobile devices/screens
+  const isMobile =
+    window.innerWidth <= 768 ||
+    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (!isMobile) return;
+
+  // 3. Reset any horizontal scroll offset that auto-zoom introduced
+  if (window.scrollX !== 0) {
+    window.scrollTo({ left: 0, top: window.scrollY });
+  }
+
+  // 4. Force viewport scale to 1.0 via viewport meta tag
+  let viewport = document.querySelector<HTMLMetaElement>('meta[name="viewport"]');
+  if (!viewport) {
+    viewport = document.createElement("meta");
+    viewport.name = "viewport";
+    document.head.appendChild(viewport);
+  }
+
+  if (restoreViewportTimer) {
+    clearTimeout(restoreViewportTimer);
+  }
+
+  // Setting maximum-scale=1 forces iOS Safari / mobile WebKit to immediately scale back to 1.0
+  viewport.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1");
+
+  // Restore scalable viewport after the browser finishes rescaling so pinch-zoom is preserved
+  restoreViewportTimer = setTimeout(() => {
+    if (viewport) {
+      viewport.setAttribute("content", "width=device-width, initial-scale=1");
+    }
+    restoreViewportTimer = null;
+  }, 300);
+}
+

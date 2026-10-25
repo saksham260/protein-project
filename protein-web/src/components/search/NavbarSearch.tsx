@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
 import { useRecentSearches } from "@/hooks/useRecentSearches";
-import { formatPricePerGram, cn, splitProductName } from "@/lib/utils";
+import { formatPricePerGram, cn, splitProductName, resetMobileZoom } from "@/lib/utils";
 
 const SEARCH_SUGGESTIONS = [
   // Categories
@@ -114,6 +114,8 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
   const showRecent = isFocused && !query.trim() && recent.isSignedIn && recent.items.length > 0;
 
   const runSearch = (term: string) => {
+    inputRef.current?.blur();
+    resetMobileZoom();
     recent.record(term);
     router.push(`/search?q=${encodeURIComponent(term.trim())}`);
   };
@@ -130,6 +132,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       // If clicking outside, close suggestions dropdown
       setIsOpen(false);
       setIsFocused(false);
+      resetMobileZoom();
       if (!query.trim() && !isScrolled) {
         setSearchOpen(false);
       }
@@ -160,6 +163,8 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       setSelectedIndex((prev) => (prev > 0 ? prev - 1 : suggestions.length - 1));
     } else if (e.key === "Enter") {
       e.preventDefault();
+      inputRef.current?.blur();
+      resetMobileZoom();
       if (selectedIndex >= 0 && suggestions[selectedIndex]) {
         recent.record(query);
         router.push(`/product/${suggestions[selectedIndex].slug}`);
@@ -174,6 +179,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       setIsOpen(false);
       setIsFocused(false);
       inputRef.current?.blur();
+      resetMobileZoom();
       if (!query.trim() && !isScrolled) {
         setSearchOpen(false);
       }
@@ -190,11 +196,12 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
       }, 50);
       return;
     }
+    inputRef.current?.blur();
+    resetMobileZoom();
     if (query.trim()) {
       runSearch(query);
       setIsOpen(false);
       setIsFocused(false);
-      inputRef.current?.blur();
     } else {
       inputRef.current?.focus();
     }
@@ -358,6 +365,8 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                       recent.record(query);
                       setIsOpen(false);
                       setIsFocused(false);
+                      inputRef.current?.blur();
+                      resetMobileZoom();
                     }}
                     className={`flex items-center justify-between px-3.5 py-2.5 transition-colors gap-3 ${
                       isSelected
@@ -413,6 +422,8 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                   recent.record(query);
                   setIsOpen(false);
                   setIsFocused(false);
+                  inputRef.current?.blur();
+                  resetMobileZoom();
                 }}
                 className="px-4 py-2.5 bg-[#141210] text-center text-[#D97706] font-mono text-xs hover:bg-[#D97706]/10 border-t border-[#332D27] transition-colors"
               >
