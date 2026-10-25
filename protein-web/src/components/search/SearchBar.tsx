@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
 import { AnimatedSearchButton } from "@/components/ui/AnimatedSearchButton";
-import { formatPricePerGram, splitProductName } from "@/lib/utils";
+import { formatPricePerGram, splitProductName, resetMobileZoom } from "@/lib/utils";
 
 export interface SearchBarProps {
   id?: string;
@@ -37,6 +37,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
+        resetMobileZoom();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -52,6 +53,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       setSelectedIndex((prev) => (prev > 0 ? prev - 1 : suggestions.length - 1));
     } else if (e.key === "Enter") {
       e.preventDefault();
+      inputRef.current?.blur();
+      resetMobileZoom();
       if (selectedIndex >= 0 && suggestions[selectedIndex]) {
         router.push(`/product/${suggestions[selectedIndex].slug}`);
         setIsOpen(false);
@@ -61,11 +64,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       }
     } else if (e.key === "Escape") {
       setIsOpen(false);
+      inputRef.current?.blur();
+      resetMobileZoom();
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    inputRef.current?.blur();
+    resetMobileZoom();
     if (query.trim()) {
       router.push(`/search?q=${encodeURIComponent(query.trim())}`);
       setIsOpen(false);
@@ -135,7 +142,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                   <Link
                     key={p.id}
                     href={`/product/${p.slug}`}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      inputRef.current?.blur();
+                      resetMobileZoom();
+                    }}
                     className={`flex items-center justify-between px-3.5 py-2.5 transition-colors gap-3 ${
                       isSelected
                         ? "bg-[#10B981]/15 text-white"

@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { Button } from "@/components/ui/Button";
 import { getProducts } from "@/lib/data";
 import { ProductWithVariants } from "@/types/product";
+import { resetMobileZoom } from "@/lib/utils";
 
 export function SearchClient() {
   const searchParams = useSearchParams();
@@ -16,6 +17,11 @@ export function SearchClient() {
 
   const [products, setProducts] = useState<ProductWithVariants[]>([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Reset mobile zoom back to 1.0 when viewing search results
+    resetMobileZoom();
+  }, [queryParam]);
 
   useEffect(() => {
     let isMounted = true;
@@ -44,8 +50,8 @@ export function SearchClient() {
     <div
       className={
         hasQuery
-          ? "container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 flex flex-col gap-6"
-          : "container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 flex flex-col gap-12"
+          ? "container max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-8 flex flex-col gap-6"
+          : "container max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-20 flex flex-col gap-8 sm:gap-12"
       }
     >
       {/* Search Header (only before a search is made) */}
@@ -86,9 +92,9 @@ export function SearchClient() {
 
       {/* Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-[460px] rounded-3xl bg-[#18181B] border border-[#27272A] skeleton-shimmer" />
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            <div key={i} className="h-[320px] sm:h-[460px] rounded-2xl sm:rounded-3xl bg-[#18181B] border border-[#27272A] skeleton-shimmer" />
           ))}
         </div>
       ) : products.length === 0 ? (
@@ -104,7 +110,7 @@ export function SearchClient() {
           </Button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch animate-fade-in">
           {products.map((prod) => (
             <ProductCard key={prod.id} product={prod} />
           ))}
