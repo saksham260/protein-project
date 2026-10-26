@@ -12,7 +12,7 @@ import { RedirectButtons } from "@/components/product/RedirectButtons";
 import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { RedFlagWarning } from "@/components/product/RedFlagWarning";
 import { OversizedMetric } from "@/components/ui/OversizedMetric";
-import { formatPrice, formatPricePerGram, splitProductName, cn } from "@/lib/utils";
+import { formatPrice, formatPricePerGram, splitProductName, cn, getPreferredDefaultVariantIndex } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 
 export interface ProductDetailProps {
@@ -21,7 +21,9 @@ export interface ProductDetailProps {
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const { isInCart, addItem, removeItem, openCart } = useCart();
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(() =>
+    getPreferredDefaultVariantIndex(product.variants)
+  );
   const [nutritionMode, setNutritionMode] = useState<NutritionMode>("per_pack");
 
   const variants = product.variants || [];

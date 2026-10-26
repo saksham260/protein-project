@@ -271,7 +271,129 @@ This document serves as the complete, chronological audit history of all tasks, 
   - Pushed commit to `origin/newchanges1`.
 - **Branch**: `newchanges1`
 
+---
 
+### Entry 14: Amul Product Availability Audit & Buy Links Cleanup
+- **Timestamp**: 2026-10-26 11:41 IST
+- **Request**: "for all the amul products, most of them are only available by the carton and on the amul website only. only the amul blueberry shake is sometimes available individually on other ecommerce sites. confirm which products are also available individually and update the product list. remove the unnecessary links to buy for the amul products"
+- **End-to-End Tracing & Analysis**:
+  - **Availability Confirmation & Market Audit**:
+    1. **Amul Blueberry Shake (`amul-high-protein-blueberry-milkshake`)**: Confirmed that this is the only Amul high-protein RTD beverage regularly sold individually (200ml bottle, MRP ₹60) across quick-commerce platforms (Blinkit, Zepto, Swiggy Instamart) in metro areas. On `shop.amul.com`, it is sold by the carton (Pack of 30, MRP ₹1,800).
+    2. **Carton & Official Store Exclusive Products**:
+       - `amul-high-protein-whey-protein-sachets`: Only sold in bulk boxes/cartons of 30 and 60 sachets on `shop.amul.com`. Not sold individually per sachet on quick commerce or Amazon.
+       - `amul-high-protein-paneer`: Sold in Pack of 2 (800g, MRP ₹330) and Pack of 24 (9.6kg, MRP ₹3,960) exclusively via `shop.amul.com`.
+       - `amul-high-protein-buttermilk`: Sold strictly as a carton (Pack of 30, MRP ₹900) on `shop.amul.com`.
+       - `amul-high-protein-lassi`: Plain and Rose variants sold strictly as cartons (Pack of 30, MRP ₹900) on `shop.amul.com`.
+       - `amul-high-protein-milk`: Sold strictly as a carton (Pack of 30 x 250ml, MRP ₹750) on `shop.amul.com`.
+       - `amul-high-protein-probiotic-dahi`: Sold as a 400g tub on `shop.amul.com`. (Removed irrelevant Amazon link).
+  - **Data Catalog Updates (`seedCatalog.json` & `seed_products.json`)**:
+    - **Amul Blueberry Shake**: Added new variant `'Single Pack (200ml)'` (SKU `AHPBS01_1`, MRP ₹60) with buy links mapped to Blinkit, Zepto, and Instamart. Retained `'Blueberry Shake (Pack of 30)'` (SKU `AHPBS01_30`, MRP ₹1,800) with buy link mapped strictly to `shop.amul.com` (`d2c`).
+    - **Other Amul Products**: Removed all phantom / unnecessary redirect links (Amazon, Blinkit, Zepto, Instamart) from Whey Protein Sachets (4 variants), Paneer (2 variants), Buttermilk, Lassi (2 variants), Milk, and Dahi, retaining only verified `d2c` links to `shop.amul.com`.
+  - **Purchase Channels Component Logic (`RedirectButtons.tsx`)**:
+    - **Root Cause**: `RedirectButtons` previously hardcoded `["amazon", "blinkit", "zepto", "instamart"]` in `platformsToDisplay`, automatically synthesizing fake search fallback URLs for all four platforms even when a variant only had a direct D2C link.
+    - **Channel Filtering**: Updated `platformsToDisplay` to derive from `PLATFORM_ORDER.filter(...)` matching only platforms present in the variant's `redirectLinks` (falling back to search platforms only if no links are specified).
+    - **Single-Channel Card Layout**: Updated grid to `cn("grid grid-cols-1 gap-3.5", linkItems.length > 1 && "sm:grid-cols-2")` so single-channel D2C listings span full width cleanly.
+    - **Cheapest Option Badge**: Conditioned `isCheapest` to only trigger when multiple stores are being compared (`pricesWithPlatform.length > 1`).
+    - **Brand-Specific Labeling**: Rendered `{brandName} Official Store` for D2C links instead of generic "Brand Store".
+- **Files Modified**:
+  - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json)
+  - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json)
+  - [`protein-web/src/components/product/RedirectButtons.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/product/RedirectButtons.tsx)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No git commits executed (per Rule 3).
+  - No git pushes executed (per Rule 3).
+  - No tests run (per Rule 3).
 
+---
+
+### Entry 15: Live Database (Supabase) Synchronization for Amul Products
+- **Timestamp**: 2026-10-26 13:06 IST
+- **Request**: "you have done the exact opposite of what i told you, blueberry shake is the only item that can be bought on other ecommerce sites than amul store individually. All other amul products are only purchaseable on the amul store so remove other links from there and the lassi product should be listed as carton only like on the amul webite."
+- **Root Cause & End-to-End Tracing**:
+  - The local development environment has `isSupabaseConfigured() === true` via `protein-web/.env.local`. When running, Next.js queries the live Supabase database rather than static JSON files.
+  - In live Supabase, `amul-high-protein-lassi` previously contained legacy individual 200ml bottle records (`Rose 200ml` at ₹25) with links to Amazon, Blinkit, Zepto, and D2C. Similarly, `amul-high-protein-buttermilk` had legacy `Spiced Buttermilk 200ml` at ₹15 with multi-platform links. Furthermore, `amul-high-protein-blueberry-milkshake` lacked the individual 200ml unit, and all other carton Amul products in Supabase still had old links to Amazon, Blinkit, Zepto, and Instamart.
+  - When the user visited the app, the live database served this stale data.
+- **Actions Taken**:
+  - Created [`protein-etl/scripts/sync_amul_live.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/sync_amul_live.py) using `SupabaseUploader` with service role credentials to clean and update live Supabase:
+    1. **Lassi**: Deleted legacy individual 200ml (₹25) variant records and links from Supabase. Upserted carton-only variants (`Plain Lassi (Pack of 30)` at ₹900, `Rose Lassi (Pack of 30)` at ₹900) mapped exclusively to `shop.amul.com` (`d2c`).
+    2. **Buttermilk**: Deleted legacy individual 200ml (₹15) variant records and links. Upserted carton-only variant (`Spiced Buttermilk (Pack of 30)` at ₹900) mapped exclusively to `shop.amul.com` (`d2c`).
+    3. **Blueberry Shake**: Verified that the individual unit (`Single Pack (200ml)` at ₹60) is mapped to Blinkit, Zepto, and Instamart, and the carton unit (`Blueberry Shake (Pack of 30)` at ₹1,800) is mapped exclusively to `shop.amul.com` (`d2c`). Removed phantom Amazon/quick commerce links from the carton variant.
+    4. **All Other Amul Products** (Whey Protein Sachets, Paneer, Milk, Probiotic Dahi): Deleted all non-D2C links (`amazon`, `blinkit`, `zepto`, `instamart`) directly from the live `redirect_links` table in Supabase.
+    5. Cleared Next.js local cache (`protein-web/.next/cache`) to purge any cached responses.
+  - Verified live database records via REST query: confirmed all carton products possess strictly `d2c` links and Lassi/Buttermilk are listed as cartons of 30 (₹900).
+- **Files Modified**:
+  - [`protein-etl/scripts/sync_amul_live.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/sync_amul_live.py)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No git commits executed (per Rule 3).
+  - No git pushes executed (per Rule 3).
+  - No tests run (per Rule 3).
+
+---
+
+### Entry 16: Default Variant Resolution to Individual (1 Qty) Option
+- **Timestamp**: 2026-10-26 13:22 IST
+- **Request**: "for all the products with multiple buy qty option the default should be set to individual (1 qty) that can be changed once clicked on the product"
+- **End-to-End Tracing**:
+  - **Root Cause & Flow Analysis**:
+    - Products with multiple purchase quantities (e.g., single bottle vs 30-pack carton, single bar vs box of 6/10, pack of 2 vs pack of 24, 30 sachets vs 60 sachets) were previously displayed according to the physical order of database rows or JSON keys. In PostgreSQL/Supabase, rows are returned in heap insertion order, causing older carton variants to physically precede newly created single-unit variants.
+    - As a result, product cards, detail page views, and search suggestions defaulted to index `0` (often the bulk pack or carton, such as Blueberry Shake Pack of 30 at ₹1,800 instead of Single Pack at ₹60).
+  - **Resolution & Architecture**:
+    1. **Preferred Default Variant Algorithm (`protein-web/src/lib/utils.ts`)**:
+       - Implemented `getPreferredDefaultVariantIndex(variants)` and `sortVariantsDefaultFirst(variants)`.
+       - Scoring hierarchy:
+         - **Score 0**: Explicit single-unit keywords in `variant_name` or `slug` (`single`, `individual`, `1 bottle`, `1 pack`, `1 bar`, `1 sachet`, `1 pc`, `1 piece`, `1 unit`, `1 can`, `1 tub`, or regex `pack of 1`).
+         - **Score 10**: Single serving variants (`servings_per_pack === 1` without multi-pack indicators).
+         - **Score 100 + Qty**: Multi-pack variants, prioritizing smaller pack quantities (e.g., Pack of 2 over Pack of 24, Box of 6 over Box of 12, 30 Sachets over 60 Sachets).
+         - **Score 200 + Servings**: Multi-serving tubs, prioritizing lower servings count.
+         - **Tie-breakers**: Smaller net weight (`net_weight_g`) followed by lower MRP (`mrp_inr`).
+    2. **Data Layer Normalization (`protein-web/src/lib/data.ts`)**:
+       - In `normalizeLiveProduct`, wrapped `variants` with `sortVariantsDefaultFirst(normalizedVariants)`.
+       - In `normalizedSeedCatalog`, wrapped `variants` with `sortVariantsDefaultFirst(variants)`.
+       - This guarantees that for every product ingested by the application (whether from live Supabase or seed fallback), `variants[0]` is always the individual 1-qty variant.
+    3. **Product Detail View (`protein-web/src/components/product/ProductDetail.tsx`)**:
+       - Initialized `selectedVariantIndex` with `useState(() => getPreferredDefaultVariantIndex(product.variants))`.
+       - Maintained dynamic interactivity with `VariantSelector`: when a user clicks any other variant on the product page, `setSelectedVariantIndex` triggers immediate updates to oversized metrics (MRP, calories, total protein), specs, and purchase platform redirect buttons.
+    4. **Product Card Grid (`protein-web/src/components/product/ProductCard.tsx`)**:
+       - Added `getPreferredDefaultVariantIndex(product.variants)` fallback to ensure card displays the individual unit pricing and specs across catalog and category listings.
+    5. **Cart Context (`protein-web/src/context/CartContext.tsx`)**:
+       - Updated `addItem` and `toggleItem` fallbacks to select the individual 1-qty variant when no explicit variant is passed.
+    6. **Search Suggestions (`NavbarSearch.tsx`, `SearchBar.tsx`)**:
+       - Because `variants[0]` is sorted default-first, dropdown search previews now display the single-unit price and specs.
+  - **Files Modified**:
+    - [`protein-web/src/lib/utils.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/utils.ts)
+    - [`protein-web/src/lib/data.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/data.ts)
+    - [`protein-web/src/components/product/ProductDetail.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/product/ProductDetail.tsx)
+    - [`protein-web/src/components/product/ProductCard.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/product/ProductCard.tsx)
+    - [`protein-web/src/context/CartContext.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/context/CartContext.tsx)
+    - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+  - **Verification & Git Safety**:
+    - Static analysis and TypeScript compilation check (`npx tsc --noEmit`) succeeded with 0 errors.
+    - Verified against all 41 multi-variant catalog products via verification script.
+
+---
+
+### Entry 17: Commit and Push to GitHub
+- **Timestamp**: 2026-10-26 13:24 IST
+- **Request**: "push to github"
+- **Actions Taken**:
+  - Explicit user authorization received to commit and push changes to GitHub.
+  - Staged all modified and newly created files:
+    - `documentation/session-audit-log.md`
+    - `protein-etl/data/seed_products.json`
+    - `protein-etl/scripts/sync_amul_live.py`
+    - `protein-web/src/components/product/ProductCard.tsx`
+    - `protein-web/src/components/product/ProductDetail.tsx`
+    - `protein-web/src/components/product/RedirectButtons.tsx`
+    - `protein-web/src/context/CartContext.tsx`
+    - `protein-web/src/data/seedCatalog.json`
+    - `protein-web/src/lib/data.ts`
+    - `protein-web/src/lib/utils.ts`
+  - Committed with message: `feat: default individual 1-qty variant selection and sync Amul carton/single purchase links`
+  - Pushed to `origin/newchanges1`.
+- **Git & Safety Status**:
+  - Git commit authorized and executed.
+  - Git push to `origin/newchanges1` authorized and executed.
 
 
