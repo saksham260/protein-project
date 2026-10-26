@@ -55,15 +55,15 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
   productId,
 }) => {
   const { user } = useAuth();
-  // The brand's own store is listed first, but only when we have a link to it.
-  const hasBrandStore = redirectLinks.some((l) => l.platform === "d2c");
-  const platformsToDisplay: Platform[] = [
-    ...(hasBrandStore ? (["d2c"] as Platform[]) : []),
-    "amazon",
-    "blinkit",
-    "zepto",
-    "instamart",
-  ];
+  // Priority ordering for purchase channels
+  const PLATFORM_ORDER: Platform[] = ["d2c", "amazon", "blinkit", "zepto", "instamart"];
+
+  // When redirectLinks are explicitly defined for a variant, only display channels that are actually available.
+  // If no links are provided at all, fall back to searching across the standard channels.
+  const platformsToDisplay: Platform[] =
+    redirectLinks.length > 0
+      ? PLATFORM_ORDER.filter((p) => redirectLinks.some((l) => l.platform === p))
+      : ["amazon", "blinkit", "zepto", "instamart"];
   const { pincode } = usePincode();
   const [summaries, setSummaries] = useState<AvailabilitySummary[]>([]);
   const [askFor, setAskFor] = useState<QuickCommercePlatform | null>(null);
@@ -104,7 +104,10 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
       : priceSubtitle(existing, platform);
     const config = PLATFORM_INFO[platform];
     const isCheapest =
-      lowestPrice != null && existing?.platform_price_inr === lowestPrice && existing?.in_stock !== false;
+      pricesWithPlatform.length > 1 &&
+      lowestPrice != null &&
+      existing?.platform_price_inr === lowestPrice &&
+      existing?.in_stock !== false;
 
     return {
       platform,
@@ -141,7 +144,7 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
 
       <PincodeInput />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+      <div className={cn("grid grid-cols-1 gap-3.5", linkItems.length > 1 && "sm:grid-cols-2")}>
         {linkItems.map((item) => (
           <a
             key={item.platform}
@@ -180,7 +183,7 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
                     item.isCheapest ? "text-black md:group-hover:text-[#F5F2EB]" : "text-white md:group-hover:text-[#F5F2EB]"
                   )}
                 >
-                  {item.config.name}
+                  {item.platform === "d2c" ? `${brandName} Official Store` : item.config.name}
                 </span>
                 <span
                   suppressHydrationWarning

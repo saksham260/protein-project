@@ -5,7 +5,7 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { ProductVariant, Product, Brand, Category, VariantRedFlag } from "@/types/product";
-import { cn, splitProductName } from "@/lib/utils";
+import { cn, splitProductName, getPreferredDefaultVariantIndex } from "@/lib/utils";
 
 export interface ProductCardProps {
   product: Product & {
@@ -23,7 +23,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showTopBadges = true,
 }) => {
   const { isInCart, addItem, removeItem } = useCart();
-  const variant = explicitVariant || (product.variants && product.variants[0]);
+  const defaultVariant = product.variants
+    ? product.variants[getPreferredDefaultVariantIndex(product.variants)] || product.variants[0]
+    : undefined;
+  const variant = explicitVariant || defaultVariant;
   const brand = product.brand;
   const category = product.category;
 

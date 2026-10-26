@@ -169,3 +169,84 @@ export function resetMobileZoom(): void {
   }, 450);
 }
 
+export interface MinimalVariant {
+  variant_name?: string | null;
+  slug?: string | null;
+  servings_per_pack?: number | null;
+  net_weight_g?: number | null;
+  mrp_inr?: number | null;
+}
+
+/**
+ * Finds the index of the individual (1 qty) or base purchase variant.
+ * For products with multiple buy quantity options (e.g. single bottle vs 30-pack carton,
+ * single bar vs box of 10, pack of 2 vs pack of 24), the default is set to the individual
+ * (1 qty) option.
+ */
+export function getPreferredDefaultVariantIndex<T extends MinimalVariant>(variants?: T[] | null): number {
+  if (!variants || variants.length <= 1) return 0;
+
+  const singleKeywordRegex = /\b(single|individual|1\s*(bottle|pack|bar|sachet|pc|piece|can|tub|unit))\b/i;
+
+  let bestIndex = 0;
+  let bestScore = Infinity;
+
+  variants.forEach((v, index) => {
+    const name = (v.variant_name || "").trim();
+    const slug = (v.slug || "").trim();
+
+    const isExplicitSingle = singleKeywordRegex.test(name) || singleKeywordRegex.test(slug);
+
+    const packMatch =
+      name.match(/pack\s+of\s+(\d+)/i) ||
+      name.match(/box\s+of\s+(\d+)/i) ||
+      name.match(/(\d+)\s*(sachets|bars|packs|bottles|pieces|pcs)/i);
+    const packQty = packMatch ? parseInt(packMatch[1], 10) : null;
+
+    const servings = v.servings_per_pack || 1;
+    const netWeight = v.net_weight_g || 999999;
+    const mrp = v.mrp_inr || 999999;
+
+    let score = 1000.0;
+
+    if (isExplicitSingle || packQty === 1) {
+      // Explicit 1 qty / single unit
+      score = 0.0;
+    } else if (servings === 1 && packQty === null) {
+      // Single serving (e.g. ready-to-drink or single bar without "single" in title)
+      score = 10.0;
+    } else if (packQty !== null) {
+      // Multi-pack: lower pack count preferred
+      score = 100.0 + packQty;
+    } else if (servings > 1) {
+      score = 200.0 + servings;
+    } else {
+      score = 300.0;
+    }
+
+    // Tie-breaker: smaller net weight, then smaller MRP
+    const weightFactor = netWeight / 100000.0;
+    const mrpFactor = mrp / 1000000.0;
+    const totalScore = score + weightFactor + mrpFactor;
+
+    if (totalScore < bestScore) {
+      bestScore = totalScore;
+      bestIndex = index;
+    }
+  });
+
+  return bestIndex;
+}
+
+/**
+ * Re-orders variants so that the individual (1 qty) / base purchase option is first (index 0).
+ */
+export function sortVariantsDefaultFirst<T extends MinimalVariant>(variants?: T[] | null): T[] {
+  if (!variants || variants.length <= 1) return variants ? [...variants] : [];
+  const defaultIdx = getPreferredDefaultVariantIndex(variants);
+  if (defaultIdx === 0) return [...variants];
+  const defaultVariant = variants[defaultIdx];
+  const rest = variants.filter((_, idx) => idx !== defaultIdx);
+  return [defaultVariant, ...rest];
+}
+

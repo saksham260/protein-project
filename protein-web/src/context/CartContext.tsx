@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { Product, ProductVariant } from "@/types/product";
+import { getPreferredDefaultVariantIndex } from "@/lib/utils";
 
 export interface CartItem {
   productId: string;
@@ -70,7 +71,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setItems((prev) => {
       const existing = prev.find((item) => item.productId === product.id);
       if (existing) return prev;
-      const effectiveVariant = variant || (product.variants && product.variants[0]);
+      const effectiveVariant =
+        variant ||
+        (product.variants &&
+          (product.variants[getPreferredDefaultVariantIndex(product.variants)] ||
+            product.variants[0]));
       return [
         ...prev,
         {
@@ -102,7 +107,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (exists) {
           return prev.filter((item) => item.productId !== product.id);
         }
-        const effectiveVariant = variant || (product.variants && product.variants[0]);
+        const effectiveVariant =
+          variant ||
+          (product.variants &&
+            (product.variants[getPreferredDefaultVariantIndex(product.variants)] ||
+              product.variants[0]));
         return [
           ...prev,
           {

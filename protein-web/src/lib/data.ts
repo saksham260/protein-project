@@ -12,6 +12,7 @@ import {
   proteinPer100Inr,
 } from "@/lib/metrics";
 import { AwardCategory, TOP_PICKS_CONFIG } from "@/lib/topPicksConfig";
+import { sortVariantsDefaultFirst } from "@/lib/utils";
 
 interface RawSeedVariant {
   variant_name?: string;
@@ -104,15 +105,17 @@ function normalizeTier(tier?: string | null): string {
 }
 
 function normalizeLiveProduct(p: ProductWithVariants): ProductWithVariants {
+  const normalizedVariants = (p.variants || []).map((v) => ({
+    ...v,
+    protein_tier: normalizeTier(v.protein_tier),
+    is_combo: Boolean(v.is_combo),
+    is_available: v.is_available ?? true,
+  }));
+
   return {
     ...p,
     is_vegan: Boolean(p.is_vegan),
-    variants: (p.variants || []).map((v) => ({
-      ...v,
-      protein_tier: normalizeTier(v.protein_tier),
-      is_combo: Boolean(v.is_combo),
-      is_available: v.is_available ?? true,
-    })),
+    variants: sortVariantsDefaultFirst(normalizedVariants),
   };
 }
 
@@ -233,7 +236,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
         icon: category.icon,
         display_order: idx,
       },
-      variants,
+      variants: sortVariantsDefaultFirst(variants),
     };
   }
 );
