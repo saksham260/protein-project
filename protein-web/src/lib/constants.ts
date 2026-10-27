@@ -47,6 +47,24 @@ export const CATEGORIES = [
     description: "High-protein cookies, brownies, baked snacks, and confectionery.",
     icon: "🍪",
   },
+  {
+    name: "Mass & Weight Gainers",
+    slug: "mass-gainers",
+    description: "High-calorie, high-protein formulations designed for bulking and hardgainers.",
+    icon: "🏋️",
+  },
+  {
+    name: "Adult & Medical Nutrition",
+    slug: "adult-nutrition",
+    description: "Clinical, senior, diabetic-care, and recovery nutrition formulas.",
+    icon: "🩺",
+  },
+  {
+    name: "High-Protein Staples",
+    slug: "staples",
+    description: "High-protein atta, pasta, soya chunks, flour blends, and everyday kitchen essentials.",
+    icon: "🌾",
+  },
 ] as const;
 
 export const PRIMARY_CATEGORY_SLUGS = [
@@ -115,10 +133,15 @@ export const ALLERGENS_LIST = [
 export const DIETARY_TAGS_LIST = [
   { label: "Vegetarian", value: "vegetarian" },
   { label: "Vegan", value: "vegan" },
-  { label: "Keto Friendly", value: "keto" },
   { label: "Gluten-Free", value: "gluten-free" },
   { label: "No Added Sugar", value: "no-added-sugar" },
   { label: "Clean Label", value: "clean-label" },
+  { label: "Lactose-Free", value: "lactose-free" },
+  { label: "Diabetic-Friendly", value: "diabetic-friendly" },
+  { label: "Keto-Friendly", value: "keto-friendly" },
+  { label: "High-Fibre", value: "high-fibre" },
+  { label: "Nut-Free", value: "nut-free" },
+  { label: "Jain", value: "jain" },
 ] as const;
 
 export const PLATFORM_INFO = {

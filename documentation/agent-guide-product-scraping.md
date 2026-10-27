@@ -38,8 +38,7 @@ protein-etl/scripts/
   find_label_photos.py   step 3: refresh store data + find label photos with OCR
   build_demo_catalog.py  step 5: readings → protein-etl/data/seed_products.json + protein-web/src/data/seedCatalog.json
   verify_demo_catalog.py step 6: quality checks + report in documentation/data-quality/
-```
-Categories (use exactly these slugs): `protein-powders`, `protein-bars`, `savory-snacks`, `rtd-drinks`, `protein-spreads`.
+Categories (use exactly these slugs): `protein-powders`, `protein-bars`, `rtd-drinks`, `savory-snacks`, `protein-spreads`, `breakfast-cereals`, `dairy`, `cookies-baked`, `mass-gainers`, `adult-nutrition`, `staples`.
 
 ## 3. Add products and find their label photos
 **To add a product:** append a line to `picks.txt`, e.g. `nakpro.com|nakpro-pea-protein-isolate|protein-powders|Nakpro`.

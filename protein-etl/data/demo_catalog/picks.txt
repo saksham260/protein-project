@@ -369,3 +369,101 @@ unknown.com|cosmix-plant-protein-powder-indonesian-cacao-750g-20-servings|protei
 cosmix.in|real-indonesian-cacao|protein-powders|Cosmix
 maxprotein.in|max-protein-spanish-tomato-chips|savory-snacks|RiteBite Max Protein
 unknown.com|the-whole-truth-protein-namkeen-mixture-roasted-mixture-120g|savory-snacks|The Whole Truth
+manual|muscleblaze-super-gainer-xxl|mass-gainers|MuscleBlaze
+manual|muscleblaze-mass-gainer-pro|mass-gainers|MuscleBlaze
+manual|optimum-nutrition-serious-mass|mass-gainers|Optimum Nutrition
+manual|avvatar-high-protein-mass-gainer|mass-gainers|Avvatar
+manual|bigmuscles-real-mass-gainer|mass-gainers|Bigmuscles Nutrition
+manual|labrada-muscle-mass-gainer|mass-gainers|Labrada
+manual|optimum-nutrition-gold-standard-100-casein|protein-powders|Optimum Nutrition
+manual|muscleblaze-100-micellar-casein|protein-powders|MuscleBlaze
+manual|optimum-nutrition-platinum-hydrowhey|protein-powders|Optimum Nutrition
+manual|dymatize-iso100-hydrolyzed-whey-isolate|protein-powders|Dymatize
+manual|muscleblaze-biozyme-iso-zero|protein-powders|MuscleBlaze
+manual|isopure-low-carb-dutch-chocolate|protein-powders|Isopure
+manual|isopure-zero-carb-creamy-vanilla|protein-powders|Isopure
+manual|avvatar-100-whey-isolate|protein-powders|Avvatar
+manual|oziva-protein-herbs-for-women|protein-powders|OZiva
+manual|oziva-organic-plant-protein|protein-powders|OZiva
+manual|oziva-superfood-plant-protein-women|protein-powders|OZiva
+manual|oziva-clean-whey-protein-concentrate|protein-powders|OZiva
+manual|kapiva-ayurvedic-protein-for-women|protein-powders|Kapiva
+manual|kapiva-dia-free-plant-protein|protein-powders|Kapiva
+manual|plix-womens-plant-protein|protein-powders|Plix
+manual|plix-daily-superfood-green-protein|protein-powders|Plix
+manual|wellbeing-nutrition-superfood-plant-protein-vanilla|protein-powders|Wellbeing Nutrition
+manual|the-whole-truth-pure-whey-isolate-unflavoured|protein-powders|The Whole Truth
+manual|the-whole-truth-plant-protein-double-cocoa|protein-powders|The Whole Truth
+manual|the-whole-truth-plant-protein-pista-badaam|protein-powders|The Whole Truth
+manual|cosmix-plant-protein-kerala-vanilla-bean|protein-powders|Cosmix
+manual|cosmix-plant-protein-malnad-arabica-coffee|protein-powders|Cosmix
+manual|epigamia-greek-yogurt-natural|dairy|Epigamia
+manual|epigamia-greek-yogurt-alphonso-mango|dairy|Epigamia
+manual|epigamia-greek-yogurt-wild-blueberry|dairy|Epigamia
+manual|epigamia-greek-yogurt-strawberry|dairy|Epigamia
+manual|milky-mist-greek-yogurt-natural-unsweetened|dairy|Milky Mist
+manual|milky-mist-high-protein-paneer|dairy|Milky Mist
+manual|amul-high-protein-rose-shake|dairy|Amul
+manual|amul-high-protein-cafe-latte-shake|dairy|Amul
+manual|amul-high-protein-kesar-shake|dairy|Amul
+manual|amul-high-protein-chocolate-milkshake|dairy|Amul
+manual|muscleblaze-fuel-one-protein-shake-hazelnut-cafe|rtd-drinks|MuscleBlaze
+manual|muscleblaze-fuel-one-protein-shake-belgian-chocolate|rtd-drinks|MuscleBlaze
+manual|raw-pressery-high-protein-milkshake-cold-coffee|rtd-drinks|Raw Pressery
+manual|phab-high-protein-milkshake-classic-chocolate|rtd-drinks|Phab
+manual|ensure-original-complete-nutrition-vanilla|adult-nutrition|Ensure
+manual|ensure-plus-high-protein-vanilla|adult-nutrition|Ensure
+manual|ensure-diabetes-care-vanilla|adult-nutrition|Ensure
+manual|glucerna-specialized-diabetes-care-vanilla|adult-nutrition|Glucerna
+manual|pediasure-complete-growth-chocolate|adult-nutrition|PediaSure
+manual|pediasure-complete-growth-vanilla|adult-nutrition|PediaSure
+manual|protinex-original-hydrolysed-protein|adult-nutrition|Protinex
+manual|protinex-tasty-chocolate|adult-nutrition|Protinex
+manual|protinex-diabetes-care-vanilla|adult-nutrition|Protinex
+manual|complan-royale-chocolate-nutrition-drink|adult-nutrition|Complan
+manual|horlicks-protein-plus-chocolate|adult-nutrition|Horlicks
+manual|horlicks-protein-plus-vanilla|adult-nutrition|Horlicks
+manual|gritzo-supermilk-young-athletes-boys-13|adult-nutrition|Gritzo
+manual|gritzo-supermilk-young-athletes-girls-13|adult-nutrition|Gritzo
+manual|fortune-soya-chunks|staples|Fortune
+manual|nutrela-soya-chunks|staples|Nutrela
+manual|nutrela-soya-mini-chunks|staples|Nutrela
+manual|nutrela-soya-granules|staples|Nutrela
+manual|aashirvaad-proactive-high-protein-multigrain-atta|staples|Aashirvaad
+manual|lo-foods-ultra-low-carb-keto-atta|staples|Lo! Foods
+manual|ketofy-high-protein-keto-flour-atta|staples|Ketofy
+manual|urban-platter-organic-firm-tofu|staples|Urban Platter
+manual|healthkart-high-protein-muesli-dark-chocolate|breakfast-cereals|HealthKart
+manual|muscleblaze-high-protein-oats-dark-chocolate|breakfast-cereals|MuscleBlaze
+manual|the-whole-truth-dark-chocolate-high-protein-muesli|breakfast-cereals|The Whole Truth
+manual|pintola-high-protein-peanut-butter-dark-chocolate|protein-spreads|Pintola
+manual|myfitness-high-protein-peanut-butter-crispy-chocolate|protein-spreads|MyFitness
+manual|amul-fresh-malai-paneer-block|dairy|Amul
+manual|max-protein-7-grain-protein-cookie-choco-chips|cookies-baked|Max Protein
+manual|max-protein-7-grain-protein-cookie-oats-raisins|cookies-baked|Max Protein
+manual|max-protein-7-grain-protein-cookie-nuts-seeds|cookies-baked|Max Protein
+manual|the-whole-truth-protein-cookie-dark-chocolate|cookies-baked|The Whole Truth
+manual|the-whole-truth-protein-cookie-cranberry-almond|cookies-baked|The Whole Truth
+manual|open-secret-unjunked-high-protein-choco-almond-cookies|cookies-baked|Open Secret
+manual|ketofy-chocolate-keto-cookies|cookies-baked|Ketofy
+manual|ketofy-high-protein-keto-bhujia-sev|savory-snacks|Ketofy
+manual|ketofy-high-protein-keto-nachos-peri-peri|savory-snacks|Ketofy
+manual|eat-better-co-high-protein-spicy-seed-trail-mix|savory-snacks|Eat Better Co
+manual|ritebite-daily-protein-bar-choco-berry|protein-bars|RiteBite
+manual|ritebite-daily-protein-bar-choco-almond|protein-bars|RiteBite
+manual|phab-high-protein-bar-strawberries-cream|protein-bars|Phab
+manual|cosmix-raw-plant-protein-unflavoured|protein-powders|Cosmix
+manual|optimum-nutrition-gold-standard-100-whey-double-rich-chocolate|protein-powders|Optimum Nutrition
+manual|optimum-nutrition-gold-standard-100-whey-extreme-milk-chocolate|protein-powders|Optimum Nutrition
+manual|optimum-nutrition-gold-standard-100-whey-vanilla-ice-cream|protein-powders|Optimum Nutrition
+manual|optimum-nutrition-gold-standard-100-plant-protein-chocolate|protein-powders|Optimum Nutrition
+manual|dymatize-iso100-hydrolyzed-whey-isolate-gourmet-chocolate|protein-powders|Dymatize
+manual|dymatize-iso100-hydrolyzed-whey-isolate-birthday-cake|protein-powders|Dymatize
+manual|dymatize-elite-100-whey-protein-rich-chocolate|protein-powders|Dymatize
+manual|muscletech-nitrotech-ripped-french-vanilla|protein-powders|MuscleTech
+manual|muscletech-nitrotech-100-whey-gold-double-rich-chocolate|protein-powders|MuscleTech
+manual|muscletech-mass-tech-extreme-2000|mass-gainers|MuscleTech
+manual|myprotein-impact-whey-isolate-chocolate-smooth|protein-powders|Myprotein
+manual|myprotein-clear-whey-isolate-orange-mango|protein-powders|Myprotein
+manual|ultimate-nutrition-prostar-100-whey-chocolate-creme|protein-powders|Ultimate Nutrition
+manual|ultimate-nutrition-iso-sensation-93-chocolate|protein-powders|Ultimate Nutrition

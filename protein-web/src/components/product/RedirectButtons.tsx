@@ -183,7 +183,11 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
                     item.isCheapest ? "text-black md:group-hover:text-[#F5F2EB]" : "text-white md:group-hover:text-[#F5F2EB]"
                   )}
                 >
-                  {item.platform === "d2c" ? `${brandName} Official Store` : item.config.name}
+                  {item.platform === "d2c"
+                    ? `${brandName} Official Store`
+                    : /\/s\?k=|\/s\/\?q=|\/search\?|[?&]q=|\/search\//i.test(item.url)
+                    ? `Search on ${item.config.name}`
+                    : item.config.name}
                 </span>
                 <span
                   suppressHydrationWarning
@@ -203,7 +207,7 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
                 item.isCheapest ? "text-black md:group-hover:text-[#D97706]" : "text-zinc-400 md:group-hover:text-[#D97706]"
               )}
             >
-              <span>Buy</span>
+              <span>{/\/s\?k=|\/s\/\?q=|\/search\?|[?&]q=|\/search\//i.test(item.url) ? "Search" : "Buy"}</span>
               <span>↗</span>
             </div>
           </a>
