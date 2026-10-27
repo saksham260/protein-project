@@ -42,9 +42,9 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
       unit: "text-xs sm:text-sm",
     },
     lg: {
-      value: isLong ? "text-2xl sm:text-3xl" : "text-4xl sm:text-5xl",
-      label: "text-xs",
-      unit: "text-base",
+      value: isLong ? "text-base sm:text-2xl md:text-3xl" : "text-xl sm:text-3xl md:text-5xl",
+      label: "text-[10px] sm:text-xs",
+      unit: "text-[10px] sm:text-sm md:text-base",
     },
     xl: {
       value: isLong ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl",
@@ -93,7 +93,7 @@ export const OversizedMetric: React.FC<OversizedMetricProps> = ({
         )}
       </div>
       {subtext && (
-        <span className={cn("text-[11px] font-mono text-zinc-500 mt-1 truncate", isCenter && "text-center")}>
+        <span className={cn("text-[9px] sm:text-[11px] font-mono text-zinc-500 mt-0.5 sm:mt-1 truncate max-w-full", isCenter && "text-center")}>
           {subtext}
         </span>
       )}
