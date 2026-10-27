@@ -47,7 +47,9 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const { baseName, packInfo } = splitProductName(product.name, activeVariant?.variant_name);
 
   const costPerG = activeVariant?.cost_per_g_protein != null ? activeVariant.cost_per_g_protein.toFixed(1) : "—";
-  const calories = activeVariant?.calories_kcal != null ? Math.round(activeVariant.calories_kcal).toLocaleString("en-IN") : "—";
+  const totalCaloriesPack = activeVariant?.calories_kcal != null
+    ? Math.round(activeVariant.calories_kcal * (activeVariant.servings_per_pack || 1)).toLocaleString("en-IN")
+    : "—";
   const totalProteinPack = activeVariant
     ? (activeVariant.protein_g * (activeVariant.servings_per_pack || 1)).toFixed(0)
     : "—";
@@ -171,7 +173,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           </div>
 
           {/* OVERSIZED CORE METRICS DISPLAY */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
             <OversizedMetric
               label="MRP"
               prefix="₹"
@@ -185,11 +187,11 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
             <OversizedMetric
               label="Calories"
-              value={calories}
+              value={totalCaloriesPack}
               unit="kcal"
               size="lg"
               accent="white"
-              subtext={activeVariant?.serving_size_g ? `Per ${activeVariant.serving_size_g}g serving` : "Per serving"}
+              subtext={activeVariant?.net_weight_g ? `${activeVariant.net_weight_g}g pack` : "Total Calories"}
               align="center"
               labelClassName="text-[#F59E0B] font-bold"
             />
