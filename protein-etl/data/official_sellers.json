@@ -1,0 +1,38 @@
+{
+  "optimum-nutrition": {
+    "brand_name": "Optimum Nutrition",
+    "official_d2c_domains": ["optimumnutrition.co.in", "glanbiaperformancenutrition.com"],
+    "authorized_amazon_sellers": ["Glanbia Performance Nutrition", "Clicktech Retail Private Ltd", "Appario Retail Private Ltd"],
+    "notes": "Officially imported and distributed in India by Glanbia Performance Nutrition."
+  },
+  "isopure": {
+    "brand_name": "Isopure",
+    "official_d2c_domains": ["theisopurecompany.com", "optimumnutrition.co.in"],
+    "authorized_amazon_sellers": ["Glanbia Performance Nutrition", "Clicktech Retail Private Ltd"],
+    "notes": "Subsidiary of Glanbia Performance Nutrition."
+  },
+  "dymatize": {
+    "brand_name": "Dymatize",
+    "official_d2c_domains": ["dymatize.com", "musclehouse.co.in"],
+    "authorized_amazon_sellers": ["Muscle House India", "Clicktech Retail Private Ltd"],
+    "notes": "Authentic verification via Muscle House / Bell Nutrition holographic scratch code."
+  },
+  "muscletech": {
+    "brand_name": "MuscleTech",
+    "official_d2c_domains": ["muscletech.in"],
+    "authorized_amazon_sellers": ["Shri Balaji Overseas", "Clicktech Retail Private Ltd"],
+    "notes": "Distributed in India via Shri Balaji Overseas with verification code."
+  },
+  "myprotein": {
+    "brand_name": "Myprotein",
+    "official_d2c_domains": ["myprotein.co.in"],
+    "authorized_amazon_sellers": ["Myprotein India Official", "THG India"],
+    "notes": "Direct-to-consumer flagship via myprotein.co.in."
+  },
+  "ultimate-nutrition": {
+    "brand_name": "Ultimate Nutrition",
+    "official_d2c_domains": ["ultimatenutrition.com", "paradigmsmt.com"],
+    "authorized_amazon_sellers": ["Paradigm Sourcing", "Clicktech Retail Private Ltd"],
+    "notes": "Authentic verification via authorized Indian importer."
+  }
+}

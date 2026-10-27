@@ -12,7 +12,7 @@ import {
   proteinPer100Inr,
 } from "@/lib/metrics";
 import { AwardCategory, TOP_PICKS_CONFIG } from "@/lib/topPicksConfig";
-import { sortVariantsDefaultFirst } from "@/lib/utils";
+import { sortVariantsDefaultFirst, canonicalDietaryTag } from "@/lib/utils";
 
 interface RawSeedVariant {
   variant_name?: string;
@@ -93,6 +93,9 @@ const defaultCategoryImages: Record<string, string> = {
   "breakfast-cereals": "/images/products/savory-snack-pack.jpg",
   "dairy": "/images/products/rtd-protein-drink.jpg",
   "cookies-baked": "/images/products/protein-bar-pack.jpg",
+  "mass-gainers": "/images/products/whey-protein-tub.jpg",
+  "adult-nutrition": "/images/products/whey-protein-tub.jpg",
+  "staples": "/images/products/savory-snack-pack.jpg",
 };
 
 function normalizeTier(tier?: string | null): string {
@@ -108,6 +111,7 @@ function normalizeLiveProduct(p: ProductWithVariants): ProductWithVariants {
   const normalizedVariants = (p.variants || []).map((v) => ({
     ...v,
     protein_tier: normalizeTier(v.protein_tier),
+    dietary_tags: (v.dietary_tags || []).map(canonicalDietaryTag),
     is_combo: Boolean(v.is_combo),
     is_available: v.is_available ?? true,
   }));
@@ -174,7 +178,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
         ingredient_list: v.ingredient_list || [],
         ingredient_deck_raw: v.ingredient_deck_raw || [],
         allergens: v.allergens || [],
-        dietary_tags: v.dietary_tags || [],
+        dietary_tags: (v.dietary_tags || []).map(canonicalDietaryTag),
         primary_protein_source: v.protein_profile?.primary_protein_source || null,
         protein_tier: tier,
         has_added_free_form_aminos: !!v.protein_profile?.has_added_free_form_aminos,
@@ -316,14 +320,14 @@ function variantMatches(
     }
   }
   if (filters.dietaryTags?.length) {
-    const tags = v.dietary_tags.map((t) => t.toLowerCase());
+    const normTags = v.dietary_tags.map(canonicalDietaryTag);
     if (
       !filters.dietaryTags.every((tag) => {
-        const lower = tag.toLowerCase();
-        if (lower === "vegan") {
-          return Boolean(productIsVegan || tags.includes("vegan"));
+        const canonical = canonicalDietaryTag(tag);
+        if (canonical === "vegan") {
+          return Boolean(productIsVegan || normTags.includes("vegan"));
         }
-        return tags.includes(lower);
+        return normTags.includes(canonical);
       })
     ) {
       return false;

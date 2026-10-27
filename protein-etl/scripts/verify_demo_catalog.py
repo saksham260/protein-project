@@ -41,6 +41,9 @@ DENSITY_RANGE = {
     "breakfast-cereals": (15, 45),
     "dairy": (4, 35),
     "cookies-baked": (10, 45),
+    "mass-gainers": (12, 45),
+    "adult-nutrition": (10, 45),
+    "staples": (12, 60),
 }
 # Products whose unusual density was checked against the brand's own claim - skip the density warning.
 DENSITY_REVIEWED = {
@@ -56,10 +59,30 @@ def load() -> tuple[list, list, dict]:
     picks = [l.split("|") for l in (DATA_DIR / "picks.txt").read_text(encoding="utf-8").splitlines() if l and not l.startswith("#")]
     readings = [json.loads(l) for l in (DATA_DIR / "readings.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
     snapshot = json.loads((DATA_DIR / "store_snapshot.json").read_text(encoding="utf-8"))
+    
+    manual_file = DATA_DIR / "manual_entries.jsonl"
+    if manual_file.exists():
+        manual_list = []
+        for line in manual_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                try:
+                    manual_list.append(json.loads(line))
+                except Exception:
+                    pass
+        if manual_list:
+            snapshot["manual"] = manual_list
+            
     return picks, readings, snapshot
 
 
 def snapshot_product(snapshot: dict, store: str, handle: str) -> dict | None:
+    if store == "manual" or store not in snapshot:
+        # Check manual entries if available
+        manual_items = snapshot.get("manual", [])
+        matched = next((p for p in manual_items if p.get("handle") == handle), None)
+        if matched:
+            return matched
     return next((p for p in snapshot.get(store, []) if p["handle"] == handle), None)
 
 
@@ -94,7 +117,7 @@ def check(r: dict, pick: list, product: dict | None) -> list[tuple[str, str]]:
 
     density = 100 * val("protein") / serv
     low, high = DENSITY_RANGE.get(category, (0, 100))
-    if not low <= density <= high and r["g"] not in DENSITY_REVIEWED:
+    if not low <= density <= high and r.get("g") not in DENSITY_REVIEWED:
         issues.append(("WARN", f"protein density {density:.0f}% is unusual for {category} ({low}-{high}%)"))
 
     title = (product or {}).get("title", "")
@@ -171,7 +194,7 @@ def main() -> int:
     ]
     for r, pick, issues in rows:
         for level, msg in issues:
-            lines.append(f"| {r['i']} | {pick[3]} | {r['name']} | {level} | {msg} |")
+            lines.append(f"| {r['i']} | {pick[3]} | {r.get('name', pick[1])} | {level} | {msg} |")
     if not errors and not warns:
         lines.append("| – | – | – | – | all checks passed |")
     if prices is not None:

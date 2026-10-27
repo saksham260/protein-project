@@ -28,8 +28,27 @@ NUTRIENT_KEYS = ["calories_kcal", "protein_g", "total_carbs_g", "total_fat_g", "
 catalogs = json.load(open(HERE / "store_snapshot.json", encoding="utf-8"))
 tier_defs = json.load(open(REPO / "protein-etl/src/data/protein_sources.json", encoding="utf-8"))["tier_definitions"]
 
+manual_entries_file = HERE / "manual_entries.jsonl"
+manual_entries = {}
+if manual_entries_file.exists():
+    for line in manual_entries_file.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            try:
+                obj = json.loads(line)
+                manual_entries[obj["handle"]] = obj
+            except Exception:
+                pass
+
 
 def find_product(store, prefix):
+    if store == "manual" or prefix in manual_entries:
+        p = manual_entries[prefix]
+        return {
+            "url": p.get("url") or "",
+            "image_url": p.get("image_url"),
+            "variants": p.get("variants", []),
+        }
     ps = catalogs[store]
     p = ([x for x in ps if x["handle"] == prefix] or [x for x in ps if x["handle"].startswith(prefix)])[0]
     return {
@@ -49,7 +68,7 @@ def prioritize_and_cap_variants(category_slug, variants, max_variants=12):
     def default_score(v):
         avail_penalty = 0 if getattr(v, "is_available", True) else 1000000
         combo_penalty = 0 if not getattr(v, "is_combo", False) else 500000
-        if category_slug == "protein-powders":
+        if category_slug in ("protein-powders", "mass-gainers"):
             weight_diff = abs(v.net_weight_g - 1000)
             return avail_penalty + combo_penalty + weight_diff
         else:
@@ -111,7 +130,10 @@ for group_key, r_list in grouped_readings.items():
         
         links = [{"platform": "d2c", "url": r_rec["url"], "platform_price_inr": price}]
         var_display_name = r.get("variant") or name
-        links += [{"platform": p, "url": build_search_url(p, f"{brand} {name} {var_display_name}")} for p in SEARCH_URL_TEMPLATES]
+        if brand == "Amul" and "blueberry" not in r_rec.get("handle", "").lower():
+            pass  # User rule: Amul products except blueberry shake are only purchasable on Amul store
+        else:
+            links += [{"platform": p, "url": build_search_url(p, f"{brand} {name} {var_display_name}")} for p in SEARCH_URL_TEMPLATES]
         
         # Check energy sanity per reading
         # Check energy sanity per reading (considering potential fiber/polyol deduction)

@@ -250,3 +250,25 @@ export function sortVariantsDefaultFirst<T extends MinimalVariant>(variants?: T[
   return [defaultVariant, ...rest];
 }
 
+/**
+ * Maps loose dietary tag strings (e.g. "no added sugar", "Clean Label", "gluten free", "Keto")
+ * to standard canonical hyphenated slugs so filters and product metadata always match reliably.
+ */
+export function canonicalDietaryTag(raw?: string | null): string {
+  if (!raw) return "";
+  const s = raw.trim().toLowerCase().replace(/[\s_]+/g, "-");
+  if (s === "keto" || s === "keto-friendly") return "keto-friendly";
+  if (s === "no-added-sugar" || s === "zero-sugar" || s === "no-refined-sugar") return "no-added-sugar";
+  if (s === "gluten-free" || s === "glutenfree") return "gluten-free";
+  if (s === "clean-label" || s === "cleanlabel" || s === "100%-natural") return "clean-label";
+  if (s === "lactose-free" || s === "lactosefree") return "lactose-free";
+  if (s === "diabetic-friendly" || s === "diabetic" || s === "diabetic-care") return "diabetic-friendly";
+  if (s === "high-fibre" || s === "high-fiber") return "high-fibre";
+  if (s === "nut-free" || s === "peanut-free") return "nut-free";
+  if (s === "jain") return "jain";
+  if (s === "vegan" || s === "dairy-free" || s === "dairyfree") return "vegan";
+  if (s === "vegetarian") return "vegetarian";
+  return s;
+}
+
+

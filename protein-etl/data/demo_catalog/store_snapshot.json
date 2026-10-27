@@ -11227,7 +11227,7 @@
       ],
       "images": [
         {
-          "src": "https://www.avvatarindia.com/images/product_images/1754284949_WhatsApp Image 2025-07-25 at 12.08.28 PM.jpeg"
+          "src": "https://www.avvatarindia.com/images/product_images/1754284949_WhatsApp%20Image%202025-07-25%20at%2012.08.28%20PM.jpeg"
         },
         {
           "src": "https://www.avvatarindia.com/images/product_images/1754284962_AVVATAR WHEYFER BAR COFFEE 40g_FOP.jpg"
@@ -11257,7 +11257,7 @@
           "src": "https://www.avvatarindia.com/images/product_images/1759123114_waffer cheese.jpg"
         },
         {
-          "src": "https://www.avvatarindia.com/images/product_images/1764825611_WhatsApp Image 2025-12-04 at 10.33.07.jpeg"
+          "src": "https://www.avvatarindia.com/images/product_images/1764825611_WhatsApp%20Image%202025-12-04%20at%2010.33.07.jpeg"
         }
       ]
     },
@@ -15196,11 +15196,7 @@
       "handle": "amul-high-protein-milk",
       "title": "Amul High Protein Milk",
       "url": "https://shop.amul.com/en/product/amul-high-protein-milk-250-ml-or-pack-of-30",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/671b30a3caec6f032c8154ed/amul-high-protein-milk.png"
-        }
-      ],
+      "images": [],
       "variants": [
         {
           "title": "Pack of 30 (250ml)",
@@ -15215,11 +15211,7 @@
       "handle": "amul-high-protein-dahi",
       "title": "Amul High Protein Probiotic Dahi",
       "url": "https://shop.amul.com/en/product/amul-high-protein-dahi-400g",
-      "images": [
-        {
-          "src": "https://shop.amul.com/s/62fa94df8c13af2e242eba16/671b30a3caec6f032c8154ed/amul-high-protein-dahi.png"
-        }
-      ],
+      "images": [],
       "variants": [
         {
           "title": "400g Tub",
@@ -15468,7 +15460,7 @@
       "url": "https://nutrabay.com/product/nutrabay-gold-100-whey-protein-concentrate",
       "images": [
         {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1014-01-1758998117.png"
+          "src": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-gold-100-whey-protein-concentrate.webp"
         }
       ],
       "variants": [
@@ -15578,7 +15570,7 @@
       "url": "https://nutrabay.com/product/nutrabay-whey-protein-concentrate",
       "images": [
         {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1001-01-1758998117.png"
+          "src": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-pure-100-raw-whey-protein-concentrate.webp"
         }
       ],
       "variants": [
@@ -15613,7 +15605,7 @@
       "url": "https://nutrabay.com/product/nutrabay-gold-tri-blend-whey-protein",
       "images": [
         {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1025-01-1758998117.png"
+          "src": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-gold-tri-blend-whey-protein.webp"
         }
       ],
       "variants": [
@@ -15649,14 +15641,15 @@
           "sku": "NB-NUT-1025-04",
           "available": true
         }
-      ]
+      ],
+      "image_url": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-gold-tri-blend-whey-protein.webp"
     },
     {
       "handle": "nutrabay-gold-hydrolyzed-pea-protein",
       "url": "https://nutrabay.com/product/nutrabay-gold-hydrolyzed-pea-protein",
       "images": [
         {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1030-01-1758998117.png"
+          "src": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-gold-hydrolyzed-pea-protein-isolate.webp"
         }
       ],
       "variants": [
@@ -15684,14 +15677,15 @@
           "sku": "NB-NUT-1030-03",
           "available": true
         }
-      ]
+      ],
+      "image_url": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-gold-hydrolyzed-pea-protein-isolate.webp"
     },
     {
       "handle": "nutrabay-wellness-vegan-plant-protein-superfoods",
       "url": "https://nutrabay.com/product/nutrabay-wellness-vegan-plant-protein-powder-superfoods",
       "images": [
         {
-          "src": "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-NUT-1035-01-1758998117.png"
+          "src": "https://xggxmlfilnufcacmeiwc.supabase.co/storage/v1/object/public/product-images/nutrabay-wellness-vegan-plant-protein-powder-with-superfoods.webp"
         }
       ],
       "variants": [

@@ -1,0 +1,756 @@
+[
+  {
+    "slug": "nutrabay-gold-100-whey-protein-concentrate",
+    "name": "Gold 100% Whey Protein Concentrate",
+    "brand": "Nutrabay",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "slug": "nutrabay-pure-100-raw-whey-protein-concentrate",
+    "name": "Pure 100% Raw Whey Protein Concentrate",
+    "brand": "Nutrabay",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "slug": "nutrabay-gold-tri-blend-whey-protein",
+    "name": "Gold Tri-Blend Whey Protein",
+    "brand": "Nutrabay",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "slug": "nutrabay-gold-hydrolyzed-pea-protein-isolate",
+    "name": "Gold Hydrolyzed Pea Protein Isolate",
+    "brand": "Nutrabay",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "slug": "nutrabay-wellness-vegan-plant-protein-powder-with-superfoods",
+    "name": "Wellness Vegan Plant Protein Powder with Superfoods",
+    "brand": "Nutrabay",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "slug": "amul-high-protein-milk",
+    "name": "High Protein Milk",
+    "brand": "Amul",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "amul-high-protein-probiotic-dahi",
+    "name": "High Protein Probiotic Dahi",
+    "brand": "Amul",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-super-gainer-xxl",
+    "name": "Super Gainer XXL",
+    "brand": "MuscleBlaze",
+    "category": "mass-gainers",
+    "manual_url": "https://www.muscleblaze.com/sv/muscleblaze-super-gainer-xxl/SP-40286",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-mass-gainer-pro",
+    "name": "Mass Gainer Pro",
+    "brand": "MuscleBlaze",
+    "category": "mass-gainers",
+    "manual_url": "https://www.muscleblaze.com/sv/muscleblaze-mass-gainer-pro/SP-43960",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "optimum-nutrition-serious-mass-gainer",
+    "name": "Serious Mass Gainer",
+    "brand": "Optimum Nutrition",
+    "category": "mass-gainers",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "avvatar-high-protein-mass-gainer",
+    "name": "High Protein Mass Gainer",
+    "brand": "Avvatar",
+    "category": "mass-gainers",
+    "manual_url": "https://www.avvatarindia.com/product/high-protein-mass-gainer-belgian-chocolate-1-kg",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "bigmuscles-nutrition-real-mass-gainer",
+    "name": "Real Mass Gainer",
+    "brand": "Bigmuscles Nutrition",
+    "category": "mass-gainers",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "labrada-muscle-mass-gainer",
+    "name": "Muscle Mass Gainer",
+    "brand": "Labrada",
+    "category": "mass-gainers",
+    "manual_url": "https://www.labrada.com/products/muscle-mass-gainer",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "optimum-nutrition-gold-standard-100-casein",
+    "name": "Gold Standard 100% Casein",
+    "brand": "Optimum Nutrition",
+    "category": "protein-powders",
+    "manual_url": "https://www.optimumnutrition.co.in/gold-standard-100-casein",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-100-micellar-casein",
+    "name": "100% Micellar Casein",
+    "brand": "MuscleBlaze",
+    "category": "protein-powders",
+    "manual_url": "https://www.muscleblaze.com/sv/muscleblaze-100-micellar-casein/SP-40280",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "optimum-nutrition-platinum-hydrowhey",
+    "name": "Platinum Hydrowhey",
+    "brand": "Optimum Nutrition",
+    "category": "protein-powders",
+    "manual_url": "https://www.optimumnutrition.co.in/platinum-hydrowhey",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "dymatize-iso100-hydrolyzed-whey-isolate",
+    "name": "ISO100 Hydrolyzed Whey Isolate",
+    "brand": "Dymatize",
+    "category": "protein-powders",
+    "manual_url": "https://www.dymatize.com/iso100",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-biozyme-iso-zero-low-carb",
+    "name": "Biozyme Iso-Zero Low Carb",
+    "brand": "MuscleBlaze",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "avvatar-100-whey-isolate",
+    "name": "100% Whey Isolate",
+    "brand": "Avvatar",
+    "category": "protein-powders",
+    "manual_url": "https://www.avvatarindia.com/product/100-isolate-belgian-chocolate-1-kg",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "oziva-protein-herbs-for-women",
+    "name": "Protein & Herbs for Women",
+    "brand": "OZiva",
+    "category": "protein-powders",
+    "manual_url": "https://www.oziva.in/products/oziva-protein-herbs-for-women-chocolate",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "oziva-superfood-plant-protein-for-women",
+    "name": "Superfood Plant Protein for Women",
+    "brand": "OZiva",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "kapiva-ayurvedic-protein-for-women",
+    "name": "Ayurvedic Protein for Women",
+    "brand": "Kapiva",
+    "category": "protein-powders",
+    "manual_url": "https://kapiva.in/products/ayurvedic-protein-for-women-chocolate",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "kapiva-dia-free-plant-protein",
+    "name": "Dia Free Plant Protein",
+    "brand": "Kapiva",
+    "category": "protein-powders",
+    "manual_url": "https://kapiva.in/products/dia-free-plant-protein-powder",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "plix-women-plant-protein",
+    "name": "Women Plant Protein",
+    "brand": "Plix",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "plix-daily-superfood-green-protein",
+    "name": "Daily Superfood Green Protein",
+    "brand": "Plix",
+    "category": "protein-powders",
+    "manual_url": "https://www.plixlife.com/products/superfood-plant-protein-powder",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "wellbeing-nutrition-superfood-plant-protein-french-vanilla",
+    "name": "Superfood Plant Protein French Vanilla",
+    "brand": "Wellbeing Nutrition",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "epigamia-high-protein-greek-yogurt-natural-no-added-sugar",
+    "name": "High Protein Greek Yogurt Natural (No Added Sugar)",
+    "brand": "Epigamia",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "epigamia-high-protein-greek-yogurt-alphonso-mango",
+    "name": "High Protein Greek Yogurt Alphonso Mango",
+    "brand": "Epigamia",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "epigamia-high-protein-greek-yogurt-wild-blueberry",
+    "name": "High Protein Greek Yogurt Wild Blueberry",
+    "brand": "Epigamia",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "epigamia-high-protein-greek-yogurt-strawberry",
+    "name": "High Protein Greek Yogurt Strawberry",
+    "brand": "Epigamia",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "milky-mist-high-protein-greek-yogurt-natural-unsweetened",
+    "name": "High Protein Greek Yogurt Natural Unsweetened",
+    "brand": "Milky Mist",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "milky-mist-high-protein-low-fat-paneer",
+    "name": "High Protein Low Fat Paneer",
+    "brand": "Milky Mist",
+    "category": "dairy",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-fuel-one-protein-shake-hazelnut-cafe",
+    "name": "Fuel One Protein Shake Hazelnut Cafe",
+    "brand": "MuscleBlaze",
+    "category": "rtd-drinks",
+    "manual_url": "https://www.muscleblaze.com/sv/muscleblaze-fuel-one-protein-shake/SP-114251",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-fuel-one-protein-shake-belgian-chocolate",
+    "name": "Fuel One Protein Shake Belgian Chocolate",
+    "brand": "MuscleBlaze",
+    "category": "rtd-drinks",
+    "manual_url": "https://www.muscleblaze.com/sv/muscleblaze-fuel-one-protein-shake/SP-114251",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "raw-pressery-high-protein-milkshake-cold-coffee",
+    "name": "High Protein Milkshake Cold Coffee",
+    "brand": "Raw Pressery",
+    "category": "rtd-drinks",
+    "manual_url": "https://www.rawpressery.com/products/protein-milkshake-coffee",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ensure-original-complete-balanced-adult-nutrition",
+    "name": "Original Complete Balanced Adult Nutrition",
+    "brand": "Ensure",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ensure-plus-high-protein-recovery-drink",
+    "name": "Plus High Protein Recovery Drink",
+    "brand": "Ensure",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ensure-diabetes-care-specialized-nutrition",
+    "name": "Diabetes Care Specialized Nutrition",
+    "brand": "Ensure",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "glucerna-specialized-diabetes-nutritional-drink",
+    "name": "Specialized Diabetes Nutritional Drink",
+    "brand": "Glucerna",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "pediasure-complete-balanced-growth-nutrition-chocolate",
+    "name": "Complete Balanced Growth Nutrition Chocolate",
+    "brand": "PediaSure",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "pediasure-complete-balanced-growth-nutrition-vanilla",
+    "name": "Complete Balanced Growth Nutrition Vanilla",
+    "brand": "PediaSure",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "complan-royale-chocolate-nutrition-drink",
+    "name": "Royale Chocolate Nutrition Drink",
+    "brand": "Complan",
+    "category": "adult-nutrition",
+    "manual_url": "https://complan.in/products/complan-royale-chocolate",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "horlicks-protein-plus-chocolate-drink",
+    "name": "Protein Plus Chocolate Drink",
+    "brand": "Horlicks",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "horlicks-protein-plus-vanilla-drink",
+    "name": "Protein Plus Vanilla Drink",
+    "brand": "Horlicks",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "gritzo-supermilk-for-young-athletes-boys-13-yrs",
+    "name": "SuperMilk for Young Athletes (Boys 13+ yrs)",
+    "brand": "Gritzo",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "gritzo-supermilk-for-young-athletes-girls-13-yrs",
+    "name": "SuperMilk for Young Athletes (Girls 13+ yrs)",
+    "brand": "Gritzo",
+    "category": "adult-nutrition",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "fortune-soya-chunks-99-fat-free",
+    "name": "Soya Chunks (99% Fat Free)",
+    "brand": "Fortune",
+    "category": "staples",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "nutrela-soya-chunks-classic",
+    "name": "Soya Chunks Classic",
+    "brand": "Nutrela",
+    "category": "staples",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "nutrela-soya-mini-chunks",
+    "name": "Soya Mini Chunks",
+    "brand": "Nutrela",
+    "category": "staples",
+    "manual_url": "https://www.nutrelanutrition.com/product/nutrela-soya-mini-chunks",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "nutrela-soya-granules",
+    "name": "Soya Granules",
+    "brand": "Nutrela",
+    "category": "staples",
+    "manual_url": "https://www.nutrelanutrition.com/product/nutrela-soya-granules",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "aashirvaad-proactive-high-protein-multigrain-atta",
+    "name": "ProActive High Protein Multigrain Atta",
+    "brand": "Aashirvaad",
+    "category": "staples",
+    "manual_url": "https://itcstore.in/products/aashirvaad-proactive-high-protein-multigrain-atta",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "lo-foods-ultra-low-carb-keto-atta-3g-net-carbs",
+    "name": "Ultra Low Carb Keto Atta (3g Net Carbs)",
+    "brand": "Lo! Foods",
+    "category": "staples",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ketofy-high-protein-keto-flour-atta",
+    "name": "High Protein Keto Flour / Atta",
+    "brand": "Ketofy",
+    "category": "staples",
+    "manual_url": "https://ketofy.in/products/ketofy-keto-flour",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "urban-platter-organic-non-gmo-firm-tofu-block",
+    "name": "Organic Non-GMO Firm Tofu Block",
+    "brand": "Urban Platter",
+    "category": "staples",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "healthkart-high-protein-muesli-dark-chocolate-cranberry",
+    "name": "High Protein Muesli Dark Chocolate & Cranberry",
+    "brand": "HealthKart",
+    "category": "breakfast-cereals",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscleblaze-high-protein-oats-dark-chocolate",
+    "name": "High Protein Oats Dark Chocolate",
+    "brand": "MuscleBlaze",
+    "category": "breakfast-cereals",
+    "manual_url": "https://www.muscleblaze.com/sv/muscleblaze-high-protein-oats/SP-109823",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "max-protein-7-grain-protein-cookie-choco-chips",
+    "name": "7 Grain Protein Cookie Choco Chips",
+    "brand": "Max Protein",
+    "category": "cookies-baked",
+    "manual_url": "https://ritebite.com/products/max-protein-7-grain-cookie-choco-chips",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "max-protein-7-grain-protein-cookie-oats-raisins",
+    "name": "7 Grain Protein Cookie Oats & Raisins",
+    "brand": "Max Protein",
+    "category": "cookies-baked",
+    "manual_url": "https://ritebite.com/products/max-protein-7-grain-cookie-oats-raisins",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "max-protein-7-grain-protein-cookie-nuts-seeds",
+    "name": "7 Grain Protein Cookie Nuts & Seeds",
+    "brand": "Max Protein",
+    "category": "cookies-baked",
+    "manual_url": "https://ritebite.com/products/max-protein-7-grain-cookie-nuts-seeds",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ketofy-chocolate-keto-cookies-ultra-low-carb",
+    "name": "Chocolate Keto Cookies (Ultra Low Carb)",
+    "brand": "Ketofy",
+    "category": "cookies-baked",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ketofy-high-protein-keto-bhujia-sev",
+    "name": "High Protein Keto Bhujia / Sev",
+    "brand": "Ketofy",
+    "category": "savory-snacks",
+    "manual_url": "https://ketofy.in/products/ketofy-keto-bhujia",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ketofy-high-protein-keto-nachos-peri-peri",
+    "name": "High Protein Keto Nachos Peri Peri",
+    "brand": "Ketofy",
+    "category": "savory-snacks",
+    "manual_url": "https://ketofy.in/products/ketofy-keto-nachos-peri-peri",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "eat-better-co-high-protein-spicy-seed-trail-mix-nut-free",
+    "name": "High Protein Spicy Seed Trail Mix (Nut-Free)",
+    "brand": "Eat Better Co",
+    "category": "savory-snacks",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "phab-high-protein-bar-strawberries-cream",
+    "name": "High Protein Bar Strawberries & Cream",
+    "brand": "Phab",
+    "category": "protein-bars",
+    "manual_url": "https://getphab.com/products/high-protein-bar-strawberries-cream",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "optimum-nutrition-gold-standard-100-plant-protein-chocolate",
+    "name": "Gold Standard 100% Plant Protein Chocolate",
+    "brand": "Optimum Nutrition",
+    "category": "protein-powders",
+    "manual_url": "https://www.optimumnutrition.co.in/products/gold-standard-100-plant-protein",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "dymatize-iso100-hydrolyzed-whey-protein-isolate-gourmet-chocolate",
+    "name": "ISO100 Hydrolyzed Whey Protein Isolate Gourmet Chocolate",
+    "brand": "Dymatize",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "dymatize-iso100-hydrolyzed-whey-protein-isolate-birthday-cake",
+    "name": "ISO100 Hydrolyzed Whey Protein Isolate Birthday Cake",
+    "brand": "Dymatize",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscletech-nitrotech-ripped-hybrid-whey-protein-french-vanilla",
+    "name": "NitroTech Ripped Hybrid Whey Protein French Vanilla",
+    "brand": "MuscleTech",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscletech-nitrotech-100-whey-gold-double-rich-chocolate",
+    "name": "NitroTech 100% Whey Gold Double Rich Chocolate",
+    "brand": "MuscleTech",
+    "category": "protein-powders",
+    "manual_url": "https://muscletech.in/products/nitro-tech-100-whey-gold",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "muscletech-mass-tech-extreme-2000-high-calorie-mass-gainer",
+    "name": "Mass Tech Extreme 2000 High Calorie Mass Gainer",
+    "brand": "MuscleTech",
+    "category": "mass-gainers",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "myprotein-impact-whey-isolate-chocolate-smooth",
+    "name": "Impact Whey Isolate Chocolate Smooth",
+    "brand": "Myprotein",
+    "category": "protein-powders",
+    "manual_url": "https://www.myprotein.co.in/sports-nutrition/impact-whey-isolate/10530911.html",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "myprotein-clear-whey-isolate-orange-mango",
+    "name": "Clear Whey Isolate Orange Mango",
+    "brand": "Myprotein",
+    "category": "protein-powders",
+    "manual_url": "https://www.myprotein.co.in/sports-nutrition/clear-whey-isolate/12081395.html",
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ultimate-nutrition-prostar-100-whey-protein-chocolate-creme",
+    "name": "Prostar 100% Whey Protein Chocolate Creme",
+    "brand": "Ultimate Nutrition",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  },
+  {
+    "slug": "ultimate-nutrition-iso-sensation-93-100-pure-whey-isolate-natural-chocolate",
+    "name": "ISO Sensation 93 100% Pure Whey Isolate Natural Chocolate",
+    "brand": "Ultimate Nutrition",
+    "category": "protein-powders",
+    "manual_url": null,
+    "variants": [
+      null
+    ]
+  }
+]

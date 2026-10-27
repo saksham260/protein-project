@@ -12,6 +12,7 @@ import { RedirectButtons } from "@/components/product/RedirectButtons";
 import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { RedFlagWarning } from "@/components/product/RedFlagWarning";
 import { OversizedMetric } from "@/components/ui/OversizedMetric";
+import { HealthDisclaimer } from "@/components/product/HealthDisclaimer";
 import { formatPrice, formatPricePerGram, splitProductName, cn, getPreferredDefaultVariantIndex } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 
@@ -274,6 +275,14 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
           {/* Purchase Section with Cheapest in Neon Yellow */}
           <ProductViewTracker productId={product.id} variantId={activeVariant?.id} />
+          {(category?.slug === "adult-nutrition" ||
+            activeVariant?.dietary_tags?.includes("diabetic-friendly") ||
+            product.name.toLowerCase().includes("kids") ||
+            product.name.toLowerCase().includes("junior") ||
+            product.description?.toLowerCase().includes("medical nutrition") ||
+            product.description?.toLowerCase().includes("diabetic care")) && (
+            <HealthDisclaimer />
+          )}
           <RedirectButtons
             productId={product.id}
             redirectLinks={activeVariant?.redirect_links || []}
