@@ -4,6 +4,9 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { logOutboundClick } from "@/lib/activity";
+import { compareHref, compareKey, MAX_COMPARE } from "@/lib/compare";
+import { buildRedirectUrl, getPriceDisplay, isPriceFresh, withAffiliateTag } from "@/lib/redirect";
 import { Platform } from "@/types/product";
 import { splitProductName } from "@/lib/utils";
 
@@ -17,29 +20,47 @@ const PLATFORM_LABELS: Record<Platform, { name: string; bg: string; text: string
 
 export const CartDrawer: React.FC = () => {
   const { items, itemCount, isCartOpen, closeCart, removeItem, clearCart } = useCart();
+  const compareKeys = items
+    .flatMap((item) => (item.variant ? [compareKey(item.product, item.variant)] : []))
+    .slice(0, MAX_COMPARE);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Lock body scroll and handle Escape key
+  // Lock body scroll, keep keyboard focus inside the drawer, and handle Escape
   useEffect(() => {
     if (!isCartOpen) return;
     const orig = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    closeButtonRef.current?.focus();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeCart();
+      if (e.key !== "Tab" || !drawerRef.current) return;
+      const focusable = drawerRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = orig;
       window.removeEventListener("keydown", handleKeyDown);
+      previousFocus?.focus();
     };
   }, [isCartOpen, closeCart]);
 
   if (!isCartOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden select-none" aria-modal="true" role="dialog">
+    <div className="fixed inset-0 z-50 overflow-hidden select-none" aria-modal="true" role="dialog" aria-label="Your cart">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity animate-in fade-in duration-200 cursor-pointer"
@@ -60,13 +81,13 @@ export const CartDrawer: React.FC = () => {
               </span>
               <div>
                 <h2 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
-                  Your Shortlist
+                  Your Cart
                   <span className="text-xs px-2 py-0.5 rounded-full bg-[#26221E] text-[#968E85] font-mono border border-[#332D27]">
                     {itemCount}
                   </span>
                 </h2>
                 <p className="text-[11px] text-[#968E85] font-mono mt-0.5">
-                  Saved products with instant direct buy links
+                  Saved products with links to buy. You pay on the store&apos;s site.
                 </p>
               </div>
             </div>
@@ -82,10 +103,11 @@ export const CartDrawer: React.FC = () => {
                 </button>
               )}
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={closeCart}
                 className="w-8 h-8 rounded-xl bg-[#26221E] hover:bg-[#332D27] text-[#968E85] hover:text-[#F5F2EB] border border-[#332D27] flex items-center justify-center text-sm transition-colors cursor-pointer"
-                aria-label="Close shortlist"
+                aria-label="Close cart"
               >
                 ✕
               </button>
@@ -100,9 +122,9 @@ export const CartDrawer: React.FC = () => {
                   🏷️
                 </div>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-base font-bold text-[#F5F2EB] font-sans">No products shortlisted yet</h3>
+                  <h3 className="text-base font-bold text-[#F5F2EB] font-sans">Your cart is empty</h3>
                   <p className="text-xs font-mono max-w-xs leading-relaxed text-[#968E85]">
-                    Click the shortlist bookmark on any product card to compare and buy directly from top stores.
+                    Tap Add to Cart on any product to keep it here, compare it, and buy it from the store of your choice.
                   </p>
                 </div>
                 <Link
@@ -115,14 +137,14 @@ export const CartDrawer: React.FC = () => {
                 </Link>
               </div>
             ) : (
-              items.map(({ productId, product, variant }) => {
+              items.map(({ key, productId, variantId, product, variant }) => {
                 const imageUrl = variant?.image_url || product.image_url;
                 const redirectLinks = variant?.redirect_links || [];
                 const { baseName, packInfo } = splitProductName(product.name, variant?.variant_name);
 
                 return (
                   <div
-                    key={productId}
+                    key={key}
                     className="p-4 rounded-2xl bg-[#18181B] border border-[#27272A] hover:border-[#3F3F46] transition-all flex flex-col gap-3 group relative"
                   >
                     {/* Top Row: Thumbnail + Title + Remove */}
@@ -177,10 +199,10 @@ export const CartDrawer: React.FC = () => {
                       {/* Remove Button */}
                       <button
                         type="button"
-                        onClick={() => removeItem(productId)}
+                        onClick={() => removeItem(productId, variantId)}
                         className="absolute top-3 right-3 text-[#A1A1AA] hover:text-red-400 p-1 rounded-md transition-colors"
-                        title="Remove from shortlist"
-                        aria-label="Remove item"
+                        title="Remove from cart"
+                        aria-label={`Remove ${product.name} from cart`}
                       >
                         ✕
                       </button>
@@ -199,18 +221,20 @@ export const CartDrawer: React.FC = () => {
                               bg: "bg-white/10 border-white/20 hover:bg-white/15",
                               text: "text-white",
                             };
+                            const shownPrice = getPriceDisplay(link.platform, link.platform_price_inr);
                             return (
                               <a
                                 key={link.id}
-                                href={link.url}
+                                href={withAffiliateTag(link.url)}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => void logOutboundClick({ productId, variantId, platform: link.platform })}
                                 className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border text-[11px] font-mono font-bold transition-colors ${info.bg} ${info.text}`}
                               >
                                 <span>{info.name}</span>
-                                {link.platform_price_inr && (
+                                {shownPrice.type === "stored" && isPriceFresh(link) && (
                                   <span className="opacity-85 font-normal">
-                                    ₹{link.platform_price_inr.toLocaleString("en-IN")}
+                                    ₹{shownPrice.price.toLocaleString("en-IN")}
                                   </span>
                                 )}
                                 <span className="text-[9px]">↗</span>
@@ -220,7 +244,7 @@ export const CartDrawer: React.FC = () => {
                         ) : (
                           <div className="flex items-center gap-2">
                             <a
-                              href={`https://www.amazon.in/s?k=${encodeURIComponent(product.name)}`}
+                              href={buildRedirectUrl("amazon", { brandName: product.brand?.name ?? "", productName: product.name })}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border text-[11px] font-mono font-bold bg-[#FF9900]/15 border-[#FF9900]/30 hover:bg-[#FF9900]/25 text-[#FF9900] transition-colors"
@@ -249,11 +273,20 @@ export const CartDrawer: React.FC = () => {
           {itemCount > 0 && (
             <div className="p-4 border-t border-[#332D27] bg-[#1C1916]/90 flex flex-col gap-2">
               <div className="flex items-center justify-between text-xs font-mono text-[#968E85]">
-                <span>Total Shortlisted</span>
+                <span>Items in Cart</span>
                 <span className="text-[#F5F2EB] font-bold">{itemCount} items</span>
               </div>
+              {compareKeys.length >= 2 && (
+                <Link
+                  href={compareHref(compareKeys)}
+                  onClick={closeCart}
+                  className="w-full py-2.5 rounded-xl bg-[#D97706] hover:bg-[#B45309] text-white text-xs font-bold text-center transition-colors"
+                >
+                  Compare {compareKeys.length === MAX_COMPARE && itemCount > MAX_COMPARE ? `first ${MAX_COMPARE}` : compareKeys.length} items →
+                </Link>
+              )}
               <p className="text-[10px] text-[#787067] font-mono text-center">
-                Prices and availability are tracked live across Indian stores.
+                Prices can change, so check the store before buying.
               </p>
             </div>
           )}

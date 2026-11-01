@@ -16,6 +16,7 @@ except (ImportError, ModuleNotFoundError):
 
 ASIN_PATTERN = re.compile(r"/(?:dp|gp/product)/([A-Z0-9]{10})(?:[/?#]|$)")
 MAX_PRICE_CHANGE = 0.5  # a >50% jump between polls is more likely a wrong listing than a real price
+PRICED_PLATFORMS = ("amazon", "d2c")  # quick-commerce prices vary by area and are never shown
 
 
 class OfferSource(Protocol):
@@ -109,7 +110,11 @@ def poll_amazon_prices(db: Any, amazon: OfferSource, dry_run: bool = False, forc
         if dry_run:
             continue
 
-        write_price(db, link, "amazon", price, offer.in_stock, now_iso, extra={"external_id": asin})
+        # Amazon's agreement allows its price data to be kept for 24 hours and its policy bans price
+        # tracking, so Amazon prices overwrite the link and never go into price_history.
+        write_price(
+            db, link, "amazon", price, offer.in_stock, now_iso, extra={"external_id": asin}, record_history=False
+        )
         touched_variants.add(link["variant_id"])
 
     summary.variants_recomputed = recompute_best_prices(db, touched_variants)
@@ -155,9 +160,11 @@ def recompute_best_prices(db: Any, variant_ids: Iterable[str]) -> int:
             .execute()
             .data
         )
+        links = db.table("redirect_links").select("platform, platform_price_inr, in_stock").eq("variant_id", variant_id).execute().data
         prices = [
             row["platform_price_inr"]
-            for row in db.table("redirect_links").select("platform_price_inr").eq("variant_id", variant_id).execute().data
+            for row in links
+            if row.get("platform") in PRICED_PLATFORMS and row.get("in_stock") is not False
         ]
         db.table("product_variants").update(best_price_metrics(variant, prices)).eq("id", variant_id).execute()
         count += 1

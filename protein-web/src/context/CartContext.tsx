@@ -2,9 +2,12 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { Product, ProductVariant } from "@/types/product";
+import { fetchCatalog } from "@/lib/catalogClient";
 import { getPreferredDefaultVariantIndex } from "@/lib/utils";
 
 export interface CartItem {
+  /** The variant id, or the product id for the rare product with no variant. Each pack size is its own item. */
+  key: string;
   productId: string;
   variantId?: string;
   product: Product;
@@ -20,16 +23,28 @@ interface CartContextType {
   closeCart: () => void;
   toggleCart: () => void;
   addItem: (product: Product, variant?: ProductVariant) => void;
-  removeItem: (productId: string) => void;
-  toggleItem: (product: Product, variant?: ProductVariant) => void;
-  isInCart: (productId: string) => boolean;
+  removeItem: (productId: string, variantId?: string) => void;
+  isInCart: (productId: string, variantId?: string) => boolean;
   clearCart: () => void;
-  syncToAccount: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const CART_STORAGE_KEY = "protein-engine-cart";
+
+function itemKey(productId: string, variantId?: string): string {
+  return variantId ?? productId;
+}
+
+/** Saved carts hold a copy of the product, so swap in today's prices and links. */
+function withFreshData(items: CartItem[], catalog: Product[]): CartItem[] {
+  return items.map((item) => {
+    const product = catalog.find((p) => p.id === item.productId);
+    if (!product) return item;
+    const variant = product.variants?.find((v) => v.id === item.variantId) ?? item.variant;
+    return { ...item, product, variant };
+  });
+}
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -40,11 +55,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          setItems(parsed);
-        }
+      const parsed: unknown = saved ? JSON.parse(saved) : null;
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const restored = (parsed as CartItem[]).map((item) => ({
+          ...item,
+          key: item.key ?? itemKey(item.productId, item.variantId),
+        }));
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage isn't readable during server render
+        setItems(restored);
       }
     } catch (e) {
       console.error("Failed to load cart from localStorage", e);
@@ -63,22 +81,33 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [items, isInitialized]);
 
+  // The catalog is only worth downloading once someone actually looks at their cart.
+  useEffect(() => {
+    if (!isCartOpen) return;
+    fetchCatalog()
+      .then((catalog) => setItems((current) => withFreshData(current, catalog)))
+      .catch(() => {
+        // Keep the saved copy; the product pages still show current details.
+      });
+  }, [isCartOpen]);
+
   const openCart = useCallback(() => setIsCartOpen(true), []);
   const closeCart = useCallback(() => setIsCartOpen(false), []);
   const toggleCart = useCallback(() => setIsCartOpen((prev) => !prev), []);
 
   const addItem = useCallback((product: Product, variant?: ProductVariant) => {
     setItems((prev) => {
-      const existing = prev.find((item) => item.productId === product.id);
-      if (existing) return prev;
       const effectiveVariant =
         variant ||
         (product.variants &&
           (product.variants[getPreferredDefaultVariantIndex(product.variants)] ||
             product.variants[0]));
+      const key = itemKey(product.id, effectiveVariant?.id);
+      if (prev.some((item) => item.key === key)) return prev;
       return [
         ...prev,
         {
+          key,
           productId: product.id,
           variantId: effectiveVariant?.id,
           product,
@@ -89,52 +118,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   }, []);
 
-  const removeItem = useCallback((productId: string) => {
-    setItems((prev) => prev.filter((item) => item.productId !== productId));
+  const removeItem = useCallback((productId: string, variantId?: string) => {
+    const key = itemKey(productId, variantId);
+    setItems((prev) => prev.filter((item) => item.key !== key));
   }, []);
 
   const isInCart = useCallback(
-    (productId: string) => {
-      return items.some((item) => item.productId === productId);
+    (productId: string, variantId?: string) => {
+      const key = itemKey(productId, variantId);
+      return items.some((item) => item.key === key);
     },
     [items]
-  );
-
-  const toggleItem = useCallback(
-    (product: Product, variant?: ProductVariant) => {
-      setItems((prev) => {
-        const exists = prev.some((item) => item.productId === product.id);
-        if (exists) {
-          return prev.filter((item) => item.productId !== product.id);
-        }
-        const effectiveVariant =
-          variant ||
-          (product.variants &&
-            (product.variants[getPreferredDefaultVariantIndex(product.variants)] ||
-              product.variants[0]));
-        return [
-          ...prev,
-          {
-            productId: product.id,
-            variantId: effectiveVariant?.id,
-            product,
-            variant: effectiveVariant,
-            addedAt: Date.now(),
-          },
-        ];
-      });
-    },
-    []
   );
 
   const clearCart = useCallback(() => {
     setItems([]);
   }, []);
-
-  const syncToAccount = useCallback(async () => {
-    // Stub for future cloud/auth sync
-    console.log("Syncing cart to account (stub)...", items);
-  }, [items]);
 
   return (
     <CartContext.Provider
@@ -147,10 +146,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         toggleCart,
         addItem,
         removeItem,
-        toggleItem,
         isInCart,
         clearCart,
-        syncToAccount,
       }}
     >
       {children}

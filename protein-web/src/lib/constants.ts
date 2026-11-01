@@ -75,15 +75,15 @@ export const PRIMARY_CATEGORY_SLUGS = [
 ] as const;
 
 export const SORT_OPTIONS = [
-  { label: "Featured — Popular brands first", value: "featured", column: "best_cost_per_g_protein", ascending: true },
-  { label: "Cost per Gram (₹/g) — Low to High", value: "cost_per_g_asc", column: "best_cost_per_g_protein", ascending: true },
-  { label: "Protein Density — High to Low", value: "density_desc", column: "protein_density_pct", ascending: false },
-  { label: "Protein per ₹100 — High to Low", value: "p100_desc", column: "best_cost_per_g_protein", ascending: true },
-  { label: "Calories per g Protein — Low to High", value: "kcal_per_g_asc", column: "calories_kcal", ascending: true },
-  { label: "Best Price — Low to High", value: "best_price_asc", column: "best_price_inr", ascending: true },
-  { label: "MRP — Low to High", value: "price_asc", column: "mrp_inr", ascending: true },
-  { label: "MRP — High to Low", value: "price_desc", column: "mrp_inr", ascending: false },
-  { label: "Protein per Serving — High to Low", value: "protein_desc", column: "protein_g", ascending: false },
+  { label: "Featured — Popular brands first", value: "featured" },
+  { label: "Cost per Gram (₹/g) — Low to High", value: "cost_per_g_asc" },
+  { label: "Protein Density — High to Low", value: "density_desc" },
+  { label: "Protein per ₹100 — High to Low", value: "p100_desc" },
+  { label: "Calories per g Protein — Low to High", value: "kcal_per_g_asc" },
+  { label: "Best Price — Low to High", value: "best_price_asc" },
+  { label: "MRP — Low to High", value: "price_asc" },
+  { label: "MRP — High to Low", value: "price_desc" },
+  { label: "Protein per Serving — High to Low", value: "protein_desc" },
 ] as const;
 
 export const PROTEIN_TIERS = {
@@ -112,12 +112,12 @@ export const PROTEIN_TIERS = {
     description: "Non-dairy protein: pea, rice, soy, fermented yeast, peanut, and pulse/millet flours. Blends (e.g. pea + rice) give a more complete amino acid profile than single sources.",
   },
   "Tier 4": {
-    label: "Tier 4: Incomplete / Spiked / Collagen",
-    badgeLabel: "Tier 4: Incomplete / Spiked",
+    label: "Tier 4: Incomplete / Added Aminos / Collagen",
+    badgeLabel: "Tier 4: Incomplete / Added Aminos",
     color: "#f87171",
     bg: "rgba(248, 113, 113, 0.15)",
     border: "rgba(248, 113, 113, 0.4)",
-    description: "Non-muscle building proteins (collagen, gelatin, wheat gluten) or products flagged for amino spiking.",
+    description: "Incomplete proteins (collagen, gelatin, wheat gluten), or products whose label lists added free-form amino acids.",
   },
 } as const;
 
@@ -137,12 +137,18 @@ export const DIETARY_TAGS_LIST = [
   { label: "No Added Sugar", value: "no-added-sugar" },
   { label: "Clean Label", value: "clean-label" },
   { label: "Lactose-Free", value: "lactose-free" },
-  { label: "Diabetic-Friendly", value: "diabetic-friendly" },
   { label: "Keto-Friendly", value: "keto-friendly" },
   { label: "High-Fibre", value: "high-fibre" },
   { label: "Nut-Free", value: "nut-free" },
   { label: "Jain", value: "jain" },
 ] as const;
+
+/** Wording required by the Amazon Associates agreement (section 10). */
+export const AMAZON_DISCLOSURE = "As an Amazon Associate I earn from qualifying purchases.";
+
+/** Wording required beside Amazon prices that refresh less than hourly. */
+export const AMAZON_PRICE_NOTE =
+  "Product prices and availability are accurate as of the date/time indicated and are subject to change.";
 
 export const PLATFORM_INFO = {
   amazon: { name: "Amazon", color: "#FF9900", icon: "📦" },

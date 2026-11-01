@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import Link from "next/link";
-import { ProductWithVariants } from "@/types/product";
+import { ProductWithVariants, TestReport } from "@/types/product";
 import { VariantSelector } from "@/components/product/VariantSelector";
 import { ProteinTierBadge } from "@/components/product/ProteinTierBadge";
 import { NutritionPanel } from "@/components/product/NutritionPanel";
@@ -11,21 +11,27 @@ import { NutritionToggle, NutritionMode } from "@/components/product/NutritionTo
 import { RedirectButtons } from "@/components/product/RedirectButtons";
 import { ProductViewTracker } from "@/components/product/ProductViewTracker";
 import { RedFlagWarning } from "@/components/product/RedFlagWarning";
+import { EfficiencyMeter } from "@/components/product/EfficiencyMeter";
+import { GenuineCheckCard } from "@/components/product/GenuineCheckCard";
+import { LabReportPanel } from "@/components/product/LabReportPanel";
 import { OversizedMetric } from "@/components/ui/OversizedMetric";
 import { HealthDisclaimer } from "@/components/product/HealthDisclaimer";
-import { formatPrice, formatPricePerGram, splitProductName, cn, getPreferredDefaultVariantIndex } from "@/lib/utils";
+import { hasAllergenData } from "@/lib/allergens";
+import { effectiveCostPerGram, priceLabel, sellingPrice } from "@/lib/metrics";
+import { splitProductName, cn, getPreferredDefaultVariantIndex } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 
 export interface ProductDetailProps {
   product: ProductWithVariants;
+  testReports?: TestReport[];
 }
 
-export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
+export const ProductDetail: React.FC<ProductDetailProps> = ({ product, testReports = [] }) => {
   const { isInCart, addItem, removeItem, openCart } = useCart();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(() =>
     getPreferredDefaultVariantIndex(product.variants)
   );
-  const [nutritionMode, setNutritionMode] = useState<NutritionMode>("per_pack");
+  const [nutritionMode, setNutritionMode] = useState<NutritionMode>("per_serving");
 
   const variants = product.variants || [];
   const activeVariant = variants[selectedVariantIndex] || variants[0];
@@ -34,11 +40,11 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const redFlags = activeVariant?.red_flags || [];
   const imageUrl = activeVariant?.image_url || product.image_url;
 
-  const isAdded = isInCart(product.id);
+  const isAdded = isInCart(product.id, activeVariant?.id);
 
   const handleCartClick = () => {
     if (isAdded) {
-      removeItem(product.id);
+      removeItem(product.id, activeVariant?.id);
     } else {
       addItem(product, activeVariant);
     }
@@ -46,7 +52,9 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
   const { baseName, packInfo } = splitProductName(product.name, activeVariant?.variant_name);
 
-  const costPerG = activeVariant?.cost_per_g_protein != null ? activeVariant.cost_per_g_protein.toFixed(1) : "—";
+  const price = activeVariant ? sellingPrice(activeVariant) : null;
+  const hasDiscount = Boolean(activeVariant && price !== null && price < activeVariant.mrp_inr);
+  const hasIngredientData = Boolean(activeVariant?.ingredient_list.length);
   const totalCaloriesPack = activeVariant?.calories_kcal != null
     ? Math.round(activeVariant.calories_kcal * (activeVariant.servings_per_pack || 1)).toLocaleString("en-IN")
     : "—";
@@ -62,6 +70,18 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       </span>
     </div>
   );
+
+  if (!activeVariant) {
+    return (
+      <div className="container max-w-xl mx-auto px-4 py-24 flex flex-col items-center text-center gap-4">
+        <h1 className="text-2xl font-black text-white tracking-tight">{product.name}</h1>
+        <p className="text-sm text-[#A1A1AA]">This product has no pack sizes listed right now.</p>
+        <Link href="/explore" className="text-xs font-mono font-bold text-[#D97706] hover:underline">
+          Browse all products →
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col gap-12">
@@ -135,7 +155,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           </div>
 
           {/* Clinical Formulation Warning Banner */}
-          <RedFlagWarning flags={redFlags} mode="banner" />
+          <RedFlagWarning flags={redFlags} mode="banner" hasIngredientData={hasIngredientData} />
         </div>
 
         {/* Right Side: Data, Metrics, Actions */}
@@ -146,11 +166,6 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               <span className="text-sm sm:text-base font-mono uppercase tracking-wider text-[#F59E0B] font-bold">
                 {brand.name}
               </span>
-              {brand.is_verified && (
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#27272A] text-[#A1A1AA] border border-[#3F3F46]">
-                  ✓ Verified Brand
-                </span>
-              )}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -175,12 +190,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           {/* OVERSIZED CORE METRICS DISPLAY */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4 p-3.5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
             <OversizedMetric
-              label="MRP"
+              label={priceLabel(activeVariant) === "From" ? "Best Price" : priceLabel(activeVariant)}
               prefix="₹"
-              value={activeVariant?.mrp_inr != null ? activeVariant.mrp_inr.toLocaleString("en-IN") : "—"}
+              value={price != null ? price.toLocaleString("en-IN") : "—"}
               size="lg"
               accent="white"
-              subtext="Retail Price"
+              subtext={hasDiscount ? `MRP ₹${activeVariant.mrp_inr.toLocaleString("en-IN")}` : priceLabel(activeVariant) === "Price" ? "Store price" : "Retail Price"}
               align="center"
               labelClassName="text-[#F59E0B] font-bold"
             />
@@ -207,6 +222,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
               labelClassName="text-[#F59E0B] font-bold"
             />
           </div>
+
+          {/* The site's headline numbers: what a gram of protein costs, and how lean the product is */}
+          <EfficiencyMeter
+            costPerGram={effectiveCostPerGram(activeVariant)}
+            proteinDensityPct={activeVariant.protein_density_pct}
+          />
 
           {/* Variant Selector */}
           <VariantSelector
@@ -293,6 +314,11 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             variantId={activeVariant?.id}
           />
 
+          <GenuineCheckCard
+            brandName={brand.name}
+            brandStoreUrl={activeVariant.redirect_links?.find((link) => link.platform === "d2c")?.url}
+          />
+
           {/* Nutrition Panel with iOS-style Segmented Toggle */}
           <div className="flex flex-col gap-4 pt-4 border-t border-[#27272A]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -301,39 +327,41 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                   Nutritional Breakdown
                 </h2>
                 <p className="text-xs font-mono text-[#A1A1AA]">
-                  Calculated directly from verified FSSAI lab labels
+                  From the product label, as listed by the brand. Check the pack.
                 </p>
               </div>
 
               <NutritionToggle
                 mode={nutritionMode}
                 onChange={setNutritionMode}
-                packWeightG={activeVariant?.net_weight_g}
+                servingSizeG={activeVariant?.serving_size_g}
               />
             </div>
 
             <NutritionPanel variant={activeVariant} mode={nutritionMode} />
           </div>
 
-          {/* Clinical Red-Flag Breakdown Section */}
+          {/* Label Red-Flag Breakdown Section */}
           <div className="flex flex-col gap-4 pt-6 border-t border-[#27272A]">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-white tracking-tight">
-                Clinical Formulation Audit
+                Label Red-Flag Check
               </h2>
               <span className="text-xs font-mono text-[#A1A1AA]">
-                Independent scanner analysis
+                Automated scan of the ingredient list
               </span>
             </div>
 
-            <RedFlagWarning flags={redFlags} mode="clinical-deck" />
+            <RedFlagWarning flags={redFlags} mode="clinical-deck" hasIngredientData={hasIngredientData} />
           </div>
 
           {/* Protein Quality & Ingredients Deck */}
           <div className="flex flex-col gap-6 pt-6 border-t border-[#27272A]">
+            <LabReportPanel reports={testReports} variant={activeVariant} />
+
             <div className="p-6 rounded-3xl bg-[#18181B] border border-[#27272A] flex flex-col gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
               <h3 className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
-                Protein Quality & Bioavailability
+                Protein Source
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
@@ -345,17 +373,19 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                 </div>
 
                 <div className="flex flex-col gap-1 p-4 rounded-2xl bg-[#27272A]/60 border border-[#27272A]">
-                  <span className="text-[#A1A1AA] uppercase text-[10px]">Amino Spiking Status</span>
+                  <span className="text-[#A1A1AA] uppercase text-[10px]">Added Amino Acids</span>
                   <span
                     className={`font-bold text-sm ${
                       activeVariant?.has_added_free_form_aminos
-                        ? "text-[#EF4444]"
-                        : "text-[#10B981]"
+                        ? "text-[#F59E0B]"
+                        : "text-[#E4E4E7]"
                     }`}
                   >
-                    {activeVariant?.has_added_free_form_aminos
-                      ? "⚠️ Free-Form Aminos Added"
-                      : "✓ Pure Formulation (Clean)"}
+                    {!hasIngredientData
+                      ? "No ingredient list available"
+                      : activeVariant?.has_added_free_form_aminos
+                        ? "Listed on the label"
+                        : "None listed on the label"}
                   </span>
                 </div>
               </div>
@@ -413,14 +443,19 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                       </span>
                     ))
                   ) : (
-                    <span className="text-xs font-mono text-[#A1A1AA]">None declared</span>
+                    <span className="text-xs font-mono text-[#A1A1AA]">
+                      {hasAllergenData(activeVariant) ? "None declared" : "Allergen info missing"}
+                    </span>
                   )}
                 </div>
+                <p className="text-[11px] font-sans text-[#A1A1AA] leading-relaxed mt-1">
+                  From the label, and it can be incomplete. If you have an allergy, always check the pack.
+                </p>
               </div>
 
               <div className="p-6 rounded-3xl bg-[#18181B] border border-[#27272A] flex flex-col gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
                 <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
-                  Dietary Profile
+                  Dietary Profile (As Labelled)
                 </span>
                 <div className="flex flex-wrap gap-1.5 mt-1">
                   {activeVariant?.dietary_tags.map((tag) => (

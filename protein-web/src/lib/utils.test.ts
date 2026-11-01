@@ -8,6 +8,8 @@ import {
   cn,
   formatTimeAgo,
   splitProductName,
+  canonicalDietaryTag,
+  formatDateTime,
 } from "./utils";
 
 describe("Suite 14: Formatters and Utils", () => {
@@ -73,7 +75,11 @@ describe("Suite 14: Formatters and Utils", () => {
       expect(computePer100g(20, 52)).toBe(38.46);
     });
 
-    it("returns 0 when netWeightG is zero or negative", () => {
+    it("scales a powder's per-serving protein by the serving, not the tub", () => {
+      expect(computePer100g(25, 36)).toBe(69.44);
+    });
+
+    it("returns 0 when the serving size is zero or negative", () => {
       expect(computePer100g(20, 0)).toBe(0);
       expect(computePer100g(20, -50)).toBe(0);
     });
@@ -113,6 +119,29 @@ describe("Suite 14: Formatters and Utils", () => {
     it("returns dash for null or undefined", () => {
       expect(formatTimeAgo(null)).toBe("—");
       expect(formatTimeAgo(undefined)).toBe("—");
+    });
+  });
+
+  describe("formatDateTime", () => {
+    it("shows a full date and time in India time", () => {
+      expect(formatDateTime("2026-11-01T10:15:00Z")).toMatch(/1 Nov 2026.*3:45/i);
+    });
+
+    it("returns dash for null", () => {
+      expect(formatDateTime(null)).toBe("—");
+    });
+  });
+
+  describe("canonicalDietaryTag", () => {
+    it("treats spelling variants as one tag", () => {
+      expect(canonicalDietaryTag("No Added Sugar")).toBe("no-added-sugar");
+      expect(canonicalDietaryTag("Gluten Free")).toBe("gluten-free");
+    });
+
+    it("doesn't upgrade a tag into a stronger claim", () => {
+      expect(canonicalDietaryTag("Dairy Free")).toBe("dairy-free");
+      expect(canonicalDietaryTag("Peanut Free")).toBe("peanut-free");
+      expect(canonicalDietaryTag("No Refined Sugar")).toBe("no-refined-sugar");
     });
   });
 

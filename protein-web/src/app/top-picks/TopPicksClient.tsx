@@ -13,7 +13,6 @@ export interface TopPicksClientProps {
     product: ProductWithVariants;
     editorialBlurb?: string;
   }>;
-  allProducts: ProductWithVariants[];
 }
 
 export function TopPicksClient({ topPicks }: TopPicksClientProps) {
@@ -25,7 +24,7 @@ export function TopPicksClient({ topPicks }: TopPicksClientProps) {
           Home
         </Link>
         <span>/</span>
-        <span className="text-[#F5F2EB] font-bold">Top Picks of the Month</span>
+        <span className="text-[#F5F2EB] font-bold">Top Value Picks</span>
       </nav>
 
       {/* Hero Header */}
@@ -35,14 +34,18 @@ export function TopPicksClient({ topPicks }: TopPicksClientProps) {
             <div className="flex items-center gap-2">
               <span className="text-base">🏆</span>
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
-                Editor&apos;s Verified Selection
+                Picked by Formula
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl font-black text-[#F5F2EB] mt-1 tracking-tight">
-              Top Picks of the Month
+              Top Value Picks
             </h1>
             <p className="text-xs sm:text-sm font-mono text-[#968E85] mt-1 max-w-2xl">
-              Hand-verified and ranked by real nutritional data. Highest biological purity, density, and value across Indian brands with zero brand sponsorship.
+              The lowest cost per gram of protein in each category, among in-stock products with no red flags on their
+              label. Commissions play no part in these picks.{" "}
+              <Link href="/how-we-rate" className="text-[#D97706] hover:underline">
+                How we rate
+              </Link>
             </p>
           </div>
           <Link
@@ -58,10 +61,10 @@ export function TopPicksClient({ topPicks }: TopPicksClientProps) {
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between pb-2 border-b border-[#332D27]/80">
           <span className="text-xs font-mono uppercase tracking-wider text-[#968E85]">
-            Gold & Tier-1 Winners ({topPicks.length})
+            Category Winners ({topPicks.length})
           </span>
           <span className="text-xs font-mono text-[#D97706]">
-            Strict chemical deck audit passed
+            No label red flags
           </span>
         </div>
 

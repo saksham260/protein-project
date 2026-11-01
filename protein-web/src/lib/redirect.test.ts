@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildRedirectUrl, getPriceDisplay } from "./redirect";
+import { buildRedirectUrl, getPriceDisplay, isPriceFresh, withAffiliateTag } from "./redirect";
 
 describe("Suite 15: Redirect URL and Price Display", () => {
   describe("buildRedirectUrl", () => {
@@ -61,6 +61,44 @@ describe("Suite 15: Redirect URL and Price Display", () => {
         productName: "Product",
       });
       expect(url).toBe("#");
+    });
+  });
+
+  describe("withAffiliateTag", () => {
+    it("tags stored Amazon search and product links", () => {
+      expect(withAffiliateTag("https://www.amazon.in/s?k=whey")).toContain("tag=proteineng-21");
+      expect(withAffiliateTag("https://www.amazon.in/dp/B07XJ8C8F5")).toContain("tag=proteineng-21");
+    });
+
+    it("replaces a tag already on the link", () => {
+      const url = withAffiliateTag("https://www.amazon.in/dp/B07XJ8C8F5?tag=someone-else-21");
+      expect(url).not.toContain("someone-else");
+    });
+
+    it("leaves other stores and malformed links alone", () => {
+      expect(withAffiliateTag("https://blinkit.com/s/?q=whey")).toBe("https://blinkit.com/s/?q=whey");
+      expect(withAffiliateTag("https://notamazon.in/dp/1")).toBe("https://notamazon.in/dp/1");
+      expect(withAffiliateTag("not a url")).toBe("not a url");
+    });
+  });
+
+  describe("isPriceFresh", () => {
+    const now = Date.parse("2026-11-01T12:00:00Z");
+
+    it("drops Amazon prices after 24 hours", () => {
+      const checked = (hours: number) => new Date(now - hours * 3600000).toISOString();
+      expect(isPriceFresh({ platform: "amazon", price_last_checked: checked(23) }, now)).toBe(true);
+      expect(isPriceFresh({ platform: "amazon", price_last_checked: checked(25) }, now)).toBe(false);
+    });
+
+    it("gives brand-store prices 14 days", () => {
+      const checked = (days: number) => new Date(now - days * 86400000).toISOString();
+      expect(isPriceFresh({ platform: "d2c", price_last_checked: checked(13) }, now)).toBe(true);
+      expect(isPriceFresh({ platform: "d2c", price_last_checked: checked(15) }, now)).toBe(false);
+    });
+
+    it("treats seed prices, which have no check time, as usable", () => {
+      expect(isPriceFresh({ platform: "d2c", price_last_checked: null }, now)).toBe(true);
     });
   });
 

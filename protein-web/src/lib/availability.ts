@@ -36,7 +36,10 @@ export async function reportAvailability(
   return !error;
 }
 
-/** Reported available when more people said yes than no. */
+/** One person's report isn't enough to tell other shoppers something is in stock. */
+export const MIN_REPORTS_TO_TRUST = 2;
+
+/** Reported available when at least two people said yes, and more said yes than no. */
 export function isReportedAvailable(s: Pick<AvailabilitySummary, "yes_count" | "no_count">): boolean {
-  return s.yes_count > s.no_count;
+  return s.yes_count >= MIN_REPORTS_TO_TRUST && s.yes_count > s.no_count;
 }

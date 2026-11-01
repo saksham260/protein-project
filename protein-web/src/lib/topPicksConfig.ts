@@ -21,68 +21,70 @@ export interface AwardCategory {
 }
 
 export interface TopPicksConfig {
-  displayMonth: string;
-  displayYear: number;
   awards: AwardCategory[];
 }
 
+// Picked by formula: the lowest cost per gram among in-stock products with no label red flags.
 export const TOP_PICKS_CONFIG: TopPicksConfig = {
-  displayMonth: "September",
-  displayYear: 2026,
   awards: [
     {
       id: "best-protein-powder",
-      label: "Best Protein Powder",
-      description: "Top economic value and purity in verified protein powders.",
+      label: "Best Value Protein Powder",
+      description: "Lowest cost per gram among protein powders with no label red flags.",
       glowColor: "#FFD700", // Gold
       badgeEmoji: "🥛",
       autoRule: {
         categorySlug: "protein-powders",
         sortBy: "cost_per_g_asc",
+        requireZeroFlags: true,
       },
     },
     {
       id: "best-protein-bar",
-      label: "Best Protein Bar",
-      description: "Top economic value in portable snack bars with zero compromise.",
+      label: "Best Value Protein Bar",
+      description: "Lowest cost per gram among protein bars with no label red flags.",
       glowColor: "#CD7F32", // Bronze / Copper
       badgeEmoji: "🍫",
       autoRule: {
         categorySlug: "protein-bars",
         sortBy: "cost_per_g_asc",
+        requireZeroFlags: true,
       },
     },
     {
       id: "best-rtd-drink",
-      label: "Best Ready-to-Drink",
-      description: "Highest protein yield per rupee in ready-to-drink beverages.",
+      label: "Best Value Ready-to-Drink",
+      description: "Lowest cost per gram among ready-to-drink products with no label red flags.",
       glowColor: "#22D3EE", // Cyan
       badgeEmoji: "🥤",
       autoRule: {
         categorySlug: "rtd-drinks",
         sortBy: "cost_per_g_asc",
+        requireZeroFlags: true,
       },
     },
     {
       id: "best-snack",
-      label: "Best Savory Snack",
-      description: "Crispy high-protein crunch with lowest cost per gram of protein.",
+      label: "Best Value Savory Snack",
+      description: "Lowest cost per gram among savory snacks with no label red flags.",
       glowColor: "#F59E0B", // Amber
       badgeEmoji: "🥨",
       autoRule: {
         categorySlug: "savory-snacks",
         sortBy: "cost_per_g_asc",
+        requireZeroFlags: true,
       },
     },
     {
       id: "best-spread",
-      label: "Best Peanut Butter",
-      description: "Most protein per rupee in peanut butters and spreads.",
+      label: "Best Value Peanut Butter",
+      description: "Lowest cost per gram among peanut butters and spreads with no label red flags.",
       glowColor: "#A16207", // Peanut brown
       badgeEmoji: "🥜",
       autoRule: {
         categorySlug: "protein-spreads",
         sortBy: "cost_per_g_asc",
+        requireZeroFlags: true,
       },
     },
   ],

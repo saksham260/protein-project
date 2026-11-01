@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { applyFilters, getProducts } from "./data";
+import { applyFilters } from "./catalog";
+import { getProductBySlug, getProducts, getTestReports, getTopPicks, toListProduct } from "./data";
 import { ProductWithVariants } from "@/types/product";
 
 function makeProduct(overrides: Partial<ProductWithVariants> = {}): ProductWithVariants {
@@ -207,6 +208,28 @@ describe("Suite 17: Data Layer and Filtering", () => {
     expect(res[0].id).toBe("p-1"); // p2 has maltitol red flag
   });
 
+  it("doesn't count a product with no ingredient list as flag-free", () => {
+    const blank = makeProduct();
+    blank.variants = [{ ...blank.variants[0], ingredient_list: [] }];
+    expect(applyFilters([blank], { zeroFlagsOnly: true })).toEqual([]);
+  });
+
+  it("marks the variant that satisfied the filters, so the card can show it", () => {
+    const base = makeProduct();
+    const pricey = { ...base.variants[0], id: "single", best_cost_per_g_protein: 9 };
+    const cheap = { ...base.variants[0], id: "box", best_cost_per_g_protein: 3 };
+    const res = applyFilters([{ ...base, variants: [pricey, cheap] }], { maxCostPerG: 5 });
+    expect(res[0].matched_variant_id).toBe("box");
+  });
+
+  it("lists name matches before ingredient-only matches", () => {
+    const named = makeProduct({ id: "named", name: "Soy Protein Crisps" });
+    const listed = makeProduct({ id: "listed", name: "Plain Bar" });
+    listed.variants = [{ ...listed.variants[0], ingredient_list: ["soy lecithin"] }];
+    const res = applyFilters([listed, named], { searchQuery: "soy" });
+    expect(res.map((p) => p.id)).toEqual(["named", "listed"]);
+  });
+
   it("filters by metric range (maxCostPerG)", () => {
     const res = applyFilters(products, { maxCostPerG: 5.0 });
     expect(res.length).toBe(1);
@@ -260,8 +283,45 @@ describe("Suite 17: Data Layer and Filtering", () => {
     });
   });
 
-  it("loads all seed products in offline fallback mode", async () => {
+  it("loads all seed products when no database is configured", async () => {
     const catalog = await getProducts();
     expect(catalog.length).toBeGreaterThanOrEqual(235);
+  });
+
+  it("never claims seed prices were checked", async () => {
+    const catalog = await getProducts();
+    const links = catalog.flatMap((p) => p.variants.flatMap((v) => v.redirect_links ?? []));
+    expect(links.length).toBeGreaterThan(0);
+    expect(links.every((l) => l.price_last_checked === null)).toBe(true);
+  });
+
+  it("finds a product by slug and returns null for an unknown one", async () => {
+    const [first] = await getProducts();
+    expect((await getProductBySlug(first.slug))?.id).toBe(first.id);
+    expect(await getProductBySlug("no-such-product")).toBeNull();
+  });
+
+  it("top picks have no red flags and an ingredient list", async () => {
+    const picks = await getTopPicks();
+    expect(picks.length).toBeGreaterThan(0);
+    for (const { product } of picks) {
+      const winner = product.variants.find((v) => v.id === product.matched_variant_id);
+      expect(winner?.red_flags ?? []).toEqual([]);
+      expect(winner?.ingredient_list.length).toBeGreaterThan(0);
+      expect(winner?.is_available).not.toBe(false);
+    }
+  });
+
+  it("has no lab reports to show when no database is configured", async () => {
+    expect(await getTestReports("any-product")).toEqual([]);
+  });
+
+  it("list products keep what cards need and drop the heavy fields", async () => {
+    const [first] = await getProducts();
+    const listed = toListProduct(first);
+    expect(listed.description).toBeNull();
+    expect(listed.variants[0].ingredient_deck_raw).toEqual([]);
+    expect(listed.variants[0].ingredient_list).toEqual(first.variants[0].ingredient_list);
+    expect(listed.variants[0].redirect_links).toEqual(first.variants[0].redirect_links);
   });
 });

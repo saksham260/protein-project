@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearch } from "@/hooks/useSearch";
 import { useRecentSearches } from "@/hooks/useRecentSearches";
-import { formatPricePerGram, cn, splitProductName, resetMobileZoom } from "@/lib/utils";
+import { cn, splitProductName, resetMobileZoom } from "@/lib/utils";
 
 const SEARCH_SUGGESTIONS = [
   // Categories
@@ -350,7 +350,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
         <div className="absolute top-full left-0 right-0 z-[100] mt-2 rounded-2xl bg-[#1C1916] border border-[#332D27] shadow-[0_20px_50px_rgba(0,0,0,0.95)] overflow-hidden py-2 font-mono text-xs animate-in fade-in slide-in-from-top-1 duration-150">
           {isLoading ? (
             <div className="p-4 text-[#968E85] text-center">
-              Searching verified database...
+              Searching...
             </div>
           ) : suggestions.length === 0 ? (
             <div className="p-4 text-[#968E85] text-center">

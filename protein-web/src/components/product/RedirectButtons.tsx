@@ -2,15 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { AvailabilitySummary, Platform, QuickCommercePlatform, RedirectLink } from "@/types/product";
-import { buildRedirectUrl, getPriceDisplay } from "@/lib/redirect";
-import { formatPrice, formatTimeAgo } from "@/lib/utils";
-import { PLATFORM_INFO } from "@/lib/constants";
+import { buildRedirectUrl, getPriceDisplay, isPriceFresh, withAffiliateTag } from "@/lib/redirect";
+import { formatDateTime, formatPrice, formatTimeAgo } from "@/lib/utils";
+import { AMAZON_DISCLOSURE, AMAZON_PRICE_NOTE, PLATFORM_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { usePincode } from "@/hooks/usePincode";
-import { getAvailabilitySummaries, isReportedAvailable, reportAvailability } from "@/lib/availability";
+import { getAvailabilitySummaries, isReportedAvailable, MIN_REPORTS_TO_TRUST, reportAvailability } from "@/lib/availability";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
 import { useAuth } from "@/context/AuthContext";
-import { logActivity } from "@/lib/activity";
+import { logActivity, logOutboundClick } from "@/lib/activity";
 import { PincodeInput } from "@/components/location/PincodeInput";
 
 export interface RedirectButtonsProps {
@@ -31,20 +31,25 @@ function isQuickCommerce(platform: Platform): platform is QuickCommercePlatform 
 function priceSubtitle(link: RedirectLink | undefined, platform: Platform): string {
   const price = getPriceDisplay(platform, link?.platform_price_inr);
   if (link?.in_stock === false) return "Out of stock";
-  if (price.type === "stored") {
-    // Seed-catalog prices are not live, so only claim a check time for database prices.
-    return isSupabaseConfigured()
-      ? `${formatPrice(price.price)} · checked ${formatTimeAgo(link?.price_last_checked)}`
-      : formatPrice(price.price);
+  if (price.type !== "stored" || !link) return "See current price";
+  // Seed-catalog prices have no check time, so nothing is claimed for them.
+  if (!link.price_last_checked) return formatPrice(price.price);
+  if (platform === "amazon") {
+    return isPriceFresh(link)
+      ? `${formatPrice(price.price)} · as of ${formatDateTime(link.price_last_checked)}`
+      : "See current price";
   }
-  return "See current price";
+  return `${formatPrice(price.price)} · checked ${formatTimeAgo(link.price_last_checked)}`;
 }
 
 function availabilitySubtitle(summary: AvailabilitySummary | undefined, pincode: string): string {
   if (!pincode) return "Availability depends on your area";
   if (!summary) return `No reports near ${pincode} yet`;
   const counts = `${summary.yes_count} yes / ${summary.no_count} no`;
-  return isReportedAvailable(summary) ? `Reported in stock near you (${counts})` : `Reported unavailable near you (${counts})`;
+  if (isReportedAvailable(summary)) return `Reported in stock near you (${counts})`;
+  return summary.yes_count + summary.no_count < MIN_REPORTS_TO_TRUST
+    ? `Too few reports near you so far (${counts})`
+    : `Reported unavailable near you (${counts})`;
 }
 
 export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
@@ -82,10 +87,18 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
     };
   }, [variantId, pincode, refreshKey]);
 
-  // Find the lowest known price across all platforms
+  // Find the lowest recent price across stores that publish one (quick-commerce prices vary by area)
   const pricesWithPlatform = redirectLinks
-    .filter((l) => l.platform_price_inr != null && l.platform_price_inr > 0 && l.in_stock !== false)
+    .filter(
+      (l) =>
+        !isQuickCommerce(l.platform) &&
+        l.platform_price_inr != null &&
+        l.platform_price_inr > 0 &&
+        l.in_stock !== false &&
+        isPriceFresh(l)
+    )
     .map((l) => ({ platform: l.platform, price: l.platform_price_inr! }));
+  const showsAmazonPrice = pricesWithPlatform.some((p) => p.platform === "amazon");
 
   const lowestPrice =
     pricesWithPlatform.length > 0
@@ -95,7 +108,7 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
   const linkItems = platformsToDisplay.map((platform) => {
     const existing = redirectLinks.find((l) => l.platform === platform);
     const targetUrl = existing
-      ? existing.url
+      ? withAffiliateTag(existing.url)
       : buildRedirectUrl(platform, { brandName, productName });
 
     const summary = pincode ? summaries.find((s) => s.platform === platform) : undefined;
@@ -106,8 +119,7 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
     const isCheapest =
       pricesWithPlatform.length > 1 &&
       lowestPrice != null &&
-      existing?.platform_price_inr === lowestPrice &&
-      existing?.in_stock !== false;
+      pricesWithPlatform.some((p) => p.platform === platform && p.price === lowestPrice);
 
     return {
       platform,
@@ -133,12 +145,9 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
           <span className="text-xs font-mono uppercase tracking-widest text-[#A1A1AA] font-bold">
             Purchase Channels
           </span>
-          <span className="text-[10px] font-mono text-zinc-500">
-            • Verified Partners
-          </span>
         </div>
         <span className="text-[11px] font-mono text-zinc-500">
-          Independent Links
+          Opens the store&apos;s site
         </span>
       </div>
 
@@ -152,6 +161,7 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
+              void logOutboundClick({ productId, variantId, platform: item.platform });
               if (user && productId) {
                 void logActivity(user.id, { productId, variantId, eventType: "purchase_click", platform: item.platform });
               }
@@ -256,6 +266,12 @@ export const RedirectButtons: React.FC<RedirectButtonsProps> = ({
       {thanked && (
         <span className="text-xs font-mono text-[#34D399]">Thanks — your report helps shoppers near you.</span>
       )}
+
+      <p className="text-[11px] font-sans text-zinc-500 leading-relaxed">
+        {showsAmazonPrice && `${AMAZON_PRICE_NOTE} `}
+        Prices can change, so check the store before buying. We may earn a commission on some links.{" "}
+        {AMAZON_DISCLOSURE}
+      </p>
     </div>
   );
 };

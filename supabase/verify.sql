@@ -49,6 +49,8 @@ WITH table_stats AS (
           'user_favorites',
           'user_activity',
           'user_searches',
+          'outbound_clicks',
+          'test_reports',
           'availability_summary'
       )
 )
@@ -77,6 +79,8 @@ SELECT
         WHEN 'user_favorites' THEN (SELECT COUNT(*)::text FROM public.user_favorites)
         WHEN 'user_activity' THEN (SELECT COUNT(*)::text FROM public.user_activity)
         WHEN 'user_searches' THEN (SELECT COUNT(*)::text FROM public.user_searches)
+        WHEN 'outbound_clicks' THEN (SELECT COUNT(*)::text FROM public.outbound_clicks)
+        WHEN 'test_reports' THEN (SELECT COUNT(*)::text FROM public.test_reports)
         ELSE 'N/A'
     END AS row_count
 FROM table_stats t

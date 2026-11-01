@@ -7,14 +7,15 @@ import { NavbarSearch } from "@/components/search/NavbarSearch";
 import { CartButton } from "@/components/cart/CartButton";
 import { LoginButton } from "@/components/auth/LoginButton";
 import { useCategory } from "@/context/CategoryContext";
-import { PRIMARY_CATEGORY_TABS, SECONDARY_CATEGORIES, CATEGORY_TABS } from "@/components/layout/CategoryBar";
+import { PRIMARY_CATEGORY_TABS, SECONDARY_CATEGORIES } from "@/components/layout/CategoryBar";
 import { CATEGORIES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+/** Lets a style object set a CSS variable, which React's style type has no key for. */
+const cssVar = (name: string) => name as keyof React.CSSProperties;
+
 // --- Originkit Light Glass Engine Constants & Utilities ---
 const BLUR = 20;
-const TINT = 0.55;
-const STROKE_BRIGHTNESS = 140;
 const LIGHT_FADE = 0.6;
 const AIM_BLEND = 0.18;
 
@@ -168,10 +169,6 @@ export const Navbar: React.FC = () => {
     };
   }, [isMobileCategoriesOpen]);
 
-  useEffect(() => {
-    setIsMobileCategoriesOpen(false);
-  }, [pathname]);
-
   // Desktop More Categories dropdown state
   const [isDesktopMoreOpen, setIsDesktopMoreOpen] = useState(false);
   const desktopMoreRef = useRef<HTMLDivElement>(null);
@@ -195,9 +192,13 @@ export const Navbar: React.FC = () => {
     };
   }, [isDesktopMoreOpen]);
 
-  useEffect(() => {
+  // Close both category menus on navigation, adjusting state during render
+  const [menusPathname, setMenusPathname] = useState(pathname);
+  if (menusPathname !== pathname) {
+    setMenusPathname(pathname);
+    setIsMobileCategoriesOpen(false);
     setIsDesktopMoreOpen(false);
-  }, [pathname]);
+  }
 
   // Glass tracking state and refs
   const scope = useRef<HTMLElement>(null);
@@ -208,6 +209,7 @@ export const Navbar: React.FC = () => {
   const [glassy, setGlassy] = useState(true);
   const [canHover, setCanHover] = useState(false);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- browser support is unknown during server render
   useEffect(() => setGlassy(supportsBackdrop()), []);
 
   useEffect(() => {
@@ -233,7 +235,9 @@ export const Navbar: React.FC = () => {
   const raf = useRef<number | null>(null);
   const last = useRef(0);
   const live = useRef({ smoothness, lightIntensity, lightSize });
-  live.current = { smoothness, lightIntensity, lightSize };
+  useEffect(() => {
+    live.current = { smoothness, lightIntensity, lightSize };
+  });
   const box = useRef({ w: 0, h: 0 });
 
   useEffect(() => {
@@ -426,8 +430,8 @@ export const Navbar: React.FC = () => {
     <>
       <header
         ref={(el) => {
-          (scope as any).current = el;
-          (glassRef as any).current = el;
+          scope.current = el;
+          glassRef.current = el;
         }}
         onPointerMove={trackPointer}
         onPointerEnter={onEnter}
@@ -447,8 +451,8 @@ export const Navbar: React.FC = () => {
           boxShadow: isScrolled
             ? "0 4px 20px rgba(0, 0, 0, 0.45)"
             : "none",
-          ["--mx" as any]: "50%",
-          ["--my" as any]: "50%",
+          [cssVar("--mx")]: "50%",
+          [cssVar("--my")]: "50%",
         }}
         className="sticky top-0 z-50 w-full transition-all duration-300 select-none"
       >
@@ -484,8 +488,8 @@ export const Navbar: React.FC = () => {
               mixBlendMode: "screen",
               pointerEvents: "none",
               zIndex: 2,
-              ["--la" as any]: "0",
-              ["--lw" as any]: "30",
+              [cssVar("--la")]: "0",
+              [cssVar("--lw")]: "30",
               ...RING_MASK,
             }}
             className="hidden md:block"

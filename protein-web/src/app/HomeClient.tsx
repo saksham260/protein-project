@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ProductWithVariants } from "@/types/product";
 import { AwardCategory } from "@/lib/topPicksConfig";
+import { getProducts } from "@/lib/catalogClient";
 import { CATEGORIES } from "@/lib/constants";
 import { useCategory } from "@/context/CategoryContext";
 import { ProductCard } from "@/components/product/ProductCard";
 import { AwardProductCard } from "@/components/product/AwardProductCard";
-import { ExploreAllCard } from "@/components/product/ExploreAllCard";
 import { SuggestedForYou } from "@/components/product/SuggestedForYou";
 import { VolumetricText } from "@/components/ui/VolumetricText";
 import { RotatingText } from "@/components/ui/RotatingText";
@@ -27,7 +27,10 @@ const CATEGORY_IMAGES: Record<string, string> = {
 };
 
 export interface HomeClientProps {
+  /** First batch only; the rest of the catalog loads on scroll. */
   initialProducts: ProductWithVariants[];
+  totalProducts: number;
+  categoryCounts: Record<string, number>;
   topPicks: Array<{
     award: AwardCategory;
     product: ProductWithVariants;
@@ -50,48 +53,34 @@ const ROTATING_FONT = {
 
 export const HomeClient: React.FC<HomeClientProps> = ({
   initialProducts,
+  totalProducts,
+  categoryCounts,
   topPicks,
 }) => {
   const router = useRouter();
   const { activeCategory, setActiveCategory } = useCategory();
   const [visibleCount, setVisibleCount] = useState<number>(INITIAL_BATCH_SIZE);
+  const [catalog, setCatalog] = useState<ProductWithVariants[]>(initialProducts);
+  const fullCatalogRequested = useRef(false);
   const observerTarget = useRef<HTMLDivElement>(null);
 
-  // Group products by category for quick lookup and category sections
-  const productsByCategory = useMemo(() => {
-    const map: Record<string, ProductWithVariants[]> = {};
-    for (const cat of CATEGORIES) {
-      map[cat.slug] = [];
-    }
-    for (const prod of initialProducts) {
-      const slug = prod.category?.slug;
-      if (slug && map[slug]) {
-        map[slug].push(prod);
-      }
-    }
-    return map;
-  }, [initialProducts]);
-
-  // Products to display in current view
-  const filteredProducts = useMemo(() => {
-    if (activeCategory === "all") {
-      return initialProducts.slice(0, visibleCount);
-    }
-    if (activeCategory === "top-picks") {
-      return [];
-    }
-    return productsByCategory[activeCategory] || [];
-  }, [activeCategory, initialProducts, visibleCount, productsByCategory]);
-
-  // Infinite scroll observer for "all" products
+  // Infinite scroll: the rest of the catalog downloads the first time the visitor gets near the end
   useEffect(() => {
     if (activeCategory !== "all") return;
-    if (visibleCount >= initialProducts.length) return;
+    if (visibleCount >= totalProducts) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setVisibleCount((prev) => Math.min(prev + BATCH_INCREMENT, initialProducts.length));
+          if (!fullCatalogRequested.current) {
+            fullCatalogRequested.current = true;
+            getProducts()
+              .then(setCatalog)
+              .catch(() => {
+                fullCatalogRequested.current = false;
+              });
+          }
+          setVisibleCount((prev) => Math.min(prev + BATCH_INCREMENT, totalProducts));
         }
       },
       { threshold: 0.1, rootMargin: "300px" }
@@ -105,7 +94,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
     return () => {
       if (currentTarget) observer.unobserve(currentTarget);
     };
-  }, [activeCategory, visibleCount, initialProducts.length]);
+  }, [activeCategory, visibleCount, totalProducts]);
 
   // Scroll spy for category sections when in "all" view
   useEffect(() => {
@@ -151,8 +140,6 @@ export const HomeClient: React.FC<HomeClientProps> = ({
       router.push(`/category/${slug}`);
     }
   };
-
-  const activeCategoryMeta = CATEGORIES.find((c) => c.slug === activeCategory);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -231,10 +218,10 @@ export const HomeClient: React.FC<HomeClientProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-3 border-b border-[#332D27]">
               <div>
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
-                  Editor&apos;s Picks
+                  Picked by Formula
                 </span>
                 <h1 className="text-2xl sm:text-4xl font-black text-[#F5F2EB] mt-0.5 tracking-tight">
-                  Top Picks of the Month
+                  Top Value Picks
                 </h1>
               </div>
               <button
@@ -263,7 +250,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
         {activeCategory === "all" && (
           <>
             {/* SECTION 1: Suggested for You (signed-in users only) */}
-            <SuggestedForYou products={initialProducts} />
+            <SuggestedForYou />
 
             {/* SECTION 2: Explore by Categories */}
             <section className="flex flex-col gap-4 sm:gap-6 pt-8 sm:pt-12 border-t border-[#332D27]/80">
@@ -284,7 +271,6 @@ export const HomeClient: React.FC<HomeClientProps> = ({
               {/* Clickable Category Cards Grid */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-6 items-stretch">
                 {CATEGORIES.map((cat) => {
-                  const prods = productsByCategory[cat.slug] || [];
                   const catImage = CATEGORY_IMAGES[cat.slug] || "/images/products/whey-protein-tub.jpg";
 
                   return (
@@ -306,7 +292,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
 
                         {/* Count Badge */}
                         <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#141210]/85 backdrop-blur-md text-[#F5F2EB] border border-[#332D27]">
-                          {prods.length} items
+                          {categoryCounts[cat.slug] ?? 0} items
                         </span>
 
                         {/* Floating Icon */}
@@ -363,36 +349,36 @@ export const HomeClient: React.FC<HomeClientProps> = ({
 
               {/* Product Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 items-stretch">
-                {initialProducts.slice(0, visibleCount).map((product) => (
+                {catalog.slice(0, visibleCount).map((product) => (
                   <ProductCard key={`all-${product.id}`} product={product} />
                 ))}
               </div>
 
               {/* Infinite scroll observer target */}
               <div ref={observerTarget} className="py-8 flex flex-col items-center justify-center">
-                {visibleCount < initialProducts.length ? (
+                {visibleCount < totalProducts ? (
                   <div className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#1C1916] border border-[#332D27] text-xs font-mono text-[#968E85] shadow-sm">
                     <span className="w-3.5 h-3.5 rounded-full border-2 border-[#D97706] border-t-transparent animate-spin inline-block" />
-                    <span>Loading more products ({visibleCount} / {initialProducts.length})...</span>
+                    <span>Loading more products ({visibleCount} / {totalProducts})...</span>
                   </div>
                 ) : (
                   <div className="text-center py-4">
                     <span className="text-xs font-mono text-[#968E85] uppercase tracking-wider">
-                      ✓ Showing all {initialProducts.length} verified products
+                      ✓ Showing all {totalProducts} products
                     </span>
                   </div>
                 )}
               </div>
             </section>
 
-            {/* Scientific Deconstruction Trust Section */}
+            {/* How We Rate Section */}
             <section className="flex flex-col gap-10 py-12 border-t border-[#332D27]">
               <div className="text-center max-w-2xl mx-auto pb-2 flex flex-col items-center gap-1.5">
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#D97706]">
-                  Audit Methodology
+                  Label-Based Analysis
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-black text-[#F5F2EB] tracking-tight">
-                  Scientific Deconstruction
+                  What We Check
                 </h2>
               </div>
 
@@ -401,8 +387,8 @@ export const HomeClient: React.FC<HomeClientProps> = ({
                   <span className="text-3xl">🚫</span>
                   <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">Red-Flag Additive Scanner</h3>
                   <p className="text-xs sm:text-sm text-[#968E85] leading-relaxed">
-                    We flag laxative polyols (INS 965 Maltitol GI 35-52), cheap amino spiking (Glycine, Taurine),
-                    hydrogenated palm fats, and hidden high-GI corn syrups marketed as clean.
+                    We scan ingredient lists for maltitol (INS 965), added amino acids such as glycine and taurine,
+                    hydrogenated or palm fats, and hidden sugars like corn syrup.
                   </p>
                 </div>
 
@@ -410,17 +396,20 @@ export const HomeClient: React.FC<HomeClientProps> = ({
                   <span className="text-3xl">⚖️</span>
                   <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">True Cost per Gram (₹/g)</h3>
                   <p className="text-xs sm:text-sm text-[#968E85] leading-relaxed">
-                    Serving sizes mislead buyers. We compute the exact net protein yield across the entire package
-                    against the retail price so you discover your true cost per gram of real protein.
+                    Serving sizes make products hard to compare. We divide the price by the total protein in the
+                    pack, so you can see the cost of each gram of protein.
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-4 p-8 rounded-3xl bg-[#1C1916] border border-[#332D27] shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
                   <span className="text-3xl">🧬</span>
-                  <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">4-Tier Bioavailability Rating</h3>
+                  <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">4-Tier Protein Source Guide</h3>
                   <p className="text-xs sm:text-sm text-[#968E85] leading-relaxed">
-                    From pure Tier 1 Isolate to complete Tier 3 plant blends and Tier 4 collagen/gelatin fillers,
-                    our weakest-link algorithm ranks biological muscle-building effectiveness.
+                    From Tier 1 isolates to Tier 3 plant blends and Tier 4 collagen or added-amino products, based
+                    on the protein source named on the label.{" "}
+                    <Link href="/how-we-rate" className="text-[#D97706] hover:underline">
+                      How we rate
+                    </Link>
                   </p>
                 </div>
               </div>

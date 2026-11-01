@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ProductCard } from "@/components/product/ProductCard";
 import { useAuth } from "@/context/AuthContext";
 import { getRecentActivity, recentProducts, type RecentProduct } from "@/lib/activity";
+import { fetchCatalog } from "@/lib/catalogClient";
 import type { ProductWithVariants } from "@/types/product";
 
 const cacheKey = (userId: string) => `suggested:v1:${userId}`;
@@ -28,10 +29,11 @@ function writeCache(userId: string, items: RecentProduct[]) {
 }
 
 /** Home-page section for signed-in users: what they last viewed or clicked through to buy. Hidden when logged out. */
-export const SuggestedForYou: React.FC<{ products: ProductWithVariants[] }> = ({ products }) => {
+export const SuggestedForYou: React.FC = () => {
   const { user, isReady } = useAuth();
   const userId = user?.id;
   const [loaded, setLoaded] = useState<{ userId: string; recent: RecentProduct[] } | null>(null);
+  const [products, setProducts] = useState<ProductWithVariants[] | null>(null);
 
   // Only runs once a user exists (client side), so reading local storage here cannot cause a hydration mismatch.
   const cached = useMemo(() => (userId ? readCache(userId) : null), [userId]);
@@ -45,6 +47,13 @@ export const SuggestedForYou: React.FC<{ products: ProductWithVariants[] }> = ({
       writeCache(userId, recent);
       setLoaded({ userId, recent });
     });
+    fetchCatalog()
+      .then((catalog) => {
+        if (isMounted) setProducts(catalog);
+      })
+      .catch(() => {
+        if (isMounted) setProducts([]);
+      });
     return () => {
       isMounted = false;
     };
@@ -53,7 +62,7 @@ export const SuggestedForYou: React.FC<{ products: ProductWithVariants[] }> = ({
   const recent = loaded && loaded.userId === userId ? loaded.recent : cached;
 
   const items = useMemo(() => {
-    if (!recent) return null;
+    if (!recent || !products) return null;
     const byId = new Map(products.map((p) => [p.id, p]));
     return recent.flatMap((r) => {
       const product = byId.get(r.productId);

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { publicOrigin, safeNextPath } from "./auth";
 
 describe("safeNextPath", () => {
@@ -16,6 +16,16 @@ describe("safeNextPath", () => {
 });
 
 describe("publicOrigin", () => {
+  afterEach(() => {
+    delete process.env.NEXT_PUBLIC_SITE_URL;
+  });
+
+  it("prefers the configured address over forged headers", () => {
+    process.env.NEXT_PUBLIC_SITE_URL = "https://real-site.example.com/";
+    const headers = new Headers({ "x-forwarded-host": "evil.example.com" });
+    expect(publicOrigin("http://localhost:10000/auth/callback", headers)).toBe("https://real-site.example.com");
+  });
+
   it("uses forwarded headers when behind a proxy", () => {
     const headers = new Headers({ "x-forwarded-host": "app.onrender.com", "x-forwarded-proto": "https" });
     expect(publicOrigin("http://localhost:10000/auth/callback", headers)).toBe("https://app.onrender.com");

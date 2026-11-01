@@ -30,8 +30,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(session?.user ?? null);
       setIsReady(true);
     });
-    supabase.auth.getUser().then(({ data: checked }) => {
-      setUser(checked.user);
+    supabase.auth.getUser().then(({ data: checked, error }) => {
+      // Only trust a clear answer. A network blip must not sign the person out on screen.
+      if (!error || error.name === "AuthSessionMissingError" || error.status === 401 || error.status === 403) {
+        setUser(checked.user);
+      }
       setIsReady(true);
     });
     return () => data.subscription.unsubscribe();

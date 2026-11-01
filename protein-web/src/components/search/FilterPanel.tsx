@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { CATEGORIES, PROTEIN_TIERS, ALLERGENS_LIST, DIETARY_TAGS_LIST } from "@/lib/constants";
-import { QueryFilters } from "@/lib/data";
+import { QueryFilters } from "@/lib/catalog";
 import { METRIC_RANGES, MetricKey, MetricRangeConfig } from "@/lib/metrics";
 import { usePincode } from "@/hooks/usePincode";
 import { PincodeInput } from "@/components/location/PincodeInput";
@@ -381,6 +381,10 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
           <div className="flex flex-col gap-2 pt-1">
             <span className="text-[10px] font-mono text-[#A1A1AA]">
               Hide products containing:
+            </span>
+            <span className="text-[10px] font-sans text-[#A1A1AA] leading-snug">
+              Based on labels, and products with no allergen info are hidden too. If you have an allergy, always
+              check the pack.
             </span>
             {ALLERGENS_LIST.map((allergen) => {
               const isExcluded =

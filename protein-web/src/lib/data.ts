@@ -1,18 +1,16 @@
-import { ProductWithVariants, ProductVariant, Platform, FlagSeverity } from "@/types/product";
+import "server-only";
+import { ProductWithVariants, Platform, FlagSeverity, TestReport } from "@/types/product";
 import { CATEGORIES } from "@/lib/constants";
-import { featuredScore } from "@/lib/ranking";
 import rawSeedData from "@/data/seedCatalog.json";
-import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
-import { getAvailabilitySummaries, isReportedAvailable } from "@/lib/availability";
-import {
-  METRIC_RANGES,
-  caloriesPerGramProtein,
-  effectiveCostPerGram,
-  passesRange,
-  proteinPer100Inr,
-} from "@/lib/metrics";
+import { applyFilters, normalizeTier, QueryFilters } from "@/lib/catalog";
+import { isSupabaseConfigured } from "@/lib/supabase/client";
+import { createAnonClient } from "@/lib/supabase/anon";
+import { normalizeVariantFacts } from "@/lib/productFacts";
 import { AwardCategory, TOP_PICKS_CONFIG } from "@/lib/topPicksConfig";
-import { sortVariantsDefaultFirst, canonicalDietaryTag } from "@/lib/utils";
+import { sortVariantsDefaultFirst } from "@/lib/utils";
+
+// Server only: this file holds the seed catalog, which must never reach the browser bundle.
+// Browser code reads the catalog through /api/catalog (see lib/catalogClient.ts).
 
 interface RawSeedVariant {
   variant_name?: string;
@@ -98,23 +96,15 @@ const defaultCategoryImages: Record<string, string> = {
   "staples": "/images/products/savory-snack-pack.jpg",
 };
 
-function normalizeTier(tier?: string | null): string {
-  if (!tier) return "Tier 2";
-  if (tier.startsWith("Tier 1")) return "Tier 1";
-  if (tier.startsWith("Tier 2")) return "Tier 2";
-  if (tier.startsWith("Tier 3")) return "Tier 3";
-  if (tier.startsWith("Tier 4")) return "Tier 4";
-  return tier;
-}
-
 function normalizeLiveProduct(p: ProductWithVariants): ProductWithVariants {
-  const normalizedVariants = (p.variants || []).map((v) => ({
-    ...v,
-    protein_tier: normalizeTier(v.protein_tier),
-    dietary_tags: (v.dietary_tags || []).map(canonicalDietaryTag),
-    is_combo: Boolean(v.is_combo),
-    is_available: v.is_available ?? true,
-  }));
+  const normalizedVariants = (p.variants || []).map((v) =>
+    normalizeVariantFacts({
+      ...v,
+      protein_tier: normalizeTier(v.protein_tier),
+      is_combo: Boolean(v.is_combo),
+      is_available: v.is_available ?? true,
+    })
+  );
 
   return {
     ...p,
@@ -140,7 +130,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
       logo_url: null,
       website_url: null,
       description: null,
-      is_verified: true,
+      is_verified: false,
       created_at: new Date().toISOString(),
     };
 
@@ -150,7 +140,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
     const variants = (p.variants || []).map((v, vIdx) => {
       const tier = normalizeTier(v.protein_profile?.protein_tier);
 
-      return {
+      return normalizeVariantFacts({
         id: `variant-${idx}-${vIdx}`,
         product_id: `product-${idx}`,
         variant_name: v.variant_name || p.name,
@@ -178,7 +168,7 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
         ingredient_list: v.ingredient_list || [],
         ingredient_deck_raw: v.ingredient_deck_raw || [],
         allergens: v.allergens || [],
-        dietary_tags: (v.dietary_tags || []).map(canonicalDietaryTag),
+        dietary_tags: v.dietary_tags || [],
         primary_protein_source: v.protein_profile?.primary_protein_source || null,
         protein_tier: tier,
         has_added_free_form_aminos: !!v.protein_profile?.has_added_free_form_aminos,
@@ -211,10 +201,10 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
           platform: rl.platform,
           url: rl.url,
           platform_price_inr: rl.platform_price_inr ?? null,
-          price_last_checked: new Date().toISOString(),
+          price_last_checked: null,
           created_at: new Date().toISOString(),
         })),
-      };
+      });
     });
 
     const resolvedImage = p.image_url || fallbackImage;
@@ -245,26 +235,6 @@ const normalizedSeedCatalog: ProductWithVariants[] = (rawSeedData as RawSeedProd
   }
 );
 
-export interface QueryFilters {
-  categorySlug?: string;
-  searchQuery?: string;
-  proteinTiers?: string[];
-  dietaryTags?: string[];
-  veganOnly?: boolean;
-  excludeAllergens?: string[];
-  zeroFlagsOnly?: boolean;
-  sortBy?: string;
-  maxCostPerG?: number;
-  minProteinPer100?: number;
-  minProteinPer100Calories?: number;
-  maxCaloriesPerGProtein?: number;
-  minDensity?: number;
-  /** Keep only products reported available on quick commerce near `pincode`. */
-  nearMe?: boolean;
-  /** The viewer's pincode (from local storage, never the URL). */
-  pincode?: string;
-}
-
 const PRODUCT_SELECT = `
   *,
   brand:brands(*),
@@ -276,170 +246,63 @@ const PRODUCT_SELECT = `
   )
 `;
 
-async function loadCatalog(): Promise<ProductWithVariants[]> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { data, error } = await createClient()
-        .from("products")
-        .select(PRODUCT_SELECT)
-        .eq("is_active", true);
-      if (!error && data && data.length > 0) {
-        return (data as ProductWithVariants[]).map(normalizeLiveProduct);
-      }
-    } catch {
-      // Fall back to seed catalog on connection error
-    }
-  }
-  return normalizedSeedCatalog;
-}
-
-/** Variant ids reported available on any quick-commerce platform in the pincode's area. */
-async function getVariantIdsAvailableNear(
-  products: ProductWithVariants[],
-  pincode: string
-): Promise<Set<string>> {
-  const variantIds = products.flatMap((p) => p.variants.map((v) => v.id));
-  const summaries = await getAvailabilitySummaries(variantIds, pincode);
-  return new Set(summaries.filter(isReportedAvailable).map((s) => s.variant_id));
-}
-
-function variantMatches(
-  v: ProductVariant,
-  filters: QueryFilters,
-  availableNearIds: Set<string> | undefined,
-  productIsVegan?: boolean
-): boolean {
-  if (filters.proteinTiers?.length) {
-    const normTier = normalizeTier(v.protein_tier);
-    if (
-      !v.protein_tier ||
-      (!filters.proteinTiers.includes(v.protein_tier) &&
-        !filters.proteinTiers.includes(normTier))
-    ) {
-      return false;
-    }
-  }
-  if (filters.dietaryTags?.length) {
-    const normTags = v.dietary_tags.map(canonicalDietaryTag);
-    if (
-      !filters.dietaryTags.every((tag) => {
-        const canonical = canonicalDietaryTag(tag);
-        if (canonical === "vegan") {
-          return Boolean(productIsVegan || normTags.includes("vegan"));
-        }
-        return normTags.includes(canonical);
-      })
-    ) {
-      return false;
-    }
-  }
-  if (filters.excludeAllergens?.length) {
-    const excluded = filters.excludeAllergens.map((e) => e.toLowerCase());
-    if (v.allergens.some((a) => excluded.includes(a.toLowerCase()))) return false;
-  }
-  if (filters.zeroFlagsOnly && v.red_flags && v.red_flags.length > 0) return false;
-  if (!METRIC_RANGES.every((range) => passesRange(range, v, filters[range.key]))) return false;
-  if (availableNearIds && !availableNearIds.has(v.id)) return false;
-  return true;
-}
-
-function sortValue(p: ProductWithVariants, v: ProductVariant, sort: string): number {
-  switch (sort) {
-    case "featured":
-      return featuredScore({
-        productName: p.name,
-        variantName: v.variant_name,
-        isCombo: v.is_combo,
-        brandName: p.brand?.name,
-        costPerGram: effectiveCostPerGram(v),
-      });
-    case "density_desc":
-      return -(v.protein_density_pct ?? 0);
-    case "p100_desc":
-      return -(proteinPer100Inr(v) ?? 0);
-    case "kcal_per_g_asc":
-      return caloriesPerGramProtein(v) ?? 999;
-    case "best_price_asc":
-      return v.best_price_inr ?? v.mrp_inr;
-    case "price_asc":
-      return v.mrp_inr;
-    case "price_desc":
-      return -v.mrp_inr;
-    case "protein_desc":
-      return -v.protein_g;
-    case "cost_per_g_asc":
-    default:
-      return effectiveCostPerGram(v) ?? 999;
-  }
-}
-
 /**
- * Filter and sort products. A product is kept when at least one variant passes every filter;
- * its first passing variant decides its sort position.
+ * The live catalog, or the seed catalog when no database is configured (local demos).
+ * A database failure throws instead of falling back: cached pages keep their last good version,
+ * rather than quietly swapping in old data.
  */
-export function applyFilters(
-  products: ProductWithVariants[],
-  filters: QueryFilters = {},
-  availableNearIds?: Set<string>
-): ProductWithVariants[] {
-  const q = filters.searchQuery?.toLowerCase().trim();
-  const sort = filters.sortBy || "featured";
+async function loadCatalog(): Promise<ProductWithVariants[]> {
+  if (!isSupabaseConfigured()) return normalizedSeedCatalog;
 
-  const matches: { product: ProductWithVariants; key: number }[] = [];
-  for (const p of products) {
-    if (filters.categorySlug && p.category?.slug !== filters.categorySlug) continue;
-    if (filters.veganOnly) {
-      const isVegan = Boolean(
-        p.is_vegan ||
-        p.variants.some((v) => v.dietary_tags?.some((t) => t.toLowerCase() === "vegan"))
-      );
-      if (!isVegan) continue;
-    }
-    if (
-      q &&
-      !(
-        p.name.toLowerCase().includes(q) ||
-        p.brand?.name.toLowerCase().includes(q) ||
-        p.variants.some((v) => v.variant_name.toLowerCase().includes(q))
-      )
-    ) {
-      continue;
-    }
-    const variant = p.variants.find((v) =>
-      variantMatches(v, filters, availableNearIds, p.is_vegan)
-    );
-    if (variant) matches.push({ product: p, key: sortValue(p, variant, sort) });
-  }
-
-  return matches.sort((a, b) => a.key - b.key).map((m) => m.product);
+  const { data, error } = await createAnonClient()
+    .from("products")
+    .select(PRODUCT_SELECT)
+    .eq("is_active", true);
+  if (error) throw new Error(`Could not load the catalog: ${error.message}`);
+  return ((data ?? []) as unknown as ProductWithVariants[]).map(normalizeLiveProduct);
 }
 
 export async function getProducts(filters?: QueryFilters): Promise<ProductWithVariants[]> {
-  const catalog = await loadCatalog();
-  const availableNearIds =
-    filters?.nearMe && filters.pincode
-      ? await getVariantIdsAvailableNear(catalog, filters.pincode)
-      : undefined;
-  return applyFilters(catalog, filters, availableNearIds);
+  return applyFilters(await loadCatalog(), filters);
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductWithVariants | null> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { data, error } = await createClient()
-        .from("products")
-        .select(PRODUCT_SELECT)
-        .eq("slug", slug)
-        .single();
-      if (!error && data) {
-        return normalizeLiveProduct(data as ProductWithVariants);
-      }
-    } catch {
-      // Fall back to seed catalog
-    }
-  }
+  if (!isSupabaseConfigured()) return normalizedSeedCatalog.find((p) => p.slug === slug) || null;
 
-  return normalizedSeedCatalog.find((p) => p.slug === slug) || null;
+  const { data, error } = await createAnonClient()
+    .from("products")
+    .select(PRODUCT_SELECT)
+    .eq("slug", slug)
+    .eq("is_active", true)
+    .maybeSingle();
+  if (error) throw new Error(`Could not load product ${slug}: ${error.message}`);
+  return data ? normalizeLiveProduct(data as unknown as ProductWithVariants) : null;
+}
+
+/** Newest first. Fetched separately, so a failure here can't take the product page down. */
+export async function getTestReports(productId: string): Promise<TestReport[]> {
+  if (!isSupabaseConfigured()) return [];
+
+  const { data, error } = await createAnonClient()
+    .from("test_reports")
+    .select("*")
+    .eq("product_id", productId)
+    .order("tested_on", { ascending: false });
+  return error || !data ? [] : (data as TestReport[]);
+}
+
+/** Drops what product cards and filters don't use, so lists stay small on the wire. */
+export function toListProduct(p: ProductWithVariants): ProductWithVariants {
+  return {
+    ...p,
+    description: null,
+    variants: p.variants.map((v) => ({
+      ...v,
+      additional_nutrients: {},
+      ingredient_deck_raw: [],
+      red_flags: (v.red_flags ?? []).map((flag) => ({ ...flag, flag_description: "" })),
+    })),
+  };
 }
 
 export interface TopPickResult {
@@ -474,10 +337,14 @@ export async function getTopPicks(): Promise<TopPickResult[]> {
       proteinTiers: rule.requireTier ? [rule.requireTier] : undefined,
     });
 
-    if (candidates.length > 0) {
+    // A product can't win on a variant the store has run out of.
+    const winner = candidates.find((p) =>
+      p.variants.some((v) => v.id === p.matched_variant_id && v.is_available !== false)
+    );
+    if (winner) {
       results.push({
         award,
-        product: candidates[0],
+        product: winner,
         editorialBlurb: award.description,
       });
     }

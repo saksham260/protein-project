@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
 
@@ -114,6 +115,14 @@ export const LoginButton: React.FC<LoginButtonProps> = ({
             <span className="text-xs text-[#F5F2EB] font-bold truncate">{displayName}</span>
             <span className="text-[11px] text-[#968E85] truncate">{user.email}</span>
           </div>
+          <Link
+            href="/privacy#your-data"
+            onClick={() => setMenuOpen(false)}
+            className="mt-1 flex items-center gap-2.5 p-2.5 rounded-xl text-left text-xs font-bold text-[#F5F2EB] hover:bg-[#26221E] transition-colors"
+          >
+            <span className="text-base shrink-0">🔒</span>
+            <span>Privacy &amp; my data</span>
+          </Link>
           <button
             type="button"
             onClick={() => {

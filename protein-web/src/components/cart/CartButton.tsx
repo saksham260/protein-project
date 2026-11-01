@@ -19,7 +19,7 @@ export const CartButton: React.FC<CartButtonProps> = ({
     <button
       type="button"
       onClick={openCart}
-      aria-label={`View Shortlist (${itemCount} items)`}
+      aria-label={`View cart (${itemCount} items)`}
       className={cn(
         "group relative flex items-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[34px] rounded-xl text-xs sm:text-sm font-sans font-bold tracking-tight whitespace-nowrap cursor-pointer shrink-0 border select-none touch-manipulation",
         hideTextOnMobile ? "max-md:px-2.5 px-3 sm:px-4" : "px-2.5 sm:px-4",

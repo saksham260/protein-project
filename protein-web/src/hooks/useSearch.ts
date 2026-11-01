@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ProductWithVariants } from "@/types/product";
-import { getProducts } from "@/lib/data";
+import { getProducts } from "@/lib/catalogClient";
 
 export function useSearch(query: string, debounceMs = 300) {
   const [debouncedQuery, setDebouncedQuery] = useState(query);

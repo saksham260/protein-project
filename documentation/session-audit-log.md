@@ -1092,3 +1092,76 @@ This document serves as the complete, chronological audit history of all tasks, 
 
 
 
+
+---
+
+### Entry 42: Fresh Pull, Codebase Audit and Feature Research
+- **Timestamp**: 2026-11-01
+- **Request**: "take a fresh pull of this repo and analyze its weakness gaps and bugs. Use another sub agent to research and find good features that could be added to this website."
+- **Actions Taken**:
+  - Fetched from origin and fast-forwarded local `main` to `2fe3026`, then switched to it. `round2` was left unchanged (it was 13 commits behind `main` with nothing of its own).
+  - Audited the web app, migrations and ETL pricing code. Ran the type check, lint, `npm audit` and a production build. The build read the live catalog through the public key (read-only), because blanking the variables in PowerShell removes them and `.env.local` was used instead. The original `.next` folder was moved aside and restored afterwards.
+  - Measured the catalog with read-only scripts, and ran read-only queries against the Supabase project in `protein-web/.env.local` using the public key.
+  - A subagent researched competitors, buyer concerns and feature ideas. Its Amazon policy quotes and repo claims were re-checked in the main session.
+- **Main Results**: See the two documents below. Six critical items: allergen filter, nutrition table, Next.js advisories, live database missing migrations 008/010/012, unsupported trust claims with no legal pages, and untagged Amazon links.
+- **Files Added**:
+  - `documentation/codebase-audit-2026-11-01.md`
+  - `documentation/feature-research-2026-11-01.md`
+- **Files Modified**:
+  - `documentation/session-audit-log.md`
+- **Git & Safety Status**:
+  - No application code changed. No database writes.
+  - No git commits or pushes.
+  - No automated test suites run (per Rule 3).
+
+---
+
+### Entry 43: Implementation of the Audit Findings
+- **Timestamp**: 2026-11-01
+- **Request**: "start the and implement your findings"
+- **Actions Taken**:
+  - Created branch `audit-fixes` from `main` (`2fe3026`).
+  - Upgraded `next` and `eslint-config-next` to 16.4.3, ran `npm audit fix`, and removed unused 3D and animation packages and components.
+  - Split the data layer: `lib/data.ts` is now server-only, `lib/catalog.ts` holds filtering, `lib/catalogClient.ts` and `/api/catalog` serve the browser.
+  - Fixed the allergen filter, nutrition table, search, polyol and net-carb handling, diet tags, Amazon tagging, price age rules, cart, focus handling and filter URL sync.
+  - Reworded unsupported claims, and added `/privacy`, `/terms`, `/how-we-rate`, error pages, sitemap, robots, structured data and security headers.
+  - Wrote `supabase/migrations/014_audit_fixes.sql`. Made the ETL uploader fail on missing migrations, stopped storing Amazon price history, and excluded out-of-stock and quick-commerce links from best price.
+  - Added `.github/workflows/ci.yml`.
+- **Verification**: Type check passes, lint shows 0 errors and 1 warning, production build passes, Python compile check passes. Audit numbers were re-measured on the build output.
+- **Decisions Made Without Asking** (all listed in the walkthrough): oats count under gluten, "nuts" counts as both nut groups, maltodextrin keeps "No Added Sugar", "Cart" chosen over "Shortlist", "Diabetic-Friendly" removed from filters.
+- **Blockers Reported to the User**: Production migrations (008, 010, 012, 014), environment variables, real Amazon ASINs, legal review and restarting the price jobs all need the user.
+- **Files**: See `documentation/audit-fixes-walkthrough.md` and `git status` on the branch.
+- **Git & Safety Status**:
+  - No database writes. Builds read the live catalog through the public key.
+  - No git commits or pushes.
+  - No automated test suites run (per Rule 3). New tests are written but unrun.
+
+---
+
+### Entry 44: Build of the Research "Now" Features
+- **Timestamp**: 2026-11-01
+- **Request**: "continue building"
+- **Actions Taken**:
+  - Built the compare page, 6 best-value lists, a protein cost calculator, an "Is this genuine?" card and a lab report panel with migration 015.
+  - Checked each feature's code against the live catalog. This found blends labelled as isolate (now ruled out) and 6 live variants with an MRP below the store price (reported, and no longer labelled as MRP).
+  - Corrected the audit, which had checked catalog maths on the seed file only.
+- **Decisions Made Without Asking**: Claim Check held back because FSSAI's thresholds couldn't be confirmed at the source. `official_sellers.json` left unused because its origin is unknown.
+- **Verification**: Type check, lint and production build pass.
+- **Files**: See `documentation/feature-build-walkthrough.md` and `git status` on the branch.
+- **Git & Safety Status**:
+  - No database writes. Builds read the live catalog through the public key.
+  - No git commits or pushes.
+  - No automated test suites run (per Rule 3). New tests are written but unrun.
+
+---
+
+### Entry 45: Commit and Push to main
+- **Timestamp**: 2026-11-01
+- **Request**: "push to main"
+- **Actions Taken**:
+  - Confirmed `origin/main` hadn't moved and scanned the changes for secrets.
+  - Committed the work from entries 42-44 on `audit-fixes`, fast-forwarded local `main` and pushed to `origin/main`.
+- **Git & Safety Status**:
+  - Pushed to `origin/main` with explicit user authorization.
+  - No automated test suites run locally (per Rule 3). The new CI workflow runs them on GitHub after this push.
+  - No database writes. Migrations 008, 010, 012, 014 and 015 are still to be run by the user.

@@ -6,6 +6,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { CategoryProvider } from "@/context/CategoryContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { SITE_NAME, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,10 +27,15 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+const SITE_TITLE = `${SITE_NAME} — Compare Protein Products in India`;
+const SITE_DESCRIPTION =
+  "Compare packaged protein products in India by true cost per gram (₹/g), protein density, label red flags (maltitol, added amino acids) and protein source.";
+
 export const metadata: Metadata = {
-  title: "The Protein Discovery Engine — Independent Protein Transparency",
-  description:
-    "Deconstruct packaged protein mathematically and scientifically. True cost-per-gram (₹/g), protein density %, red-flag scans (maltitol, amino spiking), and 4-tier ratings.",
+  metadataBase: new URL(siteUrl()),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: { title: SITE_TITLE, description: SITE_DESCRIPTION, siteName: SITE_NAME, locale: "en_IN", type: "website" },
   keywords: [
     "protein powder India",
     "best protein bar",

@@ -12,11 +12,13 @@ from rich.console import Console
 
 try:
     from src.engine.metrics import compute_all_metrics
+    from src.pricing.poller import PRICED_PLATFORMS
     from src.engine.protein_tier import classify_protein_profile
     from src.engine.red_flags import scan_ingredients_for_red_flags
     from src.models import ProductCreate, slugify
 except (ImportError, ModuleNotFoundError):
     from engine.metrics import compute_all_metrics
+    from pricing.poller import PRICED_PLATFORMS
     from engine.protein_tier import classify_protein_profile
     from engine.red_flags import scan_ingredients_for_red_flags
     from models import ProductCreate, slugify
@@ -44,19 +46,21 @@ class SupabaseUploader:
             self.dry_run = False
             from supabase import create_client
             self.client = create_client(self.supabase_url, self.supabase_key)
-            self.supports_variant_flags = False
-            try:
-                self.client.table("product_variants").select("is_combo").limit(1).execute()
-                self.supports_variant_flags = True
-            except Exception:
-                self.supports_variant_flags = False
+            self._require_migrations()
 
-            self.supports_is_vegan = False
+    def _require_migrations(self) -> None:
+        """Stop before writing anything if the database is behind. Dropping fields silently loses data."""
+        required = (
+            ("product_variants", "is_combo,is_available", "008_variant_flags_breakfast.sql"),
+            ("products", "is_vegan", "010_vegan_cookies.sql"),
+        )
+        for table, columns, migration in required:
             try:
-                self.client.table("products").select("is_vegan").limit(1).execute()
-                self.supports_is_vegan = True
-            except Exception:
-                self.supports_is_vegan = False
+                self.client.table(table).select(columns).limit(1).execute()
+            except Exception as exc:
+                raise RuntimeError(
+                    f"Database is missing {table}.{columns}. Run supabase/migrations/{migration} first."
+                ) from exc
 
     def process_and_enrich_product(self, product: ProductCreate) -> ProductCreate:
         """Enrich all product variants with computed metrics, red flags, and protein tiers."""
@@ -67,7 +71,10 @@ class SupabaseUploader:
                 nutrition=variant.nutrition,
                 net_weight_g=variant.net_weight_g,
                 serving_size_g=variant.serving_size_g,
-                platform_prices=[link.platform_price_inr for link in variant.redirect_links],
+                platform_prices=[
+                    link.platform_price_inr for link in variant.redirect_links if link.platform in PRICED_PLATFORMS
+                ],
+                ingredients=variant.ingredient_list,
             )
 
             # 2. Red-Flag Scanning
@@ -166,25 +173,13 @@ class SupabaseUploader:
             "description": product.description,
             "image_url": product.image_url,
             "is_active": True,
+            "is_vegan": getattr(product, "is_vegan", False),
         }
-        if self.supports_is_vegan:
-            prod_payload["is_vegan"] = getattr(product, "is_vegan", False)
 
-        try:
-            prod_res = self.client.table("products").upsert(
-                prod_payload,
-                on_conflict="slug",
-            ).execute()
-        except Exception as e:
-            if "is_vegan" in str(e):
-                prod_payload.pop("is_vegan", None)
-                self.supports_is_vegan = False
-                prod_res = self.client.table("products").upsert(
-                    prod_payload,
-                    on_conflict="slug",
-                ).execute()
-            else:
-                raise
+        prod_res = self.client.table("products").upsert(
+            prod_payload,
+            on_conflict="slug",
+        ).execute()
         product_id = prod_res.data[0]["id"]
 
         uploaded_variant_ids = []
@@ -239,29 +234,14 @@ class SupabaseUploader:
                 "image_url": variant.image_url,
                 "is_active": True,
                 "last_verified_at": now_iso,
+                "is_combo": variant.is_combo,
+                "is_available": variant.is_available,
             }
 
-            if self.supports_variant_flags:
-                var_payload["is_combo"] = variant.is_combo
-                var_payload["is_available"] = variant.is_available
-
-            try:
-                var_res = self.client.table("product_variants").upsert(
-                    var_payload,
-                    on_conflict="slug",
-                ).execute()
-            except Exception as e:
-                err_msg = str(e)
-                if "is_combo" in err_msg or "is_available" in err_msg:
-                    var_payload.pop("is_combo", None)
-                    var_payload.pop("is_available", None)
-                    self.supports_variant_flags = False
-                    var_res = self.client.table("product_variants").upsert(
-                        var_payload,
-                        on_conflict="slug",
-                    ).execute()
-                else:
-                    raise
+            var_res = self.client.table("product_variants").upsert(
+                var_payload,
+                on_conflict="slug",
+            ).execute()
             variant_id = var_res.data[0]["id"]
             uploaded_variant_ids.append(variant_id)
 

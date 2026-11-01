@@ -2,7 +2,7 @@
 
 import { useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState, useEffect, useRef } from "react";
-import { QueryFilters } from "@/lib/data";
+import { QueryFilters } from "@/lib/catalog";
 import { METRIC_RANGES, MetricKey } from "@/lib/metrics";
 
 function parseFiltersFromSearchParams(
@@ -39,6 +39,23 @@ function parseFiltersFromSearchParams(
   };
 }
 
+function filtersToQuery(filters: QueryFilters): string {
+  const params = new URLSearchParams();
+  if (filters.categorySlug) params.set("category", filters.categorySlug);
+  if (filters.sortBy && filters.sortBy !== "featured") params.set("sort", filters.sortBy);
+  filters.proteinTiers?.forEach((t) => params.append("tier", t));
+  filters.dietaryTags?.forEach((t) => params.append("tag", t));
+  filters.excludeAllergens?.forEach((a) => params.append("exclude_allergen", a));
+  if (filters.zeroFlagsOnly) params.set("clean", "true");
+  if (filters.searchQuery) params.set("q", filters.searchQuery);
+  for (const range of METRIC_RANGES) {
+    const value = filters[range.key];
+    if (value !== undefined) params.set(range.param, String(value));
+  }
+  if (filters.nearMe) params.set("near", "1");
+  return params.toString();
+}
+
 export function useFilters() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -47,15 +64,13 @@ export function useFilters() {
     return parseFiltersFromSearchParams(searchParams);
   });
 
-  // Keep in sync when popstate occurs (browser back/forward)
-  useEffect(() => {
-    const onPopState = () => {
-      const sp = new URLSearchParams(window.location.search);
-      setFilters(parseFiltersFromSearchParams(sp));
-    };
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, []);
+  // Follow links and the back button by adjusting state during render; our own URL writes match already.
+  const urlQuery = searchParams.toString();
+  const [syncedQuery, setSyncedQuery] = useState(urlQuery);
+  if (urlQuery !== syncedQuery) {
+    setSyncedQuery(urlQuery);
+    if (urlQuery !== filtersToQuery(filters)) setFilters(parseFiltersFromSearchParams(searchParams));
+  }
 
   // Sync URL in useEffect to avoid calling history.replaceState during render
   const isFirstRender = useRef(true);
@@ -65,31 +80,9 @@ export function useFilters() {
       return;
     }
 
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams();
-      if (filters.categorySlug) params.set("category", filters.categorySlug);
-      if (filters.sortBy && filters.sortBy !== "featured") params.set("sort", filters.sortBy);
-      if (filters.proteinTiers?.length) {
-        filters.proteinTiers.forEach((t) => params.append("tier", t));
-      }
-      if (filters.dietaryTags?.length) {
-        filters.dietaryTags.forEach((t) => params.append("tag", t));
-      }
-      if (filters.excludeAllergens?.length) {
-        filters.excludeAllergens.forEach((a) => params.append("exclude_allergen", a));
-      }
-      if (filters.zeroFlagsOnly) params.set("clean", "true");
-      if (filters.searchQuery) params.set("q", filters.searchQuery);
-      for (const range of METRIC_RANGES) {
-        const value = filters[range.key];
-        if (value !== undefined) params.set(range.param, String(value));
-      }
-      if (filters.nearMe) params.set("near", "1");
-
-      const query = params.toString();
-      const targetUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
-      window.history.replaceState(null, "", targetUrl);
-    }
+    const query = filtersToQuery(filters);
+    const targetUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+    window.history.replaceState(null, "", targetUrl);
   }, [filters]);
 
   const updateFilters = useCallback(
@@ -206,7 +199,6 @@ export function useFilters() {
 
   return {
     filters,
-    isPending: false,
     setCategory,
     toggleTier,
     toggleTag,

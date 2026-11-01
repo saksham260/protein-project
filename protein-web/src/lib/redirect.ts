@@ -1,4 +1,4 @@
-import { Platform } from "@/types/product";
+import { Platform, RedirectLink } from "@/types/product";
 
 export type PriceDisplay =
   | { type: "stored"; price: number }
@@ -13,6 +13,29 @@ export interface RedirectLinkOption {
 
 const QUICK_COMMERCE_PLATFORMS: Platform[] = ["blinkit", "zepto", "instamart"];
 
+/** Amazon's agreement allows its price data to be kept for 24 hours before it must be refreshed. */
+const AMAZON_PRICE_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+/** Older than this, a brand-store price still shows, but can't be called the cheapest. */
+const STORE_PRICE_MAX_AGE_MS = 14 * 24 * 60 * 60 * 1000;
+
+const AMAZON_HOST = /(^|\.)amazon\.(in|com)$/;
+
+function amazonTag(): string {
+  return process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "proteineng-21";
+}
+
+/** Adds our Associates tag to Amazon links. Every other store's link comes back unchanged. */
+export function withAffiliateTag(url: string): string {
+  try {
+    const parsed = new URL(url);
+    if (!AMAZON_HOST.test(parsed.hostname)) return url;
+    parsed.searchParams.set("tag", amazonTag());
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
 export function buildRedirectUrl(
   platform: Platform,
   ctx: {
@@ -26,11 +49,9 @@ export function buildRedirectUrl(
   switch (platform) {
     case "amazon":
       if (ctx.directUrl && ctx.directUrl.startsWith("http")) {
-        const url = new URL(ctx.directUrl);
-        url.searchParams.set("tag", process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "proteineng-21");
-        return url.toString();
+        return withAffiliateTag(ctx.directUrl);
       }
-      return `https://www.amazon.in/s?k=${query}&tag=${process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || "proteineng-21"}`;
+      return `https://www.amazon.in/s?k=${query}&tag=${amazonTag()}`;
     case "blinkit":
       return `https://blinkit.com/s/?q=${query}`;
     case "zepto":
@@ -50,4 +71,14 @@ export function getPriceDisplay(platform: Platform, storedPrice?: number | null)
     return { type: "stored", price: storedPrice };
   }
   return { type: "check_local" };
+}
+
+/** Whether a stored price is recent enough to rely on. Seed prices have no check time and are demo data. */
+export function isPriceFresh(
+  link: Pick<RedirectLink, "platform" | "price_last_checked">,
+  now: number = Date.now()
+): boolean {
+  if (!link.price_last_checked) return true;
+  const age = now - new Date(link.price_last_checked).getTime();
+  return age <= (link.platform === "amazon" ? AMAZON_PRICE_MAX_AGE_MS : STORE_PRICE_MAX_AGE_MS);
 }

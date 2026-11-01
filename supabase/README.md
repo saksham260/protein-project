@@ -8,15 +8,25 @@ This directory contains the database migration scripts and verification tools fo
 
 | File | Purpose | Safe to re-run? |
 |---|---|---|
-| [`setup_all.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/setup_all.sql) | Combined single-paste setup script containing 001–007 in exact order. | ✅ Yes |
-| [`verify.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/verify.sql) | Audit query checking tables, views, RLS status, policies, grants, and row counts. | ✅ Yes |
-| [`migrations/001_schema.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/001_schema.sql) | Core schema: brands, categories, products, product_variants, red flags, redirect links, users, preferences, favorites. | ✅ Yes |
-| [`migrations/002_rls.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/002_rls.sql) | Row Level Security policies (public catalog reads, user-scoped CRUD) and auth user trigger. | ✅ Yes |
-| [`migrations/003_indexes.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/003_indexes.sql) | B-tree metric indexes, GIN array indexes, and trigram fuzzy search indexes. | ✅ Yes |
-| [`migrations/004_phase1_fixes.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/004_phase1_fixes.sql) | Unique constraint on `(variant_id, platform)`, polyols, and best-price columns. | ✅ Yes |
-| [`migrations/005_prices_availability.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/005_prices_availability.sql) | `price_history`, crowd-sourced `availability_reports`, ASIN tracking, and `availability_summary` view. | ✅ Yes |
-| [`migrations/006_api_grants.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/006_api_grants.sql) | Explicit Data API table grants for `anon`, `authenticated`, and `service_role`. | ✅ Yes |
-| [`migrations/007_seed_categories.sql`](file:///c:/Users/Saksham/Documents/new-project/supabase/migrations/007_seed_categories.sql) | Populates the 4 core categories matching frontend `constants.ts`. | ✅ Yes |
+| [`setup_all.sql`](setup_all.sql) | All migrations (001-015) combined, for a fresh project. | ✅ Yes |
+| [`verify.sql`](verify.sql) | Audit query checking tables, views, RLS status, policies, grants and row counts. | ✅ Yes |
+| [`migrations/001_schema.sql`](migrations/001_schema.sql) | Core schema: brands, categories, products, variants, red flags, redirect links, users, preferences, favorites. | ✅ Yes |
+| [`migrations/002_rls.sql`](migrations/002_rls.sql) | Row Level Security policies and the auth user trigger. | ✅ Yes |
+| [`migrations/003_indexes.sql`](migrations/003_indexes.sql) | Metric, array and trigram search indexes. | ✅ Yes |
+| [`migrations/004_phase1_fixes.sql`](migrations/004_phase1_fixes.sql) | Unique `(variant_id, platform)`, polyols and best-price columns. | ✅ Yes |
+| [`migrations/005_prices_availability.sql`](migrations/005_prices_availability.sql) | `price_history`, `availability_reports`, ASIN tracking and `availability_summary`. | ✅ Yes |
+| [`migrations/006_api_grants.sql`](migrations/006_api_grants.sql) | Data API grants for `anon`, `authenticated` and `service_role`. | ✅ Yes |
+| [`migrations/007_seed_categories.sql`](migrations/007_seed_categories.sql) | The 4 core categories. | ✅ Yes |
+| [`migrations/008_variant_flags_breakfast.sql`](migrations/008_variant_flags_breakfast.sql) | `is_combo`, `is_available`, Breakfast category. | ✅ Yes |
+| [`migrations/009_dairy_category.sql`](migrations/009_dairy_category.sql) | Dairy category. | ✅ Yes |
+| [`migrations/010_vegan_cookies.sql`](migrations/010_vegan_cookies.sql) | `is_vegan`, Cookies category. | ✅ Yes |
+| [`migrations/011_user_activity.sql`](migrations/011_user_activity.sql) | `user_activity` for Suggested for You. | ✅ Yes |
+| [`migrations/012_user_searches.sql`](migrations/012_user_searches.sql) | `user_searches` for recent searches. | ✅ Yes |
+| [`migrations/013_new_categories.sql`](migrations/013_new_categories.sql) | Mass Gainers, Adult Nutrition, Staples categories. | ✅ Yes |
+| [`migrations/014_audit_fixes.sql`](migrations/014_audit_fixes.sql) | Private availability reports, `outbound_clicks`, `delete_my_account`. | ✅ Yes |
+| [`migrations/015_test_reports.sql`](migrations/015_test_reports.sql) | `test_reports`, the lab reports shown on product pages. | ✅ Yes |
+
+Nothing records which migrations have run, so check with `verify.sql`. The ETL uploader stops with a clear error if a required migration is missing.
 
 ---
 
@@ -29,7 +39,7 @@ Before and after migrations or data operations, run the pre-flight checks:
 python protein-etl/scripts/check_connection.py
 ```
 
-### Next.js Frontend Pre-Flight Check (Tests publishable key & anonymous report insert)
+### Next.js Frontend Pre-Flight Check (Read-only)
 ```bash
 cd protein-web
 npm run check:supabase
@@ -39,7 +49,7 @@ npm run check:supabase
 
 ## 3. Seeding Products
 
-To seed or refresh the 15 curated Indian protein products:
+To seed or refresh the catalog:
 
 ```bash
 cd protein-etl

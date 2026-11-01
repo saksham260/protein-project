@@ -9,6 +9,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),
+      // Next.js handles this guard when bundling; plain Node has nothing to resolve it to.
+      "server-only": path.resolve(import.meta.dirname, "./src/lib/testing/emptyModule.ts"),
     },
   },
 });

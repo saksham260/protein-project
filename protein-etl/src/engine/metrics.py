@@ -8,6 +8,7 @@ Formulas:
 - Best Cost per Gram (₹/g): lowest known platform price / protein_per_pack
 - Protein Density (%): (protein_g * 4) / calories_kcal * 100
 - True Net Carbs (g): total_carbs_g - dietary_fiber_g - non_glycemic_polyols_g
+  (polyols stay in when the ingredients name one that still raises blood sugar, such as maltitol)
 """
 
 from typing import Optional
@@ -16,6 +17,25 @@ try:
     from src.models import ComputedMetrics, NutritionPerPack
 except (ImportError, ModuleNotFoundError):
     from models import ComputedMetrics, NutritionPerPack
+
+
+# Sweeteners the body partly absorbs. The dictionary's maltitol patterns are the reason they aren't "net".
+GLYCEMIC_POLYOLS = (
+    "maltitol",
+    "sorbitol",
+    "xylitol",
+    "isomalt",
+    "lactitol",
+    "mannitol",
+    "hydrogenated glucose syrup",
+    "ins 965",
+)
+
+
+def has_glycemic_polyol(ingredients: Optional[list[str]]) -> bool:
+    """True when the ingredient list names a polyol that shouldn't be subtracted from net carbs."""
+    text = " ".join(ingredients or []).lower()
+    return any(polyol in text for polyol in GLYCEMIC_POLYOLS)
 
 
 def calculate_protein_per_pack(
@@ -128,6 +148,7 @@ def compute_all_metrics(
     net_weight_g: Optional[float] = None,
     serving_size_g: Optional[float] = None,
     platform_prices: Optional[list[Optional[float]]] = None,
+    ingredients: Optional[list[str]] = None,
 ) -> ComputedMetrics:
     """Run all metric calculations for a given product price and nutrition panel.
 
@@ -136,6 +157,7 @@ def compute_all_metrics(
         nutrition: Per-serving nutrition label values.
         net_weight_g / serving_size_g: Used to scale per-serving protein to the whole pack.
         platform_prices: Known selling prices (Amazon, D2C, ...); None entries are ignored.
+        ingredients: Ingredient list, used to tell which polyols can come off net carbs.
     """
     protein_per_pack = calculate_protein_per_pack(nutrition.protein_g, net_weight_g, serving_size_g)
     cost_per_g = calculate_cost_per_g_protein(mrp_inr, protein_per_pack)
@@ -150,7 +172,7 @@ def compute_all_metrics(
     net_carbs = calculate_true_net_carbs(
         nutrition.total_carbs_g,
         nutrition.dietary_fiber_g,
-        nutrition.non_glycemic_polyols_g,
+        0.0 if has_glycemic_polyol(ingredients) else nutrition.non_glycemic_polyols_g,
     )
     return ComputedMetrics(
         cost_per_g_protein=cost_per_g,

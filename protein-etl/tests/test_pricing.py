@@ -15,6 +15,7 @@ from src.pricing.poller import (
     extract_asin,
     is_plausible_price,
     poll_amazon_prices,
+    recompute_best_prices,
     trigger_revalidate,
 )
 
@@ -273,7 +274,7 @@ def test_poll_updates_prices_history_and_best_metrics():
     assert links["l1"]["platform_price_inr"] == 2899.0
     assert links["l1"]["external_id"] == "B000000001"
     assert links["l3"]["platform_price_inr"] == 1000  # untouched
-    assert len(db.rows["price_history"]) == 1
+    assert db.rows["price_history"] == []  # Amazon prices may not be kept, so no history
     assert db.rows["product_variants"][0]["best_price_inr"] == 2899.0
     assert (summary.checked, summary.updated, summary.variants_recomputed) == (2, 1, 1)
     assert len(summary.skipped) == 2  # search URL without ASIN + implausible jump
@@ -291,3 +292,18 @@ def test_poll_force_accepts_large_jump():
     db = make_db()
     poll_amazon_prices(db, FakeAmazon({"B000000002": AmazonOffer("B000000002", 300.0, True)}), force=True)
     assert db.rows["redirect_links"][2]["platform_price_inr"] == 300.0
+
+
+def test_best_price_skips_out_of_stock_and_quick_commerce_links():
+    db = FakeDb(
+        {
+            "redirect_links": [
+                {"variant_id": "v1", "platform": "amazon", "platform_price_inr": 900, "in_stock": False},
+                {"variant_id": "v1", "platform": "blinkit", "platform_price_inr": 60, "in_stock": True},
+                {"variant_id": "v1", "platform": "d2c", "platform_price_inr": 1000, "in_stock": True},
+            ],
+            "product_variants": [{"id": "v1", "protein_g": 25, "net_weight_g": 1000, "serving_size_g": 32}],
+        }
+    )
+    assert recompute_best_prices(db, ["v1"]) == 1
+    assert db.rows["product_variants"][0]["best_price_inr"] == 1000.0

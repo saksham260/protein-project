@@ -1,5 +1,6 @@
 import React from "react";
 import { ProductVariant } from "@/types/product";
+import { polyolLabel } from "@/lib/productFacts";
 import { computePer100g } from "@/lib/utils";
 import { NutritionMode } from "./NutritionToggle";
 
@@ -10,11 +11,12 @@ export interface NutritionPanelProps {
 
 export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode }) => {
   const is100g = mode === "per_100g";
-  const weight = variant.net_weight_g || 100;
+  // Stored nutrition is per serving, so per-100g scales from the serving, not the whole pack.
+  const servingWeight = variant.serving_size_g || 100;
 
   const val = (num: number | null | undefined, decimals = 1): string => {
     if (num === null || num === undefined) return "—";
-    const computed = is100g ? computePer100g(num, weight) : num;
+    const computed = is100g ? computePer100g(num, servingWeight) : num;
     return computed.toFixed(decimals);
   };
 
@@ -33,7 +35,7 @@ export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode })
           </span>
         </div>
         <span className="text-xs font-mono font-bold text-[#E4E4E7] bg-[#27272A] px-3 py-1 rounded-full border border-[#3F3F46]">
-          {is100g ? "100g Normalized" : "Single Pack"}
+          {is100g ? "Per 100g" : "Per Serving"}
         </span>
       </div>
 
@@ -51,7 +53,7 @@ export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode })
 
         <div className="flex flex-col items-center">
           <span className="text-[10px] uppercase font-mono tracking-widest text-[#A1A1AA]">
-            Pure Protein
+            Protein
           </span>
           <span className="text-2xl font-black font-mono text-white mt-1">
             {val(variant.protein_g)}
@@ -61,7 +63,7 @@ export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode })
 
         <div className="flex flex-col items-center">
           <span className="text-[10px] uppercase font-mono tracking-widest text-[#A1A1AA]">
-            True Net Carbs
+            Net Carbs
           </span>
           <span className="text-2xl font-black font-mono text-white mt-1">
             {val(variant.true_net_carbs_g)}
@@ -113,7 +115,7 @@ export const NutritionPanel: React.FC<NutritionPanelProps> = ({ variant, mode })
         </div>
         {variant.non_glycemic_polyols_g !== undefined && variant.non_glycemic_polyols_g > 0 && (
           <div className="flex items-center justify-between px-8 py-2 text-zinc-400">
-            <span>Non-Glycemic Polyols (Erythritol)</span>
+            <span>{polyolLabel(variant)}</span>
             <span>{val(variant.non_glycemic_polyols_g)}g</span>
           </div>
         )}

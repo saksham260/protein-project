@@ -26,13 +26,27 @@ export function formatWeight(grams: number | null | undefined): string {
   return `${grams}g`;
 }
 
-export function computePer100g(value: number, netWeightG: number): number {
-  if (!netWeightG || netWeightG <= 0) return 0;
-  return Number(((value / netWeightG) * 100).toFixed(2));
+/** Scales a per-serving nutrition value to per 100 g, given the weight of that serving. */
+export function computePer100g(value: number, servingSizeG: number): number {
+  if (!servingSizeG || servingSizeG <= 0) return 0;
+  return Number(((value / servingSizeG) * 100).toFixed(2));
 }
 
 export function cn(...classes: (string | boolean | undefined | null | number | false)[]): string {
   return classes.filter(Boolean).join(" ");
+}
+
+/** "1 Nov 2026, 3:45 pm" in India time. Amazon requires a full date and time beside its prices. */
+export function formatDateTime(iso: string | null | undefined): string {
+  if (!iso) return "—";
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "Asia/Kolkata",
+  }).format(new Date(iso));
 }
 
 /** "just now", "5 min ago", "3 h ago", "2 days ago". */
@@ -90,7 +104,7 @@ let postKeyboardTimer: ReturnType<typeof setTimeout> | null = null;
  * Resets mobile viewport zoom back to 1.0 (original scale) across Android and iOS browsers.
  * When the searchbar is active, mobile browsers zoom in for easier typing.
  * Once searching completes or the input blurs (becomes inactive), this function:
- * 1. Blurs any active element to trigger virtual keyboard dismissal.
+ * 1. Blurs any active element to trigger virtual keyboard dismissal (mobile only).
  * 2. Horizontally re-centers the viewport (window.scrollX to 0).
  * 3. Enforces initial-scale=1.0, maximum-scale=1.0, user-scalable=no immediately and again
  *    after keyboard dismissal (~200ms) to force rendering engines (WebKit and Blink) to snap back to 1.0.
@@ -100,18 +114,18 @@ let postKeyboardTimer: ReturnType<typeof setTimeout> | null = null;
 export function resetMobileZoom(): void {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
-  // 1. Blur any active input element to close virtual keyboard
-  if (document.activeElement instanceof HTMLElement) {
-    document.activeElement.blur();
-  }
-
-  // 2. Only run zoom reset logic on mobile devices/screens
+  // 1. Only run on mobile devices/screens; nothing zoomed on desktop, so focus must stay where it is
   const isMobile =
     window.innerWidth <= 768 ||
     /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
     (typeof window.visualViewport !== "undefined" && (window.visualViewport?.scale ?? 1) > 1);
 
   if (!isMobile) return;
+
+  // 2. Blur any active input element to close virtual keyboard
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
 
   const applyZoomReset = () => {
     // Reset any horizontal scroll offset that auto-zoom introduced
@@ -258,15 +272,16 @@ export function canonicalDietaryTag(raw?: string | null): string {
   if (!raw) return "";
   const s = raw.trim().toLowerCase().replace(/[\s_]+/g, "-");
   if (s === "keto" || s === "keto-friendly") return "keto-friendly";
-  if (s === "no-added-sugar" || s === "zero-sugar" || s === "no-refined-sugar") return "no-added-sugar";
+  if (s === "no-added-sugar" || s === "zero-sugar") return "no-added-sugar";
   if (s === "gluten-free" || s === "glutenfree") return "gluten-free";
   if (s === "clean-label" || s === "cleanlabel" || s === "100%-natural") return "clean-label";
   if (s === "lactose-free" || s === "lactosefree") return "lactose-free";
   if (s === "diabetic-friendly" || s === "diabetic" || s === "diabetic-care") return "diabetic-friendly";
   if (s === "high-fibre" || s === "high-fiber") return "high-fibre";
-  if (s === "nut-free" || s === "peanut-free") return "nut-free";
+  if (s === "nut-free") return "nut-free";
   if (s === "jain") return "jain";
-  if (s === "vegan" || s === "dairy-free" || s === "dairyfree") return "vegan";
+  if (s === "vegan") return "vegan";
+  if (s === "dairy-free" || s === "dairyfree") return "dairy-free";
   if (s === "vegetarian") return "vegetarian";
   return s;
 }

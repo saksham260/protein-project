@@ -222,3 +222,18 @@ def test_compute_all_metrics_non_positive_platform_prices():
     metrics = compute_all_metrics(mrp_inr=100.0, nutrition=nutrition, platform_prices=[0.0, -10.0, None])
     assert metrics.best_price_inr is None
     assert metrics.best_cost_per_g_protein is None
+
+
+def test_maltitol_stays_in_net_carbs_but_erythritol_comes_off():
+    nutrition = NutritionPerPack(
+        calories_kcal=200.0,
+        protein_g=20.0,
+        total_fat_g=5.0,
+        total_carbs_g=30.0,
+        dietary_fiber_g=5.0,
+        non_glycemic_polyols_g=10.0,
+    )
+    maltitol = compute_all_metrics(mrp_inr=100.0, nutrition=nutrition, ingredients=["Maltitol Syrup"])
+    erythritol = compute_all_metrics(mrp_inr=100.0, nutrition=nutrition, ingredients=["Erythritol"])
+    assert maltitol.true_net_carbs_g == 25.0
+    assert erythritol.true_net_carbs_g == 15.0

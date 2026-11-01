@@ -824,3 +824,198 @@ CREATE POLICY "Allow service_role full access on user_searches"
 -- Data API permissions (see 006_api_grants.sql); RLS above limits rows to the owner.
 GRANT SELECT, INSERT, UPDATE, DELETE ON public.user_searches TO authenticated;
 GRANT ALL ON public.user_searches TO service_role;
+
+-- ==============================================================================
+-- SECTION 13: 013_new_categories.sql (New Categories)
+-- ==============================================================================
+-- ==============================================================================
+-- 013_new_categories.sql: Mass Gainers, Adult Nutrition, and Staples Categories
+-- Safe to re-run.
+-- ==============================================================================
+
+INSERT INTO public.categories (name, slug, description, icon, display_order)
+VALUES
+    (
+        'Mass & Weight Gainers',
+        'mass-gainers',
+        'High-calorie, high-protein formulations designed for bulking and hardgainers.',
+        '🏋️',
+        9
+    ),
+    (
+        'Adult & Medical Nutrition',
+        'adult-nutrition',
+        'Clinical, senior, diabetic-care, and recovery nutrition formulas.',
+        '🩺',
+        10
+    ),
+    (
+        'High-Protein Staples',
+        'staples',
+        'High-protein atta, pasta, soya chunks, flour blends, and everyday kitchen essentials.',
+        '🌾',
+        11
+    )
+ON CONFLICT (slug) DO UPDATE SET
+    name = EXCLUDED.name,
+    description = EXCLUDED.description,
+    icon = EXCLUDED.icon,
+    display_order = EXCLUDED.display_order;
+
+-- ==============================================================================
+-- SECTION 14: 014_audit_fixes.sql (Audit Fixes)
+-- ==============================================================================
+-- ==============================================================================
+-- 014_audit_fixes.sql: Fixes from the 2026-11-01 audit
+--   * availability reports: raw rows (full pincodes) become private, one area can't be flooded
+--   * outbound_clicks: anonymous count of clicks through to stores
+--   * delete_my_account: lets a signed-in person delete their own account
+--   * handle_new_user: fixed search_path, because it runs with raised privileges
+-- Safe to run more than once.
+-- ==============================================================================
+
+-- ------------------------------------------------------------------------------
+-- 1. AVAILABILITY: only the district-level summary stays public
+-- ------------------------------------------------------------------------------
+DROP POLICY IF EXISTS "Allow public read on availability_reports" ON availability_reports;
+REVOKE SELECT ON public.availability_reports FROM anon, authenticated;
+
+-- The view must now run as its owner, or visitors could no longer read the summary.
+-- It exposes only counts per postal district, never a pincode.
+ALTER VIEW public.availability_summary SET (security_invoker = false);
+GRANT SELECT ON public.availability_summary TO anon, authenticated;
+
+-- Without accounts there's no per-person limit, so cap reports per product, platform and district.
+CREATE OR REPLACE FUNCTION public.limit_availability_reports()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+DECLARE
+    recent_reports INTEGER;
+BEGIN
+    SELECT COUNT(*) INTO recent_reports
+    FROM public.availability_reports
+    WHERE variant_id = NEW.variant_id
+      AND platform = NEW.platform
+      AND LEFT(pincode, 3) = LEFT(NEW.pincode, 3)
+      AND created_at >= NOW() - INTERVAL '1 hour';
+
+    IF recent_reports >= 20 THEN
+        RAISE EXCEPTION 'Too many availability reports for this product and area';
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS on_availability_report ON public.availability_reports;
+CREATE TRIGGER on_availability_report
+    BEFORE INSERT ON public.availability_reports
+    FOR EACH ROW
+    EXECUTE FUNCTION public.limit_availability_reports();
+
+-- ------------------------------------------------------------------------------
+-- 2. OUTBOUND_CLICKS: which products and stores people click through to
+-- ------------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS outbound_clicks (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_id UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    variant_id UUID REFERENCES product_variants(id) ON DELETE SET NULL,
+    platform TEXT NOT NULL CHECK (platform IN ('amazon', 'blinkit', 'zepto', 'instamart', 'd2c')),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_outbound_clicks_product_time
+    ON outbound_clicks (product_id, created_at DESC);
+
+ALTER TABLE outbound_clicks ENABLE ROW LEVEL SECURITY;
+
+-- Anyone may add a click, but only with a server-side timestamp. Nobody but the service role can read them.
+DROP POLICY IF EXISTS "Allow public insert on outbound_clicks" ON outbound_clicks;
+CREATE POLICY "Allow public insert on outbound_clicks"
+    ON outbound_clicks FOR INSERT
+    WITH CHECK (created_at >= NOW() - INTERVAL '1 minute');
+
+DROP POLICY IF EXISTS "Allow service_role full access on outbound_clicks" ON outbound_clicks;
+CREATE POLICY "Allow service_role full access on outbound_clicks"
+    ON outbound_clicks FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+GRANT INSERT ON public.outbound_clicks TO anon, authenticated;
+GRANT ALL ON public.outbound_clicks TO service_role;
+
+-- ------------------------------------------------------------------------------
+-- 3. DELETE_MY_ACCOUNT: removes the auth user; their rows cascade from there
+-- ------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION public.delete_my_account()
+RETURNS VOID
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+BEGIN
+    IF auth.uid() IS NULL THEN
+        RAISE EXCEPTION 'Not signed in';
+    END IF;
+
+    DELETE FROM auth.users WHERE id = auth.uid();
+END;
+$$;
+
+REVOKE ALL ON FUNCTION public.delete_my_account() FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.delete_my_account() TO authenticated;
+
+-- ------------------------------------------------------------------------------
+-- 4. HANDLE_NEW_USER: every table it touches is already schema-qualified
+-- ------------------------------------------------------------------------------
+ALTER FUNCTION public.handle_new_user() SET search_path = '';
+
+-- ==============================================================================
+-- SECTION 15: 015_test_reports.sql (Lab Reports)
+-- ==============================================================================
+-- ==============================================================================
+-- 015_test_reports.sql: Published lab reports linked from product pages
+--   Rows are added by hand (Supabase table editor or service role). Each one must link
+--   to the original report, and applies only to the batch tested.
+-- Safe to run more than once.
+-- ==============================================================================
+
+CREATE TABLE IF NOT EXISTS test_reports (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_id UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    -- Empty when the report covers the product rather than one pack size or flavour.
+    variant_id UUID REFERENCES product_variants(id) ON DELETE CASCADE,
+    source_type TEXT NOT NULL CHECK (source_type IN ('independent', 'brand')),
+    source_name TEXT NOT NULL,
+    lab_name TEXT,
+    batch_number TEXT,
+    tested_on DATE NOT NULL,
+    result TEXT NOT NULL CHECK (result IN ('pass', 'partial', 'fail')),
+    tested_protein_g_per_100g NUMERIC(6, 2) CHECK (tested_protein_g_per_100g BETWEEN 0 AND 100),
+    report_url TEXT NOT NULL CHECK (report_url LIKE 'https://%'),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_test_reports_product_time
+    ON test_reports (product_id, tested_on DESC);
+
+ALTER TABLE test_reports ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Allow public read on test_reports" ON test_reports;
+CREATE POLICY "Allow public read on test_reports"
+    ON test_reports FOR SELECT
+    USING (true);
+
+DROP POLICY IF EXISTS "Allow service_role full access on test_reports" ON test_reports;
+CREATE POLICY "Allow service_role full access on test_reports"
+    ON test_reports FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+GRANT SELECT ON public.test_reports TO anon, authenticated;
+GRANT ALL ON public.test_reports TO service_role;

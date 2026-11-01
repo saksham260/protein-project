@@ -42,7 +42,8 @@ export interface RedirectLink {
   platform: Platform;
   url: string;
   platform_price_inr: number | null;
-  price_last_checked: string;
+  /** Null for seed-catalog prices, which were never checked by the price jobs. */
+  price_last_checked: string | null;
   external_id?: string | null;
   in_stock?: boolean | null;
   created_at: string;
@@ -57,6 +58,21 @@ export interface AvailabilitySummary {
   yes_count: number;
   no_count: number;
   last_reported_at: string;
+}
+
+/** A published lab report. It covers one tested batch, never the product as a whole. */
+export interface TestReport {
+  id: string;
+  product_id: string;
+  variant_id: string | null;
+  source_type: "independent" | "brand";
+  source_name: string;
+  lab_name: string | null;
+  batch_number: string | null;
+  tested_on: string;
+  result: "pass" | "partial" | "fail";
+  tested_protein_g_per_100g: number | null;
+  report_url: string;
 }
 
 export interface ProductVariant {
@@ -119,6 +135,8 @@ export interface Product {
   is_vegan?: boolean;
   created_at: string;
   updated_at: string;
+  /** The variant that satisfied the active filters; cards show this one instead of the default. */
+  matched_variant_id?: string;
   brand?: Brand;
   category?: Category;
   variants?: ProductVariant[];

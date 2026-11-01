@@ -4,7 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useRecentSearches } from "@/hooks/useRecentSearches";
 import { useSearch } from "@/hooks/useSearch";
+import { effectiveCostPerGram } from "@/lib/metrics";
 import { AnimatedSearchButton } from "@/components/ui/AnimatedSearchButton";
 import { formatPricePerGram, splitProductName, resetMobileZoom } from "@/lib/utils";
 
@@ -18,7 +20,7 @@ export interface SearchBarProps {
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   id = "hero-search-input",
-  placeholder = "Search verified products, brands, or ingredients (e.g. Whey, Amul, Isolate)...",
+  placeholder = "Search products, brands, or ingredients (e.g. Whey, Amul, Isolate)...",
   initialValue = "",
   autoFocus = false,
   className = "",
@@ -32,6 +34,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   const { results, isLoading } = useSearch(query, 250);
   const suggestions = results.slice(0, 5);
+  const recent = useRecentSearches();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -59,6 +62,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         router.push(`/product/${suggestions[selectedIndex].slug}`);
         setIsOpen(false);
       } else if (query.trim()) {
+        recent.record(query);
         router.push(`/search?q=${encodeURIComponent(query.trim())}`);
         setIsOpen(false);
       }
@@ -74,6 +78,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     inputRef.current?.blur();
     resetMobileZoom();
     if (query.trim()) {
+      recent.record(query);
       router.push(`/search?q=${encodeURIComponent(query.trim())}`);
       setIsOpen(false);
     }
@@ -200,7 +205,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                       </div>
                     ) : variant?.cost_per_g_protein ? (
                       <div className="flex items-center gap-1 font-bold text-[#10B981] shrink-0 pl-2">
-                        <span>{formatPricePerGram(variant.cost_per_g_protein)}</span>
+                        <span>{formatPricePerGram(effectiveCostPerGram(variant))}</span>
                       </div>
                     ) : null}
                   </Link>

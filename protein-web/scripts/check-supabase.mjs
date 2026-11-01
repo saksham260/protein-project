@@ -97,7 +97,6 @@ async function runChecks() {
   }
 
   // Check 3: Product Variants
-  let sampleVariantId = null;
   try {
     const { data, count, error } = await client
       .from("product_variants")
@@ -105,37 +104,13 @@ async function runChecks() {
       .eq("is_active", true)
       .limit(1);
     if (error) throw error;
-    if (data && data.length > 0) {
-      sampleVariantId = data[0].id;
-    }
     console.log(`\x1b[32m✅ Product variants readable:\x1b[0m ${count ?? (data ? data.length : 0)} rows found`);
   } catch (err) {
     hasErrors = true;
     console.error(`\x1b[31m❌ Product variants read failed:\x1b[0m`, err?.message || err);
   }
 
-  // Check 4: Availability Reports (Anonymous Insert test if variants exist)
-  if (sampleVariantId) {
-    try {
-      const { error: insertErr } = await client
-        .from("availability_reports")
-        .insert({
-          variant_id: sampleVariantId,
-          platform: "zepto",
-          pincode: "560034",
-          is_available: true,
-        });
-      if (insertErr) throw insertErr;
-      console.log(`\x1b[32m✅ Availability reports anonymous insert permitted\x1b[0m`);
-    } catch (err) {
-      hasErrors = true;
-      console.error(`\x1b[31m❌ Availability report insert failed:\x1b[0m`, err?.message || err);
-    }
-  } else {
-    console.log(`\x1b[33mℹ️  No variants in database yet; skipping availability_reports insert test.\x1b[0m`);
-  }
-
-  // Check 5: Availability Summary View
+  // Check 4: Availability Summary View (read-only: this script must never write test rows to the database)
   try {
     const { error } = await client.from("availability_summary").select("*").limit(5);
     if (error) throw error;

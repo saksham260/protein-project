@@ -47,6 +47,29 @@ export async function logActivity(
   return !error;
 }
 
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** Counts a click through to a store, for everyone, signed in or not. Stores nothing about the visitor. */
+export async function logOutboundClick(click: {
+  productId?: string;
+  variantId?: string;
+  platform: Platform;
+}): Promise<void> {
+  // Seed-catalog products have no database row to point at.
+  if (!isSupabaseConfigured() || !click.productId || !UUID_PATTERN.test(click.productId)) return;
+  await createClient().from("outbound_clicks").insert({
+    product_id: click.productId,
+    variant_id: click.variantId ?? null,
+    platform: click.platform,
+  });
+}
+
+export async function clearActivity(userId: string): Promise<boolean> {
+  if (!isSupabaseConfigured()) return false;
+  const { error } = await createClient().from("user_activity").delete().eq("user_id", userId);
+  return !error;
+}
+
 /** The signed-in user's latest activity rows (newest first). */
 export async function getRecentActivity(userId: string, limit = 60): Promise<ActivityRow[]> {
   if (!isSupabaseConfigured()) return [];

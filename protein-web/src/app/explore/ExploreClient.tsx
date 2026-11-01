@@ -7,15 +7,13 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { useFilters } from "@/hooks/useFilters";
 import { usePincode } from "@/hooks/usePincode";
 import { METRIC_RANGES } from "@/lib/metrics";
-import { getProducts } from "@/lib/data";
+import { getProducts } from "@/lib/catalogClient";
 import { ProductWithVariants } from "@/types/product";
 import { CATEGORIES } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 
-export function ExploreClient() {
+export function ExploreClient({ initialProducts }: { initialProducts: ProductWithVariants[] }) {
   const {
     filters,
-    isPending,
     setCategory,
     toggleTier,
     toggleTag,
@@ -28,8 +26,9 @@ export function ExploreClient() {
   } = useFilters();
   const { pincode } = usePincode();
 
-  const [products, setProducts] = useState<ProductWithVariants[]>([]);
+  const [products, setProducts] = useState<ProductWithVariants[]>(initialProducts);
   const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   useEffect(() => {
@@ -40,10 +39,14 @@ export function ExploreClient() {
         if (isMounted) {
           setProducts(data);
           setLoading(false);
+          setLoadFailed(false);
         }
       })
       .catch(() => {
-        if (isMounted) setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+          setLoadFailed(true);
+        }
       });
 
     return () => {
@@ -62,6 +65,9 @@ export function ExploreClient() {
     (filters.nearMe ? 1 : 0) +
     METRIC_RANGES.filter((r) => filters[r.key] !== undefined).length;
 
+  // The first batch is only right for the default view; anything else waits for the full catalog.
+  const isDefaultView = activeFiltersCount === 0 && !filters.searchQuery && filters.sortBy === "featured";
+
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 flex flex-col gap-10">
       {/* Top Header with High Negative Space */}
@@ -69,7 +75,7 @@ export function ExploreClient() {
         <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#10B981] uppercase font-bold">
           <span>Discovery Engine</span>
           <span className="text-[#A1A1AA]">/</span>
-          <span>Independent Transparency</span>
+          <span>Label-Based Comparison</span>
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
@@ -80,7 +86,7 @@ export function ExploreClient() {
             <p className="text-sm sm:text-base text-[#A1A1AA] mt-2 leading-relaxed">
               {activeCategory
                 ? activeCategory.description
-                : "Objective, mathematically deconstructed protein database. Raw ₹/g efficiency, true density, and red-flag audits."}
+                : "Compare by cost per gram, protein density and label red flags. Data comes from product labels and brand listings."}
             </p>
           </div>
 
@@ -135,16 +141,11 @@ export function ExploreClient() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA]">
-                Verified Catalog
+                Catalog
               </span>
               <span className="text-xs font-mono font-bold text-[#E4E4E7] px-2.5 py-0.5 rounded-full bg-[#18181B] border border-[#27272A]">
-                {products.length} Products
+                {loading ? "Loading..." : `${products.length} Products`}
               </span>
-              {isPending && (
-                <span className="text-xs font-mono text-[#10B981] animate-pulse">
-                  Updating...
-                </span>
-              )}
             </div>
 
             {activeFiltersCount > 0 && (
@@ -241,7 +242,13 @@ export function ExploreClient() {
           )}
 
           {/* Clean CSS Grid for Products with High Negative Space */}
-          {loading ? (
+          {loadFailed && (
+            <p role="alert" className="text-xs font-mono text-[#F87171]">
+              Couldn&apos;t load the full catalog. Please refresh the page.
+            </p>
+          )}
+
+          {loading && !isDefaultView ? (
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
@@ -250,7 +257,7 @@ export function ExploreClient() {
                 />
               ))}
             </div>
-          ) : products.length === 0 ? (
+          ) : products.length === 0 && !loadFailed ? (
             /* Empty State */
             <div className="flex flex-col items-center justify-center p-10 sm:p-16 text-center rounded-3xl bg-[#18181B] border border-[#27272A] shadow-[0_12px_40px_rgba(0,0,0,0.5)] gap-5">
               <span className="text-5xl">🔍</span>
@@ -258,7 +265,7 @@ export function ExploreClient() {
                 No matching formulations found
               </h3>
               <p className="text-sm text-[#A1A1AA] max-w-md leading-relaxed">
-                Try loosening your allergen exclusions or tier filters to explore more verified products.
+                Try loosening your allergen exclusions or tier filters to see more products.
               </p>
               <button
                 type="button"

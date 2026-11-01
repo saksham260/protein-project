@@ -5,12 +5,15 @@ import { cn } from "@/lib/utils";
 export interface RedFlagWarningProps {
   flags: VariantRedFlag[] | undefined | null;
   mode?: "compact" | "banner" | "clinical-deck";
+  /** False when we have no ingredient list, so finding no flags proves nothing. */
+  hasIngredientData?: boolean;
   className?: string;
 }
 
 export const RedFlagWarning: React.FC<RedFlagWarningProps> = ({
   flags = [],
   mode = "compact",
+  hasIngredientData = true,
   className,
 }) => {
   const flagList = flags || [];
@@ -48,10 +51,12 @@ export const RedFlagWarning: React.FC<RedFlagWarningProps> = ({
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-bold text-white tracking-tight">
-              Clinical Formulation — Zero Red Flags
+              {hasIngredientData ? "No Red Flags on the Label" : "Ingredient List Not Available"}
             </span>
             <p className="text-xs text-[#A1A1AA] mt-1 leading-relaxed">
-              No maltitol, amino spiking, hydrogenated palm fats, or hidden sugars detected.
+              {hasIngredientData
+                ? "No maltitol, added amino acids, hydrogenated or palm fats, or hidden sugars listed."
+                : "We have nothing to scan for this product, so check the pack."}
             </p>
           </div>
         </div>
@@ -68,11 +73,11 @@ export const RedFlagWarning: React.FC<RedFlagWarningProps> = ({
         <div className="flex items-center gap-2 text-[#F87171]">
           <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444] shrink-0" />
           <span className="text-sm font-mono font-bold tracking-tight uppercase">
-            {flagList.length} Formulation Warning{flagList.length > 1 ? "s" : ""} Flagged
+            {flagList.length} Label Warning{flagList.length > 1 ? "s" : ""}
           </span>
         </div>
         <p className="text-xs text-[#A1A1AA] leading-relaxed">
-          Deceptive marketing detected in ingredient deck. Review clinical breakdown below.
+          Flagged from the ingredient list. See the breakdown below.
         </p>
       </div>
     );
@@ -82,7 +87,11 @@ export const RedFlagWarning: React.FC<RedFlagWarningProps> = ({
   if (!hasFlags) {
     return (
       <div className={cn("p-6 rounded-3xl bg-[#18181B] border border-[#27272A] text-center", className)}>
-        <span className="text-sm font-mono text-[#A1A1AA]">No red flags identified in this variant formulation.</span>
+        <span className="text-sm font-mono text-[#A1A1AA]">
+          {hasIngredientData
+            ? "No red flags found in this variant's ingredient list."
+            : "No ingredient list available, so this variant couldn't be scanned."}
+        </span>
       </div>
     );
   }

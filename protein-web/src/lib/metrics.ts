@@ -7,6 +7,28 @@ export function effectiveCostPerGram(v: ProductVariant): number | null {
   return v.best_cost_per_g_protein ?? v.cost_per_g_protein ?? null;
 }
 
+/** What the shopper is likely to pay: the lowest known store price, or MRP when none is known. */
+export function sellingPrice(v: ProductVariant): number {
+  return v.best_price_inr ?? v.mrp_inr;
+}
+
+/** Label for sellingPrice(): a store price that isn't below MRP mustn't be presented as the MRP. */
+export function priceLabel(v: ProductVariant): "From" | "Price" | "MRP" {
+  if (v.best_price_inr == null) return "MRP";
+  return v.best_price_inr < v.mrp_inr ? "From" : "Price";
+}
+
+/** Total protein in the pack. Labels give it per serving; single-serve items have serving = pack. */
+export function proteinInPack(v: ProductVariant): number {
+  return v.serving_size_g > 0 ? (v.protein_g * v.net_weight_g) / v.serving_size_g : v.protein_g;
+}
+
+/** ₹ per gram of the protein a lab actually measured, rather than the amount on the label. */
+export function costPerTestedGram(v: ProductVariant, testedProteinPer100g: number): number | null {
+  const testedProtein = (v.net_weight_g * testedProteinPer100g) / 100;
+  return testedProtein > 0 ? sellingPrice(v) / testedProtein : null;
+}
+
 /** Grams of protein you get for ₹100. Higher is better. */
 export function proteinPer100Inr(v: ProductVariant): number | null {
   const cost = effectiveCostPerGram(v);

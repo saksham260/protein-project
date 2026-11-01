@@ -18,5 +18,6 @@ export async function POST(request: Request) {
   }
 
   revalidatePath("/", "layout");
+  revalidatePath("/api/catalog");
   return Response.json({ revalidated: true, at: new Date().toISOString() });
 }

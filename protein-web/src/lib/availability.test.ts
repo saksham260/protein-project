@@ -42,6 +42,11 @@ describe("Suite 16: Availability System", () => {
       expect(isReportedAvailable({ yes_count: 5, no_count: 1 })).toBe(true);
     });
 
+    it("needs at least two yes reports", () => {
+      expect(isReportedAvailable({ yes_count: 1, no_count: 0 })).toBe(false);
+      expect(isReportedAvailable({ yes_count: 2, no_count: 0 })).toBe(true);
+    });
+
     it("returns false when yes_count <= no_count", () => {
       expect(isReportedAvailable({ yes_count: 1, no_count: 5 })).toBe(false);
       expect(isReportedAvailable({ yes_count: 3, no_count: 3 })).toBe(false);

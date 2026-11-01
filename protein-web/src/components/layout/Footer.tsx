@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { CATEGORIES } from "@/lib/constants";
+import { AMAZON_DISCLOSURE, CATEGORIES } from "@/lib/constants";
 
 export const Footer: React.FC = () => {
   return (
@@ -18,16 +18,27 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-[#A1A1AA] max-w-md leading-relaxed">
-              India&apos;s independent, objective protein intelligence database. We deconstruct product
-              formulations mathematically, scan for deceptive maltitol and amino spiking, and rank
-              by true economic cost per gram.
+              Compare packaged protein products sold in India by true cost per gram, using label data. We scan
+              ingredient lists for maltitol, added amino acids and hidden sugars. We don&apos;t lab-test products,
+              so always check the pack.
             </p>
-            <div className="flex items-center gap-2 mt-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono bg-[#18181B] text-[#E4E4E7] border border-[#27272A]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                100% Mathematically Audited
-              </span>
-            </div>
+            <nav aria-label="About" className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs font-mono">
+              <Link href="/best" className="text-[#E4E4E7] hover:text-[#34D399] transition-colors">
+                Best Value Lists
+              </Link>
+              <Link href="/protein-cost-calculator" className="text-[#E4E4E7] hover:text-[#34D399] transition-colors">
+                Cost Calculator
+              </Link>
+              <Link href="/how-we-rate" className="text-[#E4E4E7] hover:text-[#34D399] transition-colors">
+                How We Rate
+              </Link>
+              <Link href="/privacy" className="text-[#E4E4E7] hover:text-[#34D399] transition-colors">
+                Privacy
+              </Link>
+              <Link href="/terms" className="text-[#E4E4E7] hover:text-[#34D399] transition-colors">
+                Terms
+              </Link>
+            </nav>
           </div>
 
           {/* Categories */}
@@ -74,7 +85,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#27272A] text-xs font-mono text-[#A1A1AA]/70">
           <p>© {new Date().getFullYear()} The Protein Discovery Engine. All rights reserved.</p>
-          <p>Uncompromising transparency for the Indian packaged nutrition market.</p>
+          <p>{AMAZON_DISCLOSURE} We may also earn commissions from other store links.</p>
         </div>
       </div>
     </footer>

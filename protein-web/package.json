@@ -11,29 +11,22 @@
     "check:supabase": "node scripts/check-supabase.mjs"
   },
   "dependencies": {
-    "@react-three/fiber": "^9.7.0",
-    "@shadergradient/react": "^2.4.20",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.116.0",
     "@tailwindcss/postcss": "^4.3.3",
-    "camera-controls": "^3.1.2",
     "gsap": "^3.15.0",
-    "motion": "^13.3.0",
-    "next": "16.3.5",
+    "next": "16.4.3",
     "postcss": "^8.5.28",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "shadergradient": "^1.3.5",
-    "tailwindcss": "^4.3.3",
-    "three": "^0.186.0",
-    "three-stdlib": "^2.36.1"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
+    "eslint-config-next": "16.4.3",
     "typescript": "^5",
     "vite": "^8.3.1",
     "vitest": "^5.0.3"

@@ -1,7 +1,8 @@
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { CATEGORIES } from "@/lib/constants";
-import { getProducts } from "@/lib/data";
+import { ProductPreviewGrid } from "@/components/product/ProductPreviewGrid";
+import { getProducts, toListProduct } from "@/lib/data";
 import { CategoryClient } from "./CategoryClient";
 
 export const revalidate = 3600; // 1 hour ISR
@@ -26,7 +27,8 @@ export async function generateMetadata({
 
   return {
     title: `${category.name} in India — Best Value, Protein Density & Transparency`,
-    description: `${category.description} Ranked strictly by Cost per Gram (₹/g) and protein quality tier with red-flag detection.`,
+    description: `${category.description} Compare by cost per gram (₹/g), protein source tier and label red flags.`,
+    alternates: { canonical: `/category/${slug}` },
   };
 }
 
@@ -42,21 +44,10 @@ export default async function CategoryPage({
     notFound();
   }
 
-  const initialProducts = await getProducts({ categorySlug: slug });
+  const initialProducts = (await getProducts({ categorySlug: slug })).map(toListProduct);
 
   return (
-    <Suspense
-      fallback={
-        <div className="container py-12">
-          <div className="h-10 w-64 skeleton-shimmer mb-4" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-80 skeleton-shimmer rounded-2xl" />
-            ))}
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={<ProductPreviewGrid products={initialProducts.slice(0, 24)} />}>
       <CategoryClient category={category} initialProducts={initialProducts} />
     </Suspense>
   );

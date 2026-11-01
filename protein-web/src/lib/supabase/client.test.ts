@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { isSupabaseConfigured } from "./client";
 
 describe("Suite: Supabase Client Configuration Guard", () => {

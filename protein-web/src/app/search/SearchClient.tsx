@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { SearchBar } from "@/components/search/SearchBar";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Button } from "@/components/ui/Button";
-import { getProducts } from "@/lib/data";
+import { getProducts } from "@/lib/catalogClient";
 import { ProductWithVariants } from "@/types/product";
 import { resetMobileZoom } from "@/lib/utils";
 
@@ -16,12 +16,12 @@ export function SearchClient() {
   const hasQuery = queryParam.trim().length > 0;
 
   const [products, setProducts] = useState<ProductWithVariants[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Reset mobile zoom back to 1.0 when viewing search results
-    resetMobileZoom();
-  }, [queryParam]);
+    // Reset mobile zoom back to 1.0 when viewing search results (the empty search page keeps its focused box)
+    if (hasQuery) resetMobileZoom();
+  }, [queryParam, hasQuery]);
 
   useEffect(() => {
     let isMounted = true;
@@ -33,13 +33,13 @@ export function SearchClient() {
           if (isMounted) {
             setProducts(data);
             setLoading(false);
-            resetMobileZoom();
+            if (hasQuery) resetMobileZoom();
           }
         })
         .catch(() => {
           if (isMounted) {
             setLoading(false);
-            resetMobileZoom();
+            if (hasQuery) resetMobileZoom();
           }
         });
     }, 0);
@@ -48,7 +48,7 @@ export function SearchClient() {
       isMounted = false;
       clearTimeout(timer);
     };
-  }, [queryParam]);
+  }, [queryParam, hasQuery]);
 
   return (
     <div
@@ -68,8 +68,7 @@ export function SearchClient() {
             Find Any Protein Product in India
           </h1>
           <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-lg leading-relaxed font-sans">
-            Search by brand name (e.g. MuscleBlaze, The Whole Truth, Amul), protein source, or
-            formulation keywords.
+            Search by brand (e.g. MuscleBlaze, The Whole Truth, Amul), protein source, or ingredient.
           </p>
 
           <div className="w-full max-w-2xl mt-4">
@@ -86,7 +85,7 @@ export function SearchClient() {
               Matches for &quot;<strong className="text-white font-bold">{queryParam}</strong>&quot;:
             </span>
           ) : (
-            <span>Verified catalog:</span>
+            <span>Full catalog:</span>
           )}
         </div>
         <span className="font-bold text-[#10B981]">
@@ -106,7 +105,7 @@ export function SearchClient() {
           <span className="text-4xl">🔎</span>
           <h3 className="text-xl font-bold text-white tracking-tight">No matching products found</h3>
           <p className="text-xs sm:text-sm text-[#A1A1AA] max-w-sm font-sans">
-            We couldn&apos;t find verified products matching &quot;{queryParam}&quot;. Try searching
+            We couldn&apos;t find products matching &quot;{queryParam}&quot;. Try searching
             for &quot;whey&quot;, &quot;bar&quot;, or &quot;amul&quot;.
           </p>
           <Button href="/explore" variant="primary" size="sm">

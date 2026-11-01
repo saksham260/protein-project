@@ -238,7 +238,7 @@ function buildProgram(gl: WebGLRenderingContext, samples: number) {
   return prog;
 }
 
-function __OriginkitBase_VolumetricText(props: VolumetricTextProps) {
+function VolumetricTextBase(props: VolumetricTextProps) {
   const {
     text = "Thru.",
     font = {
@@ -779,7 +779,7 @@ const __originkitPresetProps = {
 
 export default function VolumetricText(props: VolumetricTextProps) {
   return (
-    <__OriginkitBase_VolumetricText
+    <VolumetricTextBase
       {...(__originkitPresetProps as Record<string, unknown>)}
       {...props}
     />

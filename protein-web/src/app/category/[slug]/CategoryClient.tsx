@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { useFilters } from "@/hooks/useFilters";
 import { usePincode } from "@/hooks/usePincode";
 import { METRIC_RANGES } from "@/lib/metrics";
-import { getProducts } from "@/lib/data";
+import { getProducts } from "@/lib/catalogClient";
 import { ProductWithVariants } from "@/types/product";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,6 @@ export interface CategoryClientProps {
 export function CategoryClient({ category, initialProducts }: CategoryClientProps) {
   const {
     filters,
-    isPending,
     toggleTier,
     toggleTag,
     toggleAllergen,
@@ -38,8 +37,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
   } = useFilters();
   const { pincode } = usePincode();
 
-  const [products, setProducts] = useState<ProductWithVariants[]>(initialProducts);
-  const [loading, setLoading] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState<ProductWithVariants[] | null>(null);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const activeFiltersCount = useMemo(() => {
@@ -53,7 +51,12 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
     );
   }, [filters]);
 
+  // The server already sent this category in its default order, so only a changed view needs the catalog.
+  const isDefaultView = activeFiltersCount === 0 && filters.sortBy === "featured";
+  const products = (!isDefaultView && filteredProducts) || initialProducts;
+
   useEffect(() => {
+    if (isDefaultView) return;
     let isMounted = true;
 
     getProducts({
@@ -63,7 +66,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
     })
       .then((data) => {
         if (isMounted) {
-          setProducts(data);
+          setFilteredProducts(data);
         }
       })
       .catch(() => {});
@@ -71,7 +74,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
     return () => {
       isMounted = false;
     };
-  }, [filters, pincode, category.slug]);
+  }, [filters, pincode, category.slug, isDefaultView]);
 
   return (
     <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 flex flex-col gap-8">
@@ -128,7 +131,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
           <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#332D27]/80">
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono uppercase tracking-wider text-[#968E85]">
-                Verified
+                Showing
               </span>
               <span className="text-xs font-mono font-bold text-[#F5F2EB] px-2.5 py-0.5 rounded-full bg-[#1C1916] border border-[#332D27]">
                 {products.length} Products
@@ -147,11 +150,6 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
                 <span>🌱</span>
                 <span>Vegan</span>
               </button>
-              {isPending && (
-                <span className="text-xs font-mono text-[#D97706] animate-pulse">
-                  Updating...
-                </span>
-              )}
             </div>
 
             <div className="flex items-center gap-2.5">
@@ -174,13 +172,7 @@ export function CategoryClient({ category, initialProducts }: CategoryClientProp
             </div>
           </div>
 
-          {loading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="h-[320px] sm:h-[460px] rounded-2xl sm:rounded-3xl bg-[#1C1916] border border-[#332D27] skeleton-shimmer" />
-              ))}
-            </div>
-          ) : products.length === 0 ? (
+          {products.length === 0 ? (
             <div className="flex flex-col items-center justify-center p-16 text-center rounded-3xl bg-[#1C1916] border border-[#332D27] gap-4">
               <span className="text-4xl">🔍</span>
               <h3 className="text-lg font-bold text-[#F5F2EB] tracking-tight">No products match these filters</h3>
