@@ -129,6 +129,7 @@ describe("Suite 17: Data Layer and Filtering", () => {
         protein_tier: "Tier 2",
         dietary_tags: ["vegan"],
         allergens: ["soy"],
+        ingredient_list: ["soy protein isolate", "cocoa powder"],
         cost_per_g_protein: 7.5,
         best_cost_per_g_protein: 7.0,
         best_price_inr: 140,

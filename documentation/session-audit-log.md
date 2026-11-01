@@ -1165,3 +1165,16 @@ This document serves as the complete, chronological audit history of all tasks, 
   - Pushed to `origin/main` with explicit user authorization.
   - No automated test suites run locally (per Rule 3). The new CI workflow runs them on GitHub after this push.
   - No database writes. Migrations 008, 010, 012, 014 and 015 are still to be run by the user.
+
+---
+
+### Entry 46: CI Result and Test Fixture Fix
+- **Timestamp**: 2026-11-01
+- **Request**: Follow-up to "push to main"
+- **Actions Taken**:
+  - The first CI run on `4d13928` passed all Python tests and 172 of 173 web tests. The build step was skipped because of the failure.
+  - The failing test, "excludes allergens", used a vegan fixture that inherited whey ingredients. The filter was right to remove it, so the fixture was corrected.
+  - Pushed the one-line test fix to `origin/main`, because the failure was in the work the user asked to push.
+- **Git & Safety Status**:
+  - No application code changed in this entry.
+  - No automated test suites run locally (per Rule 3). CI ran them on GitHub.
