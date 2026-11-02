@@ -39,9 +39,9 @@ DENSITY_RANGE = {
     "rtd-drinks": (4, 15),  # per ml of drink
     "protein-spreads": (15, 40),
     "breakfast-cereals": (15, 45),
-    "dairy": (4, 35),
+    "dairy": (3, 35),  # liquid milks sit at 3-4%, paneer/curd at 4-25%
     "cookies-baked": (10, 45),
-    "mass-gainers": (12, 45),
+    "mass-gainers": (10, 45),  # mega gainers sit at 10-15%, standard gainers at 20-35%
     "adult-nutrition": (10, 45),
     "staples": (12, 60),
 }

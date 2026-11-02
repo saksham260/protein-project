@@ -1,0 +1,610 @@
+import json
+
+# Wave 1: 35 Products (18 Dairy + 17 Staples)
+# Structure:
+#   pick: [store, handle, category, brand]
+#   reading: {i, v, name, desc, serv, net, label, n: [kcal, prot, carbs, fat, sat_fat, trans_fat, chol, fiber, sugar, added_sugar, sod], ing, allergens, tags, is_vegan, protein_source, protein_tier}
+#   manual_entry: {handle, store, brand, url, image_url, variants: [{id, title, price, mrp, compare_at_price, net_weight_g, in_stock, image_url}]}
+
+WAVE_1_PRODUCTS = [
+    # --- DAIRY (18 Products) ---
+    {
+        "pick": ["manual", "mother-dairy-high-protein-low-fat-paneer", "dairy", "Mother Dairy"],
+        "name": "High Protein Low Fat Paneer",
+        "desc": "Fresh cow and buffalo milk cottage cheese with 22g protein per 100g and low fat content.",
+        "serv": 100.0, "net": 200.0, "label": "100g (half slab)",
+        "n": [136.0, 22.0, 3.0, 4.0, 2.5, 0.0, 15.0, 0.0, 3.0, 0.0, 40.0],
+        "ing": "Pasteurised Skimmed Milk, Coagulant (Citric Acid)",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "High Protein", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.motherdairy.com/product/paneer",
+        "image_url": None,
+        "price": 110.0, "mrp": 115.0,
+        "variant_title": "200g Block"
+    },
+    {
+        "pick": ["manual", "mother-dairy-buffalo-milk", "dairy", "Mother Dairy"],
+        "name": "Full Cream Buffalo Milk",
+        "desc": "Rich pasteurised buffalo milk with 8.5g protein per 250ml serving.",
+        "serv": 250.0, "net": 500.0, "label": "250ml (1 glass)",
+        "n": [230.0, 8.5, 12.5, 16.2, 10.5, 0.0, 35.0, 0.0, 12.5, 0.0, 110.0],
+        "ing": "Pasteurised Buffalo Milk",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.motherdairy.com/product/milk",
+        "image_url": None,
+        "price": 36.0, "mrp": 36.0,
+        "variant_title": "500ml Pouch"
+    },
+    {
+        "pick": ["manual", "mother-dairy-cow-milk", "dairy", "Mother Dairy"],
+        "name": "Fresh Cow Milk",
+        "desc": "Nutritious pasteurised cow milk providing 8g protein per glass.",
+        "serv": 250.0, "net": 500.0, "label": "250ml (1 glass)",
+        "n": [157.0, 8.0, 11.5, 8.8, 5.5, 0.0, 22.0, 0.0, 11.5, 0.0, 100.0],
+        "ing": "Pasteurised Cow Milk",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.motherdairy.com/product/cow-milk",
+        "image_url": None,
+        "price": 29.0, "mrp": 29.0,
+        "variant_title": "500ml Pouch"
+    },
+    {
+        "pick": ["manual", "mother-dairy-probiotic-dahi", "dairy", "Mother Dairy"],
+        "name": "Classic Probiotic Dahi",
+        "desc": "Traditional probiotic set curd made with active cultures for gut health and protein.",
+        "serv": 100.0, "net": 400.0, "label": "100g (approx 1 bowl)",
+        "n": [63.0, 4.0, 5.0, 3.0, 2.0, 0.0, 10.0, 0.0, 5.0, 0.0, 45.0],
+        "ing": "Pasteurised Toned Milk, Active Lactic Cultures, Probiotic Bacterial Strains",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.motherdairy.com/product/dahi",
+        "image_url": None,
+        "price": 50.0, "mrp": 55.0,
+        "variant_title": "400g Tub"
+    },
+    {
+        "pick": ["manual", "mother-dairy-mishti-doi", "dairy", "Mother Dairy"],
+        "name": "Classic Mishti Doi",
+        "desc": "Traditional Bengali caramelised sweet fermented milk curd delicacy.",
+        "serv": 85.0, "net": 85.0, "label": "85g (1 cup)",
+        "n": [107.0, 3.5, 16.0, 3.2, 2.1, 0.0, 8.0, 0.0, 16.0, 10.0, 40.0],
+        "ing": "Milk, Sugar, Caramel, Active Lactic Cultures",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.motherdairy.com/product/mishti-doi",
+        "image_url": None,
+        "price": 25.0, "mrp": 25.0,
+        "variant_title": "85g Cup"
+    },
+    {
+        "pick": ["manual", "country-delight-low-fat-high-protein-paneer", "dairy", "Country Delight"],
+        "name": "Low Fat High Protein Paneer",
+        "desc": "Fresh cottage cheese crafted from skimmed milk, offering 24g pure dairy protein per 100g.",
+        "serv": 100.0, "net": 200.0, "label": "100g",
+        "n": [142.0, 24.0, 3.5, 3.5, 2.2, 0.0, 12.0, 0.0, 3.5, 0.0, 35.0],
+        "ing": "Pasteurised Cow & Buffalo Skimmed Milk, Coagulant (Citric Acid)",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "High Protein", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://countrydelight.in/product/paneer-low-fat",
+        "image_url": None,
+        "price": 120.0, "mrp": 125.0,
+        "variant_title": "200g Block"
+    },
+    {
+        "pick": ["manual", "country-delight-fresh-malai-paneer", "dairy", "Country Delight"],
+        "name": "Fresh Malai Paneer",
+        "desc": "Creamy unadulterated cottage cheese made from 100% pure whole milk.",
+        "serv": 100.0, "net": 200.0, "label": "100g",
+        "n": [278.0, 18.0, 2.0, 22.0, 14.5, 0.0, 60.0, 0.0, 2.0, 0.0, 30.0],
+        "ing": "Pasteurised Whole Milk, Coagulant (Citric Acid)",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://countrydelight.in/product/fresh-paneer",
+        "image_url": None,
+        "price": 115.0, "mrp": 120.0,
+        "variant_title": "200g Block"
+    },
+    {
+        "pick": ["manual", "country-delight-desi-cow-milk", "dairy", "Country Delight"],
+        "name": "Desi Cow Milk (A2)",
+        "desc": "Natural farm-fresh desi cow milk with 8.2g natural protein per glass.",
+        "serv": 250.0, "net": 500.0, "label": "250ml (1 glass)",
+        "n": [165.0, 8.2, 11.8, 9.5, 6.0, 0.0, 25.0, 0.0, 11.8, 0.0, 95.0],
+        "ing": "Raw Pasteurised Desi Cow Milk",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://countrydelight.in/product/desi-cow-milk",
+        "image_url": None,
+        "price": 45.0, "mrp": 48.0,
+        "variant_title": "500ml Bottle"
+    },
+    {
+        "pick": ["manual", "country-delight-buffalo-milk", "dairy", "Country Delight"],
+        "name": "Farm Fresh Buffalo Milk",
+        "desc": "Thick unadulterated buffalo milk rich in calcium and natural milk proteins.",
+        "serv": 250.0, "net": 500.0, "label": "250ml (1 glass)",
+        "n": [243.0, 9.0, 12.5, 17.5, 11.0, 0.0, 40.0, 0.0, 12.5, 0.0, 105.0],
+        "ing": "Pasteurised Buffalo Whole Milk",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://countrydelight.in/product/buffalo-milk",
+        "image_url": None,
+        "price": 42.0, "mrp": 45.0,
+        "variant_title": "500ml Bottle"
+    },
+    {
+        "pick": ["manual", "country-delight-natural-dahi", "dairy", "Country Delight"],
+        "name": "Natural Farm Fresh Dahi",
+        "desc": "Traditional thick set curd with live probiotic cultures and natural dairy protein.",
+        "serv": 100.0, "net": 400.0, "label": "100g",
+        "n": [70.0, 4.2, 4.8, 3.8, 2.5, 0.0, 12.0, 0.0, 4.8, 0.0, 40.0],
+        "ing": "Pasteurised Milk, Active Lactic Cultures",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://countrydelight.in/product/dahi",
+        "image_url": None,
+        "price": 55.0, "mrp": 60.0,
+        "variant_title": "400g Tub"
+    },
+    {
+        "pick": ["manual", "akshayakalpa-organic-high-protein-paneer", "dairy", "Akshayakalpa"],
+        "name": "Organic High Protein Paneer",
+        "desc": "Certified organic farm paneer with 21g protein and zero chemical additives.",
+        "serv": 100.0, "net": 200.0, "label": "100g",
+        "n": [238.0, 21.0, 2.5, 16.0, 10.5, 0.0, 45.0, 0.0, 2.5, 0.0, 35.0],
+        "ing": "Certified Organic Pasteurised Cow Milk, Organic Coagulant (Organic Lemon Juice)",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "High Protein", "Organic", "No Added Sugar", "Clean Label"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://akshayakalpa.org/product/organic-paneer",
+        "image_url": None,
+        "price": 145.0, "mrp": 150.0,
+        "variant_title": "200g Block"
+    },
+    {
+        "pick": ["manual", "akshayakalpa-organic-set-curd", "dairy", "Akshayakalpa"],
+        "name": "Organic Set Curd",
+        "desc": "Certified organic artisanal curd naturally fermented from antibiotic-free cow milk.",
+        "serv": 100.0, "net": 400.0, "label": "100g",
+        "n": [72.0, 4.5, 4.5, 4.0, 2.6, 0.0, 12.0, 0.0, 4.5, 0.0, 38.0],
+        "ing": "Certified Organic Cow Milk, Active Lactic Culture",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "Organic", "No Added Sugar", "Clean Label"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://akshayakalpa.org/product/organic-curd",
+        "image_url": None,
+        "price": 70.0, "mrp": 75.0,
+        "variant_title": "400g Tub"
+    },
+    {
+        "pick": ["manual", "akshayakalpa-organic-artisanal-greek-yogurt-unsweetened", "dairy", "Akshayakalpa"],
+        "name": "Organic Artisanal Greek Yogurt Unsweetened",
+        "desc": "Slow-strained organic Greek yogurt with 9g protein and rich thick texture.",
+        "serv": 150.0, "net": 150.0, "label": "150g (1 tub)",
+        "n": [125.0, 13.5, 6.0, 5.3, 3.3, 0.0, 22.5, 0.0, 6.0, 0.0, 63.0],
+        "ing": "Pasteurised Organic Cow Milk, Live Active Greek Yogurt Cultures (L. bulgaricus, S. thermophilus)",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "High Protein", "Organic", "No Added Sugar", "Clean Label"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://akshayakalpa.org/product/greek-yogurt",
+        "image_url": None,
+        "price": 105.0, "mrp": 110.0,
+        "variant_title": "150g Tub"
+    },
+    {
+        "pick": ["manual", "akshayakalpa-organic-cow-milk", "dairy", "Akshayakalpa"],
+        "name": "Organic Cow Milk",
+        "desc": "Whole organic cow milk straight from chemical-free organic fodder farms.",
+        "serv": 250.0, "net": 500.0, "label": "250ml (1 glass)",
+        "n": [157.0, 8.5, 11.5, 8.5, 5.5, 0.0, 22.0, 0.0, 11.5, 0.0, 90.0],
+        "ing": "Pasteurised Organic Whole Cow Milk",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "Organic", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://akshayakalpa.org/product/organic-milk",
+        "image_url": None,
+        "price": 42.0, "mrp": 45.0,
+        "variant_title": "500ml Pouch"
+    },
+    {
+        "pick": ["manual", "nestle-a-plus-pro-grow-milk", "dairy", "Nestle a+"],
+        "name": "Pro-Grow High Protein Milk",
+        "desc": "UHT treated fortified milk specially formulated with 9.5g protein and essential micronutrients.",
+        "serv": 250.0, "net": 1000.0, "label": "250ml",
+        "n": [155.0, 9.5, 12.5, 7.5, 4.8, 0.0, 24.0, 0.0, 12.5, 0.0, 110.0],
+        "ing": "Toned Milk, Milk Solids, Vitamin A, Vitamin D",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.nestle.in/brands/nestle-aplus-milk",
+        "image_url": None,
+        "price": 105.0, "mrp": 110.0,
+        "variant_title": "1L Tetra Pak"
+    },
+    {
+        "pick": ["manual", "nestle-a-plus-slim-milk", "dairy", "Nestle a+"],
+        "name": "Slim Skimmed Milk",
+        "desc": "99.8% fat free skimmed milk with 8.2g natural protein per 250ml glass.",
+        "serv": 250.0, "net": 1000.0, "label": "250ml",
+        "n": [86.0, 8.2, 12.2, 0.5, 0.3, 0.0, 5.0, 0.0, 12.2, 0.0, 115.0],
+        "ing": "Double Toned Skimmed Milk, Vitamin A, Vitamin D",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.nestle.in/brands/nestle-aplus-slim",
+        "image_url": None,
+        "price": 90.0, "mrp": 95.0,
+        "variant_title": "1L Tetra Pak"
+    },
+    {
+        "pick": ["manual", "nestle-a-plus-nourish-toned-milk", "dairy", "Nestle a+"],
+        "name": "Nourish Toned Milk",
+        "desc": "Nutritious homogenised toned milk providing balanced protein and calcium for daily health.",
+        "serv": 250.0, "net": 1000.0, "label": "250ml",
+        "n": [147.0, 8.0, 12.0, 7.5, 4.8, 0.0, 22.0, 0.0, 12.0, 0.0, 105.0],
+        "ing": "Toned Milk, Vitamin A, Vitamin D",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free", "No Added Sugar"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.nestle.in/brands/nestle-aplus-nourish",
+        "image_url": None,
+        "price": 85.0, "mrp": 90.0,
+        "variant_title": "1L Tetra Pak"
+    },
+    {
+        "pick": ["manual", "nestle-a-plus-grekyo-greek-yogurt-strawberry", "dairy", "Nestle a+"],
+        "name": "Grekyo Greek Yogurt Strawberry",
+        "desc": "Extra thick strawberry Greek yogurt delivering 6g protein and real fruit pulp.",
+        "serv": 100.0, "net": 100.0, "label": "100g (1 cup)",
+        "n": [98.0, 6.0, 14.5, 1.8, 1.1, 0.0, 6.0, 0.0, 14.5, 9.5, 45.0],
+        "ing": "Pasteurised Milk, Sugar, Strawberry Fruit Crush (10%), Milk Solids, Active Cultures",
+        "allergens": ["Milk"],
+        "tags": ["Vegetarian", "Gluten-Free"],
+        "is_vegan": False,
+        "protein_source": "Milk Protein (Skimmed Milk / Milk Solids)", "protein_tier": "first_class",
+        "url": "https://www.nestle.in/brands/nestle-grekyo",
+        "image_url": None,
+        "price": 45.0, "mrp": 50.0,
+        "variant_title": "100g Cup"
+    },
+
+    # --- STAPLES (17 Products) ---
+    {
+        "pick": ["manual", "wickedgud-high-protein-chickpea-pasta-fusilli", "staples", "WickedGud"],
+        "name": "High Protein Chickpea Fusilli Pasta",
+        "desc": "100% plant-based pasta crafted from chickpeas and brown rice delivering 28% protein.",
+        "serv": 50.0, "net": 200.0, "label": "50g dry pasta",
+        "n": [186.0, 14.0, 28.0, 2.0, 0.3, 0.0, 0.0, 6.0, 1.5, 0.0, 15.0],
+        "ing": "Chickpea Flour (55%), Brown Rice Flour, Red Lentil Flour, Tapioca Starch",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://wickedgud.com/products/chickpea-fusilli",
+        "image_url": None,
+        "price": 135.0, "mrp": 150.0,
+        "variant_title": "200g Pack"
+    },
+    {
+        "pick": ["manual", "wickedgud-high-protein-millet-pasta-penne", "staples", "WickedGud"],
+        "name": "High Protein Millet Penne Pasta",
+        "desc": "Wholesome gluten-free pasta powered by multi-millets and plant protein.",
+        "serv": 50.0, "net": 200.0, "label": "50g dry pasta",
+        "n": [188.0, 13.0, 30.0, 1.8, 0.3, 0.0, 0.0, 5.5, 1.2, 0.0, 18.0],
+        "ing": "Millet Blend (Jowar, Bajra, Ragi) (50%), Chickpea Flour, Tapioca Starch",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://wickedgud.com/products/millet-penne",
+        "image_url": None,
+        "price": 135.0, "mrp": 150.0,
+        "variant_title": "200g Pack"
+    },
+    {
+        "pick": ["manual", "wickedgud-high-protein-noodles-schezwan", "staples", "WickedGud"],
+        "name": "High Protein Instant Noodles Schezwan",
+        "desc": "Air-dried non-fried noodles made from lentils and oats, packed with 12.5g protein per cake.",
+        "serv": 70.0, "net": 280.0, "label": "70g (1 cake)",
+        "n": [241.0, 12.5, 42.0, 2.5, 0.5, 0.0, 0.0, 4.5, 2.0, 0.0, 290.0],
+        "ing": "Oats Flour, Lentil Flour (Moong & Chana), Whole Wheat Flour, Spices & Condiments Seasoning",
+        "allergens": ["Gluten"],
+        "tags": ["Vegan", "Vegetarian", "High Protein", "No Palm Oil"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://wickedgud.com/products/schezwan-noodles",
+        "image_url": None,
+        "price": 145.0, "mrp": 160.0,
+        "variant_title": "Pack of 4 x 70g"
+    },
+    {
+        "pick": ["manual", "wickedgud-high-protein-noodles-masala", "staples", "WickedGud"],
+        "name": "High Protein Instant Noodles Desi Masala",
+        "desc": "Healthy desi masala instant noodles with 100% maida-free lentil-oat blend.",
+        "serv": 70.0, "net": 280.0, "label": "70g (1 cake)",
+        "n": [241.0, 12.5, 42.0, 2.5, 0.5, 0.0, 0.0, 4.5, 2.0, 0.0, 310.0],
+        "ing": "Oats Flour, Lentil Flour (Moong & Chana), Whole Wheat Flour, Classic Indian Masala Mix",
+        "allergens": ["Gluten"],
+        "tags": ["Vegan", "Vegetarian", "High Protein", "No Palm Oil"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://wickedgud.com/products/masala-noodles",
+        "image_url": None,
+        "price": 145.0, "mrp": 160.0,
+        "variant_title": "Pack of 4 x 70g"
+    },
+    {
+        "pick": ["manual", "disano-high-protein-chickpea-fusilli-pasta", "staples", "Disano"],
+        "name": "High Protein Chickpea Fusilli Pasta",
+        "desc": "Italian-style gluten free chickpea pasta offering 27g protein per 100g.",
+        "serv": 50.0, "net": 250.0, "label": "50g",
+        "n": [190.0, 13.5, 29.0, 2.2, 0.4, 0.0, 0.0, 5.0, 1.5, 0.0, 20.0],
+        "ing": "100% Chickpea Flour",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://disanolife.com/products/chickpea-fusilli",
+        "image_url": None,
+        "price": 159.0, "mrp": 175.0,
+        "variant_title": "250g Pack"
+    },
+    {
+        "pick": ["manual", "disano-high-protein-chickpea-penne-pasta", "staples", "Disano"],
+        "name": "High Protein Chickpea Penne Pasta",
+        "desc": "Nutrient-dense single ingredient chickpea penne rich in dietary fibre and protein.",
+        "serv": 50.0, "net": 250.0, "label": "50g",
+        "n": [190.0, 13.5, 29.0, 2.2, 0.4, 0.0, 0.0, 5.0, 1.5, 0.0, 20.0],
+        "ing": "100% Chickpea Flour",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://disanolife.com/products/chickpea-penne",
+        "image_url": None,
+        "price": 159.0, "mrp": 175.0,
+        "variant_title": "250g Pack"
+    },
+    {
+        "pick": ["manual", "aashirvaad-proactive-superfoods-high-protein-atta", "staples", "Aashirvaad"],
+        "name": "ProActive High Protein Atta",
+        "desc": "Fortified high-protein wheat and soya flour mix with 22g protein per 100g.",
+        "serv": 100.0, "net": 1000.0, "label": "100g (approx 3 rotis)",
+        "n": [332.0, 22.0, 52.0, 4.0, 0.8, 0.0, 0.0, 11.0, 2.5, 0.0, 35.0],
+        "ing": "Whole Wheat Flour (65%), Defatted Soya Flour (25%), Oat Flour, Psyllium Husk",
+        "allergens": ["Gluten", "Soy"],
+        "tags": ["Vegan", "Vegetarian", "High Protein", "High-Fibre", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "100% Defatted Soya Flour", "protein_tier": "second_class",
+        "url": "https://www.aashirvaad.com/products/proactive-atta",
+        "image_url": None,
+        "price": 115.0, "mrp": 125.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "aashirvaad-sugar-release-control-atta", "staples", "Aashirvaad"],
+        "name": "Sugar Release Control Atta",
+        "desc": "Clinically tested low GI multigrain flour supporting stable blood glucose levels.",
+        "serv": 100.0, "net": 1000.0, "label": "100g (approx 3 rotis)",
+        "n": [341.0, 14.5, 65.0, 2.5, 0.5, 0.0, 0.0, 11.5, 3.0, 0.0, 25.0],
+        "ing": "Whole Wheat, Methi (Fenugreek), Defatted Soya Flour, Oats, Bengal Gram (Chana Dal)",
+        "allergens": ["Gluten", "Soy"],
+        "tags": ["Vegan", "Vegetarian", "Diabetic-Friendly", "High-Fibre", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://www.aashirvaad.com/products/sugar-release-control-atta",
+        "image_url": None,
+        "price": 80.0, "mrp": 85.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "aashirvaad-multigrain-high-fibre-protein-atta", "staples", "Aashirvaad"],
+        "name": "Multigrain High Fibre Atta",
+        "desc": "Classic 6-grain blend providing extra dietary fibre and plant protein for the family.",
+        "serv": 100.0, "net": 5000.0, "label": "100g",
+        "n": [346.0, 13.5, 68.0, 2.2, 0.4, 0.0, 0.0, 9.5, 2.8, 0.0, 30.0],
+        "ing": "Whole Wheat (90.9%), Multigrain Flour Blend (Soya, Chana, Oat, Maize, Psyllium Husk)",
+        "allergens": ["Gluten", "Soy"],
+        "tags": ["Vegan", "Vegetarian", "High-Fibre", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://www.aashirvaad.com/products/multigrain-atta",
+        "image_url": None,
+        "price": 310.0, "mrp": 330.0,
+        "variant_title": "5kg Pack"
+    },
+    {
+        "pick": ["manual", "twf-craft-high-protein-atta-reliq", "staples", "TWF Flours"],
+        "name": "Reliq Craft High Protein Atta",
+        "desc": "Artisanal unbleached high-protein whole wheat flour milled from heritage Emmer grain.",
+        "serv": 100.0, "net": 2500.0, "label": "100g",
+        "n": [348.0, 15.0, 68.0, 1.8, 0.3, 0.0, 0.0, 9.0, 2.0, 0.0, 15.0],
+        "ing": "100% Unbleached Single-Origin Heritage Khapli (Emmer) Wheat",
+        "allergens": ["Gluten"],
+        "tags": ["Vegan", "Vegetarian", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://twfflours.com/products/reliq",
+        "image_url": None,
+        "price": 420.0, "mrp": 450.0,
+        "variant_title": "2.5kg Pack"
+    },
+    {
+        "pick": ["manual", "twf-high-protein-keto-flour-inno", "staples", "TWF Flours"],
+        "name": "Inno High Protein Keto Flour",
+        "desc": "Ultra low net-carb functional flour formulated for ketogenic and athletic diets.",
+        "serv": 100.0, "net": 1000.0, "label": "100g",
+        "n": [350.0, 32.0, 15.0, 18.0, 2.5, 0.0, 0.0, 18.0, 2.0, 0.0, 40.0],
+        "ing": "Defatted Almond Flour, Isolated Pea Protein, Golden Flaxseed Meal, Wheat Gluten, Psyllium Husk",
+        "allergens": ["Gluten", "Nuts"],
+        "tags": ["Vegan", "Vegetarian", "Keto-Friendly", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pea Protein Isolate", "protein_tier": "second_class",
+        "url": "https://twfflours.com/products/inno",
+        "image_url": None,
+        "price": 460.0, "mrp": 499.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "sugarfit-active-high-protein-low-gi-atta", "staples", "Sugar.fit"],
+        "name": "Active High Protein Low GI Atta",
+        "desc": "Scientifically calibrated 24% protein flour with slow-release complex carbohydrates.",
+        "serv": 100.0, "net": 1000.0, "label": "100g (approx 3 rotis)",
+        "n": [309.0, 24.0, 42.0, 5.0, 0.8, 0.0, 0.0, 14.0, 2.2, 0.0, 35.0],
+        "ing": "Wheat, Isolated Soy Protein, Methi, Defatted Soya, Chana, Chia Seeds",
+        "allergens": ["Gluten", "Soy"],
+        "tags": ["Vegan", "Vegetarian", "Diabetic-Friendly", "High Protein", "High-Fibre", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Soy Protein Isolate", "protein_tier": "second_class",
+        "url": "https://sugarfit.com/products/low-gi-atta",
+        "image_url": None,
+        "price": 199.0, "mrp": 220.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "jiwa-high-protein-gluten-free-atta", "staples", "Jiwa"],
+        "name": "High Protein Gluten Free Flour",
+        "desc": "Wholesome gluten-free blend of amaranth, roasted gram and brown rice with 20% protein.",
+        "serv": 100.0, "net": 1000.0, "label": "100g",
+        "n": [338.0, 20.0, 55.0, 4.2, 0.8, 0.0, 0.0, 10.0, 2.5, 0.0, 30.0],
+        "ing": "Roasted Bengal Gram (Chana) Flour, Amaranth Flour, Brown Rice Flour, Faba Bean Protein",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://jiwa.in/products/gluten-free-high-protein-flour",
+        "image_url": None,
+        "price": 249.0, "mrp": 275.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "tata-sampann-unpolished-chana-dal", "staples", "Tata Sampann"],
+        "name": "Unpolished Chana Dal",
+        "desc": "Natural unpolished bengal gram dal free from water, oil or marble stone polish.",
+        "serv": 100.0, "net": 1000.0, "label": "100g dry",
+        "n": [365.0, 22.0, 58.0, 5.0, 0.8, 0.0, 0.0, 10.5, 2.0, 0.0, 25.0],
+        "ing": "100% Unpolished Chana Dal (Split Bengal Gram)",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://www.tatasampann.com/products/chana-dal",
+        "image_url": None,
+        "price": 135.0, "mrp": 145.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "tata-sampann-unpolished-green-moong-dal-split", "staples", "Tata Sampann"],
+        "name": "Unpolished Green Moong Dal Split",
+        "desc": "Pure unpolished green gram split lentils rich in dietary fibre and plant protein.",
+        "serv": 100.0, "net": 1000.0, "label": "100g dry",
+        "n": [343.0, 24.0, 59.0, 1.2, 0.3, 0.0, 0.0, 11.0, 2.0, 0.0, 20.0],
+        "ing": "100% Unpolished Split Green Gram (Moong Dal)",
+        "allergens": [],
+        "tags": ["Vegan", "Vegetarian", "Gluten-Free", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "Pulse & Millet Flours", "protein_tier": "second_class",
+        "url": "https://www.tatasampann.com/products/moong-dal-split",
+        "image_url": None,
+        "price": 169.0, "mrp": 185.0,
+        "variant_title": "1kg Pack"
+    },
+    {
+        "pick": ["manual", "fortune-soya-chunks-protein-rich", "staples", "Fortune"],
+        "name": "Soya Chunks Protein Rich",
+        "desc": "100% defatted soya chunks delivering over 52% clean plant protein.",
+        "serv": 100.0, "net": 200.0, "label": "100g dry",
+        "n": [345.0, 52.0, 33.0, 0.5, 0.1, 0.0, 0.0, 13.0, 0.0, 0.0, 20.0],
+        "ing": "100% Defatted Soya Flour",
+        "allergens": ["Soy"],
+        "tags": ["Vegan", "Vegetarian", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "100% Defatted Soya Flour", "protein_tier": "second_class",
+        "url": "https://www.fortunefoods.com/product/fortune-soya-chunks",
+        "image_url": None,
+        "price": 45.0, "mrp": 50.0,
+        "variant_title": "200g Pack"
+    },
+    {
+        "pick": ["manual", "saffola-fittify-high-protein-soya-chunks", "staples", "Saffola Fittify"],
+        "name": "High Protein Soya Chunks",
+        "desc": "Premium defatted soya chunks with 53g protein per 100g and soft juicy texture.",
+        "serv": 100.0, "net": 200.0, "label": "100g dry",
+        "n": [345.0, 53.0, 32.0, 0.5, 0.1, 0.0, 0.0, 13.5, 0.0, 0.0, 20.0],
+        "ing": "100% Defatted Soya Flour",
+        "allergens": ["Soy"],
+        "tags": ["Vegan", "Vegetarian", "High Protein", "Clean Label", "No Added Sugar"],
+        "is_vegan": True,
+        "protein_source": "100% Defatted Soya Flour", "protein_tier": "second_class",
+        "url": "https://saffola.marico.in/products/soya-chunks",
+        "image_url": None,
+        "price": 48.0, "mrp": 55.0,
+        "variant_title": "200g Pack"
+    }
+]
+
+print(f"Total Wave 1 products prepared: {len(WAVE_1_PRODUCTS)}")
+
+# Verify all nutrition math in advance
+KEYS = ["kcal", "protein", "carbs", "fat", "sat_fat", "trans_fat", "chol", "fiber", "sugar", "added_sugar", "sod"]
+errors = []
+
+for idx, p in enumerate(WAVE_1_PRODUCTS, 1):
+    n = dict(zip(KEYS, p["n"]))
+    serv = p["serv"]
+    
+    # Atwater
+    est = 4 * n["protein"] + 4 * n["carbs"] + 9 * n["fat"]
+    diff = abs(est - n["kcal"])
+    if diff > max(25, 0.2 * n["kcal"]):
+        errors.append(f"{p['name']}: calories {n['kcal']} vs est {est:.1f}")
+        
+    # Physical limits
+    if n["protein"] > serv:
+        errors.append(f"{p['name']}: protein > serv ({n['protein']} > {serv})")
+    if p["pick"][2] not in ("rtd-drinks", "dairy") and (n["protein"] + n["carbs"] + n["fat"]) > serv * 1.05:
+        errors.append(f"{p['name']}: macros > serv")
+        
+    # Sub-nutrients
+    if n["sat_fat"] > n["fat"] + 0.05:
+        errors.append(f"{p['name']}: sat_fat > fat")
+    if n["sugar"] > n["carbs"] + 0.05:
+        errors.append(f"{p['name']}: sugar > carbs")
+    if n["added_sugar"] > n["sugar"] + 0.05:
+        errors.append(f"{p['name']}: added_sugar > sugar")
+
+print(f"Pre-validation complete. Errors found: {len(errors)}")
+if errors:
+    for e in errors:
+        print("  ERROR:", e)
+else:
+    print("ALL 35 WAVE 1 PRODUCTS PASSED VALIDATION WITH 0 ERRORS!")

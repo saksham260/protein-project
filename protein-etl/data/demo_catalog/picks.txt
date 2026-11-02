@@ -467,3 +467,113 @@ manual|myprotein-impact-whey-isolate-chocolate-smooth|protein-powders|Myprotein
 manual|myprotein-clear-whey-isolate-orange-mango|protein-powders|Myprotein
 manual|ultimate-nutrition-prostar-100-whey-chocolate-creme|protein-powders|Ultimate Nutrition
 manual|ultimate-nutrition-iso-sensation-93-chocolate|protein-powders|Ultimate Nutrition
+manual|mother-dairy-high-protein-low-fat-paneer|dairy|Mother Dairy
+manual|mother-dairy-buffalo-milk|dairy|Mother Dairy
+manual|mother-dairy-cow-milk|dairy|Mother Dairy
+manual|mother-dairy-probiotic-dahi|dairy|Mother Dairy
+manual|mother-dairy-mishti-doi|dairy|Mother Dairy
+manual|country-delight-low-fat-high-protein-paneer|dairy|Country Delight
+manual|country-delight-fresh-malai-paneer|dairy|Country Delight
+manual|country-delight-desi-cow-milk|dairy|Country Delight
+manual|country-delight-buffalo-milk|dairy|Country Delight
+manual|country-delight-natural-dahi|dairy|Country Delight
+manual|akshayakalpa-organic-high-protein-paneer|dairy|Akshayakalpa
+manual|akshayakalpa-organic-set-curd|dairy|Akshayakalpa
+manual|akshayakalpa-organic-artisanal-greek-yogurt-unsweetened|dairy|Akshayakalpa
+manual|akshayakalpa-organic-cow-milk|dairy|Akshayakalpa
+manual|nestle-a-plus-pro-grow-milk|dairy|Nestle a+
+manual|nestle-a-plus-slim-milk|dairy|Nestle a+
+manual|nestle-a-plus-nourish-toned-milk|dairy|Nestle a+
+manual|nestle-a-plus-grekyo-greek-yogurt-strawberry|dairy|Nestle a+
+manual|wickedgud-high-protein-chickpea-pasta-fusilli|staples|WickedGud
+manual|wickedgud-high-protein-millet-pasta-penne|staples|WickedGud
+manual|wickedgud-high-protein-noodles-schezwan|staples|WickedGud
+manual|wickedgud-high-protein-noodles-masala|staples|WickedGud
+manual|disano-high-protein-chickpea-fusilli-pasta|staples|Disano
+manual|disano-high-protein-chickpea-penne-pasta|staples|Disano
+manual|aashirvaad-proactive-superfoods-high-protein-atta|staples|Aashirvaad
+manual|aashirvaad-sugar-release-control-atta|staples|Aashirvaad
+manual|aashirvaad-multigrain-high-fibre-protein-atta|staples|Aashirvaad
+manual|twf-craft-high-protein-atta-reliq|staples|TWF Flours
+manual|twf-high-protein-keto-flour-inno|staples|TWF Flours
+manual|sugarfit-active-high-protein-low-gi-atta|staples|Sugar.fit
+manual|jiwa-high-protein-gluten-free-atta|staples|Jiwa
+manual|tata-sampann-unpolished-chana-dal|staples|Tata Sampann
+manual|tata-sampann-unpolished-green-moong-dal-split|staples|Tata Sampann
+manual|fortune-soya-chunks-protein-rich|staples|Fortune
+manual|saffola-fittify-high-protein-soya-chunks|staples|Saffola Fittify
+manual|labrada-muscle-mass-gainer-chocolate|mass-gainers|Labrada
+manual|labrada-muscle-mass-gainer-vanilla|mass-gainers|Labrada
+manual|labrada-muscle-mass-gainer-strawberry|mass-gainers|Labrada
+manual|labrada-muscle-mass-gainer-banana|mass-gainers|Labrada
+manual|dymatize-super-mass-gainer-gourmet-chocolate|mass-gainers|Dymatize
+manual|dymatize-super-mass-gainer-rich-chocolate|mass-gainers|Dymatize
+manual|dymatize-super-mass-gainer-cookies-and-cream|mass-gainers|Dymatize
+manual|bsn-true-mass-1200-chocolate-milkshake|mass-gainers|BSN
+manual|bsn-true-mass-1200-strawberry-milkshake|mass-gainers|BSN
+manual|bsn-true-mass-1200-vanilla-ice-cream|mass-gainers|BSN
+manual|rule-1-r1-lbs-mass-gainer-chocolate-fudge|mass-gainers|Rule 1
+manual|rule-1-r1-lbs-mass-gainer-vanilla-butter-cake|mass-gainers|Rule 1
+manual|rule-1-r1-lbs-mass-gainer-strawberries-and-creme|mass-gainers|Rule 1
+manual|gnc-pro-performance-bulk-1340-double-chocolate|mass-gainers|GNC India
+manual|gnc-pro-performance-bulk-1340-vanilla-ice-cream|mass-gainers|GNC India
+manual|gnc-pro-performance-bulk-1340-strawberries-and-cream|mass-gainers|GNC India
+manual|muscletech-mass-tech-elite-milk-chocolate|mass-gainers|MuscleTech
+manual|muscletech-mass-tech-elite-vanilla-cake|mass-gainers|MuscleTech
+manual|optimum-nutrition-serious-mass-vanilla|mass-gainers|Optimum Nutrition
+manual|optimum-nutrition-serious-mass-banana|mass-gainers|Optimum Nutrition
+manual|mutant-mutant-mass-extreme-2500-triple-chocolate|mass-gainers|Mutant
+manual|mutant-mutant-mass-extreme-2500-vanilla-ice-cream|mass-gainers|Mutant
+manual|universal-nutrition-real-gains-chocolate|mass-gainers|Universal Nutrition
+manual|universal-nutrition-real-gains-banana|mass-gainers|Universal Nutrition
+manual|animal-100-whey-isolate-vanilla|protein-powders|Animal
+manual|kevin-levrone-levrolegendary-mass-chocolate|mass-gainers|Kevin Levrone
+manual|kevin-levrone-anabolic-mass-gainer-chocolate|mass-gainers|Kevin Levrone
+manual|ronnie-coleman-king-mass-xl-dark-chocolate|mass-gainers|Ronnie Coleman
+manual|ronnie-coleman-king-mass-xl-vanilla|mass-gainers|Ronnie Coleman
+manual|bigmuscles-nutrition-quick-mass-gainer-belgian-chocolate|mass-gainers|Bigmuscles Nutrition
+manual|the-whole-truth-protein-brownie-fudgy-dark-chocolate|cookies-baked|The Whole Truth
+manual|the-whole-truth-protein-brownie-hazelnut-chocolate|cookies-baked|The Whole Truth
+manual|the-whole-truth-soft-baked-cookie-double-dark-chocolate|cookies-baked|The Whole Truth
+manual|the-whole-truth-soft-baked-cookie-peanut-butter-chunk|cookies-baked|The Whole Truth
+manual|phab-high-protein-brownie-fudgy-chocolate|cookies-baked|Phab
+manual|phab-high-protein-brownie-walnut-chocolate|cookies-baked|Phab
+manual|ritebite-max-protein-cookie-choco-almond|cookies-baked|RiteBite Max Protein
+manual|ritebite-max-protein-cookie-oats-raisins|cookies-baked|RiteBite Max Protein
+manual|ritebite-max-protein-cookie-nuts-seeds|cookies-baked|RiteBite Max Protein
+manual|ketofy-high-protein-keto-cookies-almond-fudge|cookies-baked|Ketofy
+manual|ketofy-high-protein-keto-cookies-coconut-crunch|cookies-baked|Ketofy
+manual|lo-foods-high-protein-low-carb-chocolate-cookies|cookies-baked|Lo! Foods
+manual|lo-foods-high-protein-low-carb-coconut-cookies|cookies-baked|Lo! Foods
+manual|open-secret-unjunked-protein-cookies-choco-sea-salt|cookies-baked|Open Secret
+manual|open-secret-unjunked-protein-cookies-peanut-butter|cookies-baked|Open Secret
+manual|raw-pressery-high-protein-milkshake-cold-coffee|rtd-drinks|Raw Pressery
+manual|raw-pressery-high-protein-milkshake-choco-hazelnut|rtd-drinks|Raw Pressery
+manual|raw-pressery-high-protein-milkshake-vanilla-almond|rtd-drinks|Raw Pressery
+manual|myprotein-clear-whey-rtd-orange-mango|rtd-drinks|Myprotein
+manual|myprotein-clear-whey-rtd-mixed-berry|rtd-drinks|Myprotein
+manual|myprotein-protein-shake-rtd-chocolate|rtd-drinks|Myprotein
+manual|farmley-roasted-foxnuts-tangy-tomato|savory-snacks|Farmley
+manual|farmley-roasted-foxnuts-peri-peri|savory-snacks|Farmley
+manual|farmley-roasted-7-in-1-super-seeds-mix|savory-snacks|Farmley
+manual|farmley-roasted-soy-nuts-salt-pepper|savory-snacks|Farmley
+manual|nestle-health-science-resource-high-protein-vanilla|adult-nutrition|Nestle Health Science
+manual|nestle-health-science-resource-high-protein-chocolate|adult-nutrition|Nestle Health Science
+manual|nestle-health-science-peptamen-peptide-nutrition|adult-nutrition|Nestle Health Science
+manual|nestle-health-science-resource-diabetic-vanilla|adult-nutrition|Nestle Health Science
+manual|ensure-plus-high-protein-vanilla|adult-nutrition|Ensure
+manual|ensure-diabetes-care-vanilla|adult-nutrition|Ensure
+manual|ensure-diabetes-care-chocolate|adult-nutrition|Ensure
+manual|celevida-diabetic-nutrition-kesar-elaichi|adult-nutrition|Celevida
+manual|celevida-diabetic-nutrition-green-mango|adult-nutrition|Celevida
+manual|celevida-diabetic-nutrition-chocolate|adult-nutrition|Celevida
+manual|prohance-hp-high-protein-vanilla|adult-nutrition|Prohance
+manual|prohance-d-diabetic-care-chocolate|adult-nutrition|Prohance
+manual|prohance-d-diabetic-care-vanilla|adult-nutrition|Prohance
+manual|threptin-high-protein-diskettes-vanilla|adult-nutrition|Threptin
+manual|threptin-high-protein-diskettes-chocolate|adult-nutrition|Threptin
+manual|threptin-lite-diskettes-sugar-free|adult-nutrition|Threptin
+manual|pentasure-hp-100-whey-protein-banana-vanilla|adult-nutrition|Pentasure
+manual|pentasure-dm-diabetes-care-vanilla|adult-nutrition|Pentasure
+manual|pentasure-renal-vanilla|adult-nutrition|Pentasure
+manual|fresenius-kabi-fresubin-hp-high-protein-vanilla|adult-nutrition|Fresenius Kabi
