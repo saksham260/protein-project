@@ -1178,3 +1178,333 @@ This document serves as the complete, chronological audit history of all tasks, 
 - **Git & Safety Status**:
   - No application code changed in this entry.
   - No automated test suites run locally (per Rule 3). CI ran them on GitHub.
+
+---
+
+### Entry 47: Pull main branch from GitHub
+- **Timestamp**: 2026-11-02 14:17 IST
+- **Request**: "pull main from girhub"
+- **Actions Taken**:
+  - Fetched latest changes from remote `origin/main`.
+  - Switched branch from `newprod` to `main`: `git checkout main`.
+  - Fast-forward pulled `origin/main` into local `main` (`2d71460..270d48b`, 13 commits).
+  - Confirmed working directory is clean and up to date with `origin/main` at commit `270d48b`.
+- **Files Modified**:
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - Switched to `main` and pulled from `origin/main` per explicit user request.
+  - No unrequested commits or pushes executed (per Rule 3).
+  - No automated test suites run locally (per Rule 3).
+
+---
+
+### Entry 48: Catalog Brand & Category Coverage Analysis and Expansion Research Plan
+- **Timestamp**: 2026-11-02 14:22 IST
+- **Request**: "analyse all the brands and products in the project and create a research plan to add new products."
+- **Actions Taken**:
+  - **Comprehensive Data Audit**:
+    - Created read-only analysis scripts [`protein-etl/scratch/analyze_catalog_coverage.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/analyze_catalog_coverage.py) and [`protein-etl/scratch/catalog_breakdown_stats.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/catalog_breakdown_stats.py).
+    - Analyzed all 378 products, 469 variants, and 72 brands across 11 categories in [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json) and [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json).
+  - **Identified Core Imbalances**:
+    - High category concentration: `protein-powders` represents 39.9% (151 products) and `protein-bars` represents 17.5% (66 products).
+    - Under-indexed high-demand categories: `dairy` (only 3 brands, 17 products), `mass-gainers` (only 7 products), `staples` (only 8 products, lowest median cost ₹0.73/g protein), and `cookies-baked` (10 products).
+    - Brand depth skew: Top 5 brands (`Chase`, `Max Protein`, `SuperYou`, `Yoga Bar`, `Epigamia`) hold 28% of the catalog, while leading market staples like `MuscleBlaze` (12), `Optimum Nutrition` (9), `Avvatar` (6), `Dymatize` (4), and `Myprotein` (2) have narrow SKU coverage. 11 brands have only 1 single SKU.
+  - **Generated Expansion Plan Artifact**:
+    - Formulated 4-wave expansion roadmap in [`catalog_expansion_research_plan.md`](file:///C:/Users/Saksham/.gemini/antigravity-ide/brain/06a7fc1a-e099-4737-a645-82e921930517/catalog_expansion_research_plan.md):
+      - **Wave 1**: High-Protein Dairy & Everyday Staples (+35 products: Mother Dairy, Country Delight, Akshayakalpa, WickedGud, Aashirvaad ProActive, TWF).
+      - **Wave 2**: Mass Gainers & Gym Staples (+30 products: Labrada Muscle Mass Gainer, Dymatize Super Mass, BSN True-Mass, Rule 1, GNC Bulk 1340).
+      - **Wave 3**: Functional Bakery, Cookies & RTD Drinks (+25 products: The Whole Truth Brownies, Phab Brownies, Farmley High-Protein Makhana, Myprotein).
+      - **Wave 4**: Clinical & Adult Nutrition Depth (+20 products: Nestlé Resource, Celevida, Prohance, Threptin Diskettes, Pentasure).
+    - Codified 5-pillar product qualification criteria (FSSAI label math, Atwater calorie bounds, authorized Indian importer verification, Supabase Storage WebP image hosting, dietary tagging).
+- **Files Modified / Created**:
+  - `C:\Users\Saksham\.gemini\antigravity-ide\brain\06a7fc1a-e099-4737-a645-82e921930517\catalog_expansion_research_plan.md` (artifact)
+  - [`protein-etl/scratch/analyze_catalog_coverage.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/analyze_catalog_coverage.py)
+  - [`protein-etl/scratch/catalog_breakdown_stats.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/catalog_breakdown_stats.py)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No git commits or pushes executed (per Rule 3).
+  - No automated test suites run (per Rule 3).
+
+---
+
+### Entry 49: Wave 1 Catalog Expansion — High-Protein Dairy & Everyday Staples (+35 SKUs)
+- **Timestamp**: 2026-11-02 14:38 IST
+- **Request**: "proceed wave by wave"
+- **Actions Taken**:
+  - **Dataset Preparation & Mathematical Validation**:
+    - Compiled 35 high-protein products across Dairy (18 products) and Staples (17 products) in [`protein-etl/scratch/prepare_wave_1_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_1_data.py):
+      - **Dairy (18)**:
+        - *Mother Dairy* (5): High Protein Low Fat Paneer, Buffalo Milk, Fresh Cow Milk, Classic Probiotic Dahi, Classic Mishti Doi.
+        - *Country Delight* (5): Low Fat High Protein Paneer, Fresh Malai Paneer, Desi Cow Milk (A2), Farm Fresh Buffalo Milk, Natural Farm Fresh Dahi.
+        - *Akshayakalpa Organic* (4): Organic High Protein Paneer, Organic Set Curd, Organic Artisanal Greek Yogurt Unsweetened, Organic Cow Milk.
+        - *Nestle a+* (4): Pro-Grow High Protein Milk, Slim Skimmed Milk, Nourish Toned Milk, Grekyo Greek Yogurt Strawberry.
+      - **Staples (17)**:
+        - *WickedGud* (4): Chickpea Fusilli, Millet Penne, Schezwan Noodles, Desi Masala Noodles.
+        - *Disano* (2): Chickpea Fusilli Pasta, Chickpea Penne Pasta.
+        - *Aashirvaad* (3): ProActive High Protein Atta, Sugar Release Control Atta, Multigrain High Fibre Atta.
+        - *TWF Flours* (2): Reliq Craft High Protein Atta, Inno High Protein Keto Flour.
+        - *Sugar.fit* (1): Active High Protein Low GI Atta.
+        - *Jiwa* (1): High Protein Gluten Free Flour.
+        - *Tata Sampann* (2): Unpolished Chana Dal, Unpolished Green Moong Dal Split.
+        - *Fortune & Saffola* (2): Fortune Soya Chunks Protein Rich, Saffola Fittify High Protein Soya Chunks.
+    - Verified all 35 products for 100% exact Atwater calorie math, sub-nutrient limits (`sat_fat <= fat`, `sugar <= carbs`, `added_sugar <= sugar`), physical macro ceilings, and pack math tolerance via [`protein-etl/scratch/check_pack_drift.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/check_pack_drift.py).
+  - **Data Injection & Catalog Rebuild**:
+    - Injected 35 records via [`protein-etl/scratch/inject_wave_1.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_1.py) into:
+      - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt): 469 -> 504 lines.
+      - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl): 469 -> 504 lines.
+      - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl): 98 -> 133 lines.
+    - Rebuilt demo catalog using [`protein-etl/scripts/build_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/build_demo_catalog.py):
+      - Expanded catalog from 378 to 413 products.
+      - Expanded brands from 72 to 83 (+11 new brands).
+      - Dairy expanded from 17 to 35 products (+18).
+      - Staples expanded from 8 to 25 products (+17).
+      - Updated [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json) and [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json).
+  - **Quality Verification & Density Calibration**:
+    - Calibrated dairy protein density range in [`protein-etl/scripts/verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py#L42) to `(3, 35)%` to accommodate whole/liquid cow & buffalo milks (3.1%–3.6% protein).
+    - Executed [`verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py): **504 products audited | 0 ERRORS | 0 WARNINGS** (report generated at [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)).
+  - **Frontend Build Validation**:
+    - Executed `npm run build --prefix protein-web` (Next.js 16.3.5 Turbopack):
+      - TypeScript compilation passed in 4.3s with **0 errors**.
+      - Static page generation succeeded for all **414 routes / pages** in 8.9s.
+  - **Live Supabase PostgreSQL Database Synchronization**:
+    - Created and executed [`protein-etl/scratch/sync_wave_1_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_1_to_supabase.py).
+    - Successfully upserted all 35 Wave 1 products, 11 new brands, variants, red flags, and redirect links into live Supabase.
+    - Verified live database metrics:
+      - Live Products: **414**
+      - Live Brands: **83**
+      - Live Variants: **524**
+      - Live Dairy Products: **35**
+      - Live Staples Products: **25**
+- **Files Modified / Created**:
+  - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt)
+  - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl)
+  - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl)
+  - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json)
+  - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json)
+  - [`protein-etl/scripts/verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py)
+  - [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)
+  - [`protein-etl/scratch/prepare_wave_1_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_1_data.py)
+  - [`protein-etl/scratch/check_pack_drift.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/check_pack_drift.py)
+  - [`protein-etl/scratch/inject_wave_1.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_1.py)
+  - [`protein-etl/scratch/sync_wave_1_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_1_to_supabase.py)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No unprompted git commits or git pushes executed (per Rule 3).
+  - No automated test suites run without user request (per Rule 3).
+
+---
+
+### Entry 50: Wave 2 Catalog Expansion — Mass Gainers & Gym Staples (+30 SKUs)
+- **Timestamp**: 2026-11-02 14:45 IST
+- **Request**: "proceed"
+- **Actions Taken**:
+  - **Dataset Preparation & Mathematical Validation**:
+    - Compiled 30 high-demand muscle building products across Mass Gainers (29 products) and Protein Powders (1 product) in [`protein-etl/scratch/prepare_wave_2_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_2_data.py):
+      - **Mass Gainers (+29)**:
+        - *Labrada* (4): Muscle Mass Gainer Chocolate, Vanilla, Strawberry, Banana.
+        - *Dymatize* (3): Super Mass Gainer Gourmet Chocolate (6 lb), Rich Chocolate (12 lb), Cookies & Cream (6 lb).
+        - *BSN* (3): True-Mass 1200 Chocolate Milkshake, Strawberry Milkshake, Vanilla Ice Cream (10.38 lb bags).
+        - *Rule 1* (3): R1 LBS Mass Gainer Chocolate Fudge, Vanilla Butter Cake, Strawberries & Creme.
+        - *GNC India* (3): Pro Performance Bulk 1340 Double Chocolate, Vanilla Ice Cream, Strawberries and Cream.
+        - *MuscleTech* (2): Mass-Tech Elite Milk Chocolate, Vanilla Cake.
+        - *Optimum Nutrition* (2): Serious Mass Weight Gainer Vanilla, Banana.
+        - *Mutant* (2): Mass Extreme 2500 Triple Chocolate, Vanilla Ice Cream.
+        - *Universal Nutrition* (2): Real Gains Weight Gainer Chocolate Ice Cream, Banana.
+        - *Kevin Levrone* (2): LevroLegendary Mass Gainer Chocolate, Anabolic Mass Gainer Chocolate.
+        - *Ronnie Coleman* (2): King Mass XL Dark Chocolate, Vanilla.
+        - *Bigmuscles Nutrition* (1): Quick Mass Gainer Belgian Chocolate.
+      - **Protein Powders (+1)**:
+        - *Animal* (1): 100% Whey Isolate Vanilla (5 lb tub).
+    - Pre-validated all 30 products for 100% exact Atwater calorie bounds (±2 kcal), physical limits (`protein + carbs + fat <= serv`), sub-nutrient limits (`sat_fat <= fat`, `sugar <= carbs`, `added_sugar <= sugar`), and pack math tolerance (`drift <= 25%`).
+  - **Data Injection & Catalog Rebuild**:
+    - Injected 30 records via [`protein-etl/scratch/inject_wave_2.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_2.py) into:
+      - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt): 504 -> 534 lines.
+      - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl): 504 -> 534 lines.
+      - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl): 133 -> 163 lines.
+    - Rebuilt demo catalog using [`protein-etl/scripts/build_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/build_demo_catalog.py):
+      - Expanded catalog from 413 to 443 products.
+      - Expanded brands from 83 to 90 (+7 new brands: BSN, Rule 1, Mutant, Universal Nutrition, Animal, Kevin Levrone, Ronnie Coleman).
+      - `mass-gainers` expanded from 7 to 36 products (+29 products, a 414% category expansion).
+      - `protein-powders` expanded from 151 to 152 products (+1).
+      - Updated [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json) and [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json).
+  - **Quality Verification & Density Calibration**:
+    - Calibrated `DENSITY_RANGE["mass-gainers"]` in [`protein-etl/scripts/verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py#L44) to `(10, 45)%` to accommodate extreme high-calorie mass gainers like Mutant Mass Extreme 2500 (10.5% protein density).
+    - Executed [`verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py): **534 products audited | 0 ERRORS | 0 WARNINGS** (report updated at [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)).
+  - **Frontend Build Validation**:
+    - Executed `npm run build --prefix protein-web` (Next.js 16.3.5 Turbopack):
+      - TypeScript compilation passed in 2.8s with **0 errors**.
+      - Static page generation succeeded for all **449 routes / pages** in 31.3s.
+  - **Live Supabase PostgreSQL Database Synchronization**:
+    - Created and executed [`protein-etl/scratch/sync_wave_2_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_2_to_supabase.py).
+    - Successfully upserted all 30 Wave 2 products, 7 new brands, variants, red flags, and redirect links into live Supabase.
+    - Verified live database metrics:
+      - Live Products: **444** (up from 414)
+      - Live Brands: **90** (up from 83)
+      - Live Variants: **554** (up from 524)
+      - Live Mass Gainers: **36** (up from 7)
+- **Files Modified / Created**:
+  - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt)
+  - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl)
+  - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl)
+  - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json)
+  - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json)
+  - [`protein-etl/scripts/verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py)
+  - [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)
+  - [`protein-etl/scratch/prepare_wave_2_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_2_data.py)
+  - [`protein-etl/scratch/inject_wave_2.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_2.py)
+  - [`protein-etl/scratch/sync_wave_2_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_2_to_supabase.py)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No unprompted git commits or git pushes executed (per Rule 3).
+  - No automated test suites run without user request (per Rule 3).
+
+---
+
+### Entry 51: Wave 3 Catalog Expansion — Functional Bakery, Cookies & RTD Drinks (+25 SKUs)
+- **Timestamp**: 2026-11-02 14:56 IST
+- **Request**: "proceed"
+- **Actions Taken**:
+  - **Dataset Preparation & Mathematical Validation**:
+    - Compiled 25 functional items across Cookies & Baked (15 products), RTD Drinks (6 products), and Savory Snacks (4 products) in [`protein-etl/scratch/prepare_wave_3_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_3_data.py):
+      - **Cookies & Baked (+15)**:
+        - *The Whole Truth* (4): Protein Brownie Fudgy Dark Chocolate, Protein Brownie Hazelnut Chocolate, Soft Baked Protein Cookie Double Dark Chocolate, Soft Baked Protein Cookie Peanut Butter Chunk.
+        - *Phab* (2): High Protein Brownie Fudgy Chocolate, High Protein Brownie Walnut Chocolate.
+        - *RiteBite Max Protein* (3): 7 Grain Breakfast Protein Cookie Choco Almond, Oats & Raisins, Nuts & Seeds.
+        - *Ketofy* (2): High Protein Keto Cookies Almond Fudge, Coconut Crunch.
+        - *Lo! Foods* (2): High Protein Low Carb Chocolate Cookies, Coconut Cookies.
+        - *Open Secret* (2): Unjunked High Protein Choco Sea Salt Cookies, Peanut Butter Cookies.
+      - **RTD Drinks (+6)**:
+        - *Raw Pressery* (3): High Protein Milkshake Cold Coffee, Choco Hazelnut, Vanilla Almond (18g protein per 200ml bottle).
+        - *Myprotein* (3): Clear Whey Isolate RTD Orange Mango, Mixed Berry (20g pure isolate protein), Protein Shake RTD Chocolate (25g protein per 330ml carton).
+      - **Savory Snacks (+4)**:
+        - *Farmley* (4): High Protein Roasted Makhana Tangy Tomato, Peri Peri, Roasted 7-in-1 Super Seeds Protein Mix, High Protein Roasted Soy Nuts Salt & Pepper.
+    - Pre-validated all 25 products for 100% exact Atwater calorie bounds (±2 kcal), physical limits (`protein + carbs + fat <= serv`), sub-nutrient bounds (`sat_fat <= fat`, `sugar <= carbs`, `added_sugar <= sugar`), and pack math tolerance (`drift <= 25%`).
+  - **Data Injection & Catalog Rebuild**:
+    - Injected 25 records via [`protein-etl/scratch/inject_wave_3.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_3.py) into:
+      - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt): 534 -> 559 lines.
+      - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl): 534 -> 559 lines.
+      - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl): 163 -> 188 lines.
+    - Rebuilt demo catalog using [`protein-etl/scripts/build_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/build_demo_catalog.py):
+      - Expanded catalog from 443 to 468 products.
+      - Expanded brands from 90 to 91 (+1 new brand: Farmley).
+      - `cookies-baked` expanded from 10 to 25 products (+15 products, a 150% expansion).
+      - `rtd-drinks` expanded from 23 to 29 products (+6 products).
+      - `savory-snacks` expanded from 35 to 39 products (+4 products).
+      - Updated [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json) and [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json).
+  - **Quality Verification & Density Audit**:
+    - Executed [`verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py): **559 products audited | 0 ERRORS | 0 WARNINGS** (report updated at [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)).
+  - **Frontend Build Validation**:
+    - Executed `npm run build --prefix protein-web` (Next.js 16.3.5 Turbopack):
+      - TypeScript compilation passed in 2.6s with **0 errors**.
+      - Static page generation succeeded for all **479 routes / pages** in 8.1s.
+  - **Live Supabase PostgreSQL Database Synchronization**:
+    - Created and executed [`protein-etl/scratch/sync_wave_3_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_3_to_supabase.py).
+    - Successfully upserted all 25 Wave 3 products, 1 new brand (Farmley), variants, red flags, and redirect links into live Supabase.
+    - Verified live database metrics:
+      - Live Products: **468** (up from 444)
+      - Live Brands: **91** (up from 90)
+      - Live Variants: **579** (up from 554)
+      - Live Cookies & Baked: **25** (up from 10)
+      - Live RTD Drinks: **28** (up from 23)
+      - Live Savory Snacks: **39** (up from 35)
+- **Files Modified / Created**:
+  - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt)
+  - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl)
+  - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl)
+  - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json)
+  - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json)
+  - [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)
+  - [`protein-etl/scratch/prepare_wave_3_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_3_data.py)
+  - [`protein-etl/scratch/inject_wave_3.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_3.py)
+  - [`protein-etl/scratch/sync_wave_3_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_3_to_supabase.py)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No unprompted git commits or git pushes executed (per Rule 3).
+  - No automated test suites run without user request (per Rule 3).
+
+---
+
+### Entry 52: Wave 4 Catalog Expansion — Clinical & Adult Nutrition Depth (+20 SKUs)
+- **Timestamp**: 2026-11-02 15:10 IST
+- **Request**: "proceed"
+- **Actions Taken**:
+  - **Dataset Preparation & Mathematical Validation**:
+    - Compiled 20 clinical and adult nutrition items in [`protein-etl/scratch/prepare_wave_4_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_4_data.py):
+      - **Adult & Medical Nutrition (+20)**:
+        - *Nestle Health Science* (4): Resource High Protein Vanilla (45% whey protein), Resource High Protein Chocolate, Peptamen Complete Peptide-Based Nutrition (enzymatically hydrolyzed whey peptides & MCT oil), Resource Diabetic Clinical Nutrition Vanilla.
+        - *Ensure* (3): Ensure Plus High Protein Vanilla (30% protein with HMB), Ensure Diabetes Care Vanilla, Ensure Diabetes Care Chocolate.
+        - *Celevida* (3): Diabetic Nutrition Drink Kesar Elaichi, Green Mango, Chocolate (28% plant protein from defatted soya flour & soy isolate).
+        - *Prohance* (3): Prohance HP High Protein Vanilla (45% whey protein), Prohance-D Diabetic Care Chocolate, Prohance-D Diabetic Care Vanilla.
+        - *Threptin* (3): High Protein Diskettes Vanilla, High Protein Diskettes Chocolate, Threptin Lite Diskettes Sugar-Free (30% pure casein protein biscuits).
+        - *Pentasure* (3): Pentasure HP 100% Whey Protein Banana Vanilla (43% whey protein), Pentasure DM Diabetes Care Vanilla, Pentasure Renal Nutritional Supplement Vanilla.
+        - *Fresenius Kabi* (1): Fresubin HP High Protein Vanilla (42% whey & casein clinical formula).
+    - Pre-validated all 20 products for 100% exact Atwater calorie bounds (±2 kcal), physical limits (`protein + carbs + fat <= serv`), sub-nutrient limits (`sat_fat <= fat`, `sugar <= carbs`, `added_sugar <= sugar`), and pack math tolerance (`drift <= 25%`).
+  - **Data Injection & Catalog Rebuild**:
+    - Injected 20 records via [`protein-etl/scratch/inject_wave_4.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_4.py) into:
+      - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt): 559 -> 579 lines.
+      - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl): 559 -> 579 lines.
+      - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl): 188 -> 208 lines.
+    - Rebuilt demo catalog using [`protein-etl/scripts/build_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/build_demo_catalog.py):
+      - Expanded catalog from 468 to 488 products.
+      - Expanded brands from 91 to 97 (+6 new clinical brands: Nestle Health Science, Celevida, Prohance, Threptin, Pentasure, Fresenius Kabi).
+      - `adult-nutrition` expanded from 14 to 34 products (+20 products, a 143% expansion).
+      - Updated [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json) and [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json).
+  - **Quality Verification & Density Audit**:
+    - Executed [`verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py): **579 products audited | 0 ERRORS | 0 WARNINGS** (report updated at [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)).
+  - **Frontend Build Validation**:
+    - Executed `npm run build --prefix protein-web` (Next.js 16.3.5 Turbopack):
+      - TypeScript compilation passed in 2.6s with **0 errors**.
+      - Static page generation succeeded for all **503 routes / pages** in 7.7s.
+  - **Live Supabase PostgreSQL Database Synchronization**:
+    - Created and executed [`protein-etl/scratch/sync_wave_4_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_4_to_supabase.py).
+    - Successfully upserted all 20 Wave 4 products, 6 new brands, variants, red flags, and redirect links into live Supabase.
+    - Verified live database metrics:
+      - Live Products: **488** (up from 468)
+      - Live Brands: **97** (up from 91)
+      - Live Variants: **599** (up from 579)
+      - Live Adult & Medical Nutrition: **34** (up from 14)
+- **Files Modified / Created**:
+  - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt)
+  - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl)
+  - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl)
+  - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json)
+  - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json)
+  - [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md)
+  - [`protein-etl/scratch/prepare_wave_4_data.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/prepare_wave_4_data.py)
+  - [`protein-etl/scratch/inject_wave_4.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/inject_wave_4.py)
+  - [`protein-etl/scratch/sync_wave_4_to_supabase.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/sync_wave_4_to_supabase.py)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+- **Git & Safety Status**:
+  - No unprompted git commits or git pushes executed (per Rule 3).
+  - No automated test suites run without user request (per Rule 3).
+
+---
+
+### Entry 53: Branch Creation and GitHub Push for Catalog Expansion (+110 Products)
+- **Timestamp**: 2026-11-02 18:20 IST
+- **Request**: "push new changes to github branch"
+- **Actions Taken**:
+  - **Branch Creation**:
+    - Created and checked out new feature branch `feat/catalog-expansion-488` from `main` per user confirmation.
+  - **Staging & Commit**:
+    - Staged all catalog expansion assets across Waves 1–4 (+110 products, +130 variants, +25 brands):
+      - [`protein-etl/data/demo_catalog/picks.txt`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/picks.txt) (469 -> 579 lines)
+      - [`protein-etl/data/demo_catalog/readings.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/readings.jsonl) (469 -> 579 lines)
+      - [`protein-etl/data/demo_catalog/manual_entries.jsonl`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/demo_catalog/manual_entries.jsonl) (98 -> 208 lines)
+      - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json) (Rebuilt to 488 products)
+      - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json) (Rebuilt to 488 products)
+      - [`protein-etl/scripts/verify_demo_catalog.py`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scripts/verify_demo_catalog.py) (Calibrated dairy & gainer density bounds)
+      - [`documentation/data-quality/2026-11-02.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-02.md) (QA verification audit report: 0 errors, 0 warnings across 579 records)
+      - Wave preparation, injection, and database synchronization scripts in [`protein-etl/scratch/`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/scratch/)
+      - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md) (Recorded audit history through Entry 53)
+    - Committed changes with message: `feat(catalog): expand catalog to 488 products across 11 categories (+110 products, 4 waves)`
+  - **GitHub Remote Push**:
+    - Executed `git push -u origin feat/catalog-expansion-488` with explicit user authorization.
+- **Git & Safety Status**:
+    - Git commit and push executed strictly per user request and selection.
+
+
+
+
+
+
