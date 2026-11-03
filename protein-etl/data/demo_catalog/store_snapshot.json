@@ -15191,36 +15191,6 @@
           "available": true
         }
       ]
-    },
-    {
-      "handle": "amul-high-protein-milk",
-      "title": "Amul High Protein Milk",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-milk-250-ml-or-pack-of-30",
-      "images": [],
-      "variants": [
-        {
-          "title": "Pack of 30 (250ml)",
-          "price": "750.00",
-          "compare_at_price": "750.00",
-          "sku": "HPMILK_30",
-          "available": true
-        }
-      ]
-    },
-    {
-      "handle": "amul-high-protein-dahi",
-      "title": "Amul High Protein Probiotic Dahi",
-      "url": "https://shop.amul.com/en/product/amul-high-protein-dahi-400g",
-      "images": [],
-      "variants": [
-        {
-          "title": "400g Tub",
-          "price": "70.00",
-          "compare_at_price": "70.00",
-          "sku": "HPDAHI_400",
-          "available": true
-        }
-      ]
     }
   ],
   "onesciencenutrition.com": [
