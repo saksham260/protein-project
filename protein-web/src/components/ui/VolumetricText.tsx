@@ -242,7 +242,7 @@ function VolumetricTextBase(props: VolumetricTextProps) {
   const {
     text = "Thru.",
     font = {
-      fontFamily: "Inter, system-ui, sans-serif",
+      fontFamily: "var(--font-inter), 'Plus Jakarta Sans', system-ui, sans-serif",
       fontWeight: 900,
       lineHeight: 1,
       letterSpacing: "-0.03em",
@@ -331,7 +331,12 @@ function VolumetricTextBase(props: VolumetricTextProps) {
     ctx.fillRect(0, 0, w, h);
 
     const f = (p.font || {}) as CSSProperties & Record<string, unknown>;
-    const family = (f.fontFamily as string) || "Inter, system-ui, sans-serif";
+    const rawFamily = (f.fontFamily as string) || "var(--font-inter), 'Plus Jakarta Sans', system-ui, sans-serif";
+    const resolvedVar =
+      typeof window !== "undefined" && rawFamily.includes("var(--font-inter)")
+        ? getComputedStyle(document.documentElement).getPropertyValue("--font-inter").trim()
+        : "";
+    const family = resolvedVar ? rawFamily.replace("var(--font-inter)", resolvedVar) : rawFamily;
     const weight = (f.fontWeight as string | number) || 900;
     const styleStr = (f.fontStyle as string) || "normal";
     const lineHeight = (() => {
@@ -770,7 +775,7 @@ const __originkitPresetProps = {
     variant: "Regular",
     fontSize: "44px",
     textAlign: "left",
-    fontFamily: "Inter",
+    fontFamily: "var(--font-inter), 'Plus Jakarta Sans', system-ui, sans-serif",
     fontWeight: 900,
     lineHeight: 1,
     letterSpacing: "-0.03em",

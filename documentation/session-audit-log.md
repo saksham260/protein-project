@@ -1803,12 +1803,12 @@ This document serves as the complete, chronological audit history of all tasks, 
 
 ---
 
-### Entry 64: Git Commit & Push to GitHub (`origin/main`)
-- **Timestamp**: 2026-11-03 12:57 IST
+### Entry 64: Git Commit & Push to GitHub (`origin/feat/catalog-expansion-488`)
+- **Timestamp**: 2026-11-03 13:02 IST
 - **Request**: User explicitly requested `"push to github"`.
 - **Actions Taken**:
   - Staged the updated catalog and ETL source files (`protein-etl/data/demo_catalog/picks.txt`, `readings.jsonl`, `manual_entries.jsonl`, `store_snapshot.json`, `protein-etl/data/seed_products.json`, `protein-web/src/data/seedCatalog.json`), the QA verification report (`documentation/data-quality/2026-11-03.md`), the Batch 1–6 ETL/Supabase sync scripts (`protein-etl/scratch/*.py`), and `documentation/session-audit-log.md`.
-  - Created a single atomic commit and pushed to `origin/main`.
+  - Created an atomic commit (`4313cab`) and pushed to `origin/feat/catalog-expansion-488`.
 - **Files Committed & Pushed**:
   - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
   - [`documentation/data-quality/2026-11-03.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/data-quality/2026-11-03.md)
@@ -1819,3 +1819,87 @@ This document serves as the complete, chronological audit history of all tasks, 
   - [`protein-etl/data/seed_products.json`](file:///c:/Users/Saksham/Documents/new-project/protein-etl/data/seed_products.json)
   - [`protein-web/src/data/seedCatalog.json`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/data/seedCatalog.json)
   - `protein-etl/scratch/*.py` (Batch 1–6 image sourcing, verification, ETL application, and Supabase sync scripts)
+
+---
+
+### Entry 65: UI Theme Test — Midnight Black (`#02070A`), Electric Blue (`#0297DE`) & Cantaloupe Orange (`#FC734D`) with Preserved Revert Backup
+- **Timestamp**: 2026-11-04 10:45 IST
+- **Request**: Test a new UI color theme using **Midnight Black (`#02070A`)**, **Electric Blue (`#0297DE`)**, and **Cantaloupe Orange (`#FC734D`)**, while keeping the previous Warm Espresso & Amber theme (`#141210` / `#D97706` / `#F59E0B`) handy for easy revert.
+- **Actions Taken**:
+  - **End-to-End Theme Flow Trace**:
+    - Traced all hex color tokens, Tailwind arbitrary color utilities, and JS inline props across `protein-web/src/app/globals.css`, `HomeClient.tsx`, `Navbar.tsx`, `NavbarSearch.tsx`, `CartButton.tsx`, `LoginButton.tsx`, `ProductCard.tsx`, `ProductDetail.tsx`, `CategoryClient.tsx`, `CompareClient.tsx`, `CostCalculator.tsx`, `OversizedMetric.tsx`, and `RotatingText.tsx`.
+  - **Reversible Theme Architecture**:
+    - Saved an exact backup of the previous stylesheet at [`protein-web/src/app/globals.warm-amber.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.warm-amber.css) and preserved the `[data-theme="warm-amber"]` variable block inside [`protein-web/src/app/globals.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.css).
+    - Created [`protein-web/src/lib/theme.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/theme.ts) defining both `THEMES.midnightElectric` and `THEMES.warmAmber` presets controlled by `ACTIVE_THEME_ID`.
+  - **Applied New Palette Across CSS & Components**:
+    - **Canvas & Surfaces**: Midnight Black (`#02070A`) base canvas (`--bg-primary`), elevated Midnight Slate (`#071118`) card surface (`--bg-card`), `#0D1E29` interactive hover surface (`--bg-card-hover`), and `#172F40` / `#234760` card borders.
+    - **Primary Brand & Interactive Accent**: Electric Blue (`#0297DE`) mapped to `--color-primary` / `--accent-primary` (active navbar category pills, logo badge, search focus rings & morphing icon, hover borders/glows, and Volumetric 3D `"Protein"` hero light rays).
+    - **Secondary / Callout Accent**: Cantaloupe Orange (`#FC734D`) mapped to `--color-primary-bright` / `--accent-secondary` (rotating hero word pill badge `[Products / Powder / Chips...]`, brand headers, pack-size pills, cost-per-gram highlights, and metric labels).
+    - Updated [`HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx) and [`Navbar.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/layout/Navbar.tsx) to consume `ACTIVE_THEME` from [`src/lib/theme.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/theme.ts).
+- **Files Created / Modified**:
+  - [`protein-web/src/lib/theme.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/theme.ts) (Created)
+  - [`protein-web/src/app/globals.warm-amber.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.warm-amber.css) (Created — verbatim backup of previous theme)
+  - [`protein-web/src/app/globals.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.css) (Modified)
+  - [`protein-web/src/app/HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx) (Modified)
+  - [`protein-web/src/components/layout/Navbar.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/layout/Navbar.tsx) (Modified)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md) (Modified)
+- **Git & Safety Status**:
+  - No git commits, pushes, or test executions performed (per Rule 3).
+
+---
+
+### Entry 66: Reverted Experimental UI Theme Back to Warm Espresso & Amber
+- **Timestamp**: 2026-11-04
+- **User Request**: Revert the UI theme back to the previous Warm Espresso & Amber theme.
+- **Action Taken**:
+  1. Restored [`protein-web/src/app/globals.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.css) to its exact original Warm Espresso & Amber theme tokens (`#141210` primary background, `#1C1916` surface, `#D97706` / `#F59E0B` amber accents, `#F5F2EB` warm off-white text, and warm radial atmospheric backgrounds).
+  2. Reverted inline theme overrides in [`protein-web/src/app/HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx) (`VolumetricText` `textColor="#F5F2EB"`, `shadowColor="#D97706"`, and `RotatingText` `color="#FFFFFF"`, `badgeBackground="#D97706"`).
+  3. Reverted inline scrolled navbar glass background and border in [`protein-web/src/components/layout/Navbar.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/layout/Navbar.tsx) (`rgba(20, 18, 16, 0.85)` and `1px solid rgba(51, 45, 39, 0.8)`).
+  4. Removed temporary theme experiment files (`protein-web/src/app/globals.warm-amber.css` and `protein-web/src/lib/theme.ts`), leaving `protein-web/` 100% clean in `git status`.
+- **Files Modified**:
+  - [`protein-web/src/app/globals.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.css) (Reverted)
+  - [`protein-web/src/app/HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx) (Reverted)
+  - [`protein-web/src/components/layout/Navbar.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/layout/Navbar.tsx) (Reverted)
+  - [`protein-web/src/app/globals.warm-amber.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.warm-amber.css) (Deleted)
+  - [`protein-web/src/lib/theme.ts`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/lib/theme.ts) (Deleted)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md) (Modified)
+- **Git & Safety Status**:
+  - No git commits, pushes, or test executions performed (per Rule 3).
+
+---
+
+### Entry 67: Switched Primary Site Font to Plus Jakarta Sans (Option 1)
+- **Timestamp**: 2026-11-04
+- **User Request**: Present font options with an inline live preview in chat, then switch the website typography to Option 1 (**Plus Jakarta Sans**).
+- **End-to-End Flow Trace**:
+  1. **Next.js Font Loader ([`protein-web/src/app/layout.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/layout.tsx))**:
+     - Replaced `Inter` from `next/font/google` with `Plus_Jakarta_Sans` (`subsets: ["latin"]`, `display: "swap"`, `variable: "--font-inter"`).
+     - Bound `plusJakartaSans.variable` onto `<html lang="en">` so `--font-inter` resolves to the self-hosted `Plus Jakarta Sans` font face across all CSS rules (`--font-sans` in `@theme`, `html, body` in [`globals.css`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/globals.css), `ROTATING_FONT` in [`HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx), and [`RotatingText.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/ui/RotatingText.tsx)).
+  2. **Hero WebGL / 2D Canvas Text ([`protein-web/src/app/HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx) & [`protein-web/src/components/ui/VolumetricText.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/ui/VolumetricText.tsx))**:
+     - Updated `VolumetricText` `font.fontFamily` in `HomeClient.tsx` and default props in `VolumetricText.tsx` from `"Inter, system-ui, sans-serif"` to `"var(--font-inter), 'Plus Jakarta Sans', system-ui, sans-serif"`.
+     - Added CSS variable resolution (`getComputedStyle(document.documentElement).getPropertyValue("--font-inter")`) inside `VolumetricText.tsx` `drawMask()` so the HTML5 2D `<canvas>` context renders the hero `"Protein"` volumetric text using the active `next/font/google` `Plus Jakarta Sans` font face.
+- **Files Modified**:
+  - [`protein-web/src/app/layout.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/layout.tsx) (Modified)
+  - [`protein-web/src/app/HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx) (Modified)
+  - [`protein-web/src/components/ui/VolumetricText.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/ui/VolumetricText.tsx) (Modified)
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md) (Modified)
+- **Git & Safety Status**:
+  - No git commits, pushes, or test executions performed (per Rule 3).
+
+
+---
+
+### Entry 68: Git Commit & Push to GitHub (`origin/feat/catalog-expansion-488`)
+- **Timestamp**: 2026-11-04 21:32 IST
+- **Request**: User explicitly requested `"push to github branch"`.
+- **Actions Taken**:
+  - Staged font configuration updates (`protein-web/src/app/layout.tsx`, `protein-web/src/app/HomeClient.tsx`, `protein-web/src/components/ui/VolumetricText.tsx`), theme revert changes, and session audit history log (`documentation/session-audit-log.md`).
+  - Created an atomic commit with descriptive message (`style(typography): switch primary site font to Plus Jakarta Sans`).
+  - Pushed to `origin/feat/catalog-expansion-488`.
+- **Files Committed & Pushed**:
+  - [`documentation/session-audit-log.md`](file:///c:/Users/Saksham/Documents/new-project/documentation/session-audit-log.md)
+  - [`protein-web/src/app/layout.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/layout.tsx)
+  - [`protein-web/src/app/HomeClient.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/app/HomeClient.tsx)
+  - [`protein-web/src/components/ui/VolumetricText.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/ui/VolumetricText.tsx)
+- **Git & Safety Status**:
+  - Explicit user approval provided for commit and push.
