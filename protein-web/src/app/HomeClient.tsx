@@ -182,7 +182,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({
                   samples={100}
                   quality={100}
                   font={{
-                    fontFamily: "Inter, system-ui, sans-serif",
+                    fontFamily: "var(--font-inter), 'Plus Jakarta Sans', system-ui, sans-serif",
                     fontWeight: 900,
                     lineHeight: 1,
                     letterSpacing: "-0.03em",
