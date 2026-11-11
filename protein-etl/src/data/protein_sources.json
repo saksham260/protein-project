@@ -18,7 +18,8 @@
         {"canonical": "Micellar Casein", "match": ["micellar casein", "casein", "caseinate"]},
         {"canonical": "Calcium Caseinate", "match": ["calcium caseinate", "sodium caseinate", "potassium caseinate"]},
         {"canonical": "Egg White Protein", "match": ["egg white protein", "egg albumin", "egg white powder", "dried egg white"]},
-        {"canonical": "Milk Protein (Skimmed Milk / Milk Solids)", "match": ["ultrafiltered skimmed milk", "ultra filtered skimmed milk", "skimmed milk powder", "skimmed milk", "skim milk powder", "skim milk", "milk and milk solids", "milk solids", "toned milk", "whole milk powder"]}
+        {"canonical": "Milk Protein (Skimmed Milk / Milk Solids)", "match": ["ultrafiltered skimmed milk", "ultra filtered skimmed milk", "skimmed milk powder", "skimmed milk", "skim milk powder", "skim milk", "milk and milk solids", "milk solids", "toned milk", "whole milk powder"]},
+        {"canonical": "Whole Dairy (Milk / Paneer / Cheese / Curd)", "match": ["cow milk", "buffalo milk", "pasteurized milk", "pasteurised milk", "full cream milk", "double toned milk", "paneer", "cottage cheese", "cheese", "curd", "dahi", "yogurt", "yoghurt"]}
       ]
     },
     "tier_3": {

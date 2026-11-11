@@ -1,0 +1,1352 @@
+[
+    {
+        "slug":  "amul-high-protein-milk",
+        "brand":  "Amul",
+        "category":  "dairy",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://shop.amul.com/en/product/amul-high-protein-milk-250-ml-or-pack-of-30",
+        "price_inr":  750.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "amul-high-protein-probiotic-dahi",
+        "brand":  "Amul",
+        "category":  "dairy",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://shop.amul.com/en/product/amul-high-protein-dahi-400g",
+        "price_inr":  70.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "avvatar-high-protein-mass-gainer",
+        "brand":  "Avvatar",
+        "category":  "mass-gainers",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.avvatarindia.com/product/high-protein-mass-gainer-belgian-chocolate-1-kg",
+        "price_inr":  1299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "labrada-muscle-mass-gainer",
+        "brand":  "Labrada",
+        "category":  "mass-gainers",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.labrada.com/products/muscle-mass-gainer",
+        "price_inr":  1249.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "optimum-nutrition-gold-standard-100-casein",
+        "brand":  "Optimum Nutrition",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.optimumnutrition.co.in/gold-standard-100-casein",
+        "price_inr":  3299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "optimum-nutrition-platinum-hydrowhey",
+        "brand":  "Optimum Nutrition",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.optimumnutrition.co.in/platinum-hydrowhey",
+        "price_inr":  3899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "oziva-superfood-plant-protein-for-women",
+        "brand":  "OZiva",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.oziva.in/products/oziva-superfood-plant-protein-for-women",
+        "price_inr":  1444.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "kapiva-ayurvedic-protein-for-women",
+        "brand":  "Kapiva",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://kapiva.in/products/ayurvedic-protein-for-women-chocolate",
+        "price_inr":  1199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "kapiva-dia-free-plant-protein",
+        "brand":  "Kapiva",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://kapiva.in/products/dia-free-plant-protein-powder",
+        "price_inr":  1299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "plix-women-plant-protein",
+        "brand":  "Plix",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.plixlife.com/products/womens-protein-powder",
+        "price_inr":  1199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "plix-daily-superfood-green-protein",
+        "brand":  "Plix",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.plixlife.com/products/superfood-plant-protein-powder",
+        "price_inr":  1999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "milky-mist-high-protein-greek-yogurt-natural-unsweetened",
+        "brand":  "Milky Mist",
+        "category":  "dairy",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.milkymist.com/products/greek-yogurt-natural",
+        "price_inr":  45.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "milky-mist-high-protein-low-fat-paneer",
+        "brand":  "Milky Mist",
+        "category":  "dairy",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.milkymist.com/products/high-protein-paneer",
+        "price_inr":  125.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "muscleblaze-fuel-one-protein-shake-hazelnut-cafe",
+        "brand":  "MuscleBlaze",
+        "category":  "rtd-drinks",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.muscleblaze.com/sv/muscleblaze-fuel-one-protein-shake/SP-114251",
+        "price_inr":  130.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ensure-original-complete-balanced-adult-nutrition",
+        "brand":  "Ensure",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.abbottnutrition.in/ensure-adult-nutrition",
+        "price_inr":  720.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ensure-plus-high-protein-recovery-drink",
+        "brand":  "Ensure",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://ensureindia.in/ensure-plus",
+        "price_inr":  799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ensure-diabetes-care-specialized-nutrition",
+        "brand":  "Ensure",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://ensureindia.in/diabetes-care",
+        "price_inr":  820.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "glucerna-specialized-diabetes-nutritional-drink",
+        "brand":  "Glucerna",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.abbottnutrition.in/glucerna",
+        "price_inr":  840.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "pediasure-complete-balanced-growth-nutrition-chocolate",
+        "brand":  "PediaSure",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.abbottnutrition.in/pediasure-kids-nutrition",
+        "price_inr":  690.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "pediasure-complete-balanced-growth-nutrition-vanilla",
+        "brand":  "PediaSure",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.abbottnutrition.in/pediasure-kids-nutrition",
+        "price_inr":  690.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "complan-royale-chocolate-nutrition-drink",
+        "brand":  "Complan",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://complan.in/products/complan-royale-chocolate",
+        "price_inr":  360.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "horlicks-protein-plus-chocolate-drink",
+        "brand":  "Horlicks",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://horlicks.in/products/horlicks-protein-plus",
+        "price_inr":  580.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "horlicks-protein-plus-vanilla-drink",
+        "brand":  "Horlicks",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://horlicks.in/products/horlicks-protein-plus",
+        "price_inr":  580.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "gritzo-supermilk-for-young-athletes-boys-13-yrs",
+        "brand":  "Gritzo",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://gritzo.com/products/gritzo-supermilk-young-athletes-boys-13-years",
+        "price_inr":  799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "gritzo-supermilk-for-young-athletes-girls-13-yrs",
+        "brand":  "Gritzo",
+        "category":  "adult-nutrition",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://gritzo.com/products/gritzo-supermilk-young-athletes-girls-13-years",
+        "price_inr":  799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "fortune-soya-chunks-99-fat-free",
+        "brand":  "Fortune",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.fortunefoods.com/products/fortune-soya-chunks",
+        "price_inr":  50.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nutrela-soya-chunks-classic",
+        "brand":  "Nutrela",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.nutrelanutrition.com/product/nutrela-soya-chunks",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nutrela-soya-mini-chunks",
+        "brand":  "Nutrela",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.nutrelanutrition.com/product/nutrela-soya-mini-chunks",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nutrela-soya-granules",
+        "brand":  "Nutrela",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.nutrelanutrition.com/product/nutrela-soya-granules",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "aashirvaad-proactive-high-protein-multigrain-atta",
+        "brand":  "Aashirvaad",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://itcstore.in/products/aashirvaad-proactive-high-protein-multigrain-atta",
+        "price_inr":  110.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ketofy-high-protein-keto-flour-atta",
+        "brand":  "Ketofy",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://ketofy.in/products/ketofy-keto-flour",
+        "price_inr":  499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "urban-platter-organic-non-gmo-firm-tofu-block",
+        "brand":  "Urban Platter",
+        "category":  "staples",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://urbanplatter.in/products/urban-platter-organic-firm-tofu-200g",
+        "price_inr":  120.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "healthkart-high-protein-muesli-dark-chocolate-cranberry",
+        "brand":  "HealthKart",
+        "category":  "breakfast-cereals",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.healthkart.com/sv/healthkart-high-protein-muesli/SP-88321",
+        "price_inr":  399.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ketofy-chocolate-keto-cookies-ultra-low-carb",
+        "brand":  "Ketofy",
+        "category":  "cookies-baked",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://ketofy.in/products/ketofy-chocolate-cookies",
+        "price_inr":  299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ketofy-high-protein-keto-bhujia-sev",
+        "brand":  "Ketofy",
+        "category":  "savory-snacks",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://ketofy.in/products/ketofy-keto-bhujia",
+        "price_inr":  199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ketofy-high-protein-keto-nachos-peri-peri",
+        "brand":  "Ketofy",
+        "category":  "savory-snacks",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://ketofy.in/products/ketofy-keto-nachos-peri-peri",
+        "price_inr":  149.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "eat-better-co-high-protein-spicy-seed-trail-mix-nut-free",
+        "brand":  "Eat Better Co",
+        "category":  "savory-snacks",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://eatbetterco.com/products/high-protein-spicy-seed-mix",
+        "price_inr":  180.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "optimum-nutrition-gold-standard-100-whey-extreme-milk-chocolate",
+        "brand":  "Optimum Nutrition",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.optimumnutrition.co.in/products/gold-standard-100-whey-protein",
+        "price_inr":  3899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "optimum-nutrition-gold-standard-100-plant-protein-chocolate",
+        "brand":  "Optimum Nutrition",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.optimumnutrition.co.in/products/gold-standard-100-plant-protein",
+        "price_inr":  3499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "muscletech-nitrotech-ripped-hybrid-whey-protein-french-vanilla",
+        "brand":  "MuscleTech",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://muscletech.in/products/nitro-tech-ripped",
+        "price_inr":  5999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "muscletech-nitrotech-100-whey-gold-double-rich-chocolate",
+        "brand":  "MuscleTech",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://muscletech.in/products/nitro-tech-100-whey-gold",
+        "price_inr":  6899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "muscletech-mass-tech-extreme-2000-high-calorie-mass-gainer",
+        "brand":  "MuscleTech",
+        "category":  "mass-gainers",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://muscletech.in/products/mass-tech-extreme-2000",
+        "price_inr":  3699.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "myprotein-impact-whey-isolate-chocolate-smooth",
+        "brand":  "Myprotein",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.myprotein.co.in/sports-nutrition/impact-whey-isolate/10530911.html",
+        "price_inr":  3499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "myprotein-clear-whey-isolate-orange-mango",
+        "brand":  "Myprotein",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://www.myprotein.co.in/sports-nutrition/clear-whey-isolate/12081395.html",
+        "price_inr":  2999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ultimate-nutrition-prostar-100-whey-protein-chocolate-creme",
+        "brand":  "Ultimate Nutrition",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://paradigmsmt.com/products/prostar-100-whey-protein",
+        "price_inr":  6299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ultimate-nutrition-iso-sensation-93-100-pure-whey-isolate-natural-chocolate",
+        "brand":  "Ultimate Nutrition",
+        "category":  "protein-powders",
+        "origin":  "pre-wave (in 378-product catalog, commit 98b4686)",
+        "d2c_url":  "https://paradigmsmt.com/products/iso-sensation-93",
+        "price_inr":  8499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mother-dairy-high-protein-low-fat-paneer",
+        "brand":  "Mother Dairy",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.motherdairy.com/product/paneer",
+        "price_inr":  110.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mother-dairy-full-cream-buffalo-milk",
+        "brand":  "Mother Dairy",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.motherdairy.com/product/milk",
+        "price_inr":  36.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mother-dairy-fresh-cow-milk",
+        "brand":  "Mother Dairy",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.motherdairy.com/product/cow-milk",
+        "price_inr":  29.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mother-dairy-classic-probiotic-dahi",
+        "brand":  "Mother Dairy",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.motherdairy.com/product/dahi",
+        "price_inr":  50.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mother-dairy-classic-mishti-doi",
+        "brand":  "Mother Dairy",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.motherdairy.com/product/mishti-doi",
+        "price_inr":  25.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "country-delight-low-fat-high-protein-paneer",
+        "brand":  "Country Delight",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://countrydelight.in/product/paneer-low-fat",
+        "price_inr":  120.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "country-delight-fresh-malai-paneer",
+        "brand":  "Country Delight",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://countrydelight.in/product/fresh-paneer",
+        "price_inr":  115.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "country-delight-desi-cow-milk-a2",
+        "brand":  "Country Delight",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://countrydelight.in/product/desi-cow-milk",
+        "price_inr":  45.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "country-delight-farm-fresh-buffalo-milk",
+        "brand":  "Country Delight",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://countrydelight.in/product/buffalo-milk",
+        "price_inr":  42.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "country-delight-natural-farm-fresh-dahi",
+        "brand":  "Country Delight",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://countrydelight.in/product/dahi",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "akshayakalpa-organic-high-protein-paneer",
+        "brand":  "Akshayakalpa",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://akshayakalpa.org/product/organic-paneer",
+        "price_inr":  145.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "akshayakalpa-organic-set-curd",
+        "brand":  "Akshayakalpa",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://akshayakalpa.org/product/organic-curd",
+        "price_inr":  70.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "akshayakalpa-organic-artisanal-greek-yogurt-unsweetened",
+        "brand":  "Akshayakalpa",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://akshayakalpa.org/product/greek-yogurt",
+        "price_inr":  105.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "akshayakalpa-organic-cow-milk",
+        "brand":  "Akshayakalpa",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://akshayakalpa.org/product/organic-milk",
+        "price_inr":  42.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-a-pro-grow-high-protein-milk",
+        "brand":  "Nestle a+",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestle.in/brands/nestle-aplus-milk",
+        "price_inr":  105.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-a-slim-skimmed-milk",
+        "brand":  "Nestle a+",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestle.in/brands/nestle-aplus-slim",
+        "price_inr":  90.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-a-nourish-toned-milk",
+        "brand":  "Nestle a+",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestle.in/brands/nestle-aplus-nourish",
+        "price_inr":  85.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-a-grekyo-greek-yogurt-strawberry",
+        "brand":  "Nestle a+",
+        "category":  "dairy",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestle.in/brands/nestle-grekyo",
+        "price_inr":  45.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "wickedgud-high-protein-chickpea-fusilli-pasta",
+        "brand":  "WickedGud",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://wickedgud.com/products/chickpea-fusilli",
+        "price_inr":  135.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "wickedgud-high-protein-millet-penne-pasta",
+        "brand":  "WickedGud",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://wickedgud.com/products/millet-penne",
+        "price_inr":  135.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "wickedgud-high-protein-instant-noodles-schezwan",
+        "brand":  "WickedGud",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://wickedgud.com/products/schezwan-noodles",
+        "price_inr":  145.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "wickedgud-high-protein-instant-noodles-desi-masala",
+        "brand":  "WickedGud",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://wickedgud.com/products/masala-noodles",
+        "price_inr":  145.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "disano-high-protein-chickpea-fusilli-pasta",
+        "brand":  "Disano",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://disanolife.com/products/chickpea-fusilli",
+        "price_inr":  159.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "disano-high-protein-chickpea-penne-pasta",
+        "brand":  "Disano",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://disanolife.com/products/chickpea-penne",
+        "price_inr":  159.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "aashirvaad-proactive-high-protein-atta",
+        "brand":  "Aashirvaad",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.aashirvaad.com/products/proactive-atta",
+        "price_inr":  115.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "aashirvaad-sugar-release-control-atta",
+        "brand":  "Aashirvaad",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.aashirvaad.com/products/sugar-release-control-atta",
+        "price_inr":  80.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "aashirvaad-multigrain-high-fibre-atta",
+        "brand":  "Aashirvaad",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.aashirvaad.com/products/multigrain-atta",
+        "price_inr":  310.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "twf-flours-reliq-craft-high-protein-atta",
+        "brand":  "TWF Flours",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://twfflours.com/products/reliq",
+        "price_inr":  420.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "twf-flours-inno-high-protein-keto-flour",
+        "brand":  "TWF Flours",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://twfflours.com/products/inno",
+        "price_inr":  460.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "sugarfit-active-high-protein-low-gi-atta",
+        "brand":  "Sugar.fit",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://sugarfit.com/products/low-gi-atta",
+        "price_inr":  199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "jiwa-high-protein-gluten-free-flour",
+        "brand":  "Jiwa",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://jiwa.in/products/gluten-free-high-protein-flour",
+        "price_inr":  249.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "tata-sampann-unpolished-chana-dal",
+        "brand":  "Tata Sampann",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.tatasampann.com/products/chana-dal",
+        "price_inr":  135.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "tata-sampann-unpolished-green-moong-dal-split",
+        "brand":  "Tata Sampann",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.tatasampann.com/products/moong-dal-split",
+        "price_inr":  169.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "fortune-soya-chunks-protein-rich",
+        "brand":  "Fortune",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.fortunefoods.com/product/fortune-soya-chunks",
+        "price_inr":  45.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "saffola-fittify-high-protein-soya-chunks",
+        "brand":  "Saffola Fittify",
+        "category":  "staples",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://saffola.marico.in/products/soya-chunks",
+        "price_inr":  48.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "labrada-muscle-mass-gainer-strawberry",
+        "brand":  "Labrada",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.labrada.com/products/muscle-mass-gainer",
+        "price_inr":  3499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "labrada-muscle-mass-gainer-banana",
+        "brand":  "Labrada",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.labrada.com/products/muscle-mass-gainer",
+        "price_inr":  3499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "dymatize-super-mass-gainer-gourmet-chocolate",
+        "brand":  "Dymatize",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.dymatize.com/super-mass-gainer",
+        "price_inr":  4299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "dymatize-super-mass-gainer-rich-chocolate",
+        "brand":  "Dymatize",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.dymatize.com/super-mass-gainer",
+        "price_inr":  7699.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "dymatize-super-mass-gainer-cookies-cream",
+        "brand":  "Dymatize",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.dymatize.com/super-mass-gainer",
+        "price_inr":  4299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "bsn-true-mass-1200-chocolate-milkshake",
+        "brand":  "BSN",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.gobsn.com/en-us/Products/Weight-Gainers/TRUE-MASS-1200/p/true-mass-1200",
+        "price_inr":  6499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "bsn-true-mass-1200-strawberry-milkshake",
+        "brand":  "BSN",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.gobsn.com/en-us/Products/Weight-Gainers/TRUE-MASS-1200/p/true-mass-1200",
+        "price_inr":  6499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "bsn-true-mass-1200-vanilla-ice-cream",
+        "brand":  "BSN",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.gobsn.com/en-us/Products/Weight-Gainers/TRUE-MASS-1200/p/true-mass-1200",
+        "price_inr":  6499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "rule-1-r1-lbs-mass-gainer-chocolate-fudge",
+        "brand":  "Rule 1",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.ruleoneproteins.com/products/r1-lbs",
+        "price_inr":  3999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "rule-1-r1-lbs-mass-gainer-vanilla-butter-cake",
+        "brand":  "Rule 1",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.ruleoneproteins.com/products/r1-lbs",
+        "price_inr":  3999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "rule-1-r1-lbs-mass-gainer-strawberries-creme",
+        "brand":  "Rule 1",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.ruleoneproteins.com/products/r1-lbs",
+        "price_inr":  3999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "gnc-india-pro-performance-bulk-1340-double-chocolate",
+        "brand":  "GNC India",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.guardian.in/products/gnc-pro-performance-bulk-1340",
+        "price_inr":  3899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "gnc-india-pro-performance-bulk-1340-vanilla-ice-cream",
+        "brand":  "GNC India",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.guardian.in/products/gnc-pro-performance-bulk-1340",
+        "price_inr":  3899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "gnc-india-pro-performance-bulk-1340-strawberries-and-cream",
+        "brand":  "GNC India",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.guardian.in/products/gnc-pro-performance-bulk-1340",
+        "price_inr":  3899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "muscletech-mass-tech-elite-milk-chocolate",
+        "brand":  "MuscleTech",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://muscletech.in/products/mass-tech-elite",
+        "price_inr":  4699.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "muscletech-mass-tech-elite-vanilla-cake",
+        "brand":  "MuscleTech",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://muscletech.in/products/mass-tech-elite",
+        "price_inr":  4699.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "optimum-nutrition-serious-mass-weight-gainer-banana",
+        "brand":  "Optimum Nutrition",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.optimumnutrition.co.in/serious-mass",
+        "price_inr":  3299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mutant-mass-extreme-2500-triple-chocolate",
+        "brand":  "Mutant",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.iammutant.com/products/mutant-mass-extreme-2500",
+        "price_inr":  4199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "mutant-mass-extreme-2500-vanilla-ice-cream",
+        "brand":  "Mutant",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.iammutant.com/products/mutant-mass-extreme-2500",
+        "price_inr":  4199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "universal-nutrition-real-gains-weight-gainer-chocolate-ice-cream",
+        "brand":  "Universal Nutrition",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.universalnutrition.com/product/real-gains",
+        "price_inr":  4499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "universal-nutrition-real-gains-weight-gainer-banana",
+        "brand":  "Universal Nutrition",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.universalnutrition.com/product/real-gains",
+        "price_inr":  4499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "animal-100-whey-isolate-vanilla",
+        "brand":  "Animal",
+        "category":  "protein-powders",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.animalpak.com/products/animal-whey-isolate",
+        "price_inr":  7499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "kevin-levrone-levrolegendary-mass-gainer-chocolate",
+        "brand":  "Kevin Levrone",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://levrosupplements.com/products/levro-legendary-mass",
+        "price_inr":  3499.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "kevin-levrone-anabolic-mass-gainer-chocolate",
+        "brand":  "Kevin Levrone",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://levrosupplements.com/products/anabolic-mass",
+        "price_inr":  3699.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ronnie-coleman-king-mass-xl-dark-chocolate",
+        "brand":  "Ronnie Coleman",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://ronniecoleman.net/products/king-mass-xl",
+        "price_inr":  4199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ronnie-coleman-king-mass-xl-vanilla",
+        "brand":  "Ronnie Coleman",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://ronniecoleman.net/products/king-mass-xl",
+        "price_inr":  4199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "bigmuscles-nutrition-quick-mass-gainer-belgian-chocolate",
+        "brand":  "Bigmuscles Nutrition",
+        "category":  "mass-gainers",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://bigmusclesnutrition.com/products/quick-mass",
+        "price_inr":  1799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "the-whole-truth-protein-brownie-fudgy-dark-chocolate",
+        "brand":  "The Whole Truth",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://thewholetruthfoods.com/products/protein-brownie-fudgy-dark-chocolate",
+        "price_inr":  120.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "the-whole-truth-protein-brownie-hazelnut-chocolate",
+        "brand":  "The Whole Truth",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://thewholetruthfoods.com/products/protein-brownie-hazelnut-chocolate",
+        "price_inr":  130.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "the-whole-truth-soft-baked-protein-cookie-double-dark-chocolate",
+        "brand":  "The Whole Truth",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://thewholetruthfoods.com/products/protein-cookie-double-chocolate",
+        "price_inr":  99.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "the-whole-truth-soft-baked-protein-cookie-peanut-butter-chunk",
+        "brand":  "The Whole Truth",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://thewholetruthfoods.com/products/protein-cookie-peanut-butter",
+        "price_inr":  99.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "phab-high-protein-brownie-fudgy-chocolate",
+        "brand":  "Phab",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://getphab.com/products/protein-brownie-chocolate",
+        "price_inr":  99.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "phab-high-protein-brownie-walnut-chocolate",
+        "brand":  "Phab",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://getphab.com/products/protein-brownie-walnut",
+        "price_inr":  105.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ritebite-max-protein-7-grain-breakfast-protein-cookie-choco-almond",
+        "brand":  "RiteBite Max Protein",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://maxprotein.in/products/max-protein-choco-almond-cookie",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ritebite-max-protein-7-grain-breakfast-protein-cookie-oats-raisins",
+        "brand":  "RiteBite Max Protein",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://maxprotein.in/products/max-protein-oats-raisins-cookie",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ritebite-max-protein-7-grain-breakfast-protein-cookie-nuts-seeds",
+        "brand":  "RiteBite Max Protein",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://maxprotein.in/products/max-protein-nuts-seeds-cookie",
+        "price_inr":  55.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ketofy-high-protein-keto-cookies-almond-fudge",
+        "brand":  "Ketofy",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.ketofy.in/products/keto-cookies-almond-fudge",
+        "price_inr":  299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ketofy-high-protein-keto-cookies-coconut-crunch",
+        "brand":  "Ketofy",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.ketofy.in/products/keto-cookies-coconut",
+        "price_inr":  299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "lo-foods-high-protein-low-carb-chocolate-cookies",
+        "brand":  "Lo! Foods",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://lofoods.fit/products/low-carb-chocolate-cookies",
+        "price_inr":  175.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "lo-foods-high-protein-low-carb-coconut-cookies",
+        "brand":  "Lo! Foods",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://lofoods.fit/products/low-carb-coconut-cookies",
+        "price_inr":  175.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "open-secret-unjunked-high-protein-choco-sea-salt-cookies",
+        "brand":  "Open Secret",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://opensecret.in/products/choco-sea-salt-cookies",
+        "price_inr":  199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "open-secret-unjunked-high-protein-peanut-butter-cookies",
+        "brand":  "Open Secret",
+        "category":  "cookies-baked",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://opensecret.in/products/peanut-butter-cookies",
+        "price_inr":  199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "raw-pressery-high-protein-milkshake-choco-hazelnut",
+        "brand":  "Raw Pressery",
+        "category":  "rtd-drinks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.rawpressery.com/products/protein-milkshake-choco-hazelnut",
+        "price_inr":  120.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "raw-pressery-high-protein-milkshake-vanilla-almond",
+        "brand":  "Raw Pressery",
+        "category":  "rtd-drinks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.rawpressery.com/products/protein-milkshake-vanilla-almond",
+        "price_inr":  120.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "myprotein-clear-whey-isolate-rtd-orange-mango",
+        "brand":  "Myprotein",
+        "category":  "rtd-drinks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.myprotein.co.in/sports-nutrition/clear-whey-rtd/12655458.html",
+        "price_inr":  299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "myprotein-clear-whey-isolate-rtd-mixed-berry",
+        "brand":  "Myprotein",
+        "category":  "rtd-drinks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.myprotein.co.in/sports-nutrition/clear-whey-rtd/12655458.html",
+        "price_inr":  299.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "myprotein-protein-shake-rtd-chocolate",
+        "brand":  "Myprotein",
+        "category":  "rtd-drinks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.myprotein.co.in/sports-nutrition/protein-shake-rtd/10530514.html",
+        "price_inr":  249.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "farmley-roasted-7-in-1-super-seeds-protein-mix",
+        "brand":  "Farmley",
+        "category":  "savory-snacks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://farmley.com/products/7-in-1-seeds-mix",
+        "price_inr":  175.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "farmley-high-protein-roasted-soy-nuts-salt-pepper",
+        "brand":  "Farmley",
+        "category":  "savory-snacks",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://farmley.com/products/roasted-soya-nuts",
+        "price_inr":  149.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-health-science-resource-high-protein-vanilla",
+        "brand":  "Nestle Health Science",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestlehealthscience.in/brands/resource/resource-high-protein",
+        "price_inr":  1049.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-health-science-resource-high-protein-chocolate",
+        "brand":  "Nestle Health Science",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestlehealthscience.in/brands/resource/resource-high-protein",
+        "price_inr":  1049.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-health-science-peptamen-complete-peptide-based-nutrition",
+        "brand":  "Nestle Health Science",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestlehealthscience.in/brands/peptamen",
+        "price_inr":  1899.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "nestle-health-science-resource-diabetic-clinical-nutrition-vanilla",
+        "brand":  "Nestle Health Science",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.nestlehealthscience.in/brands/resource/resource-diabetic",
+        "price_inr":  949.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ensure-plus-high-protein-vanilla",
+        "brand":  "Ensure",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://ensureindia.in/ensure-plus",
+        "price_inr":  799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ensure-diabetes-care-vanilla",
+        "brand":  "Ensure",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://ensureindia.in/diabetes-care",
+        "price_inr":  820.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "ensure-diabetes-care-chocolate",
+        "brand":  "Ensure",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://ensureindia.in/diabetes-care",
+        "price_inr":  820.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "celevida-diabetic-nutrition-drink-kesar-elaichi",
+        "brand":  "Celevida",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.celevida.com/products/kesar-elaichi",
+        "price_inr":  720.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "celevida-diabetic-nutrition-drink-green-mango",
+        "brand":  "Celevida",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.celevida.com/products/green-mango",
+        "price_inr":  720.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "celevida-diabetic-nutrition-drink-chocolate",
+        "brand":  "Celevida",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.celevida.com/products/chocolate",
+        "price_inr":  720.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "prohance-hp-high-protein-vanilla",
+        "brand":  "Prohance",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://prohance.in/products/prohance-hp",
+        "price_inr":  999.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "prohance-prohance-d-diabetic-care-chocolate",
+        "brand":  "Prohance",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://prohance.in/products/prohance-d",
+        "price_inr":  799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "prohance-prohance-d-diabetic-care-vanilla",
+        "brand":  "Prohance",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://prohance.in/products/prohance-d",
+        "price_inr":  799.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "threptin-high-protein-diskettes-vanilla",
+        "brand":  "Threptin",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://raptakos.com/threptin-diskettes",
+        "price_inr":  410.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "threptin-high-protein-diskettes-chocolate",
+        "brand":  "Threptin",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://raptakos.com/threptin-diskettes",
+        "price_inr":  410.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "threptin-lite-diskettes-sugar-free",
+        "brand":  "Threptin",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://raptakos.com/threptin-lite",
+        "price_inr":  460.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "pentasure-hp-100-whey-protein-banana-vanilla",
+        "brand":  "Pentasure",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://pentasure.com/products/pentasure-hp",
+        "price_inr":  1099.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "pentasure-dm-diabetes-care-vanilla",
+        "brand":  "Pentasure",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://pentasure.com/products/pentasure-dm",
+        "price_inr":  850.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "pentasure-renal-nutritional-supplement-vanilla",
+        "brand":  "Pentasure",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://pentasure.com/products/pentasure-renal",
+        "price_inr":  1199.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    },
+    {
+        "slug":  "fresenius-kabi-fresubin-hp-high-protein-vanilla",
+        "brand":  "Fresenius Kabi",
+        "category":  "adult-nutrition",
+        "origin":  "wave 1-4 (commit 43a7ce2)",
+        "d2c_url":  "https://www.fresenius-kabi.com/in/products/fresubin-hp",
+        "price_inr":  1050.0,
+        "decision":  "TODO: restore | real duplicate of \u003cslug\u003e | product does not exist"
+    }
+]

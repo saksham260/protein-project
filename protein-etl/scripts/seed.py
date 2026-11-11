@@ -30,14 +30,31 @@ console = Console(force_terminal=True, legacy_windows=False)
 SEED_FILE = Path(__file__).resolve().parent.parent / "data" / "seed_products.json"
 
 
-def run_seed(dry_run: bool = False):
-    """Execute seeding from seed_products.json."""
+def select_by_slug(products_data: list[dict], slugs: list[str] | None) -> list[dict]:
+    """Pick products by slug, never by position in the file (positions shift whenever the file is rebuilt).
+
+    Stops if a slug is missing or appears twice, so a re-run can never touch the wrong product.
+    """
+    if not slugs:
+        return products_data
+    by_slug: dict[str, list[dict]] = {}
+    for item in products_data:
+        by_slug.setdefault(item.get("slug"), []).append(item)
+    missing = [s for s in slugs if s not in by_slug]
+    doubled = [s for s in slugs if len(by_slug.get(s, [])) > 1]
+    if missing or doubled:
+        raise SystemExit(f"Refusing to seed. Not in seed file: {missing}. Listed more than once: {doubled}.")
+    return [by_slug[s][0] for s in dict.fromkeys(slugs)]
+
+
+def run_seed(dry_run: bool = False, slugs: list[str] | None = None):
+    """Execute seeding from seed_products.json (all products, or only the given slugs)."""
     if not SEED_FILE.exists():
         console.print(f"[bold red]Error:[/] Seed file not found at {SEED_FILE}")
         sys.exit(1)
 
     with open(SEED_FILE, "r", encoding="utf-8") as f:
-        products_data = json.load(f)
+        products_data = select_by_slug(json.load(f), slugs)
 
     uploader = SupabaseUploader(dry_run=dry_run)
     mode_text = "[yellow]DRY-RUN (Local)[/]" if uploader.dry_run else "[green]LIVE (Supabase)[/]"
@@ -89,8 +106,13 @@ def run_seed(dry_run: bool = False):
 def main():
     parser = argparse.ArgumentParser(description="Seed initial Indian protein products into Supabase")
     parser.add_argument("--dry-run", action="store_true", help="Run without uploading to live Supabase")
+    parser.add_argument("--slug", action="append", default=[], help="Only seed this product slug (repeatable)")
+    parser.add_argument("--slugs-file", type=Path, help="JSON list of product slugs to seed (commit it with the change)")
     args = parser.parse_args()
-    run_seed(dry_run=args.dry_run)
+    slugs = list(args.slug)
+    if args.slugs_file:
+        slugs += json.loads(args.slugs_file.read_text(encoding="utf-8"))
+    run_seed(dry_run=args.dry_run, slugs=slugs or None)
 
 
 if __name__ == "__main__":

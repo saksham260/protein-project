@@ -104,3 +104,38 @@ def classify_protein_profile(
         protein_tier=tier_label,
         has_added_free_form_aminos=has_aminos,
     )
+
+
+UNKNOWN_TIER = "Unknown / Unclassified"
+
+
+def tier_key_for_label(label: str | None) -> str | None:
+    """'Tier 1 – Premium Isolate/Hydrolysate' -> 'tier_1' (None if it is not a known tier label)."""
+    for key, data in load_protein_sources().items():
+        if data["label"] == label:
+            return key
+    return None
+
+
+def checked_manual_tier(tier_key: str | None, protein_source: str | None) -> str | None:
+    """Tier label to use for a hand-entered tier, or None to leave the product unclassified.
+
+    A hand-entered tier is only trusted as far as its stated protein source supports it:
+    the source text is run through the same classifier as an ingredient deck, and the
+    result is a ceiling. The final tier is the worse of the two, so "Cow Milk Protein"
+    can never be Tier 1, and a source that only partly matches (e.g. "Isolate +
+    Concentrate Blend") can never raise a hand-entered Tier 2. If the source is not
+    recognised, the hand tier is kept, except Tier 1, which is a premium claim and needs
+    a recognisable isolate or hydrolysate.
+    """
+    tier_defs = load_protein_sources()
+    if not tier_key or tier_key not in tier_defs:
+        return None
+    manual_rank = tier_defs[tier_key]["rank"]
+    derived_key = None
+    if protein_source:
+        derived_key = tier_key_for_label(classify_protein_profile([protein_source]).protein_tier)
+    if derived_key is None:
+        return None if manual_rank == 1 else tier_defs[tier_key]["label"]
+    worse_key = max((tier_key, derived_key), key=lambda k: tier_defs[k]["rank"])
+    return tier_defs[worse_key]["label"]

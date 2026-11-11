@@ -1,8 +1,41 @@
 """Unit tests for the Protein Tier Classifier — covering Suite 4 test cases."""
 
 import pytest
-from src.engine.protein_tier import classify_protein_profile
+from src.engine.protein_tier import checked_manual_tier, classify_protein_profile
 from src.models import RedFlagItem
+
+
+@pytest.mark.parametrize(
+    "deck",
+    [
+        ["Pasteurized A2 Desi Cow Milk", "Vegetarian Microbial Rennet", "Salt"],
+        ["Pasteurized Free-Range Desi Buffalo Milk"],
+        ["Milk Solids", "Paneer"],
+        ["Toned Milk", "Active Cultures"],
+    ],
+)
+def test_whole_dairy_is_tier_2(deck):
+    assert "Tier 2" in classify_protein_profile(deck).protein_tier
+
+
+def test_manual_tier_1_on_milk_is_corrected_to_tier_2():
+    assert "Tier 2" in checked_manual_tier("tier_1", "A2 Desi Cow Milk Protein")
+    assert "Tier 2" in checked_manual_tier("tier_1", "Whey Protein Concentrate")
+
+
+def test_manual_tier_1_kept_only_for_real_isolate():
+    assert "Tier 1" in checked_manual_tier("tier_1", "Whey Protein Isolate")
+    assert checked_manual_tier("tier_1", "Mystery Protein Matrix") is None
+
+
+def test_source_never_raises_a_manual_tier():
+    assert "Tier 2" in checked_manual_tier("tier_2", "Whey Protein Isolate + Concentrate Blend")
+    assert "Tier 2" in checked_manual_tier("tier_2", "Rolled Oats & Whey Protein Isolate")
+
+
+def test_manual_lower_tier_kept_when_source_unrecognised():
+    assert "Tier 3" in checked_manual_tier("tier_3", "Sprouted Legume Blend")
+    assert checked_manual_tier("not_a_tier", "Whey Protein Isolate") is None
 
 
 def test_pure_isolate_is_tier_1():

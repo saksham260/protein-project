@@ -20,6 +20,8 @@ from src.db.supabase_client import SupabaseUploader  # noqa: E402
 from src.links import SEARCH_URL_TEMPLATES, build_search_url  # noqa: E402
 from src.models import ProductCreate, VariantCreate, NutritionPerPack, slugify  # noqa: E402
 from src.parsers.manual import parse_raw_ingredient_deck  # noqa: E402
+from src.engine.protein_tier import checked_manual_tier  # noqa: E402
+from src.image_policy import image_problem  # noqa: E402
 
 HERE = REPO / "protein-etl" / "data" / "demo_catalog"
 NUTRIENT_KEYS = ["calories_kcal", "protein_g", "total_carbs_g", "total_fat_g", "saturated_fat_g", "trans_fat_g",
@@ -153,10 +155,11 @@ for group_key, r_list in grouped_readings.items():
         tier_key = r.get("protein_tier") or primary_r.get("protein_tier")
         source_key = r.get("protein_source") or primary_r.get("protein_source")
         initial_profile = None
-        if tier_key and tier_key in tier_defs:
+        checked_label = checked_manual_tier(tier_key, source_key)
+        if checked_label:
             initial_profile = {
                 "primary_protein_source": source_key,
-                "protein_tier": tier_defs[tier_key]["label"],
+                "protein_tier": checked_label,
                 "has_added_free_form_aminos": False,
             }
         
@@ -234,9 +237,11 @@ for prod, primary_r in products:
         v.is_combo = orig_v.is_combo
         v.is_available = orig_v.is_available
         # Enrich protein source if not set or unclassified
-        if primary_r.get("protein_tier") and (not v.ingredient_list or v.protein_profile.protein_tier in (None, "", "Unknown / Unclassified")):
+        # A hand-entered tier only fills a gap, and only as far as its protein source supports it.
+        checked_label = checked_manual_tier(primary_r.get("protein_tier"), primary_r.get("protein_source"))
+        if checked_label and (not v.ingredient_list or v.protein_profile.protein_tier in (None, "", "Unknown / Unclassified")):
             v.protein_profile.primary_protein_source = primary_r["protein_source"]
-            v.protein_profile.protein_tier = tier_defs[primary_r["protein_tier"]]["label"]
+            v.protein_profile.protein_tier = checked_label
     enriched.append(enriched_prod)
 
 # Check baseline products that are in Supabase / seedCatalog.json to preserve full dataset
@@ -293,6 +298,24 @@ for ex in existing_catalog:
         preserved_raw.append(ex_raw)
         enriched.append(ex) # Keep existing enriched representation
         preserved_count += 1
+
+def drop_refused_images(item, label: str) -> None:
+    """Clear image URLs the image policy refuses (stock photos, retailer hotlinks, URLs that return a web page)."""
+    get = (lambda o, k: getattr(o, k)) if hasattr(item, "model_dump") else (lambda o, k: o.get(k))
+    put = (lambda o, k, v: setattr(o, k, v)) if hasattr(item, "model_dump") else (lambda o, k, v: o.__setitem__(k, v))
+    for obj in [item] + list(get(item, "variants") or []):
+        problem = image_problem(get(obj, "image_url"))
+        if problem:
+            problems.append(f"IMAGE DROPPED {label}: {problem} ({get(obj, 'image_url')})")
+            put(obj, "image_url", None)
+
+
+for item in enriched:
+    drop_refused_images(item, item.slug if hasattr(item, "slug") else item.get("slug"))
+for raw in preserved_raw:
+    drop_refused_images(raw, raw["slug"])
+for prod, _ in products:
+    drop_refused_images(prod, prod.slug)
 
 print(f"Catalog Build Complete: Rebuilt {len(products)} products, preserved {preserved_count} baseline products.")
 print(f"Total catalog products: {len(enriched)}")

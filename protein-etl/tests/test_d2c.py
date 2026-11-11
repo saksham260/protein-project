@@ -3,16 +3,18 @@
 import httpx
 from src.pricing.d2c import (
     StoreVariant,
+    match_page_offer,
     match_variant,
     parse_products_json,
     poll_d2c_prices,
     product_handle_from_url,
 )
+from src.pricing.pages import DeadLink, PageOffer, parse_offers
 from tests.test_pricing import FakeDb
 
 
-def sv(handle="whey", sku="SKU-1", title="Chocolate", price=1000.0, in_stock=True):
-    return StoreVariant(handle, sku, title, price, in_stock)
+def sv(handle="whey", sku="SKU-1", title="Chocolate", price=1000.0, in_stock=True, variant_id=""):
+    return StoreVariant(handle, sku, title, price, in_stock, variant_id)
 
 
 class FakeFeed:
@@ -89,8 +91,141 @@ def test_match_by_name_within_product_page():
 
 
 def test_match_returns_none_when_ambiguous():
-    variants = [sv(sku="", title="A"), sv(sku="", title="B")]
+    variants = [sv(sku="", title="A", price=1000.0), sv(sku="", title="B", price=1200.0)]
     assert match_variant("https://brand.in/products/whey", None, "Something else", variants) is None
+
+
+# ---- store variant IDs, pack sizes, same-price groups ----
+
+def test_match_by_saved_store_variant_id_first():
+    variants = [sv(sku="A", title="x", variant_id="111"), sv(sku="B", title="y", variant_id="222")]
+    assert match_variant("https://brand.in/products/whey", "A", "x", variants, variant_id="222").sku == "B"
+
+
+def test_saved_id_ignored_when_it_belongs_to_another_product():
+    variants = [sv(handle="old", sku="", title="x", variant_id="111"), sv(handle="whey", sku="", title="Default")]
+    found = match_variant("https://brand.in/products/whey", None, "Jar", variants, variant_id="111")
+    assert found.product_handle == "whey"
+
+
+def test_pack_sizes_match_across_spellings():
+    variants = [sv(sku="", title="1 Kg", price=2199.0), sv(sku="", title="Assorted Pack (2 of each)", price=999.0)]
+    assert match_variant("https://brand.in/products/whey", None, "Cold Coffee 1kg", variants).title == "1 Kg"
+    variants = [sv(sku="", title="500gm", price=599.0), sv(sku="", title="1kg", price=999.0)]
+    assert match_variant("https://brand.in/products/whey", None, "500g Pouch", variants).price_inr == 599.0
+
+
+def test_sku_pointing_at_another_pack_size_is_not_trusted():
+    # real case: catalog SKU for "Light Cocoa 1kg" was the store's 2 kg SKU
+    variants = [sv(sku="F2", title="Pack of 2 KG", price=8219.0), sv(sku="F1", title="Pack of 1 KG", price=4119.0)]
+    assert match_variant("https://brand.in/products/whey", "F2", "Light Cocoa 1kg", variants).price_inr == 4119.0
+    offers = [PageOffer("F2", "Pack of 2 KG", 8219.0, True), PageOffer("F1", "Pack of 1 KG", 4119.0, True)]
+    assert match_page_offer(offers, "F2", "Light Cocoa 1kg", "whey").price_inr == 4119.0
+
+
+def test_saved_id_with_wrong_pack_size_is_not_trusted():
+    variants = [sv(sku="", title="2kg", price=3000.0, variant_id="9"), sv(sku="", title="1kg", price=1700.0, variant_id="8")]
+    assert match_variant("https://brand.in/products/whey", None, "Choc 1kg", variants, variant_id="9").price_inr == 1700.0
+
+
+def test_flavour_and_size_in_store_title():
+    variants = [sv(sku="", title="Cafe latte / 1kg", price=1999.0), sv(sku="", title="Mango Fusion / 1kg", price=2099.0)]
+    assert match_variant("https://brand.in/products/whey", None, "Mango Fusion 1 Kg Pouch", variants).price_inr == 2099.0
+
+
+def test_same_priced_flavours_give_a_certain_price_but_unknown_stock():
+    variants = [
+        sv(sku="", title="Cafe latte / 1kg", price=1999.0, in_stock=True, variant_id="1"),
+        sv(sku="", title="Mango Fusion / 1kg", price=1999.0, in_stock=False, variant_id="2"),
+        sv(sku="", title="Mango Fusion / 2kg", price=3599.0, variant_id="3"),
+    ]
+    found = match_variant("https://brand.in/products/whey", None, "1kg Pouch", variants)
+    assert found.is_group and found.price_inr == 1999.0 and found.in_stock is None and found.variant_id == ""
+
+
+def test_differently_priced_flavours_of_one_size_are_not_guessed():
+    variants = [sv(sku="", title="Cafe latte / 1kg", price=1999.0), sv(sku="", title="Mango / 1kg", price=2099.0)]
+    assert match_variant("https://brand.in/products/whey", None, "1kg Pouch", variants) is None
+
+
+def test_poll_saves_store_variant_id_after_confident_match():
+    db = make_db(price=1000.0)
+    summary = poll_d2c_prices(db, FakeFeed({"brand.in": [sv(price=1000.0, variant_id="4455")]}))
+    assert summary.ids_saved == 1
+    assert db.rows["redirect_links"][0]["external_id"] == "4455"
+
+    again = poll_d2c_prices(db, FakeFeed({"brand.in": [sv(price=1000.0, variant_id="4455")]}))
+    assert again.ids_saved == 0
+
+
+def test_poll_dry_run_counts_ids_but_saves_nothing():
+    db = make_db(price=1000.0)
+    summary = poll_d2c_prices(db, FakeFeed({"brand.in": [sv(price=1000.0, variant_id="4455")]}), dry_run=True)
+    assert summary.ids_saved == 1 and "external_id" not in db.rows["redirect_links"][0]
+
+
+def test_poll_prices_two_variants_sharing_a_same_price_group():
+    db = make_db(price=1000.0, sku="")
+    db.rows["redirect_links"][0]["product_variants"] = {"sku": "", "variant_name": "1kg Pouch"}
+    db.rows["redirect_links"].append(
+        {"id": "l2", "variant_id": "v2", "platform": "d2c", "url": "https://brand.in/products/whey",
+         "platform_price_inr": 1000.0, "in_stock": True,
+         "product_variants": {"sku": "", "variant_name": "1kg Pouch (Pack of 1)"}}
+    )
+    db.rows["product_variants"].append({"id": "v2", "protein_g": 25, "net_weight_g": 1000, "serving_size_g": 32})
+    feed = FakeFeed({"brand.in": [sv(sku="", title="Choc / 1kg", price=1050.0, variant_id="1"),
+                                  sv(sku="", title="Vanilla / 1kg", price=1050.0, variant_id="2")]})
+    summary = poll_d2c_prices(db, feed)
+    assert summary.changed == 2 and summary.ids_saved == 0
+    assert [l["platform_price_inr"] for l in db.rows["redirect_links"]] == [1050.0, 1050.0]
+
+
+# ---- stores without a Shopify feed: product-page price data ----
+
+class FakePages:
+    def __init__(self, pages):
+        self.pages = pages
+
+    def offers(self, url):
+        result = self.pages[url]
+        if isinstance(result, Exception):
+            raise result
+        return result
+
+
+def test_parse_offers_reads_schema_org_json_ld():
+    html = """<html><head><script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "Product", "name": "Whey 1kg",
+     "offers": [{"@type": "Offer", "sku": "W1", "price": "2,499.00", "priceCurrency": "INR",
+                 "availability": "https://schema.org/InStock"},
+                {"@type": "Offer", "sku": "W2", "price": "0", "priceCurrency": "INR"},
+                {"@type": "Offer", "sku": "W3", "price": "30", "priceCurrency": "USD"}]}
+    </script></head></html>"""
+    assert parse_offers(html) == [PageOffer("W1", "Whey 1kg", 2499.0, True)]
+
+
+def test_poll_falls_back_to_product_pages_when_store_has_no_feed():
+    db = make_db(price=1000.0)
+    pages = FakePages({"https://brand.in/products/whey": [PageOffer("SKU-1", "Whey", 1100.0, False)]})
+    summary = poll_d2c_prices(db, FakeFeed({"brand.in": httpx.ConnectError("404")}), page_reader=pages)
+    assert summary.failed_stores == [] and summary.changed == 1
+    link = db.rows["redirect_links"][0]
+    assert link["platform_price_inr"] == 1100.0 and link["in_stock"] is False
+
+
+def test_poll_reports_dead_product_pages():
+    db = make_db(price=1000.0)
+    pages = FakePages({"https://brand.in/products/whey": DeadLink("HTTP 404")})
+    summary = poll_d2c_prices(db, FakeFeed({"brand.in": httpx.ConnectError("404")}), page_reader=pages)
+    assert len(summary.dead_links) == 1 and summary.failed_stores == []
+    assert db.rows["redirect_links"][0]["platform_price_inr"] == 1000.0
+
+
+def test_page_without_price_data_is_skipped_not_failed():
+    db = make_db(price=1000.0)
+    pages = FakePages({"https://brand.in/products/whey": []})
+    summary = poll_d2c_prices(db, FakeFeed({"brand.in": httpx.ConnectError("404")}), page_reader=pages)
+    assert "no price data" in summary.skipped[0] and summary.failed_stores == []
 
 
 # ---- polling ----
@@ -134,7 +269,7 @@ def test_poll_rejects_implausible_jump_unless_forced():
 
 def test_poll_unmatched_variant_is_skipped_and_price_kept():
     db = make_db(price=1000.0, sku="MISSING")
-    summary = poll_d2c_prices(db, FakeFeed({"brand.in": [sv(sku="A", title="x"), sv(sku="B", title="y")]}))
+    summary = poll_d2c_prices(db, FakeFeed({"brand.in": [sv(sku="A", title="x", price=900.0), sv(sku="B", title="y")]}))
     assert summary.changed == 0 and "no match" in summary.skipped[0]
     assert db.rows["redirect_links"][0]["platform_price_inr"] == 1000.0
 

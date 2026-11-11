@@ -73,12 +73,18 @@ export function getPriceDisplay(platform: Platform, storedPrice?: number | null)
   return { type: "check_local" };
 }
 
-/** Whether a stored price is recent enough to rely on. Seed prices have no check time and are demo data. */
+/**
+ * Whether a stored price is recent enough to rely on (e.g. to call it the cheapest).
+ * A price with no check time is of unknown age: it may be shown, but never relied on.
+ * Only the price pollers set price_last_checked; uploads leave it empty.
+ */
 export function isPriceFresh(
   link: Pick<RedirectLink, "platform" | "price_last_checked">,
   now: number = Date.now()
 ): boolean {
-  if (!link.price_last_checked) return true;
-  const age = now - new Date(link.price_last_checked).getTime();
+  if (!link.price_last_checked) return false;
+  const checkedAt = new Date(link.price_last_checked).getTime();
+  if (Number.isNaN(checkedAt) || checkedAt > now + 60_000) return false;
+  const age = now - checkedAt;
   return age <= (link.platform === "amazon" ? AMAZON_PRICE_MAX_AGE_MS : STORE_PRICE_MAX_AGE_MS);
 }

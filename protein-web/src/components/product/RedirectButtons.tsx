@@ -32,8 +32,9 @@ function priceSubtitle(link: RedirectLink | undefined, platform: Platform): stri
   const price = getPriceDisplay(platform, link?.platform_price_inr);
   if (link?.in_stock === false) return "Out of stock";
   if (price.type !== "stored" || !link) return "See current price";
-  // Seed-catalog prices have no check time, so nothing is claimed for them.
-  if (!link.price_last_checked) return formatPrice(price.price);
+  // No check time means the price's age is unknown: claim nothing, and never show an
+  // Amazon price we cannot prove is under 24 hours old.
+  if (!link.price_last_checked) return platform === "amazon" ? "See current price" : formatPrice(price.price);
   if (platform === "amazon") {
     return isPriceFresh(link)
       ? `${formatPrice(price.price)} · as of ${formatDateTime(link.price_last_checked)}`

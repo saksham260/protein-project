@@ -97,8 +97,15 @@ describe("Suite 15: Redirect URL and Price Display", () => {
       expect(isPriceFresh({ platform: "d2c", price_last_checked: checked(15) }, now)).toBe(false);
     });
 
-    it("treats seed prices, which have no check time, as usable", () => {
-      expect(isPriceFresh({ platform: "d2c", price_last_checked: null }, now)).toBe(true);
+    it("never relies on a price with no check time (uploaded or seed prices of unknown age)", () => {
+      expect(isPriceFresh({ platform: "d2c", price_last_checked: null }, now)).toBe(false);
+      expect(isPriceFresh({ platform: "amazon", price_last_checked: null }, now)).toBe(false);
+    });
+
+    it("rejects unreadable or future check times", () => {
+      expect(isPriceFresh({ platform: "d2c", price_last_checked: "not a date" }, now)).toBe(false);
+      const tomorrow = new Date(now + 86400000).toISOString();
+      expect(isPriceFresh({ platform: "d2c", price_last_checked: tomorrow }, now)).toBe(false);
     });
   });
 
