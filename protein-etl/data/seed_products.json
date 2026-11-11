@@ -1054,7 +1054,7 @@
     "category_slug": "protein-powders",
     "slug": "yoga-bar-proclean-plant-protein-with-monk-fruit",
     "image_url": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-proclean-chocolate-flavour-plant-protein.jpg?v=1782219396",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "Chocolate 500g",
@@ -1599,7 +1599,7 @@
     "category_slug": "protein-powders",
     "slug": "origin-nutrition-daily-plant-protein",
     "image_url": "https://cdn.shopify.com/s/files/1/0869/4051/6536/files/ChocolateFudgeFinalMock.png?v=1740766140",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "Chocolate Fudge 810g",
@@ -11285,7 +11285,7 @@
     "category_slug": "protein-spreads",
     "slug": "alpino-super-peanut-butter-chocolate-crunch-with-ashwagandha",
     "image_url": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/KSM_Peanut_Butter_Website_Image.webp?v=1790661000",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "1kg jar",
@@ -11913,7 +11913,7 @@
     "category_slug": "protein-spreads",
     "slug": "alpino-chocolate-peanut-butter-crunch",
     "image_url": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/01_db700693-079a-4325-ba65-97dcd0085291.webp?v=1767246210",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "1kg jar",
@@ -23268,7 +23268,7 @@
     "category_slug": "protein-bars",
     "slug": "cosmix-no-nonsense-protein-bar-choco-peanut",
     "image_url": "https://cdn.shopify.com/s/files/1/0281/7507/3373/files/PB_CP_1.PackCover.jpg?v=1765537751",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "Choco Peanut (Pack of 6)",
@@ -23714,7 +23714,7 @@
     "category_slug": "protein-powders",
     "slug": "yoga-bar-proclean-plant-protein-with-monk-fruit-coffee",
     "image_url": "https://cdn.shopify.com/s/files/1/0267/5245/files/yogabar-proclean-coffee-flavour-plant-protein.jpg?v=1782220548",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "Coffee 500g",
@@ -25113,7 +25113,7 @@
     "category_slug": "protein-spreads",
     "slug": "alpino-chocolate-peanut-butter-smooth",
     "image_url": "https://cdn.shopify.com/s/files/1/0520/1572/6762/files/01_d32d63a5-59fa-43f6-916f-87abe50b31c3.webp?v=1755773133",
-    "is_vegan": false,
+    "is_vegan": true,
     "variants": [
       {
         "variant_name": "Smooth 1kg",
@@ -27271,7 +27271,6 @@
     "brand_name": "MuscleBlaze",
     "category_slug": "protein-powders",
     "slug": "muscleblaze-biozyme-performance-whey",
-    "image_url": "https://img8.hkrtcdn.com/41389/prd_4138827-MuscleBlaze-Biozyme-Performance-Whey-4.4-lb-Rich-Chocolate_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -27350,7 +27349,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://img8.hkrtcdn.com/41389/prd_4138827-MuscleBlaze-Biozyme-Performance-Whey-4.4-lb-Rich-Chocolate_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -27397,7 +27395,6 @@
     "brand_name": "MuscleBlaze",
     "category_slug": "protein-powders",
     "slug": "muscleblaze-fuel-one-whey-protein",
-    "image_url": "https://img4.hkrtcdn.com/32384/prd_3238333-Fuel-One-Whey-Protein-2.2-lb-Unflavoured_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -27471,7 +27468,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://img4.hkrtcdn.com/32384/prd_3238333-Fuel-One-Whey-Protein-2.2-lb-Unflavoured_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -27518,7 +27514,6 @@
     "brand_name": "MuscleBlaze",
     "category_slug": "protein-powders",
     "slug": "muscleblaze-100-clean-raw-whey-protein-concentrate",
-    "image_url": "https://img4.hkrtcdn.com/39859/prd_3985853-MuscleBlaze-80-Raw-Whey-Protein-Supplement-Powder-8.8-lb-Unflavoured_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -27562,7 +27557,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://img4.hkrtcdn.com/39859/prd_3985853-MuscleBlaze-80-Raw-Whey-Protein-Supplement-Powder-8.8-lb-Unflavoured_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -27609,7 +27603,6 @@
     "brand_name": "MuscleBlaze",
     "category_slug": "protein-bars",
     "slug": "muscleblaze-hi-protein-bar-30g-protein",
-    "image_url": "https://img10.hkrtcdn.com/12130/prd_1212989-MuscleBlaze-HiProtein-Bar-30g-Protein-6-PiecesPack-Choco-Almond_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -27694,7 +27687,6 @@
           "Vegetarian",
           "No Added Sugar"
         ],
-        "image_url": "https://img10.hkrtcdn.com/12130/prd_1212989-MuscleBlaze-HiProtein-Bar-30g-Protein-6-PiecesPack-Choco-Almond_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -31582,7 +31574,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -31683,7 +31675,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -31779,7 +31771,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -31880,7 +31872,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -38771,7 +38763,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein Concentrate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -38878,7 +38870,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -40892,7 +40884,6 @@
     "brand_name": "Fuel One",
     "category_slug": "protein-powders",
     "slug": "fuel-one-whey-max-powder",
-    "image_url": "https://img10.hkrtcdn.com/43673/prd_4367229-Fuel-One-Whey-Max-OP-2.2-lb-Chocolate-Hazelnut_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -40962,7 +40953,6 @@
           "High Protein",
           "Enzyme Enriched"
         ],
-        "image_url": "https://img10.hkrtcdn.com/43673/prd_4367229-Fuel-One-Whey-Max-OP-2.2-lb-Chocolate-Hazelnut_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -41009,7 +40999,6 @@
     "brand_name": "Fuel One",
     "category_slug": "protein-powders",
     "slug": "fuel-one-whey-iso-max",
-    "image_url": "https://img6.hkrtcdn.com/45329/prd_4532865-Fuel-One-Whey-IsoMax-2.2-lb-Chocolate_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -41083,7 +41072,6 @@
           "Whey Isolate",
           "High Protein"
         ],
-        "image_url": "https://img6.hkrtcdn.com/45329/prd_4532865-Fuel-One-Whey-IsoMax-2.2-lb-Chocolate_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -41130,7 +41118,6 @@
     "brand_name": "Fuel One",
     "category_slug": "protein-powders",
     "slug": "fuel-one-whey-protein",
-    "image_url": "https://img4.hkrtcdn.com/32384/prd_3238333-Fuel-One-Whey-Protein-2.2-lb-Unflavoured_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -41180,7 +41167,6 @@
           "Raw Whey",
           "High Protein"
         ],
-        "image_url": "https://img4.hkrtcdn.com/32384/prd_3238333-Fuel-One-Whey-Protein-2.2-lb-Unflavoured_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -41227,7 +41213,6 @@
     "brand_name": "Fuel One",
     "category_slug": "protein-powders",
     "slug": "fuel-one-impact-whey-protein",
-    "image_url": "https://img4.hkrtcdn.com/39209/prd_3920803-Fuel-One-Impact-Whey-Protein-2.2-lb-Chocolate_o.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -41301,7 +41286,6 @@
           "Vegetarian",
           "High Protein"
         ],
-        "image_url": "https://img4.hkrtcdn.com/39209/prd_3920803-Fuel-One-Impact-Whey-Protein-2.2-lb-Chocolate_o.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -42630,7 +42614,6 @@
     "brand_name": "MuscleBlaze",
     "category_slug": "protein-powders",
     "slug": "muscleblaze-biozyme-whey-isolate",
-    "image_url": "https://rukminim2.flixcart.com/image/850/1000/kw9krrk0/protein-supplement/o/x/l/whey-protein-biozyme-whey-protein-isolate-rich-milk-chocolate-1-original-imag8zdp8gnh73hh.jpeg",
     "is_vegan": false,
     "variants": [
       {
@@ -42693,7 +42676,6 @@
           "Vegetarian",
           "Gluten-Free"
         ],
-        "image_url": "https://rukminim2.flixcart.com/image/850/1000/kw9krrk0/protein-supplement/o/x/l/whey-protein-biozyme-whey-protein-isolate-rich-milk-chocolate-1-original-imag8zdp8gnh73hh.jpeg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -43194,7 +43176,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -43299,7 +43281,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -43313,7 +43295,6 @@
     "brand_name": "Yoga Bar",
     "category_slug": "breakfast-cereals",
     "slug": "yoga-bar-high-protein-oats-crisps",
-    "image_url": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80",
     "is_vegan": false,
     "variants": [
       {
@@ -43380,7 +43361,6 @@
         "dietary_tags": [
           "Vegetarian"
         ],
-        "image_url": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=800&q=80",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -43537,7 +43517,6 @@
     "brand_name": "The Whole Truth",
     "category_slug": "protein-bars",
     "slug": "the-whole-truth-peanut-butter-protein-bar",
-    "image_url": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=1080/da/cms-assets/cms/product/0f01bcdb-e6ca-4b96-b195-acb8655a7d1b.png",
     "is_vegan": false,
     "variants": [
       {
@@ -43603,7 +43582,6 @@
           "Clean Label",
           "No Added Sugar"
         ],
-        "image_url": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=1080/da/cms-assets/cms/product/0f01bcdb-e6ca-4b96-b195-acb8655a7d1b.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -44005,7 +43983,6 @@
     "brand_name": "The Whole Truth",
     "category_slug": "savory-snacks",
     "slug": "the-whole-truth-protein-namkeen-mixture",
-    "image_url": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
     "is_vegan": true,
     "variants": [
       {
@@ -44075,7 +44052,6 @@
           "Gluten-Free",
           "Palm-Oil-Free"
         ],
-        "image_url": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -47695,7 +47671,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -47805,7 +47781,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -47910,7 +47886,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -48015,7 +47991,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -48116,7 +48092,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -48217,7 +48193,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -48232,7 +48208,6 @@
     "category_slug": "dairy",
     "slug": "amul-high-protein-rose-shake",
     "description": "Refreshing rose flavoured high protein shake made with milk solids and natural rose aroma. Delivers 15g high quality dairy protein per 200ml with no added sugar.",
-    "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_rose_shake_front.png",
     "is_vegan": false,
     "variants": [
       {
@@ -48290,7 +48265,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_rose_shake_front.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -48322,7 +48296,6 @@
     "category_slug": "dairy",
     "slug": "amul-high-protein-cafe-latte-shake",
     "description": "Rich coffee flavoured high protein shake crafted from fresh milk and natural coffee extracts. Offers 15g protein per 200ml pack with zero added sugar.",
-    "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_cafe_latte_front.png",
     "is_vegan": false,
     "variants": [
       {
@@ -48380,7 +48353,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_cafe_latte_front.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -48412,7 +48384,6 @@
     "category_slug": "dairy",
     "slug": "amul-high-protein-kesar-shake",
     "description": "Exotic saffron (kesar) infused high protein dairy drink. Delivers 15g bioavailable protein per single pack with zero added sucrose.",
-    "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_kesar_shake_front.png",
     "is_vegan": false,
     "variants": [
       {
@@ -48470,7 +48441,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_kesar_shake_front.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -48502,7 +48472,6 @@
     "category_slug": "dairy",
     "slug": "amul-high-protein-chocolate-milkshake",
     "description": "Classic rich cocoa chocolate high protein shake made with pure cow milk and premium cocoa. Delivers 15g protein per 200ml serving with no added sugar.",
-    "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_chocolate_shake_front.png",
     "is_vegan": false,
     "variants": [
       {
@@ -48565,7 +48534,6 @@
           "Gluten-Free",
           "No Added Sugar"
         ],
-        "image_url": "https://shop.amul.com/media/catalog/product/h/p/hp_chocolate_shake_front.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -48704,7 +48672,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -48820,7 +48788,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -49898,7 +49866,6 @@
     "category_slug": "adult-nutrition",
     "slug": "protinex-original-hydrolysed-protein",
     "description": "India's iconic heritage health supplement with 34% hydrolysed protein for rapid digestion and 25 immuno-nutrients to build physical strength and stamina.",
-    "image_url": "https://www.protinex.com/images/products/protinex_original_400g.png",
     "is_vegan": false,
     "variants": [
       {
@@ -49960,7 +49927,6 @@
         "dietary_tags": [
           "Vegetarian"
         ],
-        "image_url": "https://www.protinex.com/images/products/protinex_original_400g.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -50008,7 +49974,6 @@
     "category_slug": "adult-nutrition",
     "slug": "protinex-tasty-chocolate-adult-protein",
     "description": "Rich chocolate adult nutritional drink delivering 30% protein with zero trans-fats and high iron, calcium, and B-vitamins for daily vitality.",
-    "image_url": "https://www.protinex.com/images/products/protinex_tasty_chocolate_400g.png",
     "is_vegan": false,
     "variants": [
       {
@@ -50075,7 +50040,6 @@
         "dietary_tags": [
           "Vegetarian"
         ],
-        "image_url": "https://www.protinex.com/images/products/protinex_tasty_chocolate_400g.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -50123,7 +50087,6 @@
     "category_slug": "adult-nutrition",
     "slug": "protinex-diabetes-care-vanilla",
     "description": "Specially formulated nutritional powder for individuals with diabetes with 30% protein, low GI, zero added sucrose, and high dietary fibre.",
-    "image_url": "https://www.protinex.com/images/products/protinex_diabetes_care_400g.png",
     "is_vegan": false,
     "variants": [
       {
@@ -50197,7 +50160,6 @@
           "No Added Sugar",
           "High-Fibre"
         ],
-        "image_url": "https://www.protinex.com/images/products/protinex_diabetes_care_400g.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -52096,7 +52058,6 @@
     "category_slug": "breakfast-cereals",
     "slug": "the-whole-truth-dark-chocolate-high-protein-muesli",
     "description": "100% clean-label protein muesli made with whole rolled oats, whey isolate, and dark raw cacao. Sweetened exclusively with dates — 0 refined sugar, 0 artificial sweeteners.",
-    "image_url": "https://thewholetruthfoods.com/cdn/shop/products/dark_chocolate_protein_muesli_400g.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -52172,7 +52133,6 @@
           "High-Fibre",
           "No Added Sugar"
         ],
-        "image_url": "https://thewholetruthfoods.com/cdn/shop/products/dark_chocolate_protein_muesli_400g.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -52447,7 +52407,6 @@
     "category_slug": "dairy",
     "slug": "amul-fresh-malai-paneer-block",
     "description": "India's beloved pure dairy paneer made from fresh cow and buffalo milk. Rich in calcium and casein protein, yielding 18g protein per 100g block for traditional vegetarian dishes.",
-    "image_url": "https://shop.amul.com/media/catalog/product/p/a/paneer_200g_front.png",
     "is_vegan": false,
     "variants": [
       {
@@ -52497,7 +52456,6 @@
           "Diabetic-Friendly",
           "No Added Sugar"
         ],
-        "image_url": "https://shop.amul.com/media/catalog/product/p/a/paneer_200g_front.png",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -52514,7 +52472,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Pure Milk Casein Curd",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -52899,7 +52857,6 @@
     "category_slug": "cookies-baked",
     "slug": "the-whole-truth-protein-cookie-dark-chocolate",
     "description": "100% clean-label baked protein cookie with only 7 real pantry ingredients. Sweetened exclusively with whole dates — zero refined sugar, zero artificial sweeteners, zero maida.",
-    "image_url": "https://thewholetruthfoods.com/cdn/shop/products/protein_cookie_dark_chocolate_50g.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -52975,7 +52932,6 @@
           "High-Fibre",
           "No Added Sugar"
         ],
-        "image_url": "https://thewholetruthfoods.com/cdn/shop/products/protein_cookie_dark_chocolate_50g.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -53023,7 +52979,6 @@
     "category_slug": "cookies-baked",
     "slug": "the-whole-truth-protein-cookie-cranberry-almond",
     "description": "Clean baked cookie made with whole roasted almonds, tangy cranberries, and grass-fed whey protein. Naturally sweetened with whole dates.",
-    "image_url": "https://thewholetruthfoods.com/cdn/shop/products/protein_cookie_cranberry_almond_50g.jpg",
     "is_vegan": false,
     "variants": [
       {
@@ -53104,7 +53059,6 @@
           "High-Fibre",
           "No Added Sugar"
         ],
-        "image_url": "https://thewholetruthfoods.com/cdn/shop/products/protein_cookie_cranberry_almond_50g.jpg",
         "redirect_links": [
           {
             "platform": "d2c",
@@ -56036,7 +55990,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein Concentrate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -56137,7 +56091,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -56238,7 +56192,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -56344,7 +56298,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -57208,8 +57162,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "A2 Desi Cow Milk Casein & Whey",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -57314,8 +57268,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "A2 Desi Cow Cheese Protein",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -57425,8 +57379,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "A2 Desi Cow Cheese Protein",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -57516,8 +57470,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "A2 Desi Cow Milk Protein",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -57607,8 +57561,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "A2 Desi Cow Milk Protein",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -57698,8 +57652,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Desi Buffalo Milk Protein",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -57789,8 +57743,8 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Desi Buffalo Milk Protein",
-          "protein_tier": "Tier 1 – Premium Isolate/Hydrolysate",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
+          "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -58664,7 +58618,7 @@
         "red_flags": [],
         "protein_profile": {
           "primary_protein_source": "Hard Spring Wheat Protein",
-          "protein_tier": "Tier 3 – Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
+          "protein_tier": "Tier 4 – Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -58756,7 +58710,7 @@
         "red_flags": [],
         "protein_profile": {
           "primary_protein_source": "High-Extraction Wheat Protein",
-          "protein_tier": "Tier 3 – Plant & Yeast (Pea/Rice/Soy/Yeast/Peanut)",
+          "protein_tier": "Tier 4 – Filler-Heavy (Collagen/Gelatin/Wheat Gluten)",
           "has_added_free_form_aminos": false
         },
         "is_combo": false,
@@ -64668,7 +64622,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },
@@ -64784,7 +64738,7 @@
         },
         "red_flags": [],
         "protein_profile": {
-          "primary_protein_source": "Milk Protein (Skimmed Milk / Milk Solids)",
+          "primary_protein_source": "Whole Dairy (Milk / Paneer / Cheese / Curd)",
           "protein_tier": "Tier 2 – Concentrate/Casein/Milk/Egg",
           "has_added_free_form_aminos": false
         },

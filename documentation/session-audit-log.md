@@ -1903,3 +1903,44 @@ This document serves as the complete, chronological audit history of all tasks, 
   - [`protein-web/src/components/ui/VolumetricText.tsx`](file:///c:/Users/Saksham/Documents/new-project/protein-web/src/components/ui/VolumetricText.tsx)
 - **Git & Safety Status**:
   - Explicit user approval provided for commit and push.
+
+
+---
+
+### Entry 69: Data incident investigation and patch (session 2026-11-09)
+- **Request**: Pull the repo, investigate the reported data corruption bugs and patch them; then plan live pricing (3 approaches).
+- **Actions Taken**:
+  - Hand-set Tier 1 is now capped by the classifier (`src/engine/protein_tier.py` `checked_manual_tier`), whole dairy added as Tier 2 in `src/data/protein_sources.json`; used in `src/db/supabase_client.py` and `scripts/build_demo_catalog.py`.
+  - `price_last_checked` is only written when a price exists (`src/db/supabase_client.py`, `src/models.py`); web `isPriceFresh` rejects missing/future times (`protein-web/src/lib/redirect.ts`, `RedirectButtons.tsx`).
+  - Image policy (`src/image_policy.py`, `data/image_url_blocklist.json`, `scripts/audit_image_urls.py`); bad images dropped from the rebuilt seed catalogs.
+  - Direct-to-Supabase scratch/batch scripts retired with a SystemExit guard; `scripts/seed.py` gained `--slug/--slugs-file`; new `scripts/retire_products.py` (dry run by default).
+  - New migration `supabase/migrations/016_data_incident_repair.sql` (not run).
+  - Docs: `documentation/data-quality/2026-11-09-data-incident.md`, `documentation/live-pricing-plan-2026-11-09.md`.
+- **Git & Safety Status**: Folder is not a git repo; nothing committed or pushed. No writes to Supabase.
+
+---
+
+### Entry 70: Live pricing trial of all 3 approaches (2026-11-09)
+- **Request**: "try all 3 methods and tell me which one is the most suitable".
+- **Actions Taken**: Read-only requests to 70 brand stores (1 req/s per store). Scripts and results in `protein-etl/scratch/pricing_trial/`. Write-up in `documentation/live-pricing-trial-2026-11-09.md`. Verdict: approach 1 (scheduled bulk poll).
+- **Git & Safety Status**: No database writes; nothing committed.
+
+---
+
+### Entry 71: Build store-variant-ID matching and JSON-LD page reader (2026-11-09)
+- **Request**: "Yes, build them".
+- **Actions Taken**:
+  - `protein-etl/src/pricing/d2c.py`: saves the store variant ID to `redirect_links.external_id` and matches by it first; smarter matching (pack-size normalisation, flavour words, same-price groups); SKU/ID matches whose pack size contradicts our variant name are rejected (found live: The Whole Truth "Light Cocoa 1kg" carried the 2 kg SKU); falls back to page JSON-LD when a store has no Shopify feed; reports dead links.
+  - New `protein-etl/src/pricing/pages.py` (JSON-LD Offer reader, `HttpPageReader`).
+  - `protein-etl/src/cli.py`: poll-d2c uses the page reader and prints IDs saved and dead links.
+  - Tests added to `protein-etl/tests/test_d2c.py` (232 pass; tests were run as part of the requested build).
+  - Live re-run with `scratch/pricing_trial/rerun_with_poller.py` against an in-memory copy of the catalog: 348 / 567 links priced.
+- **Git & Safety Status**: No database writes; nothing committed or pushed.
+
+
+---
+
+### Entry 72: Push / merge / deploy request — stopped on blockers (2026-11-11)
+- **Request**: "push to github and merge to main? then deploy to render?"
+- **Actions Taken**: Checked only. Git and the GitHub CLI are not installed. The project folder is a zip download, not a git clone. There is no Render config in the repo.
+- **Decision**: Stopped under Rule 4 and reported the blockers to the user. Nothing pushed, merged or deployed.

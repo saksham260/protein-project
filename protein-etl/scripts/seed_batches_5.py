@@ -1,6 +1,7 @@
 """Seed runner script to upload Batches 5A–5G (98 new products) to live Supabase."""
 
 from __future__ import annotations
+raise SystemExit("RETIRED after the 2026-11-09 data incident: this script wrote to live Supabase without the uploader's checks (picked products by list position / hard-deleted rows / stamped fake price check times). Use scripts/seed.py --slug <slug> to upsert and scripts/retire_products.py to retire.")
 import json
 import sys
 import time

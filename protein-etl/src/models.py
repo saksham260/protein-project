@@ -70,6 +70,9 @@ class RedirectLinkItem(BaseModel):
     platform: Literal["amazon", "blinkit", "zepto", "instamart", "d2c"]
     url: str
     platform_price_inr: Optional[float] = None
+    # When platform_price_inr was actually read from the store (ISO 8601). Unknown -> None.
+    # Never fill this with the upload time: the site treats it as "price checked at".
+    price_checked_at: Optional[str] = None
 
 
 class VariantCreate(BaseModel):

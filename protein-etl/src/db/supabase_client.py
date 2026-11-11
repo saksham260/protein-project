@@ -13,13 +13,17 @@ from rich.console import Console
 try:
     from src.engine.metrics import compute_all_metrics
     from src.pricing.poller import PRICED_PLATFORMS
-    from src.engine.protein_tier import classify_protein_profile
+    from src.engine.protein_tier import (
+        UNKNOWN_TIER, checked_manual_tier, classify_protein_profile, tier_key_for_label,
+    )
     from src.engine.red_flags import scan_ingredients_for_red_flags
     from src.models import ProductCreate, slugify
 except (ImportError, ModuleNotFoundError):
     from engine.metrics import compute_all_metrics
     from pricing.poller import PRICED_PLATFORMS
-    from engine.protein_tier import classify_protein_profile
+    from engine.protein_tier import (
+        UNKNOWN_TIER, checked_manual_tier, classify_protein_profile, tier_key_for_label,
+    )
     from engine.red_flags import scan_ingredients_for_red_flags
     from models import ProductCreate, slugify
 
@@ -89,9 +93,14 @@ class SupabaseUploader:
                 not variant.ingredient_list
                 and variant.protein_profile is not None
                 and variant.protein_profile.protein_tier
-                not in (None, "", "Unknown / Unclassified")
+                not in (None, "", UNKNOWN_TIER)
             ):
-                pass
+                # No ingredient deck: keep the hand-entered tier, but only as far as its source supports it.
+                profile = variant.protein_profile
+                checked = checked_manual_tier(
+                    tier_key_for_label(profile.protein_tier), profile.primary_protein_source
+                )
+                profile.protein_tier = checked or UNKNOWN_TIER
             else:
                 variant.protein_profile = computed_profile
 
@@ -273,7 +282,11 @@ class SupabaseUploader:
                             "platform": link.platform,
                             "url": link.url,
                             "platform_price_inr": link.platform_price_inr,
-                            "price_last_checked": now_iso,
+                            # Only the pollers know when a price was really checked. An upload
+                            # re-sends old scraped prices, so it must not stamp them "checked now".
+                            "price_last_checked": (
+                                link.price_checked_at if link.platform_price_inr is not None else None
+                            ),
                         }
                         for link in variant.redirect_links
                     ],

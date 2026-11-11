@@ -33,6 +33,7 @@ try:
     from src.discovery.pipeline import DRAFTS_DIR, discover_brand, http_client
     from src.pricing.amazon import AmazonCreatorsClient
     from src.pricing.d2c import HttpStoreFeed, poll_d2c_prices
+    from src.pricing.pages import HttpPageReader
     from src.pricing.poller import poll_amazon_prices, trigger_revalidate
 except (ImportError, ModuleNotFoundError):
     from db.supabase_client import SupabaseUploader
@@ -49,6 +50,7 @@ except (ImportError, ModuleNotFoundError):
     from discovery.pipeline import DRAFTS_DIR, discover_brand, http_client
     from pricing.amazon import AmazonCreatorsClient
     from pricing.d2c import HttpStoreFeed, poll_d2c_prices
+    from pricing.pages import HttpPageReader
     from pricing.poller import poll_amazon_prices, trigger_revalidate
 
 # Ensure UTF-8 output on Windows consoles
@@ -318,17 +320,20 @@ def run_poll_d2c_prices(dry_run: bool = False, force: bool = False) -> int:
 
     db = create_client(supabase_url, supabase_key)
     console.print(f"[bold green]Polling brand-store prices[/] | Mode: {'DRY-RUN' if dry_run else 'LIVE'}")
-    summary = poll_d2c_prices(db, HttpStoreFeed(), dry_run=dry_run, force=force)
+    summary = poll_d2c_prices(db, HttpStoreFeed(), dry_run=dry_run, force=force, page_reader=HttpPageReader())
 
     console.print(
         f"{summary.stores} store(s) ({len(summary.failed_stores)} unreachable) | checked {summary.checked} link(s), "
         f"{summary.changed} {'would change' if dry_run else 'changed'}, recomputed {summary.variants_recomputed} variant(s), "
-        f"skipped {len(summary.skipped)}."
+        f"{summary.ids_saved} store variant ID(s) {'to save' if dry_run else 'saved'}, "
+        f"skipped {len(summary.skipped)}, dead links {len(summary.dead_links)}."
     )
     for line in summary.changes:
         console.print(f"  [cyan]change[/] {line}")
     for reason in summary.skipped:
         console.print(f"  [yellow]skipped[/] {reason}")
+    for reason in summary.dead_links:
+        console.print(f"  [red]dead link[/] {reason}")
     for reason in summary.failed_stores:
         console.print(f"  [red]store failed[/] {reason}")
 

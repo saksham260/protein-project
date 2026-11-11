@@ -1,0 +1,46 @@
+[
+    {
+        "url":  "https://shop.amul.com/media/catalog/product/h/p/hp_rose_shake_front.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://shop.amul.com/media/catalog/product/h/p/hp_cafe_latte_front.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://shop.amul.com/media/catalog/product/h/p/hp_kesar_shake_front.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://shop.amul.com/media/catalog/product/h/p/hp_chocolate_shake_front.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://shop.amul.com/media/catalog/product/p/a/paneer_200g_front.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://www.protinex.com/images/products/protinex_original_400g.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://www.protinex.com/images/products/protinex_tasty_chocolate_400g.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://www.protinex.com/images/products/protinex_diabetes_care_400g.png",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://thewholetruthfoods.com/cdn/shop/products/dark_chocolate_protein_muesli_400g.jpg",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://thewholetruthfoods.com/cdn/shop/products/protein_cookie_dark_chocolate_50g.jpg",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    },
+    {
+        "url":  "https://thewholetruthfoods.com/cdn/shop/products/protein_cookie_cranberry_almond_50g.jpg",
+        "reason":  "returns a web page (text/html), not an image - checked 2026-11-09"
+    }
+]

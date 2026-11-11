@@ -1,3 +1,4 @@
+raise SystemExit("RETIRED after the 2026-11-09 data incident: this script wrote to live Supabase without the uploader's checks (picked products by list position / hard-deleted rows / stamped fake price check times). Use scripts/seed.py --slug <slug> to upsert and scripts/retire_products.py to retire.")
 import os
 import sys
 from pathlib import Path
