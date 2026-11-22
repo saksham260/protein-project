@@ -45,6 +45,19 @@ cd protein-web
 npm run check:supabase
 ```
 
+### Applying a migration from GitHub Actions (no SQL editor)
+
+Actions → **Apply database migration** → Run workflow (from `main`):
+
+1. Enter the file name, e.g. `016_data_incident_repair.sql`, and leave **dry run** on. The run executes the file's `-- PREVIEW` queries and then the migration inside one transaction, prints each statement's row count (e.g. `UPDATE 2800`), and **rolls it all back**.
+2. If the counts look right, run it again with dry run **off** and the file name typed again in **confirm**. It commits in one transaction; if any statement fails, nothing is kept.
+
+One-time setup:
+- Repo secret `SUPABASE_DB_URL`: Supabase dashboard → **Connect** → **Session pooler** URI, with the database password filled in. Use the pooler, not the direct connection: GitHub runners are IPv4-only and Supabase's direct connection is IPv6 unless the IPv4 add-on is enabled.
+- Optional: Settings → Environments → `database` → add required reviewers, so real runs wait for approval. Dry runs use the `database-preview` environment and don't wait.
+
+The workflow never runs on push or deploy, because nothing records which migrations have run. Migrations that can't run in one transaction (`CONCURRENTLY`, `VACUUM`, `ROLLBACK`/`SAVEPOINT`) are refused; apply those by hand. Locally the same script runs with `SUPABASE_DB_URL` set: `bash supabase/apply_migration.sh <file> dry-run|apply|print`.
+
 ---
 
 ## 3. Seeding Products

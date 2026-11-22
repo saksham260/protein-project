@@ -1944,3 +1944,16 @@ This document serves as the complete, chronological audit history of all tasks, 
 - **Request**: "push to github and merge to main? then deploy to render?"
 - **Actions Taken**: Checked only. Git and the GitHub CLI are not installed. The project folder is a zip download, not a git clone. There is no Render config in the repo.
 - **Decision**: Stopped under Rule 4 and reported the blockers to the user. Nothing pushed, merged or deployed.
+
+---
+
+### Entry 74: Manual "apply migration" workflow (2026-11-22)
+- **Request**: Run migrations from a GitHub workflow instead of the Supabase SQL editor ("Yes, build it").
+- **Decision**: Run by hand only (workflow_dispatch), not on build/deploy: nothing records which migrations have run, and 016 is a one-time data repair. Supabase CLI `db push` not used (its history table is empty, so it would replay 001-015).
+- **Actions Taken**:
+  - Cloned the repo permanently to `C:\Users\parth\OneDrive\Desktop\protein-project` (branch `feat/apply-migration-workflow`).
+  - New `supabase/apply_migration.sh`: runs one migration file in a single transaction; dry-run (rolls back, prints PREVIEW queries and row counts), apply (commits) or print (no database). Drops the file's own top-level BEGIN;/COMMIT;, refuses CONCURRENTLY/VACUUM/ROLLBACK/SAVEPOINT, validates the file name.
+  - New `.github/workflows/apply-migration.yml`: inputs migration, dry_run (default on), confirm (must repeat the file name for a real run); main only; environments `database-preview` / `database` (reviewers can be added); needs secret `SUPABASE_DB_URL` (session pooler URI).
+  - `supabase/README.md`: how to use it and the one-time setup.
+  - Checked only with the script's `print` mode (no database access).
+- **Git & Safety Status**: Commit, push and PR approved by the user. No database changes.
