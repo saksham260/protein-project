@@ -1,0 +1,55 @@
+name: Apply database migration
+
+# Run by hand only (Actions → "Apply database migration" → Run workflow), never on push or deploy:
+# nothing records which migrations have run, and some (like 016) are one-time data repairs.
+on:
+  workflow_dispatch:
+    inputs:
+      migration:
+        description: "File in supabase/migrations, e.g. 016_data_incident_repair.sql"
+        type: string
+        required: true
+      dry_run:
+        description: "Run inside a transaction and roll it back (shows row counts, changes nothing)"
+        type: boolean
+        default: true
+      confirm:
+        description: "For a real run (dry run off): type the migration file name again"
+        type: string
+        required: false
+
+concurrency:
+  group: apply-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Add required reviewers to the "database" environment in Settings → Environments
+    # to make real runs wait for approval.
+    environment: ${{ inputs.dry_run && 'database-preview' || 'database' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check confirmation
+        if: ${{ !inputs.dry_run }}
+        env:
+          MIGRATION: ${{ inputs.migration }}
+          CONFIRM: ${{ inputs.confirm }}
+        run: |
+          if [ "$CONFIRM" != "$MIGRATION" ]; then
+            echo "::error::Real run: 'confirm' must equal the migration file name."
+            exit 1
+          fi
+
+      - name: Install psql
+        run: command -v psql || (sudo apt-get update -q && sudo apt-get install -y -q postgresql-client)
+
+      - name: Apply
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          MIGRATION: ${{ inputs.migration }}
+          MODE: ${{ inputs.dry_run && 'dry-run' || 'apply' }}
+        run: bash supabase/apply_migration.sh "$MIGRATION" "$MODE"
