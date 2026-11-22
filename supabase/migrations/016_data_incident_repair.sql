@@ -11,6 +11,8 @@
 --      hydrolysate (milk, paneer, cheese, concentrates, blends).
 --
 -- Run the two PREVIEW queries first and check the counts. Safe to run more than once.
+-- Applied to production on 2026-11-22 (2,801 stamped check times, 2,220 without a price;
+-- 7 Humpy Farms dairy variants moved from Tier 1 to Tier 2).
 -- Restoring the deleted products is NOT done here: see the incident note.
 -- ==============================================================================
 
@@ -27,6 +29,12 @@
 --   AND COALESCE(pv.primary_protein_source, '') !~* '(isolate|hydroly)';
 
 BEGIN;
+
+-- 0. 001_schema.sql defined price_last_checked as NOT NULL DEFAULT NOW(): every insert without
+--    a check time was stamped "checked now", and a missing check time could not be stored.
+--    Allow NULL (unknown age) and drop the default; only the price pollers set it.
+ALTER TABLE redirect_links ALTER COLUMN price_last_checked DROP NOT NULL;
+ALTER TABLE redirect_links ALTER COLUMN price_last_checked DROP DEFAULT;
 
 -- 1. A check time on a link with no price means nothing.
 UPDATE redirect_links

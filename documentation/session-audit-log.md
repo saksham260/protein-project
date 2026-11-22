@@ -1957,3 +1957,21 @@ This document serves as the complete, chronological audit history of all tasks, 
   - `supabase/README.md`: how to use it and the one-time setup.
   - Checked only with the script's `print` mode (no database access).
 - **Git & Safety Status**: Commit, push and PR approved by the user. No database changes.
+
+---
+
+### Entry 75: Migration 016 applied to production; NOT NULL bug fixed (2026-11-22)
+- **Request**: The user ran migration 016 by hand in the Supabase SQL editor instead of using the workflow.
+- **What happened**:
+  - Previews: 2,801 stamped check times (2,220 without a price); 7 Humpy Farms dairy variants labelled Tier 1.
+  - The first run failed with `23502 null value in column "price_last_checked"`, and the transaction rolled back. Cause: `001_schema.sql` defines `price_last_checked TIMESTAMPTZ NOT NULL DEFAULT NOW()`. The default was also stamping uploads "checked now".
+  - The user ran the corrected script, which adds `ALTER COLUMN price_last_checked DROP NOT NULL` and `DROP DEFAULT` before the updates. Both checks returned 0.
+- **Repo change**: `supabase/migrations/016_data_incident_repair.sql` gains the two ALTERs (step 0) and a note on when it was applied. `setup_all.sql` is left as is: a fresh database runs 016 after it, which applies the ALTERs.
+- **Git & Safety Status**: Branch `fix/migration-016-not-null`, PR opened. No other database changes by Claude.
+
+---
+
+### Entry 76: Global CLAUDE.md created (2026-11-22)
+- **Request**: Create a global CLAUDE.md with two rules: reply in short pointers, and end every reply with next steps split into "I can do" / "You need to do".
+- **Actions Taken**: Created `C:\Users\parth\.claude\CLAUDE.md` (outside the repo; applies to all projects).
+- **Git & Safety Status**: Nothing committed.
